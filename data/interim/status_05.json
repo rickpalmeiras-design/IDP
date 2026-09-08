@@ -1,0 +1,10 @@
+{
+  "etapa": "05",
+  "inicio": "2026-09-07T12:13:24.737825+00:00",
+  "status": "concluido",
+  "resultado": {
+    "modelos": 7,
+    "bootstrap": 199
+  },
+  "fim": "2026-09-07T12:21:00.936849+00:00"
+}

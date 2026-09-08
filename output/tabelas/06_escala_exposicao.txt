@@ -1,0 +1,4 @@
+                            medida   n     media  desvio_padrao    minimo   maximo
+        AIOE entre ocupacoes (COD) 416  0.005252       0.944504 -2.122764 1.446232
+    AIOE ponderado por trabalhador 416 -0.221244       0.981041 -2.122764 1.446232
+Teletrabalho entre ocupacoes (COD) 413  0.349845       0.431682  0.000000 1.000000

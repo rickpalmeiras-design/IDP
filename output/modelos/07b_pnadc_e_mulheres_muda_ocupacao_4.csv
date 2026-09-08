@@ -1,0 +1,5 @@
+"bloco","desfecho","termo","estimativa","erro_padrao","estatistica","p_valor","n","vcov","clusters","filtro","ic95_inferior","ic95_superior"
+"e_mulheres","muda_ocupacao_4","idade",-0.0015237023081267,0.000815108840933369,-1.86932374133242,0.0622992296208322,1230205,"~cod_origem","cod_origem=406","sexo == '2'",-0.00312131563635611,7.39110201027019e-05
+"e_mulheres","muda_ocupacao_4","idade_quadrado",1.26114334443352e-05,8.73796150442599e-06,1.44329240154551,0.14971113108494,1230205,"~cod_origem","cod_origem=406","sexo == '2'",-4.51497110433971e-06,2.97378379930102e-05
+"e_mulheres","muda_ocupacao_4","aioe_origem:pos",0.0140930771382388,0.00667843898608402,2.11023521628404,0.0354507911455972,1230205,"~cod_origem","cod_origem=406","sexo == '2'",0.00100333672551408,0.0271828175509635
+"e_mulheres","muda_ocupacao_4","pos:telework",0.00571729408936839,0.0132708078030999,0.430817337889024,0.666830382952829,1230205,"~cod_origem","cod_origem=406","sexo == '2'",-0.0202934892047075,0.0317280773834442

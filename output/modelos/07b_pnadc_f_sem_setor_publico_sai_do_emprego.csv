@@ -1,0 +1,5 @@
+"bloco","desfecho","termo","estimativa","erro_padrao","estatistica","p_valor","n","vcov","clusters","filtro","ic95_inferior","ic95_superior"
+"f_sem_setor_publico","sai_do_emprego","idade",-0.0096110212557481,0.000363818730462587,-26.4170600659507,3.9435079671155e-90,3013437,"~cod_origem","cod_origem=406","substr(as.character(setor), 1, 2) != '84'",-0.0103241059674548,-0.00889793654404143
+"f_sem_setor_publico","sai_do_emprego","idade_quadrado",0.000120787934915584,4.74719474413367e-06,25.4440656905529,5.25733534475817e-86,3013437,"~cod_origem","cod_origem=406","substr(as.character(setor), 1, 2) != '84'",0.000111483433217082,0.000130092436614086
+"f_sem_setor_publico","sai_do_emprego","aioe_origem:pos",-0.00246704283000709,0.00173117753259608,-1.42506633984991,0.154908191401778,3013437,"~cod_origem","cod_origem=406","substr(as.character(setor), 1, 2) != '84'",-0.0058601507938954,0.000926065133881216
+"f_sem_setor_publico","sai_do_emprego","pos:telework",0.00200174106193584,0.00233240241143086,0.858231432160043,0.391272302367044,3013437,"~cod_origem","cod_origem=406","substr(as.character(setor), 1, 2) != '84'",-0.00256976766446864,0.00657324978834032

@@ -1,0 +1,7 @@
+{
+  "soc_com_aioe": 774,
+  "soc_com_telework": 764,
+  "cod_com_exposicao": 416,
+  "correlacao_aioe_telework_entre_cod": 0.7023793148971491,
+  "soc_por_cod_maximo": 37
+}

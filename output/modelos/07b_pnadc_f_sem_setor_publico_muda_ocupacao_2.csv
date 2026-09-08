@@ -1,0 +1,5 @@
+"bloco","desfecho","termo","estimativa","erro_padrao","estatistica","p_valor","n","vcov","clusters","filtro","ic95_inferior","ic95_superior"
+"f_sem_setor_publico","muda_ocupacao_2","idade",-0.00108896106341597,0.000824480552023191,-1.32078441479762,0.187319070780468,2723360,"~cod_origem","cod_origem=406","substr(as.character(setor), 1, 2) != '84'",-0.00270494294538143,0.000527020818549482
+"f_sem_setor_publico","muda_ocupacao_2","idade_quadrado",5.09406490256619e-06,8.8218521185071e-06,0.577437122515294,0.563965064542237,2723360,"~cod_origem","cod_origem=406","substr(as.character(setor), 1, 2) != '84'",-1.21967652497077e-05,2.23848950548401e-05
+"f_sem_setor_publico","muda_ocupacao_2","aioe_origem:pos",0.0028676827988562,0.00475973436275889,0.602487992038699,0.547186532726906,2723360,"~cod_origem","cod_origem=406","substr(as.character(setor), 1, 2) != '84'",-0.00646139655215122,0.0121967621498636
+"f_sem_setor_publico","muda_ocupacao_2","pos:telework",0.00195222295734341,0.0115566464372344,0.168926424109813,0.865938849563391,2723360,"~cod_origem","cod_origem=406","substr(as.character(setor), 1, 2) != '84'",-0.0206988040596359,0.0246032499743228

@@ -1,0 +1,5 @@
+          termo  estimativa  erro_padrao  estatistica  p_valor       n                   modelo  erro_padrao_conservador  graus_liberdade_conservador  p_valor_conservador  ic95_inferior_conservador  ic95_superior_conservador
+          idade   -0.001190     0.000262    -4.543795 0.000006 2880049 05_pnadc_muda_ocupacao_2                 0.000262                        31035             0.000006              -1.703619e-03                  -0.000677
+ idade_quadrado    0.000006     0.000003     2.056774 0.039716 2880049 05_pnadc_muda_ocupacao_2                 0.000003                        31035             0.039716               3.014335e-07                   0.000013
+aioe_origem:pos    0.002778     0.001281     2.168614 0.030120 2880049 05_pnadc_muda_ocupacao_2                 0.001281                        31035             0.030120               2.672195e-04                   0.005290
+   pos:telework    0.003909     0.002903     1.346431 0.178173 2880049 05_pnadc_muda_ocupacao_2                 0.002903                        31035             0.178173              -1.781363e-03                   0.009599

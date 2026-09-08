@@ -1,0 +1,240 @@
+\section{Considerações e melhorias posteriores}
+\label{sec:melhorias}
+
+Este capítulo cumpre duas funções. Na primeira seção, retoma a pergunta de
+pesquisa e sintetiza o que os resultados preliminares do
+Capítulo~\ref{sec:resultados} permitem e não permitem afirmar. Nas seções
+seguintes, organiza a agenda de melhorias posteriores em quatro frentes ---
+medidas alternativas de exposição, técnicas econométricas alternativas,
+tratamento do problema de medida na coleta da pesquisa e extensões de escopo ---
+com a indicação, em cada caso, de qual limitação específica a melhoria pretende
+resolver.
+
+\subsection{Considerações sobre os resultados obtidos}
+
+A pergunta de pesquisa é se trabalhadores em ocupações mais expostas à
+inteligência artificial passaram a apresentar transições de trabalho distintas
+após o lançamento público do ChatGPT. A resposta que os dados sustentam hoje é
+qualificada em três níveis.
+
+No nível descritivo, a resposta é que houve mudança generalizada, e não
+mudança concentrada nas ocupações expostas. A permanência na mesma faixa de
+exposição caiu entre 3,6 e 8,1 pontos percentuais em todas as cinco faixas, e as
+margens de mobilidade ascendente e descendente subiram quase na mesma proporção.
+O mercado de trabalho brasileiro ficou mais móvel no período; a exposição
+ocupacional não explica esse movimento agregado.
+
+No nível de associação condicional, a resposta é que existe um gradiente
+detectável, porém modesto. Controlada a ocupação de origem, o par UF-trimestre,
+a teletrabalhabilidade interagida com o período e o conjunto de covariáveis, um
+desvio-padrão adicional de exposição associa-se a aproximadamente 2,2 pontos
+percentuais a mais de transição para ocupação menos exposta e a 1,4 ponto
+percentual a menos de transição para ocupação mais exposta. Nas margens de
+vínculo o sinal é o inverso do esperado pela leitura alarmista: maior exposição
+associa-se a menos saída do emprego e a menos informalização, e a informalização
+do período aparece associada à teletrabalhabilidade, não à exposição.
+
+No nível causal, a resposta é que o desenho atual não sustenta a afirmação, por
+duas razões de natureza distinta. A primeira é de escopo: esta versão do
+trabalho reporta um único cenário de estimação, sem estudo de evento, sem teste
+de tendências pré-marco e sem bateria de sensibilidade. Um coeficiente que não
+foi submetido a esses testes não pode ser apresentado como efeito causal,
+qualquer que seja o seu valor-$p$. A segunda é de medida, e é a mais séria: a
+taxa medida de mudança de ocupação cai pela metade durante os trimestres de
+coleta telefônica de 2020 e 2021 e volta ao patamar anterior em 2021T4, uma
+descontinuidade maior que qualquer coeficiente estimado aqui e que atravessa o
+período pré. Enquanto ela não for tratada, todo contraste entre pré e pós que
+use a série inteira é, em parte, contraste entre modos de coleta. É esse fato
+que organiza toda a agenda a seguir e que promove o tratamento do problema de
+coleta de item de robustez a prioridade.
+
+\subsection{Medidas alternativas de exposição à inteligência artificial}
+\label{sec:exposicoes}
+
+A primeira frente de robustez ataca a validade da variável de tratamento. Hoje
+o trabalho depende de uma única medida, o AIOE de \citeonline{felten2021},
+construída para a classificação ocupacional americana, anterior à difusão dos
+modelos generativos e transportada para a classificação brasileira por uma ponte
+com pesos uniformes declarados. Cada uma dessas três características é uma
+hipótese que pode falhar, e a maneira de testá-las é substituir a medida
+mantendo tudo o mais constante.
+
+\subsubsection{Exposição específica a modelos de linguagem}
+
+A substituição mais direta é pela medida de \citeonline{eloundou2024},
+construída tarefa a tarefa para modelos de linguagem de grande porte e
+contemporânea ao marco temporal usado aqui. Ela responde à objeção mais óbvia
+que o trabalho atual atrai: o AIOE mede exposição à inteligência artificial em
+sentido amplo, incluindo visão computacional e reconhecimento de padrões, que
+não são a tecnologia cujo lançamento define o marco. Se o gradiente estimado com
+a medida específica for maior que o estimado com a medida ampla, isso é evidência
+a favor da leitura pretendida; se for menor ou nulo, é evidência de que o
+gradiente atual capta outra coisa.
+
+\subsubsection{Exposição por conteúdo de tarefas rotineiras e não rotineiras}
+
+Uma segunda substituição usa medidas de conteúdo de tarefas, na tradição de
+\citeonline{acemoglu2020}, para separar exposição a automação de rotinas de
+exposição a automação de tarefas cognitivas. Essa distinção é a que dá sentido
+econômico à direção prevista do efeito e permite testar se o gradiente estimado
+é específico à dimensão cognitiva ou se reflete simplesmente rotinização.
+
+\subsubsection{Teletrabalhabilidade como tratamento placebo}
+
+Dada a correlação de $0{,}702$ entre exposição e teletrabalhabilidade, um
+exercício informativo é inverter os papéis: estimar a mesma especificação usando
+a teletrabalhabilidade como tratamento e a exposição como controle. Se o
+gradiente de teletrabalhabilidade for da mesma ordem de grandeza, a
+interpretação em termos de inteligência artificial fica insustentável e o
+resultado passa a ser sobre reorganização do trabalho remoto.
+
+\subsubsection{Sensibilidade à construção da ponte ocupacional}
+
+A ponte COD-ISCO-SOC usa pesos uniformes entre códigos SOC associados ao mesmo
+código COD, comparação em dois dígitos no grupo da agropecuária e ausência de
+atribuição a ocupações militares. Convém reestimar com pontes alternativas ---
+pesos proporcionais ao emprego americano por SOC, comparação em três dígitos
+para todos os grupos, e restrição da amostra aos códigos COD com correspondência
+unívoca --- para medir quanto do resultado depende dessas escolhas de
+construção.
+
+\subsubsection{Exposição medida no destino, e não só na origem}
+
+Por fim, todas as covariáveis e a exposição pertencem hoje à origem do par. Uma
+extensão natural é modelar a exposição do destino como escolha, o que
+transformaria o problema de um gradiente de transição em um modelo de escolha
+ocupacional com exposição como atributo da alternativa.
+
+\subsection{Técnicas econométricas alternativas}
+
+A segunda frente ataca a identificação. O procedimento atual é um modelo de
+probabilidade linear com interação entre tratamento contínuo e indicador de
+período, estimado com efeitos fixos de alta dimensão. Essa escolha é defensável,
+mas está longe de ser a única, e os problemas diagnosticados no
+Capítulo~\ref{sec:resultados} pedem estimadores construídos justamente para
+tratar deles.
+
+\subsubsection{Diferenças em diferenças com tratamento contínuo}
+
+O estimador atual impõe, implicitamente, que a resposta seja linear na dose de
+exposição e que a comparação entre doses diferentes seja livre de seleção.
+\citeonline{callaway2024} mostram que essa hipótese é mais forte do que parece e
+propõem parâmetros e estimadores que separam o efeito médio em cada nível de dose
+da comparação entre níveis. Aplicar esse arcabouço permitiria responder se o
+gradiente estimado é um efeito de dose ou um artefato de composição entre
+ocupações com doses diferentes.
+
+\subsubsection{Análise formal de sensibilidade a tendências não paralelas}
+
+O passo anterior a qualquer análise formal de sensibilidade é o estudo de
+evento: substituir a interação única com o indicador de período por interações
+com cada trimestre relativo ao marco, examinar se os coeficientes pré são planos
+e submetê-los a teste conjunto. Feito isso, a análise de
+\citeonline{rambachan2023} responde à pergunta seguinte --- qual é a menor
+violação de paralelismo no período pós, expressa como múltiplo do maior desvio
+pré observado, capaz de fazer o intervalo de confiança passar a incluir zero. A
+melhoria consiste em executar os dois e reportar, para cada desfecho, o
+intervalo robusto em vez do intervalo convencional, discutindo qual magnitude de
+violação é economicamente plausível dado o que se sabe sobre a coleta da
+pesquisa.
+
+\subsubsection{Grupos de comparação construídos por pareamento}
+
+Uma alternativa ao controle por efeitos fixos é construir explicitamente um
+contrafactual: parear ocupações de alta exposição com ocupações de baixa
+exposição semelhantes em trajetória pré-marco, escolaridade média, composição
+setorial e teletrabalhabilidade, e estimar a diferença apenas entre pares
+comparáveis. Métodos de controle sintético aplicados a séries ocupacionais
+agregadas seguem a mesma lógica e têm a vantagem de tornar visível a qualidade
+do ajuste pré-marco, que é exatamente o ponto fraco do desenho atual.
+
+\subsubsection{Modelos de duração e de transição multiestado}
+
+O horizonte de um trimestre é uma limitação de desenho, não de dados. A PNADC
+permite acompanhar o mesmo indivíduo por até quatro transições consecutivas.
+Modelos de duração e modelos de transição multiestado --- entre ocupado formal,
+ocupado informal, desocupado e fora da força de trabalho --- usariam essa
+estrutura e permitiriam separar efeitos sobre a taxa instantânea de saída de
+efeitos sobre o destino da saída.
+
+\subsubsection{Modelos de resposta binária e efeitos marginais}
+
+Os desfechos binários são hoje estimados por modelo de probabilidade linear, por
+razões de viabilidade computacional com efeitos fixos de alta dimensão. Como
+robustez, convém reestimar os principais desfechos com modelo de resposta
+binária em especificações com menos efeitos fixos e comparar os efeitos
+marginais médios, verificando se a aproximação linear é adequada nas faixas de
+probabilidade observadas.
+
+\subsubsection{Nível de agrupamento e inferência}
+
+O agrupamento atual é feito na unidade primária de amostragem, com mais de trinta
+mil grupos. Como a exposição varia entre ocupações, e não entre UPAs, há
+argumento sério para agrupar também --- ou principalmente --- na ocupação de
+origem, e para reportar o mesmo coeficiente sob agrupamento em ocupação, em
+ocupação e UPA e em ocupação e trimestre. Essa última estrutura reduz os graus
+de liberdade a algo próximo do número de trimestres, faixa em que a aproximação
+assintótica é frágil e em que procedimentos de reamostragem apropriados a poucos
+grupos, com imposição da hipótese nula, devem substituir a inferência
+convencional.
+
+\subsubsection{Correção para multiplicidade}
+
+São sete desfechos correlacionados, estimados sobre a mesma base e com a mesma
+especificação, e o trabalho não aplica hoje nenhuma correção para multiplicidade
+--- apenas registra a ressalva. Convém definir, de antemão, a família de
+hipóteses e o critério de decisão, e reportar o resultado corrigido como
+resultado principal.
+
+\subsection{Tratamento do problema de medida na coleta}
+
+A descontinuidade na taxa medida de mudança de ocupação entre o período de
+coleta presencial e o de coleta telefônica é maior que qualquer efeito estimado
+neste trabalho. Enquanto ela não for tratada, nenhuma estimativa que use o
+período de 2020 e 2021 é confiável. Três encaminhamentos são possíveis, em ordem
+crescente de ambição: restringir a amostra ao período de coleta homogênea, o que
+custa metade dos trimestres pré; modelar explicitamente o modo de coleta como
+efeito fixo interagido com a ocupação; ou tratar a mudança de modo de coleta como
+um choque de medida cuja magnitude pode ser estimada e descontada.
+
+\subsection{Extensões de escopo}
+
+Três extensões ampliam a pergunta sem alterar o desenho.
+
+A primeira é incorporar rendimentos. O trabalho atual mede apenas margens de
+transição, e a literatura de referência --- \citeonline{brynjolfsson2025} e
+\citeonline{humlum2025} --- concentra-se em produtividade e remuneração. A PNADC
+publica rendimento habitual e efetivo, o que permitiria estimar o gradiente de
+exposição sobre a variação de rendimento entre entrevistas consecutivas.
+
+A segunda é a dimensão regional. Os efeitos fixos de UF interagida com trimestre
+absorvem hoje toda a variação regional. Uma extensão que tratasse mercados de
+trabalho locais como unidade de exposição, no espírito de
+\citeonline{acemoglu2020}, transformaria essa variação absorvida em variação
+identificadora.
+
+A terceira é a margem de entrada. O desenho atual condiciona a origem a estar
+ocupada, e portanto não observa efeito algum sobre quem procura o primeiro
+emprego. É plausível que seja justamente aí que um efeito de exposição apareça
+primeiro, e é exatamente a margem que o desenho exclui. O exame de
+heterogeneidade por faixa etária entre os já ocupados, que é o teste mais
+próximo disponível, também está por fazer.
+
+\subsection{Encaminhamento}
+
+A ordem sugerida de execução segue o princípio de atacar primeiro o que ameaça
+diretamente o resultado. Primeiro, o tratamento do problema de coleta e a
+definição de qual janela homogênea será adotada como cenário principal: enquanto
+essa decisão não estiver tomada e justificada, nenhum coeficiente do
+Capítulo~\ref{sec:resultados} é defensável como estimativa causal. Segundo, o
+estudo de evento sobre a janela escolhida, com teste conjunto dos coeficientes
+pré: é ele que diz se existe desenho a defender. Terceiro, a bateria mínima de
+sensibilidade --- janelas alternativas, estruturas alternativas de agrupamento,
+tendência específica de exposição e especificação sem o controle de
+teletrabalhabilidade na mesma amostra. Quarto, a substituição da medida de
+exposição pela medida específica a modelos de linguagem e o exercício de placebo
+com teletrabalhabilidade: se o gradiente não sobreviver a esses dois testes, as
+demais melhorias são irrelevantes. Quinto, a análise formal de sensibilidade a
+tendências não paralelas e os estimadores alternativos para tratamento contínuo.
+As extensões de escopo vêm por último, porque ampliam a pergunta antes de a
+resposta atual estar segura.

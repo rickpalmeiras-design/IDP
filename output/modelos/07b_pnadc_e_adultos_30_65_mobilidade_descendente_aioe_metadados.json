@@ -1,0 +1,11 @@
+{
+  "formula": "mobilidade_descendente_aioe ~ aioe_origem:pos + telework:pos + idade + idade_quadrado | cod_origem + sigla_uf^mes + sexo + raca + escolaridade + tempo_emprego_categoria + tamanho_empresa_categoria + setor",
+  "n": 2242528,
+  "vcov": "~cod_origem",
+  "clusters": {
+    "cod_origem": 412
+  },
+  "filtro": "idade >= 30",
+  "pacote": "0.14.0",
+  "sha256_dados": "f5b5146d73f472e0578afa974825080a0402336b41909c90e9de213d0ee318f8"
+}

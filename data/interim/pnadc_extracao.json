@@ -1,0 +1,6 @@
+{
+  "tabela": "basedosdados.br_ibge_pnadc.microdados",
+  "pareamento": "SQL remoto na etapa 09",
+  "peso": "V1028 transversal da entrevista de origem; não é peso longitudinal",
+  "microdados_locais": false
+}

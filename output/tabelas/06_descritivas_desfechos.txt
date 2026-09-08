@@ -1,0 +1,15 @@
+                   variavel periodo  celulas  media_ponderada
+                    pareado     Pre  2111852         0.783350
+                    pareado     Pos  1902586         0.812258
+            muda_ocupacao_2     Pre  1509307         0.209224
+            muda_ocupacao_2     Pos  1411950         0.280350
+            muda_ocupacao_3     Pre  1509307         0.236233
+            muda_ocupacao_3     Pos  1411950         0.317936
+             sai_do_emprego     Pre  1661274         0.079003
+             sai_do_emprego     Pos  1558368         0.081216
+       formal_para_informal     Pre   878324         0.052313
+       formal_para_informal     Pos   835566         0.088115
+mobilidade_descendente_aioe     Pre  1490487         0.127637
+mobilidade_descendente_aioe     Pos  1395640         0.173957
+ mobilidade_ascendente_aioe     Pre  1490487         0.128724
+ mobilidade_ascendente_aioe     Pos  1395640         0.174499

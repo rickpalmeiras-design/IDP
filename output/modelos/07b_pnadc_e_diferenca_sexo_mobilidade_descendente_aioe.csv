@@ -1,0 +1,7 @@
+"bloco","desfecho","termo","estimativa","erro_padrao","estatistica","p_valor","n","vcov","clusters","filtro","ic95_inferior","ic95_superior"
+"e_diferenca_sexo","mobilidade_descendente_aioe","idade",-0.000189672076445651,0.00052097548499882,-0.364071020435982,0.715992652359572,2876958,"~cod_origem","cod_origem=411","nenhum",-0.00121078402704334,0.000831439874152037
+"e_diferenca_sexo","mobilidade_descendente_aioe","idade_quadrado",-5.14363660872722e-06,5.69112631244295e-06,-0.903799410932293,0.366632493161465,2876958,"~cod_origem","cod_origem=411","nenhum",-1.62982441811154e-05,6.01097096366097e-06
+"e_diferenca_sexo","mobilidade_descendente_aioe","aioe_origem:pos",0.0210342678311469,0.00326071740954585,6.45080980325631,3.13908896596442e-10,2876958,"~cod_origem","cod_origem=411","nenhum",0.014643261708437,0.0274252739538567
+"e_diferenca_sexo","mobilidade_descendente_aioe","pos:telework",-0.00355244624725748,0.00839682040025849,-0.423070409740825,0.672465709164946,2876958,"~cod_origem","cod_origem=411","nenhum",-0.0200102142317641,0.0129053217372492
+"e_diferenca_sexo","mobilidade_descendente_aioe","aioe_origem:pos:grupo",0.00301363158396143,0.0042062115047164,0.716471718215374,0.474108027048712,2876958,"~cod_origem","cod_origem=411","nenhum",-0.0052305429652827,0.0112578061332056
+"e_diferenca_sexo","mobilidade_descendente_aioe","pos:grupo:telework",0.00303613814273956,0.00990353826190294,0.306571051925857,0.759325518384411,2876958,"~cod_origem","cod_origem=411","nenhum",-0.0163747968505902,0.0224470731360693

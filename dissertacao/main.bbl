@@ -1,0 +1,490 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.3 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{nyt/global//global/global/global}
+    \entry{acemoglu2020}{article}{}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=d849e6f8de178bfb18aa67341c9f8d38}{%
+           family={Acemoglu},
+           familyi={A\bibinitperiod},
+           given={Daron},
+           giveni={D\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=741d2340160d17e7d9b5d9e3be8edd84}{%
+           family={Restrepo},
+           familyi={R\bibinitperiod},
+           given={Pascual},
+           giveni={P\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{4cb0cc109d3549f4dc540e3709bf2e7b}
+      \strng{fullhash}{4cb0cc109d3549f4dc540e3709bf2e7b}
+      \strng{fullhashraw}{4cb0cc109d3549f4dc540e3709bf2e7b}
+      \strng{bibnamehash}{4cb0cc109d3549f4dc540e3709bf2e7b}
+      \strng{authorbibnamehash}{4cb0cc109d3549f4dc540e3709bf2e7b}
+      \strng{authornamehash}{4cb0cc109d3549f4dc540e3709bf2e7b}
+      \strng{authorfullhash}{4cb0cc109d3549f4dc540e3709bf2e7b}
+      \strng{authorfullhashraw}{4cb0cc109d3549f4dc540e3709bf2e7b}
+      \field{sortinit}{A}
+      \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of Political Economy}
+      \field{number}{6}
+      \field{subtitle}{evidence from US labor markets}
+      \field{title}{Robots and jobs}
+      \field{volume}{128}
+      \field{year}{2020}
+      \field{pages}{2188\bibrangedash 2244}
+      \range{pages}{57}
+      \verb{doi}
+      \verb 10.1086/705716
+      \endverb
+    \endentry
+    \entry{ibge2022tratamento}{report}{}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=1b2a0c6c38c544c67a817e121b56fadc}{%
+           family={Baptista},
+           familyi={B\bibinitperiod},
+           given={Fernanda\bibnamedelimb Karine\bibnamedelimb Ruiz\bibnamedelima Colenghi},
+           giveni={F\bibinitperiod\bibinitdelim K\bibinitperiod\bibinitdelim R\bibinitperiod\bibinitdelim C\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=90336117127669ab883989cedd519bc0}{%
+           family={Hypólito},
+           familyi={H\bibinitperiod},
+           given={Elizabeth\bibnamedelima Belo},
+           giveni={E\bibinitperiod\bibinitdelim B\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=adfee68d1b088fb59e72ec7061a43bac}{%
+           family={Conde},
+           familyi={C\bibinitperiod},
+           given={Felipe\bibnamedelima Quintas},
+           giveni={F\bibinitperiod\bibinitdelim Q\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{institution}{1}{%
+        {IBGE}%
+      }
+      \list{location}{1}{%
+        {Rio de Janeiro}%
+      }
+      \strng{namehash}{a7b00bd93fd81919baade01d28434ac9}
+      \strng{fullhash}{a7b00bd93fd81919baade01d28434ac9}
+      \strng{fullhashraw}{a7b00bd93fd81919baade01d28434ac9}
+      \strng{bibnamehash}{a7b00bd93fd81919baade01d28434ac9}
+      \strng{authorbibnamehash}{a7b00bd93fd81919baade01d28434ac9}
+      \strng{authornamehash}{a7b00bd93fd81919baade01d28434ac9}
+      \strng{authorfullhash}{a7b00bd93fd81919baade01d28434ac9}
+      \strng{authorfullhashraw}{a7b00bd93fd81919baade01d28434ac9}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{isbn}{978-85-240-4537-0}
+      \field{number}{61}
+      \field{title}{O tratamento das informações da PNAD Contínua}
+      \field{type}{Textos para discussão. Diretoria de Pesquisas}
+      \field{urlday}{8}
+      \field{urlmonth}{9}
+      \field{urlyear}{2026}
+      \field{year}{2022}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://biblioteca.ibge.gov.br/visualizacao/livros/liv101953.pdf
+      \endverb
+      \verb{url}
+      \verb https://biblioteca.ibge.gov.br/visualizacao/livros/liv101953.pdf
+      \endverb
+    \endentry
+    \entry{basedosdados_pnadc}{online}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=aba72c6e728cd6e706deda309910005e}{%
+           family={{BASE DOS DADOS}},
+           familyi={B\bibinitperiod}}}%
+      }
+      \strng{namehash}{aba72c6e728cd6e706deda309910005e}
+      \strng{fullhash}{aba72c6e728cd6e706deda309910005e}
+      \strng{fullhashraw}{aba72c6e728cd6e706deda309910005e}
+      \strng{bibnamehash}{aba72c6e728cd6e706deda309910005e}
+      \strng{authorbibnamehash}{aba72c6e728cd6e706deda309910005e}
+      \strng{authornamehash}{aba72c6e728cd6e706deda309910005e}
+      \strng{authorfullhash}{aba72c6e728cd6e706deda309910005e}
+      \strng{authorfullhashraw}{aba72c6e728cd6e706deda309910005e}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{subtitle}{microdados}
+      \field{title}{IBGE --- Pesquisa Nacional por Amostra de Domicílios Contínua (PNAD Contínua)}
+      \field{urlday}{8}
+      \field{urlmonth}{9}
+      \field{urlyear}{2026}
+      \field{year}{2026}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://basedosdados.org/dataset/br-ibge-pnadc
+      \endverb
+      \verb{url}
+      \verb https://basedosdados.org/dataset/br-ibge-pnadc
+      \endverb
+    \endentry
+    \entry{brynjolfsson2025}{article}{}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=7bd9f54569cb8c0301da00ed49b5a752}{%
+           family={Brynjolfsson},
+           familyi={B\bibinitperiod},
+           given={Erik},
+           giveni={E\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=9549ba5d9e9696208664346821d3ac14}{%
+           family={Li},
+           familyi={L\bibinitperiod},
+           given={Danielle},
+           giveni={D\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=526a7239b4cbed8ac82f3731346cd822}{%
+           family={Raymond},
+           familyi={R\bibinitperiod},
+           given={Lindsey},
+           giveni={L\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{52c6338e9f79371688e62392e04268b3}
+      \strng{fullhash}{52c6338e9f79371688e62392e04268b3}
+      \strng{fullhashraw}{52c6338e9f79371688e62392e04268b3}
+      \strng{bibnamehash}{52c6338e9f79371688e62392e04268b3}
+      \strng{authorbibnamehash}{52c6338e9f79371688e62392e04268b3}
+      \strng{authornamehash}{52c6338e9f79371688e62392e04268b3}
+      \strng{authorfullhash}{52c6338e9f79371688e62392e04268b3}
+      \strng{authorfullhashraw}{52c6338e9f79371688e62392e04268b3}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{The Quarterly Journal of Economics}
+      \field{number}{2}
+      \field{title}{Generative AI at work}
+      \field{volume}{140}
+      \field{year}{2025}
+      \field{pages}{889\bibrangedash 942}
+      \range{pages}{54}
+      \verb{doi}
+      \verb 10.1093/qje/qjae044
+      \endverb
+    \endentry
+    \entry{callaway2024}{report}{}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=4a5a67b3788b4a3653a14d9ab03fba0e}{%
+           family={Callaway},
+           familyi={C\bibinitperiod},
+           given={Brantly},
+           giveni={B\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=437b3fad5b4a40d10f45b4fc16dd7730}{%
+           family={Goodman-Bacon},
+           familyi={G\bibinithyphendelim B\bibinitperiod},
+           given={Andrew},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=f90144f1e670fa40bee88166593b00ea}{%
+           family={Sant'Anna},
+           familyi={S\bibinitperiod},
+           given={Pedro\bibnamedelimb H.\bibnamedelimi C.},
+           giveni={P\bibinitperiod\bibinitdelim H\bibinitperiod\bibinitdelim C\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{institution}{1}{%
+        {National Bureau of Economic Research}%
+      }
+      \list{location}{1}{%
+        {Cambridge, MA}%
+      }
+      \strng{namehash}{100b0960671e592b2885c4af9a18389d}
+      \strng{fullhash}{100b0960671e592b2885c4af9a18389d}
+      \strng{fullhashraw}{100b0960671e592b2885c4af9a18389d}
+      \strng{bibnamehash}{100b0960671e592b2885c4af9a18389d}
+      \strng{authorbibnamehash}{100b0960671e592b2885c4af9a18389d}
+      \strng{authornamehash}{100b0960671e592b2885c4af9a18389d}
+      \strng{authorfullhash}{100b0960671e592b2885c4af9a18389d}
+      \strng{authorfullhashraw}{100b0960671e592b2885c4af9a18389d}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{number}{32117}
+      \field{title}{Difference-in-differences with a continuous treatment}
+      \field{type}{NBER Working Paper}
+      \field{urlday}{8}
+      \field{urlmonth}{9}
+      \field{urlyear}{2026}
+      \field{year}{2024}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://www.nber.org/papers/w32117
+      \endverb
+      \verb{url}
+      \verb https://www.nber.org/papers/w32117
+      \endverb
+    \endentry
+    \entry{dingel2020}{article}{}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=9a1eb4b70183ec8e9c537af4f28addbf}{%
+           family={Dingel},
+           familyi={D\bibinitperiod},
+           given={Jonathan\bibnamedelima I.},
+           giveni={J\bibinitperiod\bibinitdelim I\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=7f1a88ad90fe14cd3b930ee5d0e0f166}{%
+           family={Neiman},
+           familyi={N\bibinitperiod},
+           given={Brent},
+           giveni={B\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{50c99ebe8a46bec34edd841a23cb2356}
+      \strng{fullhash}{50c99ebe8a46bec34edd841a23cb2356}
+      \strng{fullhashraw}{50c99ebe8a46bec34edd841a23cb2356}
+      \strng{bibnamehash}{50c99ebe8a46bec34edd841a23cb2356}
+      \strng{authorbibnamehash}{50c99ebe8a46bec34edd841a23cb2356}
+      \strng{authornamehash}{50c99ebe8a46bec34edd841a23cb2356}
+      \strng{authorfullhash}{50c99ebe8a46bec34edd841a23cb2356}
+      \strng{authorfullhashraw}{50c99ebe8a46bec34edd841a23cb2356}
+      \field{sortinit}{D}
+      \field{sortinithash}{6f385f66841fb5e82009dc833c761848}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of Public Economics}
+      \field{title}{How many jobs can be done at home?}
+      \field{volume}{189}
+      \field{year}{2020}
+      \field{pages}{104235}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.1016/j.jpubeco.2020.104235
+      \endverb
+    \endentry
+    \entry{eloundou2024}{article}{}{}
+      \name{author}{4}{}{%
+        {{un=0,uniquepart=base,hash=7acbec2d39020460335e73a07de706e4}{%
+           family={Eloundou},
+           familyi={E\bibinitperiod},
+           given={Tyna},
+           giveni={T\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=fd98cf8f44d45a7d097eec72424a9a4a}{%
+           family={Manning},
+           familyi={M\bibinitperiod},
+           given={Sam},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=2321e04943bcadb0275819652b980521}{%
+           family={Mishkin},
+           familyi={M\bibinitperiod},
+           given={Pamela},
+           giveni={P\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=2e01e687f3caab6d764e9e5588261295}{%
+           family={Rock},
+           familyi={R\bibinitperiod},
+           given={Daniel},
+           giveni={D\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{44030746c147dbe174c0315c97f8cf61}
+      \strng{fullhash}{4d37b858190d9085ef0e29abc07dfa89}
+      \strng{fullhashraw}{4d37b858190d9085ef0e29abc07dfa89}
+      \strng{bibnamehash}{4d37b858190d9085ef0e29abc07dfa89}
+      \strng{authorbibnamehash}{4d37b858190d9085ef0e29abc07dfa89}
+      \strng{authornamehash}{44030746c147dbe174c0315c97f8cf61}
+      \strng{authorfullhash}{4d37b858190d9085ef0e29abc07dfa89}
+      \strng{authorfullhashraw}{4d37b858190d9085ef0e29abc07dfa89}
+      \field{sortinit}{E}
+      \field{sortinithash}{8da8a182d344d5b9047633dfc0cc9131}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Science}
+      \field{number}{6702}
+      \field{subtitle}{labor market impact potential of LLMs}
+      \field{title}{GPTs are GPTs}
+      \field{volume}{384}
+      \field{year}{2024}
+      \field{pages}{1306\bibrangedash 1308}
+      \range{pages}{3}
+      \verb{doi}
+      \verb 10.1126/science.adj0998
+      \endverb
+    \endentry
+    \entry{felten2021}{article}{}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=1527a830397c4e7dfb4604830ab3ae90}{%
+           family={Felten},
+           familyi={F\bibinitperiod},
+           given={Edward\bibnamedelima W.},
+           giveni={E\bibinitperiod\bibinitdelim W\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=46b06df00bf8e9752a690304a05f49bd}{%
+           family={Raj},
+           familyi={R\bibinitperiod},
+           given={Manav},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=3f0a8256abfa2d34780e3557a538eb87}{%
+           family={Seamans},
+           familyi={S\bibinitperiod},
+           given={Robert},
+           giveni={R\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{ea87a25650e395619a973f6c0dccd27a}
+      \strng{fullhash}{ea87a25650e395619a973f6c0dccd27a}
+      \strng{fullhashraw}{ea87a25650e395619a973f6c0dccd27a}
+      \strng{bibnamehash}{ea87a25650e395619a973f6c0dccd27a}
+      \strng{authorbibnamehash}{ea87a25650e395619a973f6c0dccd27a}
+      \strng{authornamehash}{ea87a25650e395619a973f6c0dccd27a}
+      \strng{authorfullhash}{ea87a25650e395619a973f6c0dccd27a}
+      \strng{authorfullhashraw}{ea87a25650e395619a973f6c0dccd27a}
+      \field{sortinit}{F}
+      \field{sortinithash}{2638baaa20439f1b5a8f80c6c08a13b4}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Strategic Management Journal}
+      \field{number}{12}
+      \field{subtitle}{a novel dataset and its potential uses}
+      \field{title}{Occupational, industry, and geographic exposure to artificial intelligence}
+      \field{volume}{42}
+      \field{year}{2021}
+      \field{pages}{2195\bibrangedash 2217}
+      \range{pages}{23}
+      \verb{doi}
+      \verb 10.1002/smj.3286
+      \endverb
+    \endentry
+    \entry{humlum2025}{report}{}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=392139cd480d8a0dfdc4ecde04a43f21}{%
+           family={Humlum},
+           familyi={H\bibinitperiod},
+           given={Anders},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=930d387ddf0e438cf1f85a6d035245a3}{%
+           family={Vestergaard},
+           familyi={V\bibinitperiod},
+           given={Emilie},
+           giveni={E\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{institution}{1}{%
+        {National Bureau of Economic Research}%
+      }
+      \list{location}{1}{%
+        {Cambridge, MA}%
+      }
+      \strng{namehash}{d95478df1f9f54d021558c27b9f90a8d}
+      \strng{fullhash}{d95478df1f9f54d021558c27b9f90a8d}
+      \strng{fullhashraw}{d95478df1f9f54d021558c27b9f90a8d}
+      \strng{bibnamehash}{d95478df1f9f54d021558c27b9f90a8d}
+      \strng{authorbibnamehash}{d95478df1f9f54d021558c27b9f90a8d}
+      \strng{authornamehash}{d95478df1f9f54d021558c27b9f90a8d}
+      \strng{authorfullhash}{d95478df1f9f54d021558c27b9f90a8d}
+      \strng{authorfullhashraw}{d95478df1f9f54d021558c27b9f90a8d}
+      \field{sortinit}{H}
+      \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Versão revista em março de 2026. A primeira versão circulou com o título \textit{Large language models, small labor market effects}}
+      \field{number}{33777}
+      \field{subtitle}{early labor market transformation under generative AI}
+      \field{title}{Still waters, rapid currents}
+      \field{type}{NBER Working Paper}
+      \field{urlday}{8}
+      \field{urlmonth}{9}
+      \field{urlyear}{2026}
+      \field{year}{2025}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://www.nber.org/papers/w33777
+      \endverb
+      \verb{url}
+      \verb https://www.nber.org/papers/w33777
+      \endverb
+    \endentry
+    \entry{rambachan2023}{article}{}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=85edb53244c29c17ce57830271014b46}{%
+           family={Rambachan},
+           familyi={R\bibinitperiod},
+           given={Ashesh},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=73c1da3266b3c7728f6b1f38a73c7671}{%
+           family={Roth},
+           familyi={R\bibinitperiod},
+           given={Jonathan},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{c7db070288680264f6dfa86410e8586f}
+      \strng{fullhash}{c7db070288680264f6dfa86410e8586f}
+      \strng{fullhashraw}{c7db070288680264f6dfa86410e8586f}
+      \strng{bibnamehash}{c7db070288680264f6dfa86410e8586f}
+      \strng{authorbibnamehash}{c7db070288680264f6dfa86410e8586f}
+      \strng{authornamehash}{c7db070288680264f6dfa86410e8586f}
+      \strng{authorfullhash}{c7db070288680264f6dfa86410e8586f}
+      \strng{authorfullhashraw}{c7db070288680264f6dfa86410e8586f}
+      \field{sortinit}{R}
+      \field{sortinithash}{5e1c39a9d46ffb6bebd8f801023a9486}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{The Review of Economic Studies}
+      \field{number}{5}
+      \field{title}{A more credible approach to parallel trends}
+      \field{volume}{90}
+      \field{year}{2023}
+      \field{pages}{2555\bibrangedash 2591}
+      \range{pages}{37}
+      \verb{doi}
+      \verb 10.1093/restud/rdad018
+      \endverb
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+

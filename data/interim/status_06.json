@@ -1,0 +1,16 @@
+{
+  "etapa": "06",
+  "inicio": "2026-09-08T14:00:25.283619+00:00",
+  "status": "concluido",
+  "resultado": {
+    "modelos_lidos": 7,
+    "figuras": [
+      "fig_coeficientes_aioe.pdf",
+      "fig_distribuicao_aioe.pdf",
+      "fig_matriz_diferencas.pdf",
+      "fig_taxa_pareamento.pdf"
+    ],
+    "tabelas": 14
+  },
+  "fim": "2026-09-08T14:00:29.822802+00:00"
+}

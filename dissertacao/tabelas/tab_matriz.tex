@@ -1,0 +1,26 @@
+% Gerado por scripts/06_dissertacao.py a partir de output/modelos e output/tabelas.
+% Não editar à mão: a próxima execução sobrescreve este arquivo.
+\begin{table}[htb]
+  \caption{Diferença entre as matrizes de mobilidade pós e pré, por faixa de exposição}
+  \label{tab:matriz}
+  \centering
+  \espacosimples\idpcorpodez
+  \begin{tabular}{@{}lrrrrr@{}}
+    \toprule
+    \textbf{Faixa de origem} & \multicolumn{5}{c}{\textbf{Faixa de destino (p.p.)}} \\
+    \cmidrule(l){2-6}
+     & \textbf{Q1} & \textbf{Q2} & \textbf{Q3} & \textbf{Q4} & \textbf{Q5} \\
+    \midrule
+    Q1 (menor exposição) & $-$3,60  & $+$2,03  & $+$1,04  & $+$0,34  & $+$0,19 \\
+    Q2                   & $+$2,05  & $-$4,97  & $+$1,60  & $+$0,75  & $+$0,57 \\
+    Q3                   & $+$1,17  & $+$1,83  & $-$6,42  & $+$1,55  & $+$1,87 \\
+    Q4                   & $+$0,69  & $+$1,22  & $+$2,46  & $-$8,06  & $+$3,69 \\
+    Q5 (maior exposição) & $+$0,26  & $+$0,82  & $+$1,92  & $+$2,78  & $-$5,79 \\
+    \bottomrule
+  \end{tabular}
+  \fonte{Elaboração própria a partir da PNADC/IBGE.}
+  \nota{Faixas fixas entre códigos ocupacionais. Erros-padrão por reamostragem
+        de UPA (199 réplicas) variam entre 0,04 e 0,28 p.p.; todas as células
+        têm intervalo de 95\% que exclui zero. Teste de Wald de igualdade das
+        matrizes: $\chi^2 = 3.040{,}1$, 20 graus de liberdade.}
+\end{table}

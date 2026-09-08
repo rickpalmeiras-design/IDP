@@ -1,0 +1,172 @@
+\section{Revisão de literatura}
+
+Este capítulo é construído em duas camadas. A primeira, apresentada na
+Seção~\ref{sec:leituras}, é uma proposta de leitura: cinco artigos que
+sustentam, em conjunto, todas as decisões de desenho tomadas no
+Capítulo~\ref{sec:metodo}. Não são cinco textos escolhidos por proximidade
+temática genérica com o tema ``inteligência artificial e trabalho'', e sim os
+cinco textos de que este trabalho depende para justificar, respectivamente, a
+medida de tratamento, a medida alternativa de exposição, o que se sabe sobre o
+efeito de produtividade da ferramenta, o que se sabe sobre o efeito agregado no
+mercado de trabalho e o desenho de identificação por exposição diferencial. A
+segunda camada, nas seções seguintes, é a revisão propriamente dita, que será
+redigida a partir dessas leituras e ampliada com a literatura brasileira de
+mobilidade ocupacional e informalidade.
+
+\subsection{Proposta de leitura}
+\label{sec:leituras}
+
+O Quadro~\ref{qua:leituras} lista as cinco leituras propostas, na ordem em que
+convém lê-las. A ordem não é cronológica: começa pela medida que este trabalho
+usa como tratamento, passa pela medida concorrente, desce ao nível da firma e
+do trabalhador e termina no desenho econométrico que serve de modelo ao
+Capítulo~\ref{sec:metodo}.
+
+\begin{quadro}[htb]
+  \caption{Proposta de leitura, na ordem sugerida}
+  \label{qua:leituras}
+  \centering
+  \espacosimples\idpcorpodez
+  \begin{tabular}{@{}p{0.5cm}p{4.3cm}p{9.4cm}@{}}
+    \toprule
+    \textbf{\#} & \textbf{Referência} & \textbf{Por que ler} \\
+    \midrule
+    1 & \citeonline{felten2021}
+      & Define o AIOE, que é literalmente a variável de tratamento deste
+        trabalho. Sem esse texto não se sabe o que o coeficiente mede. \\
+    \addlinespace
+    2 & \citeonline{eloundou2024}
+      & Medida concorrente de exposição, específica a modelos de linguagem.
+        É a primeira robustez prevista no Capítulo~\ref{sec:melhorias}. \\
+    \addlinespace
+    3 & \citeonline{brynjolfsson2025}
+      & Efeito causal medido com adoção observada e desenho limpo. Serve de
+        contraste: mostra o que este trabalho não consegue observar. \\
+    \addlinespace
+    4 & \citeonline{humlum2025}
+      & Desenho mais próximo do nosso e resultado nulo preciso. É o principal
+        candidato a explicar magnitudes pequenas. \\
+    \addlinespace
+    5 & \citeonline{acemoglu2020}
+      & Modelo canônico de identificação por exposição diferencial e leitura
+        de deslocamento \emph{versus} recomposição. \\
+    \bottomrule
+  \end{tabular}
+  \fonte{Elaboração própria (2026).}
+\end{quadro}
+
+\subsubsection{Felten, Raj e Seamans (2021)}
+
+\citeonline{felten2021} constroem o \textit{Artificial Intelligence
+Occupational Exposure} (AIOE), índice que liga aplicações correntes de
+inteligência artificial às habilidades exigidas por cada ocupação e, a partir
+daí, produz um escore de exposição por ocupação da classificação ocupacional
+americana. O índice é padronizado entre ocupações, de modo que uma unidade
+corresponde aproximadamente a um desvio-padrão de exposição.
+
+Este é o artigo mais importante da lista pelo motivo mais simples possível: o
+AIOE é o tratamento deste trabalho. Ler o texto responde a três perguntas que
+aparecerão na banca. Primeira: o que exatamente o índice mede --- exposição
+potencial da ocupação a aplicações de inteligência artificial, e não adoção
+observada, produtividade ou risco de substituição. Segunda: em que escala ele é
+medido, o que determina como se lê o coeficiente estimado no
+Capítulo~\ref{sec:resultados}. Terceira: por que exposição alta não é sinônimo
+de ocupação pior, ponto que precisa estar claro antes de qualquer interpretação
+distributiva dos resultados.
+
+\subsubsection{Eloundou et al. (2024)}
+
+\citeonline{eloundou2024} propõem uma medida de exposição construída
+especificamente para modelos de linguagem de grande porte, avaliando tarefa a
+tarefa se o acesso a um modelo reduziria substancialmente o tempo de execução.
+Estimam que cerca de 80\% da força de trabalho americana teria ao menos 10\%
+das tarefas afetadas e que aproximadamente 19\% teria ao menos metade delas.
+
+A leitura é necessária por uma razão de robustez. O AIOE foi construído antes
+da difusão dos modelos generativos e capta exposição à inteligência artificial
+em sentido amplo; a medida de \citeonline{eloundou2024} é contemporânea ao
+choque que este trabalho usa como marco temporal. Se as duas medidas produzem
+gradientes de sinal e magnitude semelhantes, o resultado é mais crível; se
+divergem, a divergência informa qual dimensão de exposição está de fato
+correlacionada com as transições observadas. A substituição da medida de
+exposição está registrada como primeira melhoria posterior na
+Seção~\ref{sec:exposicoes}.
+
+\subsubsection{Brynjolfsson, Li e Raymond (2025)}
+
+\citeonline{brynjolfsson2025} acompanham a implantação escalonada de um
+assistente conversacional em uma central de atendimento e medem ganho de
+produtividade, com efeitos concentrados entre trabalhadores menos experientes.
+É evidência causal em sentido forte: a adoção é observada, o momento da
+implantação varia entre equipes e o desfecho é medido no nível do trabalhador.
+
+O artigo entra na lista como contraste metodológico deliberado. Ele mostra o
+que se consegue afirmar quando a adoção é observada e o que, por consequência,
+não se consegue afirmar quando ela não é. Neste trabalho não há adoção
+observada: há um índice ocupacional e um marco temporal nacional. Ler
+\citeonline{brynjolfsson2025} é a maneira mais rápida de internalizar essa
+diferença e de escrever, no Capítulo~\ref{sec:resultados}, uma leitura honesta
+dos coeficientes.
+
+\subsubsection{Humlum e Vestergaard (2025)}
+
+\citeonline{humlum2025} combinam levantamentos representativos de adoção de
+assistentes conversacionais com registros administrativos vinculados de
+empregador e empregado na Dinamarca. Estimam efeitos nulos e precisos sobre
+rendimentos e horas, descartando efeitos superiores a poucos pontos percentuais
+dois anos após a adoção, e encontram recomposição de tarefas e alguma troca de
+ocupação sem variação líquida de horas ou remuneração. O texto circulou
+inicialmente com o título \textit{Large Language Models, Small Labor Market
+Effects}.
+
+É o artigo cuja leitura mais muda a expectativa sobre a magnitude dos
+resultados. Duas razões. Primeira: o desenho é o mais próximo do nosso ---
+diferenças em diferenças, exposição ocupacional, horizonte curto --- em um país
+com dados administrativos muito melhores que os disponíveis aqui. Segunda: o
+achado central, de que a margem que se move é a de composição de tarefas e de
+troca de ocupação, e não a de emprego ou salário, é exatamente o padrão que
+aparece nos resultados preliminares do Capítulo~\ref{sec:resultados}, em que o
+coeficiente estatisticamente mais forte é o de deslocamento no gradiente de
+exposição e não o de saída do emprego.
+
+\subsubsection{Acemoglu e Restrepo (2020)}
+
+\citeonline{acemoglu2020} estimam o efeito da adoção de robôs industriais sobre
+emprego e salários em mercados de trabalho locais americanos, usando a exposição
+diferencial desses mercados à robotização. É o desenho canônico de identificação
+por exposição diferencial e a referência padrão para a distinção entre efeito de
+deslocamento e efeito de recomposição.
+
+A leitura serve a dois propósitos. O primeiro é metodológico: o trabalho mostra
+como se argumenta a favor de uma medida de exposição como fonte de variação
+identificadora e, mais importante, quais objeções essa estratégia atrai ---
+tendências pré-existentes, choques setoriais concomitantes, seleção na medida de
+exposição. Todas reaparecem no Capítulo~\ref{sec:metodo}. O segundo é conceitual:
+a decomposição entre deslocamento e recomposição dá vocabulário para interpretar
+por que a permanência ocupacional cai em todas as faixas de exposição no período
+analisado, e não apenas nas mais expostas.
+
+\subsection{Inteligência artificial, automação e mercado de trabalho}
+
+% TODO (Ricardo): a partir das leituras 3, 4 e 5, escrever a discussão sobre os
+% efeitos de automação e inteligência artificial sobre emprego, salários e
+% composição ocupacional. Sugestão de fio condutor: da automação de rotinas
+% (tarefas codificáveis) para a automação de tarefas cognitivas não rotineiras,
+% e o que muda na previsão teórica quando a tecnologia passa a alcançar
+% ocupações de alta escolaridade.
+
+\subsection{Medidas de exposição ocupacional à inteligência artificial}
+
+% TODO (Ricardo): a partir das leituras 1 e 2, comparar as famílias de medidas
+% de exposição: baseadas em habilidades (AIOE) e baseadas em tarefas
+% (Eloundou et al.). Discutir o problema de transportar medidas construídas na
+% classificação ocupacional americana para a classificação brasileira, que é o
+% ponto tratado na Seção~\ref{sec:exposicao}.
+
+\subsection{Mobilidade ocupacional, formalidade e mercado de trabalho brasileiro}
+
+% TODO (Ricardo): literatura brasileira sobre transições ocupacionais,
+% informalidade e dinâmica do mercado de trabalho, com atenção ao que já se
+% sabe sobre taxas de troca de ocupação e de transição formal-informal entre
+% trimestres consecutivos da PNAD Contínua. Essa seção define o contrafactual
+% de leitura: quanta rotatividade existe em um trimestre normal no Brasil.

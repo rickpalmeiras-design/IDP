@@ -1,0 +1,172 @@
+\section{Resultados preliminares}
+\label{sec:resultados}
+
+Este capítulo apresenta os resultados obtidos até o momento. O adjetivo
+``preliminares'' é literal e tem duas justificativas. A primeira é que o trabalho
+reporta, nesta versão, um \emph{único} cenário de estimação: a especificação da
+equação~\eqref{eq:principal}, com o corte de período no trimestre do marco e
+erros-padrão agrupados por unidade primária de amostragem. Não há aqui bateria
+de sensibilidade, estudo de evento nem teste formal de tendências pré-marco, de
+modo que os coeficientes devem ser lidos como \textbf{associação condicional}, e
+não como estimativas causais do efeito do marco. A segunda é que a agenda de
+robustez descrita no Capítulo~\ref{sec:melhorias} --- medidas alternativas de
+exposição, estimadores alternativos e tratamento do problema de coleta --- ainda
+não foi executada. O capítulo organiza-se em três blocos: descrição da amostra e
+das margens de transição; resultado principal; e síntese.
+
+\subsection{Descrição da amostra e das margens de transição}
+
+A Tabela~\ref{tab:escala} apresenta a escala efetiva de cada domínio de
+estimação. O ponto de partida são 3.963.359 pessoas-transições com exposição
+atribuída à ocupação de origem, distribuídas por 413 códigos ocupacionais,
+31.145 unidades primárias de amostragem e 27 trimestres de origem. Cada desfecho
+usa o subconjunto em que está definido, e nenhuma ausência é convertida em zero.
+
+\input{tabelas/tab_escala}
+
+A Tabela~\ref{tab:descritivas} traz as médias ponderadas antes e depois do
+marco. Três leituras importam. Primeira: as margens direcionais de exposição
+sobem quase na mesma proporção --- a mobilidade descendente passa de 12,8\% para
+17,4\% e a ascendente, de 12,9\% para 17,4\% --- o que indica aumento geral de
+rotatividade ocupacional, e não deslocamento líquido do emprego para ocupações
+menos expostas. Segunda: a mudança de ocupação sobe entre sete e oito pontos
+percentuais nas duas resoluções, confirmando essa leitura. Terceira: a transição
+de formal para informal quase dobra, de 5,2\% para 8,8\%, movimento grande
+demais para ser atribuído à exposição ocupacional e que exige leitura conjunta
+com o ciclo do mercado de trabalho no período. A saída do emprego, em contraste,
+praticamente não se move.
+
+\input{tabelas/tab_descritivas}
+
+A Tabela~\ref{tab:matriz} apresenta a diferença entre as matrizes de mobilidade
+pós e pré entre faixas de exposição. O padrão é inequívoco e não é um padrão de
+direção: \emph{a permanência na mesma faixa cai em todas as cinco faixas}, entre
+3,6 e 8,1 pontos percentuais, com a queda mais forte na quarta faixa. O teste de
+Wald da equação~\eqref{eq:wald} rejeita a igualdade das matrizes com estatística
+de 3.040,1 e 20 graus de liberdade. A Figura~\ref{fig:matriz} apresenta a mesma
+informação em forma gráfica.
+
+\input{tabelas/tab_matriz}
+
+\begin{figure}[htb]
+  \caption{Diferença entre as matrizes de mobilidade pós e pré}
+  \label{fig:matriz}
+  \centering
+  \includegraphics[width=0.85\textwidth]{figuras/fig_matriz_diferencas.pdf}
+  \fonte{Elaboração própria a partir da PNADC/IBGE.}
+\end{figure}
+
+Um achado descritivo adicional merece registro porque condiciona toda a leitura
+temporal. A taxa ponderada de mudança de código ocupacional em três dígitos
+entre entrevistas consecutivas cai abruptamente de 30,0\% nas origens de 2019T4
+para 15,3\% nas de 2020T1, permanece entre 13\% e 15\% durante todo o período de
+coleta telefônica e retorna a 34,3\% nas origens de 2021T4. Essa
+descontinuidade tem magnitude maior que qualquer coeficiente estimado neste
+trabalho e coincide exatamente com as mudanças no modo de coleta da pesquisa
+\parencite{ibge2022tratamento}. Ela é, muito provavelmente, artefato de medida e
+não fenômeno econômico. Como o desenho desta versão usa a série inteira, parte
+do contraste entre pré e pós é atravessada por essa descontinuidade, e essa é a
+razão pela qual o tratamento do problema de coleta encabeça a agenda do
+Capítulo~\ref{sec:melhorias}.
+
+\subsection{Resultado principal}
+
+A Tabela~\ref{tab:principal} apresenta os coeficientes da
+equação~\eqref{eq:principal} para os sete desfechos, em pontos percentuais por
+desvio-padrão de exposição da ocupação de origem. O painel A traz o coeficiente
+de interesse $\beta$, sobre a interação entre exposição e período; o painel B
+traz o coeficiente $\gamma$ da teletrabalhabilidade interagida com o período,
+estimado simultaneamente na mesma equação. A Figura~\ref{fig:coeficientes}
+apresenta o painel A em forma gráfica.
+
+\input{tabelas/tab_principal}
+
+\begin{figure}[htb]
+  \caption{Gradiente de exposição por desfecho, com intervalos de 95\%}
+  \label{fig:coeficientes}
+  \centering
+  \includegraphics[width=0.92\textwidth]{figuras/fig_coeficientes_aioe.pdf}
+  \fonte{Elaboração própria a partir da PNADC/IBGE.}
+  \nota{Efeito da interação entre exposição e período, em pontos percentuais por
+        desvio-padrão de exposição da ocupação de origem.}
+\end{figure}
+
+A leitura literal é a seguinte. Comparando o período pós ao pré, e mantidos
+constantes a ocupação de origem, o par UF-trimestre, a teletrabalhabilidade
+interagida com o período e o conjunto de covariáveis demográficas e contratuais,
+um desvio-padrão adicional de exposição da ocupação de origem está associado a:
+um aumento de 2,19 pontos percentuais na probabilidade de transitar para
+ocupação menos exposta e uma queda de 1,36 ponto percentual na probabilidade de
+transitar para ocupação mais exposta.
+
+Esses dois números precisam ser lidos em conjunto e contra o pano de fundo
+descritivo. As duas margens direcionais subiram \emph{ambas} cerca de 4,6 pontos
+percentuais entre os períodos, conforme a Tabela~\ref{tab:descritivas}. O que os
+coeficientes acrescentam é que essa subida geral não foi simétrica ao longo do
+gradiente: dentro de uma mesma ocupação, quanto maior a exposição, mais a
+composição do movimento pendeu para o lado descendente. A magnitude é modesta em
+relação à margem que pretende explicar --- cerca de dois pontos percentuais
+contra uma base pós de 17,4\%.
+
+O terceiro grupo de resultados é o de frequência de mudança. Maior exposição
+associa-se a mais mudança de ocupação, com $+0{,}86$ ponto percentual na
+resolução de três dígitos e $+0{,}28$ na de dois dígitos. A diferença entre as
+duas resoluções é informativa: o movimento adicional associado à exposição é,
+em boa parte, movimento \emph{dentro} do mesmo grande grupo ocupacional, e não
+troca de família ocupacional.
+
+O quarto grupo é o das margens de vínculo, e o sinal é contraintuitivo. Maior
+exposição associa-se a \emph{menos} saída do emprego ($-0{,}25$ ponto
+percentual) e a \emph{menos} transição de formal para informal ($-0{,}67$ ponto
+percentual). Isto é, no período analisado, trabalhadores em ocupações mais
+expostas não apresentaram deterioração relativa de vínculo; se algo, o contrário.
+Vale notar que é justamente nesse desfecho que a teletrabalhabilidade tem o maior
+coeficiente de todo o exercício ($+1{,}73$ ponto percentual, painel B): a
+informalização no período está muito mais associada à dimensão de trabalho
+remoto do que à de exposição à inteligência artificial.
+
+O teste de atrito merece nota específica. O coeficiente sobre a probabilidade de
+pareamento é $-0{,}261$ ponto percentual, com $p = 0{,}064$: não se rejeita a
+hipótese de que a exposição não prevê quem desaparece do painel, mas o resultado
+está próximo do limiar convencional e o sinal é negativo. Isso não invalida os
+demais desfechos, mas impede afirmar que a seleção longitudinal esteja
+descartada.
+
+Uma ressalva de leitura fecha a seção. São sete desfechos fortemente
+correlacionados, estimados sobre a mesma base e com a mesma especificação, sem
+correção para multiplicidade. O coeficiente de mudança de ocupação em dois
+dígitos, com $p = 0{,}030$, é o que menos resiste a essa ressalva e não deve ser
+citado isoladamente.
+
+\subsection{Síntese dos resultados preliminares}
+
+Os resultados preliminares sustentam quatro afirmações, e apenas quatro.
+
+\textbf{Primeira.} Houve aumento generalizado de rotatividade ocupacional entre
+o período pré e o pós, visível na queda de permanência em \emph{todas} as faixas
+de exposição e na subida simultânea das duas margens direcionais. Esse movimento
+é comum ao mercado de trabalho do período e não é atribuível à exposição
+diferencial.
+
+\textbf{Segunda.} Condicionalmente à ocupação de origem, ao par UF-trimestre, à
+teletrabalhabilidade interagida com o período e ao conjunto de controles, há
+gradiente estatisticamente detectável associado à exposição: maior exposição
+associa-se a mais transições para ocupações menos expostas, menos transições
+para ocupações mais expostas e mais mudança de ocupação, sobretudo de resolução
+fina. A magnitude é modesta, da ordem de dois pontos percentuais por
+desvio-padrão de exposição.
+
+\textbf{Terceira.} Nas margens de vínculo o sinal é o oposto do que a leitura
+alarmista sobre inteligência artificial anteciparia: maior exposição associa-se a
+menos saída do emprego e a menos informalização. A informalização do período
+está associada à teletrabalhabilidade, não à exposição.
+
+\textbf{Quarta, e limitante.} Nada disso é evidência causal. O desenho reporta um
+único cenário, sem estudo de evento, sem teste de tendências pré-marco e sem
+bateria de sensibilidade; a série usada atravessa uma descontinuidade de medida
+de primeira ordem no modo de coleta de 2020 e 2021, cuja magnitude é maior que a
+de qualquer coeficiente estimado. Os coeficientes da Tabela~\ref{tab:principal}
+devem ser lidos como descrição condicional de um período que contém essa
+descontinuidade. O Capítulo~\ref{sec:melhorias} organiza o que precisa ser feito
+para mudar esse diagnóstico, e coloca o tratamento do problema de coleta como
+prioridade.

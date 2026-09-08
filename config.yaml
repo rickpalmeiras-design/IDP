@@ -1,0 +1,36 @@
+# Configuração única do paper PNADC × exposição à IA.
+bigquery:
+  projeto: #Digite aqui seu projeto
+  localizacao: US
+  max_bytes_por_consulta: 2000000000000
+
+# Janela e choque
+inicio_pnadc: 2019
+choque: '2022-11-30'          # Lançamento público; etapas 04-07 usam o trimestre. Etapa 08 separa os pares de transição.
+
+# Amostra PNADC
+idade_minima_pnadc: 18
+idade_maxima_pnadc: 65
+
+# Limites de qualidade
+limite_pareamento: 0.80       # Taxa mínima desejada de pareamento por trimestre.
+limite_sem_match: 0.15        # Máximo de peso sem AIOE atribuído.
+autorizacao_alertas_preparacao: true  # Trimestres de coleta atípica (2020-2021) ficam abaixo de 0,80.
+
+seed: 1895
+estimacao:
+  autorizada: true
+  rscript: 'C:/Program Files/R/R-4.4.3/bin/Rscript.exe'
+  threads: 2
+  alpha: 0.05
+  bootstrap: 199
+  quintis: 5
+  desfechos: [pareado, muda_ocupacao_2, muda_ocupacao_3, sai_do_emprego,
+              formal_para_informal, mobilidade_descendente_aioe, mobilidade_ascendente_aioe]
+
+insumos:
+  aioe: data/raw/aioe/AIOE_DataAppendix.xlsx
+  ponte_isco_soc: data/raw/crosswalks/isco2008_soc2010.csv
+  estrutura_cod: data/raw/cod/Estrutura_Ocupacao_COD.xls
+  telework: data/raw/telework/telework_dingel_neiman.csv
+  crosswalk_cod_soc: data/raw/crosswalk_cod_soc.csv

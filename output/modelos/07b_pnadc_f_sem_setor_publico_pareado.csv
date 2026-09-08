@@ -1,0 +1,5 @@
+"bloco","desfecho","termo","estimativa","erro_padrao","estatistica","p_valor","n","vcov","clusters","filtro","ic95_inferior","ic95_superior"
+"f_sem_setor_publico","pareado","idade",0.00542863953099334,0.00032307888299604,16.8028299486843,1.8734665273878e-48,3764908,"~cod_origem","cod_origem=406","substr(as.character(setor), 1, 2) != '84'",0.00479540492032111,0.00606187414166558
+"f_sem_setor_publico","pareado","idade_quadrado",-3.49939184685531e-05,3.64214593150379e-06,-9.60804951988967,7.95943605743719e-20,3764908,"~cod_origem","cod_origem=406","substr(as.character(setor), 1, 2) != '84'",-4.21325244943005e-05,-2.78553124428056e-05
+"f_sem_setor_publico","pareado","aioe_origem:pos",-0.0024943097344334,0.00140838997691427,-1.77103627213986,0.0773067219122079,3764908,"~cod_origem","cod_origem=406","substr(as.character(setor), 1, 2) != '84'",-0.00525475408918536,0.000266134620318574
+"f_sem_setor_publico","pareado","pos:telework",-0.00388106349914609,0.00306335483796439,-1.2669324007287,0.205907532114412,3764908,"~cod_origem","cod_origem=406","substr(as.character(setor), 1, 2) != '84'",-0.00988523898155629,0.00212311198326411

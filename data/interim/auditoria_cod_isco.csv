@@ -1,0 +1,435 @@
+cod,descricao_cod,codigo_encontrado_na_ponte_isco
+1111,Legisladores ,True
+1112,Dirigentes superiores da administração pública,True
+1113,Chefes de pequenas populações,True
+1114,Dirigentes de organizações que apresentam um interesse especial,True
+1120,Diretores gerais e gerentes gerais,True
+1211,Dirigentes financeiros,True
+1212,Dirigentes de recursos humanos,True
+1213,Dirigentes de políticas e planejamento,True
+1219,Dirigentes de administração e de serviços não classificados anteriormente,True
+1221,Dirigentes de vendas e  comercialização ,True
+1222,Dirigentes de publicidade e relações públicas,True
+1223,Dirigentes de pesquisa e desenvolvimento,True
+1311,Dirigentes de produção agropecuária e silvicultura,True
+1312,Dirigentes de produção da aquicultura e pesca,True
+1321,Dirigentes de indústria de transformação,True
+1322,Dirigentes de explorações de mineração,True
+1323,Dirigentes de empresas de construção,True
+1324,"Dirigentes de empresas de abastecimento, distribuição e afins",True
+1330,Dirigentes de serviços de tecnologia da informação e comunicações,True
+1341,Dirigentes de serviços de cuidados infantis,True
+1342,Dirigentes de serviços de saúde,True
+1343,Dirigentes de serviços de cuidado a pessoas idosas,True
+1344,Dirigentes de serviços de bem-estar social,True
+1345,Dirigentes de serviços de educação,True
+1346,"Gerentes de sucursais de bancos, de serviços financeiros e de seguros",True
+1349,Dirigentes e gerentes de serviços profissionais não classificados anteriormente,True
+1411,Gerentes de hotéis,True
+1412,Gerentes de restaurantes,True
+1420,Gerentes de comércios atacadistas e varejistas,True
+1431,"Gerentes de centros esportivos,  de diversão e culturais",True
+1439,Gerentes de serviços não classificados anteriormente,True
+2111,Físicos e astrônomos,True
+2112,Meteorologistas,True
+2113,Químicos,True
+2114,Geólogos e geofísicos,True
+2120,"Matemáticos, atuários e estatísticos",True
+2131,"Biólogos, botânicos, zoólogos e afins",True
+2132,Agrônomos e afins,True
+2133,Profissionais da proteção do meio ambiente,True
+2141,Engenheiros industriais e de produção,True
+2142,Engenheiros civis ,True
+2143,Engenheiros de meio ambiente,True
+2144,Engenheiros mecânicos,True
+2145,Engenheiros químicos,True
+2146,"Engenheiros de minas, metalúrgicos e afins",True
+2149,Engenheiros não classificados anteriormente,True
+2151,Engenheiros eletricistas,True
+2152,Engenheiros eletrônicos,True
+2153,Engenheiros em telecomunicações,True
+2161,Arquitetos de edificações,True
+2162,Arquitetos paisagistas,True
+2163,Desenhistas de produtos e  vestuário,True
+2164,Urbanistas e engenheiros de trânsito,True
+2165,Cartógrafos e agrimensores,True
+2166,Desenhistas gráficos e de multimídia,True
+2211,Médicos gerais,True
+2212,Médicos especialistas,True
+2221,Profissionais de enfermagem ,True
+2222,Profissionais de partos  ,True
+2230,Profissionais da medicina tradicional e alternativa,True
+2240,Paramédicos,True
+2250,Veterinários,True
+2261,Dentistas,True
+2262,Farmacêuticos,True
+2263,Profissionais da saúde e da higiene laboral e ambiental,True
+2264,Fisioterapeutas,True
+2265,Dietistas e nutricionistas,True
+2266,Fonoaudiólogos e logopedistas,True
+2267,Optometristas,True
+2269,Profissionais da saúde não classificados anteriormente,True
+2310,Professores de universidades e do ensino superior,True
+2320,Professores de formação profissional,True
+2330,Professores do ensino médio,True
+2341,Professores do ensino fundamental,True
+2342,Professores do ensino pré-escolar,True
+2351,Especialistas em métodos pedagógicos,True
+2352,Educadores para necessidades especiais,True
+2353,Outros professores de idiomas,True
+2354,Outros professores de música,True
+2355,Outros professores de artes,True
+2356,Instrutores em tecnologias da informação,True
+2359,Profissionais de ensino não classificados anteriormente,True
+2411,Contadores,True
+2412,Assessores financeiros e em investimentos,True
+2413,Analistas financeiros,True
+2421,Analistas de gestão e administração,True
+2422,Especialistas em políticas de administração,True
+2423,Especialistas em políticas e serviços de pessoal e afins,True
+2424,Especialistas em formação de pessoal,True
+2431,Profissionais da publicidade e da comercialização,True
+2432,Profissionais de relações públicas,True
+2433,Profissionais de vendas técnicas e médicas (exclusive tic),True
+2434,Profissionais de vendas de tecnologia da informação e comunicações,True
+2511,Analistas de sistemas,True
+2512,Desenvolvedores de programas e aplicativos (software) ,True
+2513,Desenvolvedores de páginas de internet (web) e multimídia,True
+2514,Programadores de aplicações,True
+2519,Desenvolvedores e analistas de programas e aplicativos (software) e multimídia não classificados anteriormente,True
+2521,Desenhistas e administradores de bases de dados,True
+2522,Administradores de sistemas,True
+2523,Profissionais em rede de computadores,True
+2529,Especialistas em base de dados e em redes de computadores não classificados anteriormente,True
+2611,Advogados e juristas,True
+2612,Juízes,True
+2619,Profissionais em direito não classificados anteriormente,True
+2621,Arquivologistas e curadores de museus,True
+2622,"Bibliotecários, documentaristas e afins",True
+2631,Economistas,True
+2632,"Sociólogos, antropólogos e afins",True
+2633,"Filósofos, historiadores e especialistas em ciência política",True
+2634,Psicólogos,True
+2635,Assistentes sociais,True
+2636,"Ministros de cultos religiosos, missionários e afins",True
+2641,Escritores,True
+2642,Jornalistas,True
+2643,"Tradutores, intérpretes e linguistas",True
+2651,Artistas plásticos,True
+2652,"Músicos, cantores e compositores",True
+2653,Bailarinos e coreógrafos,True
+2654,"Diretores de cinema, de teatro e afins",True
+2655,Atores,True
+2656,"Locutores de rádio, televisão e outros meios de comunicação",True
+2659,Artistas criativos e interpretativos não classificados anteriormente,True
+3111,Técnicos em ciências físicas e químicas,True
+3112,Técnicos em engenharia civil,True
+3113,Eletrotécnicos,True
+3114,Técnicos em eletrônica,True
+3115,Técnicos em engenharia mecânica,True
+3116,Técnicos em química industrial,True
+3117,Técnicos em engenharia de minas e metalurgia,True
+3118,Desenhistas e projetistas técnicos,True
+3119,Técnicos em ciências físicas e da engenharia não classificados anteriormente,True
+3121,Supervisores da mineração,True
+3122,Supervisores de indústrias de transformação,True
+3123,Supervisores da construção,True
+3131,Operadores de instalações de produção de energia,True
+3132,"Operadores de incineradores, instalações de tratamento de água e afins",True
+3133,Controladores de instalações de processamento de produtos químicos,True
+3134,Operadores de instalações de refino de petróleo e gás natural,True
+3135,Controladores de processos de produção de metais,True
+3139,Técnicos em controle de processos não classificados anteriormente,True
+3141,Técnicos e profissionais de nível médio em ciências biológicas (exclusive da medicina),True
+3142,Técnicos agropecuários,True
+3143,Técnicos florestais,True
+3151,Oficiais maquinistas em navegação,True
+3152,"Capitães, oficiais de coberta e práticos",True
+3153,Pilotos de aviação e afins,True
+3154,Controladores de tráfego aéreo,True
+3155,Técnicos em segurança aeronáutica,True
+3211,Técnicos em aparelhos de diagnóstico e tratamento médico,True
+3212,Técnicos de laboratórios médicos,True
+3213,Técnicos e assistentes farmacêuticos,True
+3214,Técnicos de próteses médicas e dentárias,True
+3221,Profissionais de nível médio de enfermagem ,True
+3222,Profissionais de nível médio de partos,True
+3230,Profissionais de nível médio de medicina tradicional e alternativa,True
+3240,Técnicos e assistentes veterinários,True
+3251,Dentistas auxiliares e ajudantes de odontologia,True
+3252,Técnicos em documentação sanitária,True
+3253,Trabalhadores comunitários da saúde,True
+3254,Técnicos em optometria e ópticos,True
+3255,Técnicos e assistentes fisioterapeutas,True
+3256, assistentes de medicina,True
+3257,"Inspetores de saúde laboral, ambiental e afins",True
+3258,Ajudantes de ambulâncias,True
+3259,Profissionais de nível médio da saúde não classificados anteriormente ,True
+3311,"Agentes e corretores de bolsa, câmbio e outros serviços financeiros",True
+3312,Agentes de empréstimos e financiamento,True
+3313,Contabilistas e guarda livros,True
+3314,"Profissionais de nível médio de serviços estatísticos, matemáticos e afins",True
+3315,Avaliadores,True
+3321,Agentes de seguros,True
+3322,Representantes comerciais,True
+3323,Agentes de compras,True
+3324,Corretores de comercialização,True
+3331,Despachantes aduaneiros,True
+3332,Organizadores de conferências e eventos,True
+3333,Agentes de emprego e agenciadores de mão de obra,True
+3334,Agentes imobiliários,True
+3339,Agentes de serviços comerciais não classificados anteriormente,True
+3341,Supervisores de secretaria,True
+3342,Secretários jurídicos,True
+3343,Secretários executivos e administrativos,True
+3344,Secretários de medicina,True
+3351,Agentes aduaneiros e inspetores de fronteiras,True
+3352,Agentes da administração tributária,True
+3353,Agentes de serviços de seguridade social,True
+3354,Agentes de serviços de expedição de licenças e permissões,True
+3355,Inspetores de polícia e detetives,True
+3359,Agentes da administração pública para aplicação da lei e afins não classificados anteriormente,True
+3411,Profissionais de nível médio do direito e serviços legais e afins,True
+3412,Trabalhadores e assistentes sociais de nível médio,True
+3413,Auxiliares leigos de religião,True
+3421,Atletas e esportistas,True
+3422,"Treinadores, instrutores e árbitros de atividades esportivas",True
+3423,Instrutores de educação física e atividades recreativas,True
+3431,Fotógrafos,True
+3432,Desenhistas e decoradores de interiores,True
+3433,"Técnicos em galerias de arte, museus e bibliotecas",True
+3434,Chefes de cozinha,True
+3435,Outros profissionais de nível médio em atividades culturais e artísticas,True
+3511,Técnicos em operações de tecnologia da informação e das comunicações ,True
+3512,Técnicos em assistência ao usuário de tecnologia da informação e das comunicações,True
+3513,Técnicos de redes e sistemas de computadores,True
+3514,Técnicos da web,True
+3521,Técnicos de radiodifusão e gravação audiovisual,True
+3522,Técnicos de engenharia de telecomunicações,True
+4110,Escriturários gerais,True
+4120,Secretários (geral),True
+4131,Operadores de máquinas de processamento de texto e mecanógrafos,True
+4132,Operadores de entrada de dados,True
+4211,Caixas de banco e afins,True
+4212,Coletores de apostas e de jogos,True
+4213,Trabalhadores em escritórios de empréstimos e penhor,True
+4214,Cobradores e afins,True
+4221,Trabalhadores de agências de viagem,True
+4222,Trabalhadores de centrais de atendimento,True
+4223,Telefonistas,True
+4224,Recepcionistas de hotéis,True
+4225,Trabalhadores dos serviços de informações,True
+4226,Recepcionistas em geral,True
+4227,Entrevistadores de pesquisas de mercado,True
+4229,Trabalhadores de serviços de informação ao cliente não classificados anteriormente,True
+4311,Trabalhadores de contabilidade e cálculo de custos,True
+4312,"Trabalhadores de serviços estatísticos, financeiros e de seguros",True
+4313,Trabalhadores encarregados de folha de pagamento,True
+4321,Trabalhadores de controle de abastecimento e estoques,True
+4322,Trabalhadores de serviços de apoio à produção,True
+4323,Trabalhadores de serviços de transporte,True
+4411,Trabalhadores de bibliotecas,True
+4412,Trabalhadores de serviços de correios,True
+4413,"Codificadores de dados, revisores de provas de impressão e afins",True
+4414,Outros escreventes,True
+4415,Trabalhadores de arquivos,True
+4416,Trabalhadores do serviço de pessoal,True
+4419,Trabalhadores de apoio administrativo não classificados anteriormente,True
+5111,Auxiliares de serviço de bordo,True
+5112,Fiscais e cobradores de transportes públicos,True
+5113,Guias de turismo,True
+5120,Cozinheiros,True
+5131,Garçons ,True
+5132, atendentes de bar,True
+5141,Cabeleireiros,True
+5142,Especialistas em tratamento de beleza e afins,True
+5151,"Supervisores de manutenção e limpeza de edifícios em escritórios, hotéis e estabelecimentos",True
+5152,Governantas e mordomos domésticos ,True
+5153,Porteiros e zeladores,True
+5161,"Astrólogos, adivinhos e afins",True
+5162,Acompanhantes e criados particulares,True
+5163,Trabalhadores de funerárias e embalsamadores,True
+5164,Cuidadores de animais,True
+5165,Instrutores de autoescola,True
+5168,Trabalhadores do sexo,False
+5169,Trabalhadores de serviços pessoais não classificados anteriormente,True
+5211,Vendedores de quiosques e postos de mercados,True
+5212,Vendedores ambulantes de serviços de alimentação,True
+5221,Comerciantes de lojas,True
+5222,Supervisores de lojas,True
+5223,Balconistas e vendedores de lojas,True
+5230,Caixas e expedidores de bilhetes,True
+5241,"Modelos de moda, arte e publicidade",True
+5242,Demonstradores de lojas,True
+5243,Vendedores a domicilio,True
+5244,Vendedores por telefone,True
+5245,Frentistas de posto de gasolina,True
+5246,Balconistas dos serviços de alimentação,True
+5249,Vendedores não classificados anteriormente,True
+5311,Cuidadores de crianças ,True
+5312,Ajudantes de professores,True
+5321,Trabalhadores de cuidados pessoais em instituições,True
+5322,Trabalhadores de cuidados pessoais a domicílios,True
+5329,Trabalhadores de cuidados pessoais nos serviços de saúde não classificados anteriormente,True
+5411,Bombeiros,True
+5412,Policiais,True
+5413,Guardiões de presídios,True
+5414,Guardas de segurança,True
+5419,Trabalhadores dos serviços de proteção e segurança não classificados anteriormente,True
+6111,"Agricultores e trabalhadores qualificados em atividades da agricultura (exclusive hortas, viveiros e jardins)",True
+6112,"Agricultores e trabalhadores qualificados no cultivo de hortas, viveiros e jardins",True
+6114,Agricultores e trabalhadores qualificados de cultivos mistos,True
+6121,Criadores de gado e trabalhadores qualificados da criação de gado,True
+6122,Avicultores e trabalhadores qualificados da avicultura,True
+6123,"Apicultores, sericicultores e trabalhadores qualificados da apicultura e sericicultura",True
+6129,Outros criadores e trabalhadores qualificados da pecuária não classificados anteriormente,True
+6130,Produtores e trabalhadores qualificados de exploração agropecuária mista ,True
+6210,Trabalhadores florestais qualificados e afins,True
+6221,Trabalhadores da aquicultura,True
+6224,Caçadores,True
+6225,Pescadores,False
+7111,Construtores de casas,True
+7112,Pedreiros,True
+7113,"Canteiros, cortadores e gravadores de pedras",True
+7114,Trabalhadores em cimento e concreto armado,True
+7115,Carpinteiros,True
+7119,Outros trabalhadores qualificados e operários da construção não classificados anteriormente,True
+7121,Telhadores,True
+7122,"Aplicadores de revestimentos cerâmicos, pastilhas, pedras e madeiras",True
+7123,Gesseiros,True
+7124,Instaladores de material isolante térmico e acústico,True
+7125,Vidraceiros,True
+7126,Bombeiros e encanadores,True
+7127,Mecânicos-instaladores de sistemas de refrigeração e climatização,True
+7131,Pintores e empapeladores,True
+7132,Lustradores,True
+7133,Limpadores de fachadas ,True
+7211,Moldadores de metal e macheiros,True
+7212,Soldadores e oxicortadores,True
+7213,Chapistas e caldeireiros,True
+7214,Montadores de estruturas metálicas,True
+7215,Aparelhadores e emendadores de cabos,True
+7221,Ferreiros e forjadores,True
+7222,Ferramenteiros e afins,True
+7223,Reguladores e operadores de máquinas-ferramentas,True
+7224,Polidores de metais e afiadores de ferramentas,True
+7231,Mecânicos e reparadores de veículos a motor,True
+7232,Mecânicos e reparadores de motores de avião,True
+7233,Mecânicos e reparadores de máquinas agrícolas e industriais,True
+7234,Reparadores de bicicletas e afins,True
+7311,Mecânicos e reparadores de instrumentos de precisão,True
+7312,Confeccionadores e afinadores de instrumentos musicais,True
+7313,"Joalheiros e lapidadores de gemas, artesãos de metais preciosos e semipreciosos ",True
+7314,Ceramistas e afins (preparação e fabricação),True
+7315,"Cortadores, polidores, jateadores e gravadores de vidros e afins ",True
+7316,"Redatores de cartazes, pintores decorativos e gravadores ",True
+7317,"Artesãos de pedra, madeira, vime e materiais semelhantes",True
+7318,"Artesãos de tecidos, couros e materiais semelhantes",True
+7319,Artesãos não classificados anteriormente,True
+7321,Trabalhadores da pré-impressão gráfica ,True
+7322,Impressores,True
+7323,Encadernadores e afins,True
+7411,Eletricistas de obras e afins,True
+7412,Mecânicos e ajustadores eletricistas,True
+7413,Instaladores e reparadores de linhas elétricas,True
+7421,Mecânicos e reparadores em eletrônica,True
+7422,Instaladores e reparadores em tecnologias da informação e comunicações,True
+7511,Magarefes e afins ,True
+7512,"Padeiros, confeiteiros e afins ",True
+7513,Trabalhadores da pasteurização do leite e fabricação de laticínios e afins ,True
+7514,"Trabalhadores da conservação de frutas, legumes e similares ",True
+7515,Trabalhadores da degustação e classificação de alimentos e bebidas,True
+7516,Trabalhadores qualificados da preparação do fumo e seus produtos ,True
+7521,Trabalhadores de tratamento e preparação da madeira ,True
+7522,Marceneiros e afins ,True
+7523,Operadores de máquinas de lavrar madeira ,True
+7531,"Alfaiates, modistas, chapeleiros e peleteiros",True
+7532,Trabalhadores qualificados da preparação da confecção de roupas,True
+7533,"Costureiros, bordadeiros e afins",True
+7534,"Tapeceiros, colchoeiros e afins",True
+7535,Trabalhadores qualificados do tratamento de couros e peles,True
+7536,Sapateiros e afins,True
+7541,Trabalhadores subaquáticos ,True
+7542,Dinamitadores e detonadores,True
+7543,Classificadores e provadores de produtos (exceto de bebidas e alimentos),True
+7544,Fumigadores e outros controladores de pragas e ervas daninhas,True
+7549,Outros trabalhadores qualificados e operários da indústria e do artesanato não classificados anteriormente,True
+8111,Mineiros e operadores de máquinas e de instalações em minas e pedreiras,True
+8112,Operadores de instalações de processamento de minerais e rochas,True
+8113,Perfuradores e sondadores de poços e afins ,True
+8114,"Operadores de máquinas para fabricar cimento, pedras e outros produtos minerais",True
+8121,Operadores de instalações de processamento de metais,True
+8122,"Operadores de máquinas polidoras, galvanizadoras e recobridoras de metais",True
+8131,Operadores de instalações e máquinas de produtos químicos ,True
+8132,Operadores de máquinas para fabricar produtos fotográficos ,True
+8141,Operadores de máquinas para fabricar produtos de borracha,True
+8142,Operadores de máquinas para fabricar produtos de material plástico,True
+8143,Operadores de máquinas para fabricar produtos de papel ,True
+8151,"Operadores de máquinas de preparação de fibras, fiação e bobinamento de fios",True
+8152,Operadores de teares e outras máquinas de tecelagem,True
+8153,Operadores de máquinas de costura,True
+8154,"Operadores de máquinas de branqueamento, tingimento e limpeza de tecidos",True
+8155,Operadores de máquinas de processamento de couros e peles,True
+8156,Operadores de máquinas para fabricação de calçados e afins,True
+8157,"Operadores de máquinas de lavar, tingir e passar roupas",True
+8159,Operadores de máquinas para fabricar produtos têxteis e artigos de couro e pele não classificados anteriormente,True
+8160,Operadores de máquinas para elaborar alimentos e produtos afins,True
+8171,Operadores de instalações para a preparação de pasta de papel e papel,True
+8172,Operadores de instalações para processamento de madeira,True
+8181,Operadores de instalações de vidraria e cerâmica   ,True
+8182,Operadores de máquinas de vapor e caldeiras,True
+8183,"Operadores de máquinas de embalagem, engarrafamento e etiquetagem",True
+8189,Operadores de máquinas e de instalações fixas não classificados anteriormente,True
+8211,Mecânicos montadores de maquinaria mecânica,True
+8212,Montadores de equipamentos elétricos e eletrônicos,True
+8219,Montadores não classificados anteriormente,True
+8311,Maquinistas de locomotivas ,True
+8312,Guarda-freios e agentes de manobras,True
+8321,Condutores de motocicletas,True
+8322,"Condutores de automóveis, taxis e caminhonetes",True
+8331,Condutores de ônibus e bondes,True
+8332,Condutores de caminhões pesados,True
+8341,Operadores de máquinas agrícolas e florestais móveis,True
+8342,Operadores de máquinas de movimentação de terras e afins,True
+8343,"Operadores de guindastes, gruas, aparatos de elevação e afins",True
+8344,Operadores de empilhadeiras,True
+8350,Marinheiros de coberta e afins,True
+9111,Trabalhadores dos serviços domésticos em geral ,True
+9112,"Trabalhadores de limpeza de interior de edifícios, escritórios, hotéis e outros estabelecimentos",True
+9121,Lavadeiros de roupas e passadeiros manuais,True
+9122,Lavadores de veículos,True
+9123,Limpadores de janelas,True
+9129,Outros trabalhadores de limpeza,True
+9211,Trabalhadores elementares da agricultura ,True
+9212,Trabalhadores elementares da pecuária ,True
+9213,Trabalhadores elementares da agropecuária,True
+9214,Trabalhadores elementares da jardinagem e horticultura ,True
+9215,Trabalhadores florestais elementares,True
+9216,Trabalhadores elementares da pesca e aquicultura ,True
+9311,Trabalhadores elementares de minas e pedreiras ,True
+9312,"Trabalhadores elementares de obras públicas e da manutenção de estradas, represas e similares",True
+9313,Trabalhadores elementares da construção de edifícios,True
+9321, empacotadores manuais,True
+9329,Trabalhadores elementares da indústria de transformação não classificados anteriormente,True
+9331,Condutores de veículos acionados a pedal ou a braços,True
+9332,Condutores de veículos e máquinas de tração animal,True
+9333,Carregadores,True
+9334,Repositores de prateleiras,True
+9411,Preparadores de comidas rápidas,True
+9412,Ajudantes de cozinha,True
+9510,Trabalhadores ambulantes dos serviços e afins,True
+9520,Vendedores ambulantes (exclusive de serviços de alimentação),True
+9611,Coletores de lixo e material reciclável,True
+9612,Classificadores de resíduos,True
+9613,Varredores e afins,True
+9621,"Mensageiros, carregadores de bagagens e entregadores de encomendas",True
+9622,Pessoas que realizam várias tarefas,True
+9623,Coletores de dinheiro em máquinas automáticas de venda e leitores de medidores,True
+9624,Carregadores de água e coletores de lenha,True
+9629,Outras ocupações elementares não classificadas anteriormente,True
+0110,Oficiais das forças armadas,True
+0210,Graduados e praças das forças armadas,True
+0411,Oficiais de polícia militar,False
+0412,Graduados e praças da polícia militar,False
+0511,Oficiais de bombeiro militar,False
+0512,Graduados e praças do corpo de bombeiros,False

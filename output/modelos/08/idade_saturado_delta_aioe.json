@@ -1,0 +1,7 @@
+{
+  "formula": "delta_aioe ~ aioe_z:pos_novo + telework:pos_novo + aioe_z:pos_novo:grupo_idade + telework:pos_novo:grupo_idade | cod_origem^grupo_idade + sigla_uf^mes^grupo_idade + sexo^grupo_idade + raca^grupo_idade + escolaridade^grupo_idade + tempo_emprego_categoria^grupo_idade + tamanho_empresa_categoria^grupo_idade + setor^grupo_idade",
+  "n": 2658153,
+  "pesos": "peso_total",
+  "fixest": "0.14.0",
+  "plano": "data/interim/estimacao/08_plano.json"
+}

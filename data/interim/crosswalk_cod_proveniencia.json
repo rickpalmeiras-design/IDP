@@ -1,0 +1,19 @@
+{
+  "codigos_mapeados": 427,
+  "elos": 1148,
+  "sem_correspondencia": [
+    "5168",
+    "0110",
+    "0210",
+    "0411",
+    "0412",
+    "0511",
+    "0512"
+  ],
+  "limitacoes": [
+    "Grupo 6 (agropecuaria) em dois digitos; demais grupos civis em quatro digitos.",
+    "Militares e COD 5168 sem atribuicao de exposicao.",
+    "Pesos uniformes entre SOC sao hipotese de construcao, nao probabilidades oficiais.",
+    "Acesso direto ao XLS do BLS retorna HTTP 403; usa-se reproducao arquivada."
+  ]
+}

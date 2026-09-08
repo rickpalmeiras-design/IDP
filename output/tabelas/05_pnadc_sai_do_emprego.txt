@@ -1,0 +1,5 @@
+          termo  estimativa  erro_padrao  estatistica  p_valor       n                  modelo  erro_padrao_conservador  graus_liberdade_conservador  p_valor_conservador  ic95_inferior_conservador  ic95_superior_conservador
+          idade   -0.009487     0.000147   -64.447803 0.000000 3176283 05_pnadc_sai_do_emprego                 0.000147                        31046             0.000000                  -0.009775                  -0.009198
+ idade_quadrado    0.000119     0.000002    67.742570 0.000000 3176283 05_pnadc_sai_do_emprego                 0.000002                        31046             0.000000                   0.000115                   0.000122
+aioe_origem:pos   -0.002504     0.000751    -3.334804 0.000855 3176283 05_pnadc_sai_do_emprego                 0.000751                        31046             0.000855                  -0.003975                  -0.001032
+   pos:telework    0.002148     0.001533     1.401294 0.161136 3176283 05_pnadc_sai_do_emprego                 0.001533                        31046             0.161136                  -0.000856                   0.005151

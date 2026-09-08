@@ -1,0 +1,10 @@
+{
+  "formula": "pareado ~ aioe_origem:pos + telework:pos + idade + idade_quadrado | cod_origem + sigla_uf^mes + sexo + raca + escolaridade + tempo_emprego_categoria + tamanho_empresa_categoria + setor",
+  "n": 3960584,
+  "cluster": "id_upa",
+  "pesos": "peso_total",
+  "clusters": 31145,
+  "pacote": "0.14.0",
+  "observacoes_entrada": 4014438,
+  "sha256_dados": "c178ad5f6cd855cdee7a069fd58dd32838b49a71c2c501f3f897f1a90a74313b"
+}

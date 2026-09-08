@@ -1,0 +1,4 @@
+"bloco","desfecho","termo","estimativa","erro_padrao","estatistica","p_valor","n","vcov","clusters","filtro","ic95_inferior","ic95_superior"
+"g_sem_telework","sobe_dado_mudou","idade",-0.00139240829956408,0.000707594370205712,-1.96780579127457,0.0497574373034377,888621,"~cod_origem","cod_origem=415","nenhum",-0.00277929326516728,-5.52333396088836e-06
+"g_sem_telework","sobe_dado_mudou","idade_quadrado",2.28538910502229e-05,7.55777255885267e-06,3.02389240642779,0.00265074826826897,888621,"~cod_origem","cod_origem=415","nenhum",8.0406568348717e-06,3.76671252655742e-05
+"g_sem_telework","sobe_dado_mudou","aioe_origem:pos",0.00199826112667595,0.00219281641546471,0.911276070620108,0.362680219506153,888621,"~cod_origem","cod_origem=415","nenhum",-0.00229965904763488,0.00629618130098679

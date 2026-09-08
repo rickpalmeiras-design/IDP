@@ -1,0 +1,40 @@
+% Gerado por scripts/06_dissertacao.py a partir de output/modelos e output/tabelas.
+% Não editar à mão: a próxima execução sobrescreve este arquivo.
+\begin{table}[htb]
+  \caption{Gradiente de exposição e de teletrabalhabilidade, cenário único}
+  \label{tab:principal}
+  \centering
+  \espacosimples\idpcorpodez
+  \begin{tabular}{@{}lrrlr@{}}
+    \toprule
+    \textbf{Desfecho}                  & \textbf{Efeito (p.p.)} & \textbf{E.P.} & \textbf{IC 95\%}       & \textbf{$p$} \\
+    \midrule
+    \multicolumn{5}{@{}l}{\textit{Painel A --- Exposição $\times$ pós}} \\
+    \addlinespace[2pt]
+    Transição para menor AIOE          & $+$2,187  & 0,105 & [$+$1,982; $+$2,393]   & $<$0,001 \\
+    Muda de ocupação (3 dígitos)       & $+$0,861  & 0,136 & [$+$0,594; $+$1,128]   & $<$0,001 \\
+    Muda de ocupação (2 dígitos)       & $+$0,278  & 0,128 & [$+$0,027; $+$0,529]   & 0,030 \\
+    Saída do emprego                   & $-$0,250  & 0,075 & [$-$0,398; $-$0,103]   & $<$0,001 \\
+    Pareamento (teste de atrito)       & $-$0,261  & 0,141 & [$-$0,536; $+$0,015]   & 0,064 \\
+    Transição de formal para informal  & $-$0,673  & 0,094 & [$-$0,858; $-$0,488]   & $<$0,001 \\
+    Transição para maior AIOE          & $-$1,364  & 0,103 & [$-$1,566; $-$1,161]   & $<$0,001 \\
+    \addlinespace
+    \multicolumn{5}{@{}l}{\textit{Painel B --- Teletrabalhabilidade $\times$ pós}} \\
+    \addlinespace[2pt]
+    Transição para menor AIOE          & $-$0,239  & 0,255 & [$-$0,739; $+$0,262]   & 0,350 \\
+    Muda de ocupação (3 dígitos)       & $+$0,093  & 0,309 & [$-$0,512; $+$0,698]   & 0,763 \\
+    Muda de ocupação (2 dígitos)       & $+$0,391  & 0,290 & [$-$0,178; $+$0,960]   & 0,178 \\
+    Saída do emprego                   & $+$0,215  & 0,153 & [$-$0,086; $+$0,515]   & 0,161 \\
+    Pareamento (teste de atrito)       & $-$0,362  & 0,291 & [$-$0,932; $+$0,208]   & 0,213 \\
+    Transição de formal para informal  & $+$1,734  & 0,199 & [$+$1,345; $+$2,124]   & $<$0,001 \\
+    Transição para maior AIOE          & $+$0,762  & 0,221 & [$+$0,330; $+$1,195]   & $<$0,001 \\
+    \bottomrule
+  \end{tabular}
+  \fonte{Elaboração própria a partir da PNADC/IBGE.}
+  \nota{Efeito em pontos percentuais por desvio-padrão de exposição da ocupação
+        de origem, no painel A, e por unidade do índice de teletrabalhabilidade,
+        no painel B. Os dois painéis vêm da mesma estimação. Erros-padrão
+        agrupados por UPA, entre 30.360 e 31.145 grupos conforme o domínio. O
+        desfecho de pareamento é um teste de atrito: não rejeitar é o resultado
+        desejável.}
+\end{table}
