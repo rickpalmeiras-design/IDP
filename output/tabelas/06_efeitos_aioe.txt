@@ -1,8 +1,8 @@
                                       desfecho                    variavel  efeito_pp  erro_padrao_pp  ic95_inferior_pp  ic95_superior_pp      p_valor  n_celulas  clusters_upa
-pareamento entre entrevistas (teste de atrito)                     pareado  -0.260555        0.140711         -0.536355          0.015245 6.407835e-02    3960584         31145
+pareamento entre entrevistas (teste de atrito)                     pareado  -0.260555        0.140711         -0.536355          0.015245 6.407836e-02    3960584         31145
                mudanca de ocupacao (2 digitos)             muda_ocupacao_2   0.277837        0.128118          0.026722          0.528953 3.011956e-02    2880049         31036
-               mudanca de ocupacao (3 digitos)             muda_ocupacao_3   0.860734        0.136235          0.593707          1.127760 2.685597e-10    2880049         31036
-                              saida do emprego              sai_do_emprego  -0.250371        0.075078         -0.397527         -0.103215 8.545934e-04    3176283         31047
-                transicao formal para informal        formal_para_informal  -0.673083        0.094302         -0.857918         -0.488247 9.713980e-13    1676862         30360
-         transicao para ocupacao de menor AIOE mobilidade_descendente_aioe   2.187469        0.104805          1.982046          2.392891 4.427239e-96    2876964         31036
-         transicao para ocupacao de maior AIOE  mobilidade_ascendente_aioe  -1.363678        0.103271         -1.566094         -1.161262 1.053333e-39    2876964         31036
+               mudanca de ocupacao (3 digitos)             muda_ocupacao_3   0.860734        0.136235          0.593707          1.127760 2.685599e-10    2880049         31036
+                              saida do emprego              sai_do_emprego  -0.250371        0.075078         -0.397527         -0.103215 8.545928e-04    3176283         31047
+                transicao formal para informal        formal_para_informal  -0.673083        0.094302         -0.857918         -0.488247 9.713970e-13    1676862         30360
+         transicao para ocupacao de menor AIOE mobilidade_descendente_aioe   2.187469        0.104805          1.982046          2.392891 4.427253e-96    2876964         31036
+         transicao para ocupacao de maior AIOE  mobilidade_ascendente_aioe  -1.363678        0.103271         -1.566094         -1.161262 1.053335e-39    2876964         31036

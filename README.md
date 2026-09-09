@@ -43,7 +43,7 @@ mas não integram esta versão nem são reportadas nela.
 | 02 | `scripts/02_insumos.py` | AIOE e teletrabalho por SOC, auditoria do COD, crosswalk COD→ISCO→SOC, exposição por COD. |
 | 03 | `scripts/03_cobertura_pnadc.py` | Cobertura trimestral disponível na fonte. |
 | 04 | `scripts/04_painel_pnadc.py` | Autojunção trimestral no BigQuery e painel de transições agregado por UPA. |
-| 05 | `scripts/05_estimacao.py` | Os sete LPM (via `R/modelos.R`, fixest) e a matriz de transição. |
+| 05 | `scripts/05_estimacao.py` | Os sete LPM (pyfixest) e a matriz de transição. |
 | 06 | `scripts/06_tabelas_figuras.py` | Tabelas de síntese, figuras e `output/relatorio/RELATORIO.md`. |
 | 06 | `scripts/06_dissertacao.py` | Tabelas em LaTeX e figuras da dissertação, em `dissertacao/tabelas` e `dissertacao/figuras`. |
 
@@ -59,10 +59,9 @@ rodam sem BigQuery**. As etapas 01, 03 e 04 exigem credencial do projeto declara
 `config.yaml`; a 04 reaproveita os parquets em `data/interim/pnadc_pares_*.parquet` sempre que o
 SQL gerado for idêntico ao registrado em `logs/sql/`, e só reconsulta quando algo muda.
 
-A etapa 05 precisa de R com `fixest`, `data.table` e `jsonlite`. Bibliotecas instaladas e ambientes
-virtuais não são versionados. Em outra máquina, rode `Rscript R/instala_pacotes.R` para construir
-a biblioteca local `.tools/R-library`, que `R/modelos.R` coloca à frente do caminho de bibliotecas.
-Ajuste o caminho do executável do R em `config.yaml: estimacao.rscript`.
+A etapa 05 estima com `pyfixest` (Python) — sem dependência de R no fluxo principal. A versão R
+equivalente (`fixest`) fica arquivada em `R/legado/` como gabarito histórico: os coeficientes dos
+dois motores foram comparados termo a termo e batem a ruído de ponto flutuante.
 
 Para preparar o Python 3.12 com as versões registradas no pacote, use `uv sync --locked`.
 Execute os scripts com `uv run python` ou ative o ambiente `.venv` criado localmente.
@@ -85,7 +84,7 @@ da dissertação, execute separadamente `uv run python scripts/06_dissertacao.py
 - **Ausente não vira zero**: conta-própria sem CNPJ declarado fica nulo; desfechos de destino só
   existem onde houve par; a média ponderada da exposição ignora elos sem valor.
 - **Toda tabela sai em CSV, TXT e TeX**, e todo modelo grava fórmula, cluster, pesos, número de
-  clusters, versão do fixest e hash SHA-256 dos dados que rodaram.
+  clusters, versão do motor de estimação e hash SHA-256 dos dados que rodaram.
 
 ## Estrutura
 
@@ -93,9 +92,7 @@ da dissertação, execute separadamente `uv run python scripts/06_dissertacao.py
 config.yaml            parâmetros: janela, choque, amostra, limites, caminhos dos insumos
 src/                   config, common, dictionaries, insumos, pnadc/pareamento, estimacao, resultados
 scripts/               um script por etapa, mais executa_tudo.py
-R/modelos.R            estimação fixest chamada pela etapa 05
-R/instala_pacotes.R    refaz .tools/R-library se necessário
-.tools/R-library/      fixest, data.table, jsonlite e dependências, para rodar sem instalar nada
+R/legado/               versão R (fixest) da etapa 05, arquivada como gabarito histórico
 data/raw/              AIOE, ponte ISCO-SOC, estrutura COD, teletrabalho, crosswalk COD-SOC
 data/interim/          pares trimestrais, exposição por COD, auditorias, taxa de pareamento
 data/processed/        pnadc_transicoes.parquet — o painel de estimação

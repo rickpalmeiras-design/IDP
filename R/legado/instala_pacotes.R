@@ -1,6 +1,10 @@
+# ARQUIVADO em 2026-09-08: a etapa 05 não depende mais de R (ver modelos.R nesta
+# mesma pasta e src/estimacao.py::estimar_pyfixest). Só precisa disso quem for
+# revalidar a versão Python contra R/fixest de novo.
+#
 # Instala, dentro do próprio pacote, o que a etapa 05 precisa.
 # Rode uma vez se .tools/R-library estiver ausente ou incompleta:
-#   Rscript R/instala_pacotes.R
+#   Rscript R/legado/instala_pacotes.R
 lib <- file.path(getwd(), '.tools', 'R-library')
 dir.create(lib, recursive = TRUE, showWarnings = FALSE)
 .libPaths(c(lib, .libPaths()))

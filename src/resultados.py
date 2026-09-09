@@ -21,7 +21,7 @@ ROTULOS = {
     'mobilidade_descendente_aioe': 'transicao para ocupacao de menor AIOE',
     'mobilidade_ascendente_aioe': 'transicao para ocupacao de maior AIOE',
 }
-TERMOS = {'aioe_origem:pos': 'AIOE x pos', 'pos:telework': 'Teletrabalho x pos'}
+TERMOS = {'aioe_origem:pos': 'AIOE x pos', 'telework:pos': 'Teletrabalho x pos'}
 
 
 def coeficientes():
@@ -60,7 +60,7 @@ def auditoria():
         meta = json.loads(path.read_text(encoding='utf-8'))
         rows.append({'modelo': f'05_pnadc_{y}', 'n': meta['n'], 'formula': meta['formula'],
                      'cluster': meta['cluster'], 'pesos': meta['pesos'], 'clusters': meta.get('clusters'),
-                     'fixest': meta.get('pacote'), 'sha256_dados': meta['sha256_dados']})
+                     'motor': meta.get('pacote'), 'sha256_dados': meta['sha256_dados']})
     result = pd.DataFrame(rows)
     table(result, '06_auditoria_modelos')
     return result
@@ -235,6 +235,6 @@ def stage06():
     table(indice, '06_indice_tabelas')
     dissertacao = gera()
     note('06', 'Tabelas de sintese, figuras e relatorio gerados a partir dos modelos salvos. Efeitos '
-               'convertidos para pontos percentuais; a inferencia e a mesma do fixest com cluster de UPA.')
+               'convertidos para pontos percentuais; a inferencia e a mesma do pyfixest com cluster de UPA.')
     return {'modelos_lidos': len(fichas), 'figuras': arquivos, 'tabelas': len(indice),
             'dissertacao': dissertacao}

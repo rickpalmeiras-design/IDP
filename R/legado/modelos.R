@@ -1,3 +1,11 @@
+# ARQUIVADO em 2026-09-08: substituído por src/estimacao.py::estimar_pyfixest (Python,
+# pacote pyfixest), que roda dentro do fluxo principal sem depender de R/Rscript. Os
+# coeficientes dos dois motores foram comparados termo a termo contra os mesmos dados
+# e batem a ruído de ponto flutuante (~1e-10 relativo) em todos os 7 modelos da etapa 05,
+# incluindo a camada conservadora de inferência (graus de liberdade por UPA efetivamente
+# usada). Este script fica como gabarito histórico, caso seja preciso revalidar a versão
+# Python contra uma reestimação independente em R/fixest no futuro.
+#
 # Estimação dos modelos de probabilidade linear com efeitos fixos de alta dimensão.
 # Chamado pela etapa 05 com um JSON de job; nada aqui lê config.yaml diretamente.
 .libPaths(c(file.path(getwd(), '.tools', 'R-library'), .libPaths()))

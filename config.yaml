@@ -20,7 +20,7 @@ autorizacao_alertas_preparacao: true  # Trimestres de coleta atípica (2020-2021
 seed: 1895
 estimacao:
   autorizada: true
-  rscript: 'C:/Program Files/R/R-4.4.3/bin/Rscript.exe'
+  rscript: 'C:/Program Files/R/R-4.6.1/bin/Rscript.exe'
   threads: 2
   alpha: 0.05
   bootstrap: 199

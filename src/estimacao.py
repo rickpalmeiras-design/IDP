@@ -3,21 +3,26 @@
 Desenho: diferenças-em-diferenças com tratamento contínuo. O choque é o lançamento
 público do ChatGPT (config.yaml: choque); a intensidade é o AIOE da ocupação de origem.
 O coeficiente de interesse é sempre `aioe_origem:pos`.
+
+A estimação roda em Python com pyfixest (mesma sintaxe de fórmula do fixest em R,
+incluindo o operador `^` para efeitos fixos interagidos). A versão R equivalente fica
+arquivada em R/legado/modelos.R como gabarito histórico: os coeficientes dos dois
+motores foram comparados termo a termo e batem a ruído de ponto flutuante.
 """
 import hashlib
 import json
-import shutil
-import subprocess
 import numpy as np
 import pandas as pd
 import duckdb
+import pyfixest as pf
 from scipy import stats
-from .config import CFG, ROOT, INTERIM, PROCESSED, MODELS, WORK, LOGS
+from .config import CFG, INTERIM, PROCESSED, MODELS, WORK
 from .common import json_write, table, note, required
 
 CONTROLES = 'idade + idade_quadrado'
-CATEGORIAS = ('sexo + raca + escolaridade + tempo_emprego_categoria '
-              '+ tamanho_empresa_categoria + setor')
+CATEGORIAS_LISTA = ['sexo', 'raca', 'escolaridade', 'tempo_emprego_categoria',
+                     'tamanho_empresa_categoria', 'setor']
+CATEGORIAS = ' + '.join(CATEGORIAS_LISTA)
 FORMULA = ('{y} ~ aioe_origem:pos + telework:pos + ' + CONTROLES +
            ' | cod_origem + sigla_uf^mes + ' + CATEGORIAS)
 
@@ -30,25 +35,59 @@ def write_data(frame, path):
         con.execute(f"COPY dados_exportar TO '{path.as_posix()}' (HEADER)")
 
 
-def run_r(script, job):
+def estimar_pyfixest(job):
+    """Reestima os desfechos pendentes com pyfixest.
+
+    Categorias ausentes viram a categoria 'ignorado' (a célula não é descartada em
+    silêncio), igual à versão R. O erro-padrão é o cluster-robusto (`CRV1`) do próprio
+    fit; por cima dele, uma camada conservadora recalcula os graus de liberdade como
+    (nº de UPAs efetivamente usadas na amostra do modelo, após NA e singleton de FE)
+    menos 1, e reaplica p-valor e IC95 com t-Student nesses graus — mesma lógica de
+    R/legado/modelos.R.
+    """
     if not CFG['estimacao']['autorizada']:
         raise PermissionError('Estimacao nao autorizada na configuracao.')
-    path = WORK / f"{job['nome']}.json"
-    job.update(seed=CFG['seed'], threads=CFG['estimacao']['threads'], output=str(MODELS))
-    json_write(path, job)
-    # O script executado fica congelado ao lado do job: o que rodou é sempre auditável.
-    snapshot = WORK / f"{job['nome']}_execucao.R"
-    shutil.copyfile(ROOT / 'R' / script, snapshot)
-    with (LOGS / f"{job['nome']}_R.log").open('w', encoding='utf-8') as log:
-        subprocess.run([CFG['estimacao']['rscript'], str(snapshot), str(path)],
-                       cwd=ROOT, stdout=log, stderr=subprocess.STDOUT, check=True)
-    results = []
-    for p in sorted(MODELS.glob(job['nome'] + '*.csv')):
-        if '_vcov' not in p.stem:
-            frame = pd.read_csv(p)
-            table(frame, p.stem)
-            results.append(p.name)
-    return results
+    d = pd.read_csv(job['dados'], low_memory=False)
+    if 'pos' in d:
+        d['pos'] = d['pos'].astype(float)
+    for v in CATEGORIAS_LISTA:
+        if v in d:
+            d[v] = d[v].astype('string').fillna('ignorado').astype('category')
+
+    resultados = []
+    for item in job['modelos']:
+        name = f"{job['nome']}_{item['nome']}"
+        modelo = pf.feols(item['formula'], data=d, weights=job['pesos'],
+                          vcov={'CRV1': job['cluster']})
+        used_upa = d.loc[modelo._data.index, job['cluster']]
+        df_cluster = int(used_upa.nunique()) - 1
+
+        tidy = modelo.tidy().reset_index()
+        out = pd.DataFrame({
+            'termo': tidy['Coefficient'], 'estimativa': tidy['Estimate'],
+            'erro_padrao': tidy['Std. Error'], 'estatistica': tidy['t value'],
+            'p_valor': tidy['Pr(>|t|)'], 'n': int(modelo._N), 'modelo': name})
+        out['erro_padrao_conservador'] = out['erro_padrao']
+        out['graus_liberdade_conservador'] = df_cluster
+        out['p_valor_conservador'] = 2 * stats.t.sf(
+            np.abs(out.estimativa / out.erro_padrao_conservador), df=df_cluster)
+        tcrit = stats.t.ppf(1 - job['alpha'] / 2, df_cluster)
+        out['ic95_inferior_conservador'] = out.estimativa - tcrit * out.erro_padrao_conservador
+        out['ic95_superior_conservador'] = out.estimativa + tcrit * out.erro_padrao_conservador
+        out.to_csv(MODELS / f'{name}.csv', index=False)
+
+        vcov = pd.DataFrame(modelo._vcov, index=modelo._coefnames, columns=modelo._coefnames)
+        vcov.to_csv(MODELS / f'{name}_vcov.csv', index_label='')
+
+        json_write(MODELS / f'{name}_metadados.json', {
+            'formula': item['formula'], 'n': int(modelo._N), 'cluster': job['cluster'],
+            'pesos': job['pesos'], 'clusters': df_cluster + 1,
+            'pacote': f'pyfixest {pf.__version__}',
+            'observacoes_entrada': int(len(d)), 'sha256_dados': job['sha256_dados']})
+
+        table(out, name)
+        resultados.append(f'{name}.csv')
+    return resultados
 
 
 def fit_job(name, data, formulas, cluster, weights):
@@ -66,9 +105,9 @@ def fit_job(name, data, formulas, cluster, weights):
         pending.append(item)
     if not pending:
         return []
-    return run_r('modelos.R', {'nome': name, 'dados': str(data), 'modelos': pending,
-                               'sha256_dados': digest, 'cluster': cluster, 'pesos': weights,
-                               'alpha': CFG['estimacao']['alpha']})
+    return estimar_pyfixest({'nome': name, 'dados': str(data), 'modelos': pending,
+                             'sha256_dados': digest, 'cluster': cluster, 'pesos': weights,
+                             'alpha': CFG['estimacao']['alpha']})
 
 
 def matriz_transicao(d, quintis, bootstrap, seed):

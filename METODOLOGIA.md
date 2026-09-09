@@ -14,7 +14,7 @@ do choque, cluster de UPA e sete desfechos.
 | 02 | `scripts/02_insumos.py` | `src/insumos.py: stage02` | Python | AIOE e teletrabalho por SOC, ponte COD→ISCO→SOC, exposição por COD |
 | 03 | `scripts/03_cobertura_pnadc.py` | `src/pnadc/pareamento.py: stage03` | BigQuery | cobertura trimestral da fonte |
 | 04 | `scripts/04_painel_pnadc.py` | `src/pnadc/pareamento.py: stage04` | BigQuery | autojunção e painel de células `pnadc_transicoes.parquet` |
-| 05 | `scripts/05_estimacao.py` | `src/estimacao.py: stage05` | `R/modelos.R` (fixest) | sete LPM e matriz de mobilidade com bootstrap de UPA |
+| 05 | `scripts/05_estimacao.py` | `src/estimacao.py: stage05` | Python (pyfixest) | sete LPM e matriz de mobilidade com bootstrap de UPA |
 | 06 | `scripts/06_tabelas_figuras.py` | `src/resultados.py: stage06` | Python | tabelas, figuras e `output/relatorio/RELATORIO.md` |
 | 06 | `scripts/06_dissertacao.py` | `src/dissertacao.py: gera` | Python | tabelas LaTeX e figuras da dissertação, consumidas por `\input` no Capítulo 4 |
 
@@ -131,7 +131,7 @@ pseudo-inversa, com graus de liberdade iguais ao posto da covariância.
 
 Erros-padrão agrupados por UPA, com graus de liberdade iguais ao número de clusters efetivamente
 usados menos um, e intervalos de 95% pela t com esses graus de liberdade. Cada modelo grava
-`clusters`, `n`, fórmula, pesos, versão do fixest e o SHA-256 do arquivo de dados que rodou.
+`clusters`, `n`, fórmula, pesos, versão do pyfixest e o SHA-256 do arquivo de dados que rodou.
 
 Não há correção para testes múltiplos. São sete desfechos correlacionados: um p de 0,03 isolado não
 deve ser lido como achado forte.

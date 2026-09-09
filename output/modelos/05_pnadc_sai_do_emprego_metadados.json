@@ -4,7 +4,7 @@
   "cluster": "id_upa",
   "pesos": "peso_total",
   "clusters": 31047,
-  "pacote": "0.14.0",
+  "pacote": "pyfixest 0.60.0",
   "observacoes_entrada": 4014438,
   "sha256_dados": "c178ad5f6cd855cdee7a069fd58dd32838b49a71c2c501f3f897f1a90a74313b"
 }
