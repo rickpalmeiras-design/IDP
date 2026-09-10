@@ -19,6 +19,48 @@
 
 \refsection{0}
   \datalist[entry]{nyt/global//global/global/global}
+    \entry{acemoglu2019}{article}{}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=d849e6f8de178bfb18aa67341c9f8d38}{%
+           family={Acemoglu},
+           familyi={A\bibinitperiod},
+           given={Daron},
+           giveni={D\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=741d2340160d17e7d9b5d9e3be8edd84}{%
+           family={Restrepo},
+           familyi={R\bibinitperiod},
+           given={Pascual},
+           giveni={P\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{4cb0cc109d3549f4dc540e3709bf2e7b}
+      \strng{fullhash}{4cb0cc109d3549f4dc540e3709bf2e7b}
+      \strng{fullhashraw}{4cb0cc109d3549f4dc540e3709bf2e7b}
+      \strng{bibnamehash}{4cb0cc109d3549f4dc540e3709bf2e7b}
+      \strng{authorbibnamehash}{4cb0cc109d3549f4dc540e3709bf2e7b}
+      \strng{authornamehash}{4cb0cc109d3549f4dc540e3709bf2e7b}
+      \strng{authorfullhash}{4cb0cc109d3549f4dc540e3709bf2e7b}
+      \strng{authorfullhashraw}{4cb0cc109d3549f4dc540e3709bf2e7b}
+      \field{extraname}{1}
+      \field{sortinit}{A}
+      \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of Economic Perspectives}
+      \field{number}{2}
+      \field{subtitle}{how technology displaces and reinstates labor}
+      \field{title}{Automation and new tasks}
+      \field{volume}{33}
+      \field{year}{2019}
+      \field{pages}{3\bibrangedash 30}
+      \range{pages}{28}
+      \verb{doi}
+      \verb 10.1257/jep.33.2.3
+      \endverb
+    \endentry
     \entry{acemoglu2020}{article}{}{}
       \name{author}{2}{}{%
         {{un=0,uniquepart=base,hash=d849e6f8de178bfb18aa67341c9f8d38}{%
@@ -42,6 +84,7 @@
       \strng{authornamehash}{4cb0cc109d3549f4dc540e3709bf2e7b}
       \strng{authorfullhash}{4cb0cc109d3549f4dc540e3709bf2e7b}
       \strng{authorfullhashraw}{4cb0cc109d3549f4dc540e3709bf2e7b}
+      \field{extraname}{2}
       \field{sortinit}{A}
       \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
       \field{extradatescope}{labelyear}
@@ -392,6 +435,55 @@
       \verb 10.1002/smj.3286
       \endverb
     \endentry
+    \entry{higano2023}{article}{}{}
+      \name{author}{4}{}{%
+        {{un=0,uniquepart=base,hash=6b49eb2916d614074b381854db9e1a4b}{%
+           family={Higano},
+           familyi={H\bibinitperiod},
+           given={Leandro\bibnamedelimb Tamio\bibnamedelima Marques},
+           giveni={L\bibinitperiod\bibinitdelim T\bibinitperiod\bibinitdelim M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=2c2403f1edfb57c94691f4fb02096199}{%
+           family={Cardoso},
+           familyi={C\bibinitperiod},
+           given={Leonardo\bibnamedelimb Chaves\bibnamedelima Borges},
+           giveni={L\bibinitperiod\bibinitdelim C\bibinitperiod\bibinitdelim B\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=d477840e6fb37b696282460be3d308dd}{%
+           family={Wolf},
+           familyi={W\bibinitperiod},
+           given={Rayan},
+           giveni={R\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=1e5e23e63fd64cb9253038f0e186b81b}{%
+           family={Silva},
+           familyi={S\bibinitperiod},
+           given={Maria\bibnamedelimb Micheliana\bibnamedelimb da\bibnamedelima Costa},
+           giveni={M\bibinitperiod\bibinitdelim M\bibinitperiod\bibinitdelim d\bibinitperiod\bibinitdelim C\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{84cd37b7d6ef1684037abe8bb629a6ef}
+      \strng{fullhash}{44359619b094b592eb315aa8caca9d64}
+      \strng{fullhashraw}{44359619b094b592eb315aa8caca9d64}
+      \strng{bibnamehash}{44359619b094b592eb315aa8caca9d64}
+      \strng{authorbibnamehash}{44359619b094b592eb315aa8caca9d64}
+      \strng{authornamehash}{84cd37b7d6ef1684037abe8bb629a6ef}
+      \strng{authorfullhash}{44359619b094b592eb315aa8caca9d64}
+      \strng{authorfullhashraw}{44359619b094b592eb315aa8caca9d64}
+      \field{sortinit}{H}
+      \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Revista Brasileira de Economia}
+      \field{title}{Uma nota sobre mobilidade ocupacional e diferenças salariais no Brasil}
+      \field{volume}{77}
+      \field{year}{2023}
+      \verb{doi}
+      \verb 10.5935/0034-7140.20230003
+      \endverb
+    \endentry
     \entry{humlum2025}{report}{}{}
       \name{author}{2}{}{%
         {{un=0,uniquepart=base,hash=392139cd480d8a0dfdc4ecde04a43f21}{%
@@ -444,6 +536,93 @@
       \verb https://www.nber.org/papers/w33777
       \endverb
     \endentry
+    \entry{meghir2015}{article}{}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=99abebe08a1fa906efa0f91c83b579ff}{%
+           family={Meghir},
+           familyi={M\bibinitperiod},
+           given={Costas},
+           giveni={C\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=53daf27e7b195985ea43b6adc5885e28}{%
+           family={Narita},
+           familyi={N\bibinitperiod},
+           given={Renata},
+           giveni={R\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=0c3e5e19aacbe5b5d165a4c83f96079b}{%
+           family={Robin},
+           familyi={R\bibinitperiod},
+           given={Jean-Marc},
+           giveni={J\bibinithyphendelim M\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{88cc889eb92fde9c8567d8fc1f225fdb}
+      \strng{fullhash}{88cc889eb92fde9c8567d8fc1f225fdb}
+      \strng{fullhashraw}{88cc889eb92fde9c8567d8fc1f225fdb}
+      \strng{bibnamehash}{88cc889eb92fde9c8567d8fc1f225fdb}
+      \strng{authorbibnamehash}{88cc889eb92fde9c8567d8fc1f225fdb}
+      \strng{authornamehash}{88cc889eb92fde9c8567d8fc1f225fdb}
+      \strng{authorfullhash}{88cc889eb92fde9c8567d8fc1f225fdb}
+      \strng{authorfullhashraw}{88cc889eb92fde9c8567d8fc1f225fdb}
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{American Economic Review}
+      \field{number}{4}
+      \field{title}{Wages and informality in developing countries}
+      \field{volume}{105}
+      \field{year}{2015}
+      \field{pages}{1509\bibrangedash 1546}
+      \range{pages}{38}
+      \verb{doi}
+      \verb 10.1257/aer.20121110
+      \endverb
+    \endentry
+    \entry{osorio2022}{article}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=988a3468e95dfbb614bf0ae9b8541e63}{%
+           family={Osório},
+           familyi={O\bibinitperiod},
+           given={Rafael\bibnamedelima Guerreiro},
+           giveni={R\bibinitperiod\bibinitdelim G\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{location}{1}{%
+        {Brasília}%
+      }
+      \strng{namehash}{988a3468e95dfbb614bf0ae9b8541e63}
+      \strng{fullhash}{988a3468e95dfbb614bf0ae9b8541e63}
+      \strng{fullhashraw}{988a3468e95dfbb614bf0ae9b8541e63}
+      \strng{bibnamehash}{988a3468e95dfbb614bf0ae9b8541e63}
+      \strng{authorbibnamehash}{988a3468e95dfbb614bf0ae9b8541e63}
+      \strng{authornamehash}{988a3468e95dfbb614bf0ae9b8541e63}
+      \strng{authorfullhash}{988a3468e95dfbb614bf0ae9b8541e63}
+      \strng{authorfullhashraw}{988a3468e95dfbb614bf0ae9b8541e63}
+      \field{sortinit}{O}
+      \field{sortinithash}{2cd7140a07aea5341f9e2771efe90aae}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Mercado de Trabalho: conjuntura e análise}
+      \field{number}{73}
+      \field{title}{Sobre a montagem e a identificação dos painéis da PNAD Contínua}
+      \field{urlday}{10}
+      \field{urlmonth}{9}
+      \field{urlyear}{2026}
+      \field{year}{2022}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb http://repositorio.ipea.gov.br/handle/11058/11177
+      \endverb
+      \verb{url}
+      \verb http://repositorio.ipea.gov.br/handle/11058/11177
+      \endverb
+    \endentry
     \entry{rambachan2023}{article}{}{}
       \name{author}{2}{}{%
         {{un=0,uniquepart=base,hash=85edb53244c29c17ce57830271014b46}{%
@@ -482,6 +661,96 @@
       \range{pages}{37}
       \verb{doi}
       \verb 10.1093/restud/rdad018
+      \endverb
+    \endentry
+    \entry{ulyssea2020}{article}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=10fcf9d33b2def85076e7b1bce65e0d9}{%
+           family={Ulyssea},
+           familyi={U\bibinitperiod},
+           given={Gabriel},
+           giveni={G\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{10fcf9d33b2def85076e7b1bce65e0d9}
+      \strng{fullhash}{10fcf9d33b2def85076e7b1bce65e0d9}
+      \strng{fullhashraw}{10fcf9d33b2def85076e7b1bce65e0d9}
+      \strng{bibnamehash}{10fcf9d33b2def85076e7b1bce65e0d9}
+      \strng{authorbibnamehash}{10fcf9d33b2def85076e7b1bce65e0d9}
+      \strng{authornamehash}{10fcf9d33b2def85076e7b1bce65e0d9}
+      \strng{authorfullhash}{10fcf9d33b2def85076e7b1bce65e0d9}
+      \strng{authorfullhashraw}{10fcf9d33b2def85076e7b1bce65e0d9}
+      \field{sortinit}{U}
+      \field{sortinithash}{6901a00e45705986ee5e7ca9fd39adca}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Annual Review of Economics}
+      \field{subtitle}{causes and consequences for development}
+      \field{title}{Informality}
+      \field{volume}{12}
+      \field{year}{2020}
+      \field{pages}{525\bibrangedash 546}
+      \range{pages}{22}
+      \verb{doi}
+      \verb 10.1146/annurev-economics-082119-121914
+      \endverb
+    \endentry
+    \entry{wroblevski2024}{inproceedings}{}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=bcda629300388762f8edf0ee745346d9}{%
+           family={Wroblevski},
+           familyi={W\bibinitperiod},
+           given={Bruno},
+           giveni={B\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=b74c1e436878a22e54cbf146994ae989}{%
+           family={Carvalho},
+           familyi={C\bibinitperiod},
+           given={Terciane\bibnamedelima Sabadini},
+           giveni={T\bibinitperiod\bibinitdelim S\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=030de5a6081c2d92865111c59929563c}{%
+           family={Souza},
+           familyi={S\bibinitperiod},
+           given={Kênia\bibnamedelimb Barreiro\bibnamedelima de},
+           giveni={K\bibinitperiod\bibinitdelim B\bibinitperiod\bibinitdelim d\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{location}{1}{%
+        {Natal}%
+      }
+      \list{publisher}{1}{%
+        {ANPEC}%
+      }
+      \strng{namehash}{44e525ea053e97fa27b1b71d294c639f}
+      \strng{fullhash}{44e525ea053e97fa27b1b71d294c639f}
+      \strng{fullhashraw}{44e525ea053e97fa27b1b71d294c639f}
+      \strng{bibnamehash}{44e525ea053e97fa27b1b71d294c639f}
+      \strng{authorbibnamehash}{44e525ea053e97fa27b1b71d294c639f}
+      \strng{authornamehash}{44e525ea053e97fa27b1b71d294c639f}
+      \strng{authorfullhash}{44e525ea053e97fa27b1b71d294c639f}
+      \strng{authorfullhashraw}{44e525ea053e97fa27b1b71d294c639f}
+      \field{sortinit}{W}
+      \field{sortinithash}{4315d78024d0cea9b57a0c6f0e35ed0d}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Anais do 52º Encontro Nacional de Economia}
+      \field{subtitle}{uma análise para categorias ocupacionais no período 2016-2023}
+      \field{title}{Dinâmica de transição no mercado de trabalho informal brasileiro}
+      \field{urlday}{10}
+      \field{urlmonth}{9}
+      \field{urlyear}{2026}
+      \field{year}{2024}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://www.anpec.org.br/encontro/2024/submissao/files_I/i13-e6eccc65914beb667e82f42c9f03ba6b.pdf
+      \endverb
+      \verb{url}
+      \verb https://www.anpec.org.br/encontro/2024/submissao/files_I/i13-e6eccc65914beb667e82f42c9f03ba6b.pdf
       \endverb
     \endentry
   \enddatalist

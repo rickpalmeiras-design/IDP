@@ -148,25 +148,134 @@ analisado, e não apenas nas mais expostas.
 
 \subsection{Inteligência artificial, automação e mercado de trabalho}
 
-% TODO (Ricardo): a partir das leituras 3, 4 e 5, escrever a discussão sobre os
-% efeitos de automação e inteligência artificial sobre emprego, salários e
-% composição ocupacional. Sugestão de fio condutor: da automação de rotinas
-% (tarefas codificáveis) para a automação de tarefas cognitivas não rotineiras,
-% e o que muda na previsão teórica quando a tecnologia passa a alcançar
-% ocupações de alta escolaridade.
+A literatura econômica sobre automação e trabalho organiza-se em torno de uma
+decomposição que \citeonline{acemoglu2019} formalizaram no quadro de tarefas.
+Toda tecnologia que passa a executar tarefas antes desempenhadas por pessoas
+produz, ao mesmo tempo, um \emph{efeito de deslocamento}, que reduz a demanda
+por trabalho nas tarefas automatizadas, e um \emph{efeito de recomposição}, que
+a amplia nas tarefas remanescentes, nas novas tarefas criadas pela própria
+tecnologia e nos setores beneficiados pelo ganho de produtividade. O sinal do
+efeito líquido não é, por isso, uma predição teórica: é uma questão empírica,
+cuja resposta depende de qual dos dois efeitos domina em cada horizonte e em
+cada mercado. A onda anterior de automação --- robótica industrial e
+informatização de rotinas --- alcançou sobretudo tarefas codificáveis e
+repetitivas, concentradas em ocupações de escolaridade intermediária, e a
+evidência de \citeonline{acemoglu2020} para mercados de trabalho locais
+americanos, construída sobre a exposição diferencial desses mercados à
+robotização, indica predomínio do deslocamento nesse caso. Dessa literatura este
+trabalho herda não apenas o vocabulário, mas a estratégia de identificação: usar
+a exposição diferencial à tecnologia como fonte de variação, com as objeções que
+ela atrai e que reaparecem no Capítulo~\ref{sec:metodo}.
+
+A inteligência artificial generativa desloca essa fronteira. Diferentemente da
+automação de rotinas, ela alcança tarefas cognitivas não rotineiras --- redigir,
+resumir, programar, atender --- historicamente protegidas por exigirem
+linguagem e julgamento, e concentradas em ocupações de escolaridade alta. A
+predição de viés de rotina, que orientou a leitura distributiva da onda
+anterior, deixa de valer automaticamente: não há razão \textit{a priori} para
+que a exposição à inteligência artificial se distribua na mesma direção da
+exposição à robotização, e é justamente por isso que a direção do gradiente
+precisa ser estimada em vez de suposta. A evidência disponível até aqui, porém,
+é mais contida do que o debate público sugere, e convém não tomá-la como bloco
+homogêneo, porque os dois trabalhos de referência medem objetos distintos.
+\citeonline{brynjolfsson2025} documentam ganhos de produtividade concentrados
+entre trabalhadores menos experientes, em desenho com adoção observada no
+interior de uma única firma: é evidência sobre desempenho individual na execução
+da tarefa, não sobre emprego ou salário agregados. \citeonline{humlum2025}, com
+registros administrativos vinculados e adoção declarada em escala nacional,
+estimam efeitos nulos e precisos sobre rendimentos e horas dois anos após a
+adoção, e observam recomposição de tarefas e alguma troca de ocupação: é
+evidência sobre resultados agregados de mercado, não sobre produtividade
+individual. As duas são complementares, e não redundantes --- a primeira mostra
+que a ferramenta entrega ganho onde é adotada; a segunda, que esse ganho ainda
+não se converteu em deslocamento mensurável de renda ou de horas no horizonte
+observado. Tomadas em conjunto, tornam plausível que a margem de ajuste mais
+provável no curto prazo seja a de composição e realocação, e é essa expectativa
+--- e não a de destruição líquida de postos --- que orienta a leitura dos
+resultados no Capítulo~\ref{sec:resultados}.
 
 \subsection{Medidas de exposição ocupacional à inteligência artificial}
 
-% TODO (Ricardo): a partir das leituras 1 e 2, comparar as famílias de medidas
-% de exposição: baseadas em habilidades (AIOE) e baseadas em tarefas
-% (Eloundou et al.). Discutir o problema de transportar medidas construídas na
-% classificação ocupacional americana para a classificação brasileira, que é o
-% ponto tratado na Seção~\ref{sec:exposicao}.
+As medidas de exposição ocupacional à inteligência artificial usadas na
+literatura empírica dividem-se em duas famílias, e a diferença entre elas não é
+de calibragem, mas de objeto. A primeira parte das \emph{habilidades}
+requeridas pelas ocupações: o AIOE de \citeonline{felten2021} associa aplicações
+de inteligência artificial às habilidades requeridas pelas ocupações e agrega
+essa correspondência em um escore padronizado entre ocupações. Mede, portanto,
+quanto do repertório de habilidades de uma ocupação está ao alcance da
+tecnologia. A segunda parte das \emph{tarefas}: \citeonline{eloundou2024}
+avaliam, atividade a atividade, se o acesso a um modelo de linguagem reduziria
+em pelo menos metade o tempo necessário para executá-la, mantendo a qualidade do
+resultado, e agregam esse veredito em uma fração de tarefas expostas. Mede,
+portanto, quanto do que a ocupação faz poderia ser feito mais rapidamente com o
+auxílio da ferramenta. As duas recorrem à mesma fonte ocupacional americana ---
+o O*NET ---, mas a dimensões distintas dela: o AIOE parte do inventário de
+habilidades associadas a cada ocupação, ao passo que a medida de
+\citeonline{eloundou2024} parte das atividades de trabalho detalhadas e das
+tarefas. Respondem, por isso, a perguntas diferentes, e nada garante que ordenem
+as ocupações da mesma maneira.
+
+A escolha entre elas condiciona a interpretação dos coeficientes. O AIOE é
+anterior à difusão dos modelos generativos e capta exposição à inteligência
+artificial em sentido amplo, o que o torna adequado a um desenho cujo marco
+temporal é o lançamento público de uma ferramenta específica apenas sob a
+hipótese de que a ordenação das ocupações por exposição ampla se aproxima da
+ordenação por exposição generativa; a medida de \citeonline{eloundou2024} é
+contemporânea ao choque e dispensa essa hipótese, mas é específica a modelos de
+linguagem e, por construção, desconsidera aplicações de inteligência artificial
+que não passem por texto. Este trabalho adota o AIOE como tratamento e registra
+a substituição pela medida alternativa como primeira robustez prevista na
+Seção~\ref{sec:exposicoes}. Duas ressalvas, contudo, atravessam as duas famílias
+e valem para qualquer leitura do Capítulo~\ref{sec:resultados}. A primeira é que
+ambas medem exposição \emph{potencial}, e não adoção: o coeficiente estimado é um
+gradiente sobre um índice ocupacional, não o efeito de usar a ferramenta. A
+segunda é que ambas nascem na classificação ocupacional americana e precisam ser
+transportadas para a classificação brasileira, operação que não é neutra e cujas
+limitações de resolução ficam declaradas elo a elo na
+Seção~\ref{sec:exposicao}.
 
 \subsection{Mobilidade ocupacional, formalidade e mercado de trabalho brasileiro}
 
-% TODO (Ricardo): literatura brasileira sobre transições ocupacionais,
-% informalidade e dinâmica do mercado de trabalho, com atenção ao que já se
-% sabe sobre taxas de troca de ocupação e de transição formal-informal entre
-% trimestres consecutivos da PNAD Contínua. Essa seção define o contrafactual
-% de leitura: quanta rotatividade existe em um trimestre normal no Brasil.
+A literatura de exposição à inteligência artificial foi construída em mercados
+de trabalho cuja margem de ajuste principal é o vínculo formal, e o traço que
+mais distingue o caso brasileiro é a informalidade. \citeonline{ulyssea2020}
+sistematiza a evidência que trata a informalidade não como resíduo nem como sala
+de espera do setor formal, mas como fenômeno heterogêneo, resultante da
+interação entre decisões de firmas e de trabalhadores, diferenças de
+produtividade, custos de formalização e intensidade da fiscalização --- de modo
+que não há um mecanismo único a explicá-la, e sim margens distintas, que
+respondem de forma distinta a cada política. \citeonline{meghir2015}, estimando
+um modelo de busca e emparelhamento com microdados brasileiros, mostram que os
+dois setores competem pelos mesmos trabalhadores, de modo que a fronteira entre
+eles é
+atravessada com frequência ao longo da vida laboral e não separa dois mercados
+estanques. Daí a decisão, adotada no Capítulo~\ref{sec:metodo}, de tratar a
+transição de formal para informal como desfecho próprio, com a formalidade
+classificada a partir do dicionário oficial da pesquisa --- carteira assinada,
+vínculo estatutário ou militar e inscrição em CNPJ, no caso de conta-própria e
+empregadores --- em vez de tomá-la como característica fixa do trabalhador.
+
+A segunda referência de comparação é a magnitude da rotatividade ocupacional já
+existente. \citeonline{higano2023}, com dados da Pesquisa Mensal de Emprego para
+as regiões metropolitanas entre 2002 e 2016, encontram que a mobilidade
+ocupacional não afeta os rendimentos no agregado e que trabalhar no setor
+informal aumenta a probabilidade de trocar de ocupação --- dois resultados que
+importam aqui, porque impedem tanto a leitura de que mudar de ocupação seja, em
+si, perda, quanto a de que a troca observada seja fenômeno raro. Convém
+registrar que a Pesquisa Mensal de Emprego foi encerrada em 2016 e substituída,
+com metodologia atualizada e abrangência nacional, justamente pela PNAD Contínua
+empregada neste trabalho: a comparação com esses resultados é indicativa, e não
+direta, porque mudam a base, a cobertura geográfica e o desenho amostral.
+\citeonline{wroblevski2024}, com microdados da PNAD Contínua entre 2016 e 2023,
+estimam matrizes de transição e confirmam mobilidade alta dentro da
+informalidade e passagem limitada para o emprego formal, com barreiras
+concentradas entre mulheres, pessoas não brancas e trabalhadores de menor
+escolaridade. Explorar o painel da pesquisa para esse tipo de exercício exige,
+contudo, identificar longitudinalmente os indivíduos entre entrevistas
+consecutivas, problema tratado por \citeonline{osorio2022} e enfrentado neste
+trabalho na Seção~\ref{sec:par}. O conjunto dessa evidência fixa o contrafactual de leitura
+do Capítulo~\ref{sec:resultados}: em um trimestre brasileiro comum já há muita
+troca de ocupação e muita travessia da fronteira de formalidade, de modo que um
+gradiente atribuído à exposição à inteligência artificial há de ser lido como
+desvio modesto sobre um pano de fundo de rotatividade elevada, e nunca como a
+rotatividade em si.
