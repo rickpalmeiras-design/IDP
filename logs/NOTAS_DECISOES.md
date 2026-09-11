@@ -14,3 +14,7 @@ Tabelas de sintese, figuras e relatorio gerados a partir dos modelos salvos. Efe
 ### 2026-09-09T01:34:47.379498+00:00 — 06
 
 Tabelas da dissertacao regeradas a partir de output/modelos e output/tabelas, em dissertacao/tabelas, e figuras copiadas para dissertacao/figuras. Os capitulos usam esses arquivos por \input: numero de tabela nao e mais digitado a mao.
+
+### 2026-09-11T01:05:53.771503+00:00 — 07
+
+Robustezes sobre a mesma base da Tabela 4 (hash conferido): sem os trimestres de origem de coleta telefonica, inferencia com cluster em ocupacao e em ocupacao e UPA com correcao de Holm e BH na familia dos sete desfechos, e estudo de evento com referencia no trimestre anterior ao marco. Saidas em output/robustez; nada foi levado a dissertacao.

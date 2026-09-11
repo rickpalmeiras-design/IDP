@@ -1,0 +1,21 @@
+{
+  "etapa": "07",
+  "inicio": "2026-09-11T00:02:38.120512+00:00",
+  "status": "concluido",
+  "resultado": {
+    "modelos": 21,
+    "reproducao_tabela4": {
+      "coef": 1.2321983711149898e-10,
+      "ep": 6.688369270316935e-09,
+      "clusters": true
+    },
+    "trimestres_atipicos": [
+      "2020T2",
+      "2020T3",
+      "2020T4",
+      "2021T1",
+      "2021T2"
+    ]
+  },
+  "fim": "2026-09-11T01:05:53.857275+00:00"
+}

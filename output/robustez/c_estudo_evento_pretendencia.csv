@@ -1,0 +1,8 @@
+variavel,desfecho,F,gl,p
+mobilidade_descendente_aioe,Transição para menor AIOE,77.52788501579303,14,6.368900740723104e-219
+muda_ocupacao_3,Muda de ocupação (3 dígitos),5.183898724686778,14,6.769844799469188e-10
+muda_ocupacao_2,Muda de ocupação (2 dígitos),1.9417343297997571,14,0.018254764133918598
+sai_do_emprego,Saída do emprego,6.310188411699185,14,8.171222871534283e-13
+pareado,Pareamento (teste de atrito),3.267433684972727,14,3.1157292383934176e-05
+formal_para_informal,Transição de formal para informal,4.118542237556286,14,3.0581029352310845e-07
+mobilidade_ascendente_aioe,Transição para maior AIOE,54.201400691441286,14,5.867501078955576e-151
