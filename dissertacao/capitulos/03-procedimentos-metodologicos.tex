@@ -8,8 +8,8 @@ dele, em estimativas de gradiente de exposição ocupacional à inteligência
 artificial. A descrição segue exatamente o que é implementado: cada regra de
 seleção, cada definição de desfecho e cada especificação apresentada aqui
 corresponde a uma etapa concreta do procedimento, e as quantidades reportadas
-são as efetivamente obtidas. O desenho apresentado é deliberadamente enxuto ---
-um único cenário de estimação, sem bateria de sensibilidades ---, e a agenda de
+são as efetivamente obtidas. O desenho apresentado é deliberadamente enxuto
+(um único cenário de estimação, sem bateria de sensibilidades), e a agenda de
 robustez que ele deixa em aberto está organizada no Capítulo~\ref{sec:melhorias}.
 
 \subsection{Roteiro de execução e reprodutibilidade}
@@ -114,8 +114,8 @@ conjunto completo de covariáveis do modelo. Cada célula carrega a contagem de
 pessoas $n$, a soma dos pesos amostrais e a soma dos quadrados dos pesos.
 
 Essa agregação não é uma aproximação. Como todas as variáveis explicativas e
-todos os desfechos são constantes dentro de cada célula por construção --- a
-célula é definida justamente pela combinação exata dessas variáveis ---, a
+todos os desfechos são constantes dentro de cada célula por construção (a
+célula é definida justamente pela combinação exata dessas variáveis), a
 estimação ponderada em células reproduz exatamente a estimação ponderada em
 indivíduos. Formalmente, se $\mathcal{C}$ é uma célula e $y_i = y_{\mathcal{C}}$
 e $x_i = x_{\mathcal{C}}$ para todo $i \in \mathcal{C}$, então
@@ -129,7 +129,7 @@ e $x_i = x_{\mathcal{C}}$ para todo $i \in \mathcal{C}$, então
 
 de modo que os coeficientes de mínimos quadrados ponderados e os escores usados
 na inferência agrupada são idênticos aos da estimação individual, desde que o
-nível de agrupamento seja mais grosso que a célula --- o que é o caso, já que a
+nível de agrupamento seja mais grosso que a célula, condição atendida aqui, já que a
 UPA contém células inteiras.
 
 \subsection{Construção do par pessoa-trimestre}
@@ -249,7 +249,7 @@ subjacente às células.
 
 Duas observações sobre a filtragem merecem destaque, porque afetam a leitura
 dos resultados. Primeira: cada desfecho tem seu próprio domínio, e ausência
-nunca é convertida em zero --- um destino não observado não é ``não mudou de
+nunca é convertida em zero: um destino não observado não é ``não mudou de
 ocupação'', é simplesmente indefinido. Segunda: as quantidades são
 pessoas-transições e não pessoas únicas, de modo que um mesmo indivíduo pode
 contribuir com até quatro pares ao longo do painel, e os pesos amostrais somados
@@ -299,7 +299,7 @@ pesos $\omega_{cs} = 1/|S(c)|$. A exposição do código $c$ é a média pondera
 \end{equation}
 
 de modo que elos sem valor observado são \emph{ignorados} no cálculo, e não
-tratados como zero --- tratá-los como zero introduziria atenuação mecânica
+tratados como zero, já que isso introduziria atenuação mecânica
 proporcional à incompletude da ponte. O mesmo procedimento é aplicado ao índice
 de teletrabalhabilidade de \citeonline{dingel2020}, usado como controle.
 
@@ -409,7 +409,7 @@ demais desfechos, definidos apenas sobre pares completos, estariam contaminados
 por seleção. A leitura correta é a de um teste de falseamento, em que não
 rejeitar é o resultado desejável.
 
-O par de margens direcionais --- mobilidade descendente e ascendente --- é
+O par de margens direcionais (mobilidade descendente e ascendente) é
 sempre lido em conjunto, e nunca isoladamente. Quem parte de exposição alta só
 pode se deslocar para baixo no gradiente, e vice-versa; a assimetria de nível é
 mecânica e é absorvida pelo efeito fixo de ocupação, de modo que o contraste
@@ -478,8 +478,8 @@ singular por construção.
 \subsubsection{Desenho}
 
 O desenho é de \textbf{diferenças em diferenças com tratamento contínuo}. Não há
-grupo tratado e grupo de controle: há um marco temporal único e nacional --- o
-lançamento público do ChatGPT, em 30 de novembro de 2022 --- e uma intensidade
+grupo tratado e grupo de controle: há um marco temporal único e nacional (o
+lançamento público do ChatGPT, em 30 de novembro de 2022) e uma intensidade
 de tratamento que varia entre ocupações, dada pela exposição da ocupação de
 origem. O parâmetro de interesse é o \emph{gradiente} de resposta por
 desvio-padrão de exposição, e não o efeito de um tratamento binário
@@ -570,8 +570,8 @@ usadas varia entre 30.360 e 31.145 conforme o domínio do desfecho.
 
 Os graus de liberdade são iguais ao número de grupos efetivamente usados menos
 um, e os intervalos de confiança de 95\% são construídos pela distribuição $t$
-com esses graus de liberdade, e não pela normal --- diferença imaterial com
-mais de trinta mil grupos, mas registrada porque é o que o código faz.
+com esses graus de liberdade, e não pela normal (diferença imaterial com
+mais de trinta mil grupos, mas registrada porque é o que o código faz).
 
 Não há correção para multiplicidade de testes. São sete desfechos fortemente
 correlacionados entre si, estimados sobre a mesma base e com a mesma
@@ -592,8 +592,8 @@ mede é um gradiente associado à exposição potencial da ocupação.
 
 \textbf{Segundo: o marco temporal é único e nacional.} Os efeitos fixos de UF
 interagida com trimestre absorvem o que é comum, mas qualquer fator que tenha
-atingido ocupações de alta exposição de forma diferencial no mesmo período ---
-retomada pós-pandemia, difusão do trabalho remoto, ciclo setorial específico ---
+atingido ocupações de alta exposição de forma diferencial no mesmo período
+(retomada pós-pandemia, difusão do trabalho remoto, ciclo setorial específico)
 entra no coeficiente. Não há variação exógena na intensidade do choque.
 
 \textbf{Terceiro: não há bateria de robustez nesta versão.} O trabalho reporta
