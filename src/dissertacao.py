@@ -228,8 +228,9 @@ def tab_principal():
                                   ic, pvalor(r.p_valor)], larguras))
     linhas.append('\\bottomrule')
     grupos = d.clusters_upa
-    nota = ('Efeito em pontos percentuais por desvio-padrão de exposição da ocupação\n'
-            '        de origem, no painel A, e por unidade do índice de teletrabalhabilidade,\n'
+    nota = ('Efeito em pontos percentuais por unidade de AIOE da ocupação de origem\n'
+            '        (cerca de um desvio-padrão entre ocupações), no painel A, e por unidade\n'
+            '        do índice de teletrabalhabilidade,\n'
             '        no painel B. Os dois painéis vêm da mesma estimação. Erros-padrão\n'
             f'        agrupados por UPA, entre {inteiro(grupos.min())} e {inteiro(grupos.max())} '
             'grupos conforme o domínio. O\n'

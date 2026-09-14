@@ -90,8 +90,9 @@ A exposição do COD é a média dos SOC ponderada por esse peso, ignorando elos
 tratá-los como zero. O peso sem AIOE atribuído fica em `pnadc_cobertura_exposicao.json` e é
 comparado com `config.yaml: limite_sem_match`.
 
-**Escala**: o AIOE é padronizado entre ocupações, com desvio-padrão próximo de 1. Um coeficiente
-"por unidade de AIOE" lê-se, portanto, como "por desvio-padrão de exposição".
+**Escala**: o AIOE é padronizado entre ocupações, com desvio-padrão de 0,9445 entre os 416 códigos
+com exposição. Os coeficientes são reportados por unidade de AIOE; como uma unidade equivale a cerca
+de 1,06 desvio-padrão, o efeito por desvio-padrão é cerca de 5,5% menor que o coeficiente reportado.
 
 ## 5. Especificação
 
@@ -102,10 +103,11 @@ y ~ aioe_origem:pos + telework:pos + idade + idade_quadrado
 ```
 
 - `pos` marca o trimestre do choque (`config.yaml: choque`) e os seguintes.
-- `cod_origem` absorve o nível de cada ocupação: o coeficiente vem da **mudança** de comportamento
-  dentro da ocupação, não da comparação entre ocupações.
-- `sigla_uf^mes` absorve o choque agregado e o ciclo regional: nenhum efeito comum a todo o país no
-  período pode aparecer no coeficiente.
+- `cod_origem` absorve o nível permanente de cada ocupação: o coeficiente compara as **mudanças**
+  entre pré e pós de ocupações com exposições diferentes, não os níveis entre ocupações.
+- `sigla_uf^mes` absorve os componentes aditivos comuns a cada UF e mês, inclusive o nível do ciclo
+  nacional; um choque nacional com incidência diferente por ocupação não é absorvido e pode covariar
+  com a exposição.
 - `telework:pos` está lá porque AIOE e teletrabalhabilidade são fortemente correlacionados entre
   ocupações; sem esse termo o coeficiente de AIOE recolhe a reorganização do trabalho remoto.
 - Pesos: soma de V1028 da entrevista de **origem**. É peso transversal, não longitudinal.

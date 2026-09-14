@@ -2,15 +2,16 @@
 
 Este capítulo é construído em duas camadas. A primeira, apresentada na
 Seção~\ref{sec:leituras}, é uma proposta de leitura: cinco artigos que
-sustentam, em conjunto, todas as decisões de desenho tomadas no
-Capítulo~\ref{sec:metodo}. Não são cinco textos escolhidos por proximidade
+sustentam, em conjunto, as principais escolhas relativas à medida de exposição
+e à estratégia de identificação adotadas no Capítulo~\ref{sec:metodo}; decisões
+como pareamento, ponderação e inferência têm justificativa própria naquele
+capítulo. Não são cinco textos escolhidos por proximidade
 temática genérica com o tema ``inteligência artificial e trabalho'', e sim os
 cinco textos de que este trabalho depende para justificar, respectivamente, a
 medida de tratamento, a medida alternativa de exposição, o que se sabe sobre o
 efeito de produtividade da ferramenta, o que se sabe sobre o efeito agregado no
 mercado de trabalho e o desenho de identificação por exposição diferencial. A
-segunda camada, nas seções seguintes, é a revisão propriamente dita, que será
-redigida a partir dessas leituras e ampliada com a literatura brasileira de
+segunda camada, nas seções seguintes, é a revisão propriamente dita, construída a partir dessas leituras e ampliada com a literatura brasileira de
 mobilidade ocupacional e informalidade.
 
 \subsection{Proposta de leitura}
@@ -40,12 +41,12 @@ Capítulo~\ref{sec:metodo}.
         É a primeira robustez prevista no Capítulo~\ref{sec:melhorias}. \\
     \addlinespace
     3 & \citeonline{brynjolfsson2025}
-      & Efeito causal medido com adoção observada e desenho limpo. Serve de
+      & Efeito estimado com adoção observada e implantação escalonada. Serve de
         contraste: mostra o que este trabalho não consegue observar. \\
     \addlinespace
     4 & \citeonline{humlum2025}
-      & Desenho mais próximo do nosso e resultado nulo preciso. É o principal
-        candidato a explicar magnitudes pequenas. \\
+      & Desenho com exposição ocupacional e horizonte curto, com efeitos nulos
+        e precisos. Referência para calibrar a expectativa de magnitude. \\
     \addlinespace
     5 & \citeonline{acemoglu2020}
       & Modelo canônico de identificação por exposição diferencial e leitura
@@ -80,8 +81,7 @@ a formular diante do índice. O AIOE mede a exposição potencial de cada ocupa�
 às aplicações de inteligência artificial, e não a adoção efetivamente observada
 da tecnologia, seus efeitos sobre a produtividade ou o risco de substituição do
 trabalho. A padronização entre ocupações, por sua vez, define a escala em que se
-leem os coeficientes estimados no Capítulo~\ref{sec:resultados}, expressos por
-desvio-padrão de exposição. Por fim, exposição elevada não deve ser tomada como
+leem os coeficientes estimados no Capítulo~\ref{sec:resultados}, expressos por unidade do índice. Por fim, exposição elevada não deve ser tomada como
 sinônimo de ocupação pior, pois o índice descreve a proximidade entre as
 habilidades requeridas pela ocupação e as capacidades da tecnologia, e não a
 qualidade do emprego. Essa distinção precisa estar clara antes de qualquer
@@ -110,16 +110,16 @@ Seção~\ref{sec:exposicoes}.
 \citeonline{brynjolfsson2025} acompanham a implantação escalonada de um
 assistente conversacional em uma central de atendimento e medem ganho de
 produtividade, com efeitos concentrados entre trabalhadores menos experientes.
-É evidência causal em sentido forte: a adoção é observada, o momento da
-implantação varia entre equipes e o desfecho é medido no nível do trabalhador.
+A estratégia apoia-se na observação da adoção, na variação do momento de
+implantação entre equipes e na medição do desfecho no nível do trabalhador;
+como em todo desenho de implantação escalonada, a leitura causal depende de que
+esse momento não esteja associado a tendências próprias das equipes.
 
 O artigo entra na lista como contraste metodológico deliberado. Ele mostra o
 que se consegue afirmar quando a adoção é observada e o que, por consequência,
 não se consegue afirmar quando ela não é. Neste trabalho não há adoção
-observada: há um índice ocupacional e um marco temporal nacional. Ler
-\citeonline{brynjolfsson2025} é a maneira mais rápida de internalizar essa
-diferença e de escrever, no Capítulo~\ref{sec:resultados}, uma leitura honesta
-dos coeficientes.
+observada: há um índice ocupacional e um marco temporal nacional. A comparação com \citeonline{brynjolfsson2025} delimita, assim, o que os
+coeficientes do Capítulo~\ref{sec:resultados} podem e não podem sustentar.
 
 \subsubsection{Humlum e Vestergaard (2025)}
 
@@ -133,14 +133,15 @@ inicialmente com o título \textit{Large Language Models, Small Labor Market
 Effects}.
 
 É o artigo cuja leitura mais muda a expectativa sobre a magnitude dos
-resultados. Duas razões. Primeira: o desenho é o mais próximo do nosso
-(diferenças em diferenças, exposição ocupacional, horizonte curto), em um país
-com dados administrativos muito melhores que os disponíveis aqui. Segunda: o
+resultados. O desenho compartilha elementos com o deste trabalho (diferenças em
+diferenças, exposição ocupacional e horizonte curto), mas usa dados
+administrativos muito mais ricos e examina desfechos e populações distintos. O
 achado central, de que a margem que se move é a de composição de tarefas e de
-troca de ocupação, e não a de emprego ou salário, é exatamente o padrão que
-aparece nos resultados preliminares do Capítulo~\ref{sec:resultados}, em que o
-coeficiente estatisticamente mais forte é o de deslocamento no gradiente de
-exposição e não o de saída do emprego.
+troca de ocupação, e não a de emprego ou salário, é parcialmente compatível com
+o padrão dos resultados do Capítulo~\ref{sec:resultados}, em que o coeficiente
+estatisticamente mais forte é o de deslocamento no gradiente de exposição, e não
+o de saída do emprego. Trata-se de compatibilidade parcial, e não de
+confirmação, dadas as diferenças de desenho, população e desfecho.
 
 \subsubsection{Acemoglu e Restrepo (2020)}
 
@@ -289,6 +290,5 @@ consecutivas, problema tratado por \citeonline{osorio2022} e enfrentado neste
 trabalho na Seção~\ref{sec:par}. O conjunto dessa evidência fixa o contrafactual de leitura
 do Capítulo~\ref{sec:resultados}: em um trimestre brasileiro comum já há muita
 troca de ocupação e muita travessia da fronteira de formalidade, de modo que um
-gradiente atribuído à exposição à inteligência artificial há de ser lido como
-desvio modesto sobre um pano de fundo de rotatividade elevada, e nunca como a
+gradiente atribuído à exposição à inteligência artificial há de ser lido como um desvio sobre um pano de fundo de rotatividade elevada, e nunca como a
 rotatividade em si.

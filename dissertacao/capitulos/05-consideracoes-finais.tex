@@ -21,18 +21,22 @@ No nível descritivo, a resposta é que houve mudança generalizada, e não
 mudança concentrada nas ocupações expostas. A permanência na mesma faixa de
 exposição caiu entre 3,6 e 8,1 pontos percentuais em todas as cinco faixas, e as
 margens de mobilidade ascendente e descendente subiram quase na mesma proporção.
-O mercado de trabalho brasileiro ficou mais móvel no período; a exposição
-ocupacional não explica esse movimento agregado.
+As taxas de transição medidas na amostra aumentaram no período; como esse
+aumento aparece em todas as faixas, parte relevante dele é comum às ocupações,
+sem que isso exclua a participação de mecanismos associados à exposição.
 
-No nível de associação condicional, a resposta é que existe um gradiente
-detectável, porém modesto. Controlada a ocupação de origem, o par UF-trimestre,
-a teletrabalhabilidade interagida com o período e o conjunto de covariáveis, um
-desvio-padrão adicional de exposição associa-se a aproximadamente 2,2 pontos
-percentuais a mais de transição para ocupação menos exposta e a 1,4 ponto
-percentual a menos de transição para ocupação mais exposta. Nas margens de
+No nível de associação condicional, a resposta é que existe um gradiente estatisticamente detectável. Condicionalmente aos efeitos
+fixos de ocupação de origem e de UF-trimestre, à teletrabalhabilidade interagida
+com o período e ao conjunto de covariáveis, ocupações de origem com uma unidade
+a mais de AIOE apresentam, do pré para o pós, aumento cerca de 2,2 pontos
+percentuais maior na transição para ocupação menos exposta e variação 1,4 ponto
+percentual menor na transição para ocupação mais exposta, sem que o desenho
+separe esse gradiente do canal mecânico descrito na
+Seção~\ref{sec:desfechos}. Nas margens de
 vínculo o sinal é o inverso do esperado pela leitura alarmista: maior exposição
-associa-se a menos saída do emprego e a menos informalização, e a informalização
-do período aparece associada à teletrabalhabilidade, não à exposição.
+associa-se a menos saída do emprego e a menos informalização, e a informalização apresenta gradiente negativo em relação à exposição e
+positivo em relação à teletrabalhabilidade, sem que o desenho identifique qual
+força explica o aumento agregado.
 
 No nível causal, a resposta é que o desenho atual não sustenta a afirmação, por
 duas razões de natureza distinta. A primeira é de escopo: esta versão do
@@ -41,10 +45,10 @@ de tendências pré-marco e sem bateria de sensibilidade. Um coeficiente que nã
 foi submetido a esses testes não pode ser apresentado como efeito causal,
 qualquer que seja o seu valor-$p$. A segunda é de medida, e é a mais séria: a
 taxa medida de mudança de ocupação cai pela metade durante os trimestres de
-coleta telefônica de 2020 e 2021 e volta ao patamar anterior em 2021T4, uma
-descontinuidade maior que qualquer coeficiente estimado aqui e que atravessa o
-período pré. Enquanto ela não for tratada, todo contraste entre pré e pós que
-use a série inteira é, em parte, contraste entre modos de coleta. É esse fato
+coleta telefônica de 2020 e 2021 e volta ao patamar anterior em 2021T4, uma descontinuidade que atravessa o
+período pré e cuja causa ainda não foi demonstrada. Enquanto ela não for
+investigada, todo contraste entre pré e pós que use a série inteira pode
+refletir, em parte, diferenças entre modos de coleta. É esse fato
 que organiza toda a agenda a seguir e que promove o tratamento do problema de
 coleta de item de robustez a prioridade.
 
@@ -189,13 +193,20 @@ resultado principal.
 \subsection{Tratamento do problema de medida na coleta}
 
 A descontinuidade na taxa medida de mudança de ocupação entre o período de
-coleta presencial e o de coleta telefônica é maior que qualquer efeito estimado
-neste trabalho. Enquanto ela não for tratada, nenhuma estimativa que use o
-período de 2020 e 2021 é confiável. Três encaminhamentos são possíveis, em ordem
-crescente de ambição: restringir a amostra ao período de coleta homogênea, o que
-custa metade dos trimestres pré; modelar explicitamente o modo de coleta como
-efeito fixo interagido com a ocupação; ou tratar a mudança de modo de coleta como
-um choque de medida cuja magnitude pode ser estimada e descontada.
+coleta presencial e o de coleta telefônica coincide com a mudança no modo de
+coleta, mas sua causa não está demonstrada: coleta, mudanças reais do período,
+composição amostral, atrito e codificação ocupacional podem contribuir.
+Enquanto ela não for investigada, as estimativas que usam o período de 2020 e
+2021 devem ser lidas com cautela. O primeiro passo é diagnóstico: apresentar as
+séries dos desfechos e da retenção por faixa de exposição e verificar se a
+quebra varia com a exposição, considerando que cada par liga dois trimestres e
+pode ter origem e destino em modos de coleta diferentes. A partir daí, três
+encaminhamentos são possíveis, em ordem crescente de ambição: restringir a
+amostra a pares cujas duas entrevistas tenham coleta comparável, o que custa
+parte relevante dos trimestres pré; modelar o período de coleta interagido com
+a ocupação, como sensibilidade que não separa automaticamente medida e
+economia; ou tratar a mudança de modo como choque de medida, o que exige uma
+fonte independente para estimar e descontar o erro.
 
 \subsection{Extensões de escopo}
 

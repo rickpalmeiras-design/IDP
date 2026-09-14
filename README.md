@@ -79,8 +79,9 @@ da dissertação, execute separadamente `uv run python scripts/06_dissertacao.py
   agregação; o pareamento acontece no BigQuery e só descem células por UPA e covariáveis.
 - **Nenhum código de categoria é digitado à mão**: condição de ocupação, posição na ocupação e CNPJ
   vêm do dicionário publicado, validados por rótulo (`src/dictionaries.py`).
-- **Par exige identidade coerente**: mesmo domicílio, número de ordem, visita seguinte, sexo e data
-  de nascimento iguais, idade avançando no máximo um ano. Chave duplicada no trimestre não pareia.
+- **Par exige identidade coerente**: mesmo domicílio, número de ordem, visita seguinte, sexo, dia e
+  mês de nascimento iguais, ano de nascimento com diferença de no máximo um e idade avançando no
+  máximo um ano. Chave duplicada no trimestre não pareia.
 - **Ausente não vira zero**: conta-própria sem CNPJ declarado fica nulo; desfechos de destino só
   existem onde houve par; a média ponderada da exposição ignora elos sem valor.
 - **Toda tabela sai em CSV, TXT e TeX**, e todo modelo grava fórmula, cluster, pesos, número de

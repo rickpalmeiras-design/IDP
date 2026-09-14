@@ -148,8 +148,7 @@ destino $b$:
   \item mesmo sexo declarado;
   \item mesmo dia e mesmo mês de nascimento, com dia entre 1 e 31 e mês entre 1
         e 12;
-  \item ano de nascimento diferindo em no máximo um ano, o que acomoda erro de
-        registro sem admitir troca de pessoa;
+  \item ano de nascimento diferindo em no máximo um ano, o que acomoda erro de registro;
   \item idade que avança zero ou um ano, isto é, $\text{idade}_b \in
         \{\text{idade}_a, \text{idade}_a + 1\}$;
   \item chave de identificação não duplicada dentro do trimestre, dos dois
@@ -162,6 +161,11 @@ registro não é pareado em nenhuma direção, em vez de ser resolvido por
 critério arbitrário. A condição (b) implica que a quinta visita nunca entra como
 origem, pois não há visita seguinte, e que o último trimestre disponível não
 entra no denominador de atrito.
+
+Essas regras produzem uma correspondência plausível entre registros, e não uma
+identificação certa: admitem falsos pares e perdem pares verdadeiros. Além
+disso, o painel acompanha os moradores reencontrados no mesmo domicílio, e não a
+trajetória de quem muda de residência entre as visitas.
 
 A qualidade do pareamento é monitorada trimestre a trimestre. A taxa ponderada
 de pareamento varia entre 0,747 e 0,847 ao longo dos vinte e sete trimestres, e
@@ -217,7 +221,8 @@ subjacente às células.
     \node[caixa, below=8mm of f] (g) {\textbf{G. Domínio de formalidade}\\
       \textbf{1.677.310} \hfill 52,8\% de D};
 
-    \foreach \x/\y in {a/b, b/c, c/d, d/e, e/f, f/g} {\draw[seta] (\x) -- (\y);}
+    \foreach \x/\y in {a/b, b/c, c/d, d/e, e/f} {\draw[seta] (\x) -- (\y);}
+    \draw[seta] (d.west) -- ++(-5mm,0) |- (g.west);
 
     \node[corte, right=6mm of a.east, anchor=west, yshift=-4mm] (ra)
       {Pessoa ocupada, 18 a 65 anos, visitas 1 a 4, trimestre com trimestre
@@ -226,16 +231,16 @@ subjacente às células.
       {AIOE e teletrabalhabilidade disponíveis para a ocupação de origem;
        militares e ocupações sem correspondência ficam de fora};
     \node[corte, right=6mm of c.east, anchor=west, yshift=-4mm] (rc)
-      {Identidade reconstruída e validada: domicílio, ordem, visita seguinte,
-       sexo, data de nascimento, idade coerente, chave não duplicada};
+      {Identidade reconstruída: domicílio, ordem, visita seguinte, sexo, dia
+       e mês de nascimento, ano e idade coerentes, chave não duplicada};
     \node[corte, right=6mm of d.east, anchor=west, yshift=-4mm] (rd)
       {Condição de ocupação no destino igual a ocupado};
     \node[corte, right=6mm of e.east, anchor=west, yshift=-4mm] (re)
       {Código ocupacional e AIOE observados na origem \emph{e} no destino};
-    \node[corte, right=6mm of f.east, anchor=west, yshift=-4mm] (rf)
-      {Ramo próprio, a partir de D: origem formal e destino observado};
+    \node[corte, right=6mm of g.east, anchor=west] (rf)
+      {Ramo próprio, a partir de D: origem formal e destino classificável};
 
-    \foreach \x/\y in {a/ra, b/rb, c/rc, d/rd, e/re, f/rf}
+    \foreach \x/\y in {a/ra, b/rb, c/rc, d/rd, e/re, g/rf}
       {\draw[lig] (\x.east) -- (\y.west);}
   \end{tikzpicture}
   \fonte{Elaboração própria a partir da PNADC/IBGE.}
@@ -311,11 +316,13 @@ limite de 15\% fixado como critério de aceitação antes da estimação.
 \subsubsection{Escala e padronização}
 
 O AIOE é padronizado \emph{entre ocupações}, e não entre trabalhadores. Entre os
-416 códigos COD com exposição, a média é 0,0053 e o desvio-padrão é
-$\sigma_A = 0{,}9445$, praticamente unitário. Um coeficiente estimado ``por
-unidade de AIOE'' lê-se, portanto, como ``por desvio-padrão de exposição entre
-ocupações'', e é assim que todo coeficiente é reportado no
-Capítulo~\ref{sec:resultados}. Ponderando por trabalhador, a média cai para
+416 códigos COD com exposição, a média é 0,0053 e o desvio-padrão é $\sigma_A = 0{,}9445$. Os coeficientes do
+Capítulo~\ref{sec:resultados} são reportados \emph{por unidade de AIOE}. Como
+uma unidade equivale a $1/\sigma_A \approx 1{,}06$ desvio-padrão entre esses
+códigos, o efeito associado a exatamente um desvio-padrão de exposição é cerca
+de 5,5\% menor que o coeficiente reportado; ``por unidade de AIOE'' lê-se,
+portanto, como ``por aproximadamente um desvio-padrão de exposição entre
+ocupações''. Ponderando por trabalhador, a média cai para
 $-0{,}221$ e o desvio-padrão sobe para $0{,}981$: o emprego brasileiro
 concentra-se em ocupações de exposição abaixo da média entre ocupações. A
 Figura~\ref{fig:distribuicao} mostra a distribuição.
@@ -344,6 +351,7 @@ interagido com o indicador de período, exatamente na mesma forma funcional que 
 tratamento.
 
 \subsection{Definição dos desfechos}
+\label{sec:desfechos}
 
 São sete desfechos, organizados em três famílias e apresentados no
 Quadro~\ref{qua:desfechos}. Seja $c(i)$ o código ocupacional de origem do par
@@ -368,8 +376,9 @@ equação~\eqref{eq:agregacao_exposicao}.
       & $1$ se o destino não está ocupado
       & pares \\
     Formal para informal
-      & $1$ se a origem é formal e o destino está ocupado e é informal
-      & pares com origem formal e destino observado \\
+      & $1$ se o destino está ocupado e é informal; $0$ se está ocupado e é
+        formal ou se não está ocupado
+      & pares com origem formal e destino classificável \\
     \addlinespace[3pt]
     \multicolumn{3}{@{}l}{\textit{(ii) Mobilidade ocupacional}} \\
     \addlinespace[2pt]
@@ -401,19 +410,38 @@ são informais; conta-própria e empregador são classificados como formais
 (CNPJ), e ficam indefinidos quando a declaração está ausente. A escolha de
 deixar indefinido em vez de imputar informalidade é deliberada: a alternativa
 introduziria correlação espúria entre informalidade medida e não resposta.
+Por construção, no desfecho de transição de formal para informal, destinos não
+ocupados entram com valor zero, e destinos ocupados com formalidade indefinida
+ficam fora do domínio. O desfecho mede, assim, a probabilidade de passar a uma
+ocupação informal entre origens formais com destino classificável, e não a
+probabilidade de informalidade condicional a continuar ocupado.
 
-O desfecho de pareamento cumpre função distinta das demais. Ele não é um
-resultado de interesse substantivo, e sim um \textbf{teste de atrito}: se a
-exposição da ocupação de origem previsse quem desaparece do painel, todos os
-demais desfechos, definidos apenas sobre pares completos, estariam contaminados
-por seleção. A leitura correta é a de um teste de falseamento, em que não
-rejeitar é o resultado desejável.
+O desfecho de pareamento cumpre função distinta das demais. Ele não é um resultado de interesse substantivo, e sim um \textbf{teste de
+atrito}, de alcance limitado. Se a exposição da ocupação de origem estivesse
+associada a quem desaparece do painel, os demais desfechos, definidos apenas
+sobre pares completos, estariam sujeitos a seleção. O coeficiente de
+$A_c \times \text{Pós}_t$ nesse modelo, porém, verifica apenas se o gradiente de
+pareamento em relação à exposição mudou entre os períodos: diferenças
+permanentes de retenção entre ocupações são absorvidas pelo efeito fixo
+ocupacional e não são testadas. Não rejeitar a interação, portanto, é o
+resultado desejável, mas não estabelece que a exposição seja irrelevante para
+quem permanece no painel.
 
 O par de margens direcionais (mobilidade descendente e ascendente) é
-sempre lido em conjunto, e nunca isoladamente. Quem parte de exposição alta só
-pode se deslocar para baixo no gradiente, e vice-versa; a assimetria de nível é
-mecânica e é absorvida pelo efeito fixo de ocupação, de modo que o contraste
-informativo é a diferença entre os períodos, não o nível de cada margem.
+sempre lido em conjunto, e nunca isoladamente. As duas margens têm uma
+assimetria mecânica de nível: origens mais expostas têm mais destinos possíveis
+abaixo delas no gradiente, e origens menos expostas, mais destinos acima (apenas
+a ocupação de maior AIOE não pode subir, e apenas a de menor não pode descer). O
+efeito fixo de ocupação absorve essa diferença permanente de nível, mas não a
+sua interação com uma mudança geral de mobilidade. Em um exemplo simplificado,
+se a probabilidade de trocar de ocupação no período $t$ é $m_t$ e a fração dos
+destinos menos expostos que a origem $c$ é $F_c$, a probabilidade de descer no
+gradiente é $m_t F_c$, e um aumento comum de mobilidade eleva essa probabilidade
+em $\Delta m \, F_c$, mais nas origens com mais destinos abaixo delas. Esse
+componente varia com a exposição da origem sem nenhuma mudança específica
+associada à inteligência artificial, e o desenho atual não o separa do
+gradiente estimado: o contraste entre períodos é informativo, mas não isola a
+direção do movimento de seu volume.
 
 \subsection{Análise descritiva}
 
@@ -481,8 +509,7 @@ O desenho é de \textbf{diferenças em diferenças com tratamento contínuo}. N�
 grupo tratado e grupo de controle: há um marco temporal único e nacional (o
 lançamento público do ChatGPT, em 30 de novembro de 2022) e uma intensidade
 de tratamento que varia entre ocupações, dada pela exposição da ocupação de
-origem. O parâmetro de interesse é o \emph{gradiente} de resposta por
-desvio-padrão de exposição, e não o efeito de um tratamento binário
+origem. O parâmetro de interesse é o \emph{gradiente} de resposta por unidade de exposição (AIOE), e não o efeito de um tratamento binário
 \parencite{callaway2024}.
 
 O indicador de período é definido no trimestre do marco:
@@ -500,7 +527,9 @@ São, portanto, quinze trimestres de origem no período pré, de 2019T1 a 2022T3
 doze no pós, de 2022T4 a 2025T3. O trimestre do marco é classificado como pós
 por convenção declarada antes da estimação; ele contém dois meses anteriores ao
 lançamento, e essa ambiguidade é registrada como limite conhecido, não corrigida
-por exclusão.
+por exclusão. A contaminação temporal não se limita a esse trimestre: como cada
+par liga dois trimestres, os pares com origem em 2022T3 têm destino em 2022T4,
+já parcialmente posterior ao lançamento, e são classificados como pré.
 
 \subsubsection{Equação estimada}
 
@@ -531,16 +560,20 @@ sete desfechos.
 Cada componente da equação~\eqref{eq:principal} tem função identificável:
 
 \begin{enumerate}[label=\alph*)]
-  \item $\alpha_c$ absorve o nível de cada ocupação. O coeficiente $\beta$ vem
-        portanto da \emph{mudança de comportamento dentro} da ocupação ao longo
-        do tempo, e não da comparação de níveis entre ocupações mais e menos
-        expostas;
-  \item $\lambda_{ut}$ absorve todo choque comum a uma UF em um trimestre,
-        inclusive o ciclo macroeconômico nacional. Nenhum movimento comum a
-        todo o país no período pode aparecer em $\beta$;
-  \item $T_c \times \text{Pós}_t$ retira do coeficiente de exposição a
-        reorganização do trabalho remoto, dada a correlação de $0{,}702$
-        documentada na Seção~\ref{sec:exposicao};
+  \item $\alpha_c$ absorve o nível permanente de cada ocupação. O coeficiente
+        $\beta$ compara, portanto, as mudanças entre pré e pós de ocupações com
+        exposições diferentes, e não os níveis dessas ocupações; como o AIOE é
+        constante dentro da ocupação, $\beta$ não acompanha uma mesma ocupação
+        cuja exposição aumente;
+  \item $\lambda_{ut}$ absorve os componentes aditivos comuns a cada UF em cada
+        trimestre, inclusive o nível do ciclo macroeconômico nacional. Um mesmo
+        choque nacional com incidência diferente por ocupação, porém, não é
+        absorvido e pode covariar com a exposição;
+  \item $T_c \times \text{Pós}_t$ ajusta o coeficiente de exposição pela
+        teletrabalhabilidade potencial da ocupação, sob a mesma forma funcional
+        do tratamento, dada a correlação de $0{,}702$ documentada na
+        Seção~\ref{sec:exposicao}; o termo não mede nem elimina toda a
+        reorganização do trabalho remoto;
   \item os efeitos fixos categóricos absorvem diferenças de composição
         demográfica e contratual que poderiam se confundir com exposição.
 \end{enumerate}
@@ -606,8 +639,11 @@ condicional}, não a de efeito causal.
 
 \textbf{Quarto: a seleção longitudinal permanece.} O peso é transversal e não há
 correção de atrito. O teste de pareamento limita, mas não elimina, a
-preocupação: ele detecta seleção associada à exposição, não seleção por
-características não observadas.
+preocupação: ele detecta mudança no gradiente de pareamento associada à
+exposição, e não diferenças permanentes de retenção nem seleção por
+características não observadas. Os coeficientes descrevem, assim, as
+transições dos indivíduos elegíveis e reencontrados sob as regras de
+pareamento, e não automaticamente as de todos os ocupados brasileiros.
 
 \textbf{Quinto: o horizonte é de um trimestre.} Realocação lenta, mudança de
 carreira, requalificação e efeitos sobre a entrada no mercado de trabalho não

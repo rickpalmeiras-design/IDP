@@ -17,8 +17,8 @@ y ~ aioe_origem:pos + telework:pos + idade + idade_quadrado
 ```
 
 Pesos: soma de V1028 da entrevista de origem (transversal). Cluster: UPA.
-AIOE é padronizado entre ocupações (desvio-padrão 0.945), então um ponto
-equivale a aproximadamente um desvio-padrão de exposição.
+AIOE é padronizado entre ocupações (desvio-padrão 0.945); os coeficientes
+são reportados por unidade de AIOE, o que equivale a cerca de um desvio-padrão de exposição.
 
 ## Qualidade do painel
 
@@ -28,7 +28,7 @@ equivale a aproximadamente um desvio-padrão de exposição.
 - Correlação AIOE-teletrabalho entre ocupações: 0.702. Por isso o teletrabalho entra
   interagido com o pós em todos os modelos.
 
-## Efeitos de AIOE x pós (pontos percentuais por desvio-padrão)
+## Efeitos de AIOE x pós (pontos percentuais por unidade de AIOE)
 
 | Desfecho | Efeito | IC95 | p | N células |
 | --- | --- | --- | --- | --- |
@@ -50,11 +50,13 @@ Teste de Wald de igualdade das matrizes pré e pós: qui-quadrado 3040.1,
 
 ## Como interpretar
 
-1. Os coeficientes são gradientes por desvio-padrão de AIOE, por transição trimestral. Não são
+1. Os coeficientes são gradientes por unidade de AIOE, por transição trimestral. Não são
    percentuais de trabalhadores afetados pela IA.
 2. AIOE menor não significa emprego pior: é direção de exposição, não hierarquia salarial.
 3. Parte da assimetria entre mobilidade ascendente e descendente é mecânica, porque quem parte de
-   AIOE alto só pode descer. O contraste informativo é a diferença pós menos pré por quintil.
+   AIOE alto tem mais destinos possíveis abaixo. O efeito fixo absorve o nível dessa assimetria, mas
+   não sua interação com um aumento geral de mobilidade; o contraste pós menos pré por quintil é
+   informativo, mas não isola a direção do movimento de seu volume.
 4. Não há adoção de IA observada. O tratamento é um índice ocupacional e o choque é único e nacional:
    qualquer fator que tenha atingido ocupações de alto AIOE de forma diferencial no mesmo período
    entra no coeficiente. A queda de permanência em todos os quintis mostra que parte do movimento é
