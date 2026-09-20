@@ -60,6 +60,8 @@ PAPEL = {
     'ibge2022tratamento': 'Mudança no modo de coleta em 2020 e 2021; base da ressalva de medida.',
     'basedosdados_pnadc': 'Fonte dos microdados da PNAD Contínua usados na estimação.',
     'massenkoff2026': 'Exposição observada e DiD sobre desemprego; inclusão em avaliação.',
+    'ahn2026': 'Fluxos do mercado de trabalho por exposição e adoção; margem de ajuste no '
+               'lado da contratação. Inclusão em avaliação.',
 }
 
 ACESSO = {
@@ -71,7 +73,8 @@ ACESSO = {
     'basedosdados_pnadc': 'Aberto (site, sem PDF)',
     'massenkoff2026': 'Aberto (site da Anthropic)',
     'callaway2024': 'Restrito no NBER; há versão aberta em pré-print',
-    'felten2021': 'Restrito (SMJ); baixar por acesso institucional do IDP',
+    'felten2021': 'Aberto no SSRN (versão de trabalho); publicado restrito no SMJ',
+    'ahn2026': 'Aberto (página do autor e site de conferência do NBER)',
     'eloundou2024': 'Restrito na Science; há versão aberta em pré-print',
     'humlum2025': 'Restrito no NBER; há versão aberta na página dos autores',
     'brynjolfsson2025': 'Restrito no QJE; há versão aberta em working paper',
@@ -85,6 +88,13 @@ EXTRA = {
         'subtitle': 'a new measure and early evidence',
         'institution': 'Anthropic', 'year': '2026',
         'url': 'https://www.anthropic.com/research/labor-market-impacts',
+    },
+    'ahn2026': {
+        'tipo': 'report', 'author': 'Ahn, Hie Joo and Carollo, Nicholas A.',
+        'title': 'Artificial intelligence and labor market reallocation',
+        'institution': 'Board of Governors of the Federal Reserve System', 'year': '2026',
+        'note': 'Versão preliminar de 16 de setembro de 2026',
+        'url': 'https://www.ncarollo.net/',
     },
 }
 
@@ -108,6 +118,8 @@ VERSAO = {
     'rambachan2023': 'Versão publicada (ReStud)',
     'ulyssea2020': 'Versão aceita (repositório da UCL)',
     'wroblevski2024': 'Versão publicada (anais da ANPEC)',
+    'felten2021': 'Versão de trabalho do SSRN; publicado no SMJ',
+    'ahn2026': 'Versão preliminar de 16 set. 2026',
 }
 
 
@@ -195,7 +207,7 @@ def escreve(linhas):
     for deslocamento, (rotulo, formula) in enumerate([
             ('Total de obras', f'=COUNTA(A2:A{ultima})'),
             ('Total de citações no texto', f'=SUM(K2:K{ultima})'),
-            ('PDFs já na pasta', f'=COUNTIF(N2:N{ultima},"<>falta baixar")')]):
+            ('PDFs já na pasta', f'=COUNTIF(N2:N{ultima},"*.pdf")')]):
         ws.cell(resumo + deslocamento, 1, rotulo).font = Font(name=FONTE, bold=True)
         ws.cell(resumo + deslocamento, 2, formula).font = Font(name=FONTE)
     ws.cell(resumo + 5, 1,

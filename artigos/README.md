@@ -15,15 +15,17 @@ Sempre que uma referência nova for citada, basta rodar o script de novo.
 
 ## O que está na pasta
 
-15 dos 17 itens da planilha têm PDF aqui. Cada arquivo tem o nome da chave usada no `.bib`.
+17 dos 18 itens da planilha têm PDF aqui. Cada arquivo tem o nome da chave usada no `.bib`.
 
 | Arquivo | Obra | Versão guardada |
 | --- | --- | --- |
+| `ahn2026.pdf` | Ahn e Carollo, *Artificial intelligence and labor market reallocation* | Preliminar, 16 set. 2026 |
 | `acemoglu2019.pdf` | Acemoglu e Restrepo, *Automation and new tasks* | NBER WP 25684; publicado no JEP |
 | `acemoglu2020.pdf` | Acemoglu e Restrepo, *Robots and jobs* | NBER WP 23285; publicado no JPE |
 | `brynjolfsson2025.pdf` | Brynjolfsson, Li e Raymond, *Generative AI at work* | NBER WP 31161; publicado no QJE |
 | `callaway2024.pdf` | Callaway, Goodman-Bacon e Sant'Anna, *DiD with a continuous treatment* | Pré-print arXiv, dez. 2025 |
 | `dingel2020.pdf` | Dingel e Neiman, *How many jobs can be done at home?* | NBER WP 26948 |
+| `felten2021.pdf` | Felten, Raj e Seamans, *Occupational, industry, and geographic exposure to AI* | Versão de trabalho do SSRN; publicado no SMJ |
 | `eloundou2024.pdf` | Eloundou et al., *GPTs are GPTs* | Pré-print arXiv de 2023; publicado na Science |
 | `higano2023.pdf` | Higano et al., mobilidade ocupacional e diferenças salariais | Publicada (RBE) |
 | `humlum2025.pdf` | Humlum e Vestergaard, *Still waters, rapid currents* | NBER WP 33777 |
@@ -35,15 +37,31 @@ Sempre que uma referência nova for citada, basta rodar o script de novo.
 | `ulyssea2020.pdf` | Ulyssea, *Informality* | Versão aceita (repositório da UCL) |
 | `wroblevski2024.pdf` | Wroblevski et al., transição no mercado informal | Publicada (anais da ANPEC) |
 
-Faltam dois itens, por motivo declarado na planilha:
-
-- **`felten2021`**, a fonte do AIOE. O artigo está no *Strategic Management Journal*, restrito, e o
-  acesso público disponível não entrega o PDF. Baixar pelo acesso institucional do IDP.
-- **`basedosdados_pnadc`**, que é a base de microdados usada na estimação e não tem PDF.
+Falta um item, por motivo declarado na planilha: **`basedosdados_pnadc`**, que é a base de
+microdados usada na estimação e não tem PDF.
 
 Onde o periódico é restrito, o arquivo guardado é a versão de trabalho, que pode divergir da
 publicada em números e redação. As citações do texto seguem a versão publicada, que é a que está no
 `.bib`, então confira números pela versão publicada antes de citar página.
+
+## Ahn e Carollo (2026)
+
+Versão preliminar de 16 de setembro de 2026, 92 páginas, de autores do Federal Reserve Board.
+Página do autor: https://www.ncarollo.net/
+
+Combinam CPS, JOLTS e O*NET com exposição de Eloundou et al. (2023) e adoção medida pela
+participação de vagas com competências de inteligência artificial nos anúncios da Lightcast. Os
+resultados principais: desde os modelos de linguagem, quem tem alta exposição e alta adoção teve
+queda maior da taxa de saída do desemprego e da transição de emprego para emprego, sem diferença
+na taxa de demissão; a troca de atividade dentro do mesmo emprego subiu; os prêmios de salário e
+de horas associados à exposição se estreitaram; e a taxa natural de desemprego teria subido de 0,1
+a 0,2 ponto percentual. Também tratam do teletrabalho como possível confundidor e encontram
+sinais opostos: teletrabalhabilidade eleva a taxa de saída do desemprego, exposição e adoção
+reduzem.
+
+Ressalvas: é versão preliminar, sem revisão por pares, com aviso de que as opiniões não
+representam o Federal Reserve; os próprios autores dizem que a análise é de forma reduzida e não
+estabelece efeito causal.
 
 ## Massenkoff e McCrory (2026)
 
