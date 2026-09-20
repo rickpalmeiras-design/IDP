@@ -536,6 +536,57 @@
       \verb https://www.nber.org/papers/w33777
       \endverb
     \endentry
+    \entry{massenkoff2026}{report}{}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=0a9348f0422e4f61b90eb0fa2c4cbec3}{%
+           family={Massenkoff},
+           familyi={M\bibinitperiod},
+           given={Maxim},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=8323e659777394c64d38014383aa8d9d}{%
+           family={McCrory},
+           familyi={M\bibinitperiod},
+           given={Peter},
+           giveni={P\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{institution}{1}{%
+        {Anthropic}%
+      }
+      \list{location}{1}{%
+        {San Francisco}%
+      }
+      \strng{namehash}{bb96c0aeddfe2484e54f6e0188bb1dc1}
+      \strng{fullhash}{bb96c0aeddfe2484e54f6e0188bb1dc1}
+      \strng{fullhashraw}{bb96c0aeddfe2484e54f6e0188bb1dc1}
+      \strng{bibnamehash}{bb96c0aeddfe2484e54f6e0188bb1dc1}
+      \strng{authorbibnamehash}{bb96c0aeddfe2484e54f6e0188bb1dc1}
+      \strng{authornamehash}{bb96c0aeddfe2484e54f6e0188bb1dc1}
+      \strng{authorfullhash}{bb96c0aeddfe2484e54f6e0188bb1dc1}
+      \strng{authorfullhashraw}{bb96c0aeddfe2484e54f6e0188bb1dc1}
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Publicado em 5 de março de 2026}
+      \field{subtitle}{a new measure and early evidence}
+      \field{title}{Labor market impacts of AI}
+      \field{type}{Relatório técnico}
+      \field{urlday}{20}
+      \field{urlmonth}{9}
+      \field{urlyear}{2026}
+      \field{year}{2026}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://www.anthropic.com/research/labor-market-impacts
+      \endverb
+      \verb{url}
+      \verb https://www.anthropic.com/research/labor-market-impacts
+      \endverb
+    \endentry
     \entry{meghir2015}{article}{}{}
       \name{author}{3}{}{%
         {{un=0,uniquepart=base,hash=99abebe08a1fa906efa0f91c83b579ff}{%
