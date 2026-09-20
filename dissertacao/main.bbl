@@ -128,7 +128,7 @@
         {IBGE}%
       }
       \list{location}{1}{%
-        {Rio de Janeiro}%
+        {Rio de Janeiro: IBGE}%
       }
       \strng{namehash}{a7b00bd93fd81919baade01d28434ac9}
       \strng{fullhash}{a7b00bd93fd81919baade01d28434ac9}
@@ -265,7 +265,7 @@
         {National Bureau of Economic Research}%
       }
       \list{location}{1}{%
-        {Cambridge, MA}%
+        {Cambridge, MA: National Bureau of Economic Research}%
       }
       \strng{namehash}{100b0960671e592b2885c4af9a18389d}
       \strng{fullhash}{100b0960671e592b2885c4af9a18389d}
@@ -503,7 +503,7 @@
         {National Bureau of Economic Research}%
       }
       \list{location}{1}{%
-        {Cambridge, MA}%
+        {Cambridge, MA: National Bureau of Economic Research}%
       }
       \strng{namehash}{d95478df1f9f54d021558c27b9f90a8d}
       \strng{fullhash}{d95478df1f9f54d021558c27b9f90a8d}
@@ -555,7 +555,7 @@
         {Anthropic}%
       }
       \list{location}{1}{%
-        {San Francisco}%
+        {San Francisco: Anthropic}%
       }
       \strng{namehash}{bb96c0aeddfe2484e54f6e0188bb1dc1}
       \strng{fullhash}{bb96c0aeddfe2484e54f6e0188bb1dc1}
