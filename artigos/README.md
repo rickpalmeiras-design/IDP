@@ -15,7 +15,7 @@ Sempre que uma referência nova for citada, basta rodar o script de novo.
 
 ## O que está na pasta
 
-17 dos 18 itens da planilha têm PDF aqui. Cada arquivo tem o nome da chave usada no `.bib`.
+18 dos 19 itens da planilha têm PDF aqui. Cada arquivo tem o nome da chave usada no `.bib`.
 
 | Arquivo | Obra | Versão guardada |
 | --- | --- | --- |
@@ -35,10 +35,18 @@ Sempre que uma referência nova for citada, basta rodar o script de novo.
 | `osorio2022.pdf` | Osório, painéis da PNAD Contínua | Publicada (Ipea) |
 | `rambachan2023.pdf` | Rambachan e Roth, *A more credible approach to parallel trends* | Publicada (ReStud) |
 | `ulyssea2020.pdf` | Ulyssea, *Informality* | Versão aceita (repositório da UCL) |
+| `yin2026.pdf` | Yin, Vu e Persico, *How (un)stable are LLM occupational exposure scores?* | NBER WP 35110 |
 | `wroblevski2024.pdf` | Wroblevski et al., transição no mercado informal | Publicada (anais da ANPEC) |
 
 Falta um item, por motivo declarado na planilha: **`basedosdados_pnadc`**, que é a base de
 microdados usada na estimação e não tem PDF.
+
+Uma leitura recomendada ainda não baixada: FELTEN, E.; RAJ, M.; SEAMANS, R. **Occupational
+heterogeneity in exposure to generative AI**, 2023, disponível em
+https://ssrn.com/abstract=4414065. É a versão do AIOE específica para inteligência artificial
+generativa, feita pelos mesmos autores, e responde à objeção de que o AIOE de 2021 é anterior aos
+modelos generativos. O SSRN não libera download automático; é preciso baixar com conta e salvar
+como `felten2023.pdf`.
 
 Onde o periódico é restrito, o arquivo guardado é a versão de trabalho, que pode divergir da
 publicada em números e redação. As citações do texto seguem a versão publicada, que é a que está no

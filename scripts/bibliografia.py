@@ -62,6 +62,8 @@ PAPEL = {
     'massenkoff2026': 'Exposição observada e DiD sobre desemprego; inclusão em avaliação.',
     'ahn2026': 'Fluxos do mercado de trabalho por exposição e adoção; margem de ajuste no '
                'lado da contratação. Inclusão em avaliação.',
+    'yin2026': 'Instabilidade das medidas de exposição geradas por modelos de linguagem; '
+               'sustenta a ressalva sobre a medida de tratamento. Inclusão em avaliação.',
 }
 
 ACESSO = {
@@ -75,6 +77,7 @@ ACESSO = {
     'callaway2024': 'Restrito no NBER; há versão aberta em pré-print',
     'felten2021': 'Aberto no SSRN (versão de trabalho); publicado restrito no SMJ',
     'ahn2026': 'Aberto (página do autor e site de conferência do NBER)',
+    'yin2026': 'Aberto (NBER); também em pré-print no SSRN',
     'eloundou2024': 'Restrito na Science; há versão aberta em pré-print',
     'humlum2025': 'Restrito no NBER; há versão aberta na página dos autores',
     'brynjolfsson2025': 'Restrito no QJE; há versão aberta em working paper',
@@ -88,6 +91,13 @@ EXTRA = {
         'subtitle': 'a new measure and early evidence',
         'institution': 'Anthropic', 'year': '2026',
         'url': 'https://www.anthropic.com/research/labor-market-impacts',
+    },
+    'yin2026': {
+        'tipo': 'report', 'author': 'Yin, Michelle and Vu, Hoa and Persico, Claudia',
+        'title': 'How (un)stable are LLM occupational exposure scores?',
+        'subtitle': 'evidence from multi-model replication',
+        'institution': 'National Bureau of Economic Research', 'year': '2026',
+        'number': '35110', 'url': 'https://www.nber.org/papers/w35110',
     },
     'ahn2026': {
         'tipo': 'report', 'author': 'Ahn, Hie Joo and Carollo, Nicholas A.',
@@ -120,6 +130,7 @@ VERSAO = {
     'wroblevski2024': 'Versão publicada (anais da ANPEC)',
     'felten2021': 'Versão de trabalho do SSRN; publicado no SMJ',
     'ahn2026': 'Versão preliminar de 16 set. 2026',
+    'yin2026': 'NBER WP 35110',
 }
 
 
