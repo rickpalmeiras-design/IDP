@@ -103,6 +103,46 @@
       \verb 10.1086/705716
       \endverb
     \endentry
+    \entry{autor2025}{article}{}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=3e9e4236efb9d339f6608030d0cca439}{%
+           family={Autor},
+           familyi={A\bibinitperiod},
+           given={David},
+           giveni={D\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=554b83a3dec918a52dc1a31f9ef8e67f}{%
+           family={Thompson},
+           familyi={T\bibinitperiod},
+           given={Neil},
+           giveni={N\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{2dac4f39c744e6ec35c94ca8350b7d90}
+      \strng{fullhash}{2dac4f39c744e6ec35c94ca8350b7d90}
+      \strng{fullhashraw}{2dac4f39c744e6ec35c94ca8350b7d90}
+      \strng{bibnamehash}{2dac4f39c744e6ec35c94ca8350b7d90}
+      \strng{authorbibnamehash}{2dac4f39c744e6ec35c94ca8350b7d90}
+      \strng{authornamehash}{2dac4f39c744e6ec35c94ca8350b7d90}
+      \strng{authorfullhash}{2dac4f39c744e6ec35c94ca8350b7d90}
+      \strng{authorfullhashraw}{2dac4f39c744e6ec35c94ca8350b7d90}
+      \field{sortinit}{A}
+      \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of the European Economic Association}
+      \field{number}{4}
+      \field{title}{Expertise}
+      \field{volume}{23}
+      \field{year}{2025}
+      \field{pages}{1203\bibrangedash 1271}
+      \range{pages}{69}
+      \verb{doi}
+      \verb 10.1093/jeea/jvaf023
+      \endverb
+    \endentry
     \entry{ibge2022tratamento}{report}{}{}
       \name{author}{3}{}{%
         {{un=0,uniquepart=base,hash=1b2a0c6c38c544c67a817e121b56fadc}{%

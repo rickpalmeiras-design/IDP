@@ -15,13 +15,14 @@ Sempre que uma referência nova for citada, basta rodar o script de novo.
 
 ## O que está na pasta
 
-18 dos 19 itens da planilha têm PDF aqui. Cada arquivo tem o nome da chave usada no `.bib`.
+19 dos 20 itens da planilha têm PDF aqui. Cada arquivo tem o nome da chave usada no `.bib`.
 
 | Arquivo | Obra | Versão guardada |
 | --- | --- | --- |
 | `ahn2026.pdf` | Ahn e Carollo, *Artificial intelligence and labor market reallocation* | Preliminar, 16 set. 2026 |
 | `acemoglu2019.pdf` | Acemoglu e Restrepo, *Automation and new tasks* | NBER WP 25684; publicado no JEP |
 | `acemoglu2020.pdf` | Acemoglu e Restrepo, *Robots and jobs* | NBER WP 23285; publicado no JPE |
+| `autor2025.pdf` | Autor e Thompson, *Expertise* | NBER WP 33941; publicado na JEEA |
 | `brynjolfsson2025.pdf` | Brynjolfsson, Li e Raymond, *Generative AI at work* | NBER WP 31161; publicado no QJE |
 | `callaway2024.pdf` | Callaway, Goodman-Bacon e Sant'Anna, *DiD with a continuous treatment* | Pré-print arXiv, dez. 2025 |
 | `dingel2020.pdf` | Dingel e Neiman, *How many jobs can be done at home?* | NBER WP 26948 |

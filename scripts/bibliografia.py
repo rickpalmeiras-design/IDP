@@ -48,6 +48,8 @@ PAPEL = {
     'brynjolfsson2025': 'Adoção observada em uma firma; contraste de desenho e de magnitude.',
     'humlum2025': 'Efeitos nulos e precisos com registros administrativos; calibra a expectativa.',
     'acemoglu2019': 'Quadro de tarefas: efeitos de deslocamento e de recomposição.',
+    'autor2025': 'Dimensão de especialização das tarefas remanescentes; sinais opostos entre '
+                 'rendimento e emprego.',
     'acemoglu2020': 'Robôs e exposição diferencial; origem da estratégia de identificação.',
     'dingel2020': 'Índice de teletrabalhabilidade, usado como controle interagido com o período.',
     'callaway2024': 'Diferenças em diferenças com tratamento contínuo; define o parâmetro.',
@@ -78,6 +80,7 @@ ACESSO = {
     'felten2021': 'Aberto no SSRN (versão de trabalho); publicado restrito no SMJ',
     'ahn2026': 'Aberto (página do autor e site de conferência do NBER)',
     'yin2026': 'Aberto (NBER); também em pré-print no SSRN',
+    'autor2025': 'Restrito na JEEA; versão aberta no NBER e na página do MIT',
     'eloundou2024': 'Restrito na Science; há versão aberta em pré-print',
     'humlum2025': 'Restrito no NBER; há versão aberta na página dos autores',
     'brynjolfsson2025': 'Restrito no QJE; há versão aberta em working paper',
@@ -131,6 +134,7 @@ VERSAO = {
     'felten2021': 'Versão de trabalho do SSRN; publicado no SMJ',
     'ahn2026': 'Versão preliminar de 16 set. 2026',
     'yin2026': 'NBER WP 35110',
+    'autor2025': 'NBER WP 33941; publicado na JEEA',
 }
 
 
