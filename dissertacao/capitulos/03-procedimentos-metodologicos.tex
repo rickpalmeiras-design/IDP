@@ -52,9 +52,10 @@ metodológica das seções seguintes e o código que a implementa.
        & \texttt{pnadc\_cobertura.parquet} \\
     \addlinespace[2pt]
     04 & \texttt{04\_painel\_pnadc.py} \newline \texttt{src/pnadc/pareamento.py}
-       & Executa a autojunção entre trimestres consecutivos no ambiente remoto,
-         aplica as regras de identidade da Seção~\ref{sec:par}, calcula os
-         desfechos e desce apenas células agregadas.
+       & Vincula os registros da mesma pessoa em trimestres consecutivos no
+         ambiente remoto, aplica as regras de identidade da
+         Seção~\ref{sec:par}, calcula os desfechos e transfere para o ambiente
+         local apenas os resultados agregados em células.
        & \texttt{pnadc\_transicoes.parquet} \newline \texttt{pnadc\_taxa\_pareamento.parquet} \\
     \addlinespace[2pt]
     05 & \texttt{05\_estimacao.py} \newline \texttt{src/estimacao.py}
@@ -88,37 +89,49 @@ script que rodou.
 
 \subsection{Fonte e unidade de observação}
 
-A fonte é a PNADC trimestral do Instituto Brasileiro de Geografia e Estatística
-(IBGE), acessada por meio do repositório público Base dos Dados
-\parencite{basedosdados_pnadc}. A janela considerada vai do primeiro trimestre
-de 2019 ao quarto trimestre de 2025, o que corresponde a vinte e sete
-trimestres elegíveis como trimestre de origem, de 2019T1 a 2025T3.
+A fonte é a PNAD Contínua trimestral do Instituto Brasileiro de Geografia e
+Estatística (IBGE), acessada pelo repositório público Base dos Dados
+\parencite{basedosdados_pnadc}. A janela disponível vai do primeiro trimestre de
+2019 ao quarto trimestre de 2025, o que deixa vinte e sete trimestres elegíveis
+como trimestre de origem, de 2019T1 a 2025T3. A estimação principal usa todos
+eles; a descontinuidade de medida que atravessa 2020 e 2021, discutida no
+Capítulo~\ref{sec:resultados}, recai sobre parte dessa janela e é tratada como
+limite conhecido, e não por restrição do período.
 
-A PNADC é uma pesquisa domiciliar de painel rotativo: cada domicílio
-selecionado é entrevistado em cinco visitas trimestrais consecutivas e depois
-substituído. Essa estrutura é o que torna possível observar o mesmo indivíduo em
-dois trimestres consecutivos e, portanto, medir transições em vez de estoques.
+A pesquisa é domiciliar e de painel rotativo: cada domicílio selecionado é
+entrevistado em cinco visitas trimestrais consecutivas e depois substituído.
+Essa estrutura é o que torna possível \emph{tentar} ligar as entrevistas de uma
+mesma pessoa em dois trimestres seguidos, mas a ligação não é automática:
+depende das regras de identidade descritas na Seção~\ref{sec:par} e de a pessoa
+ter sido reencontrada e informada nos dois trimestres. Por isso o próprio
+pareamento é tratado como desfecho, no teste de atrito da
+Seção~\ref{sec:desfechos}.
 
-A unidade de observação deste trabalho é o \textbf{par pessoa-trimestre}: a
-entrevista de origem no trimestre $t$ ligada à entrevista do mesmo indivíduo no
-trimestre $t+1$. Todas as covariáveis e a exposição pertencem à \emph{origem} do
-par; os desfechos são definidos pela comparação entre origem e destino.
+A unidade de observação subjacente é a transição individual entre dois
+trimestres consecutivos, identificada pelo par pessoa-trimestre de origem. Cada
+registro corresponde à entrevista de uma pessoa no trimestre $t$ ligada à
+entrevista dessa mesma pessoa no trimestre $t+1$, quando o pareamento é
+possível. A exposição e as covariáveis são medidas na origem, ao passo que os
+desfechos são construídos pela comparação entre origem e destino. Essa
+organização é o que permite investigar os movimentos dos trabalhadores entre
+situações no mercado de trabalho, em vez de comparar estoques.
 
-Uma restrição operacional foi imposta desde o início e condiciona todo o
-procedimento: \textbf{microdados individuais não são materializados
-localmente}. O pareamento entre entrevistas consecutivas é executado no próprio
-ambiente de consulta remoto do repositório, e o que é trazido para a análise são
-\emph{células agregadas} por trimestre, unidade da federação (UF), unidade
-primária de amostragem (UPA), ocupação de origem, ocupação de destino e o
-conjunto completo de covariáveis do modelo. Cada célula carrega a contagem de
-pessoas $n$, a soma dos pesos amostrais e a soma dos quadrados dos pesos.
+Para a estimação, as transições individuais são agregadas em \textbf{células}.
+Cada célula reúne os registros com o mesmo trimestre de origem, a mesma unidade
+da federação, a mesma unidade primária de amostragem e valores idênticos das
+variáveis explicativas e das características necessárias à construção de todos os
+desfechos: ocupação de origem e de destino, condição de ocupação no destino,
+formalidade na origem e no destino, indicador de pareamento e mudança de código
+ocupacional nas duas resoluções. São preservados, em cada célula, o número de
+pessoas, a soma dos pesos amostrais e a soma dos quadrados desses pesos. A
+Seção~\ref{sec:roteiro} descreve os procedimentos que asseguram essas condições.
 
-Essa agregação não é uma aproximação. Como todas as variáveis explicativas e
-todos os desfechos são constantes dentro de cada célula por construção (a
-célula é definida justamente pela combinação exata dessas variáveis), a
-estimação ponderada em células reproduz exatamente a estimação ponderada em
-indivíduos. Formalmente, se $\mathcal{C}$ é uma célula e $y_i = y_{\mathcal{C}}$
-e $x_i = x_{\mathcal{C}}$ para todo $i \in \mathcal{C}$, então
+Sob essas condições, a agregação preserva os coeficientes de mínimos quadrados
+ponderados: como o desfecho e o vetor de regressores são constantes dentro de
+cada célula, a estimação sobre células, ponderada pela soma dos pesos
+individuais, é equivalente à estimação sobre os registros individuais.
+Formalmente, se $\mathcal{C}$ é uma célula e $y_i = y_{\mathcal{C}}$ e
+$x_i = x_{\mathcal{C}}$ para todo $i \in \mathcal{C}$, então
 
 \begin{equation}
   \sum_{i \in \mathcal{C}} w_i \, x_i x_i' = \left( \sum_{i \in \mathcal{C}} w_i \right) x_{\mathcal{C}} x_{\mathcal{C}}',
@@ -127,10 +140,24 @@ e $x_i = x_{\mathcal{C}}$ para todo $i \in \mathcal{C}$, então
   \label{eq:agregacao}
 \end{equation}
 
-de modo que os coeficientes de mínimos quadrados ponderados e os escores usados
-na inferência agrupada são idênticos aos da estimação individual, desde que o
-nível de agrupamento seja mais grosso que a célula, condição atendida aqui, já que a
-UPA contém células inteiras.
+A agregação também preserva as somas dos escores por unidade primária de
+amostragem, pois a unidade primária entra na definição da célula e, portanto,
+cada célula está inteiramente contida em uma dessas unidades. A reprodução exata
+dos erros-padrão da estimação individual exige, além disso, as mesmas convenções
+de ponderação e as mesmas correções de amostra finita, que dependem do número de
+observações usado no cálculo: a rotina empregada aqui conta células, ao passo
+que a estimação individual contaria pessoas. As duas contagens quase coincidem,
+porque a agregação praticamente não compacta a base: são 4.014.438 células para
+4.017.289 transições, e 99,9\% das células contêm uma única pessoa. A comparação
+direta entre os dois conjuntos de erros-padrão não é feita aqui, porque a
+estimação individual exigiria justamente os microdados que o desenho não
+manipula.
+
+Cabe registrar o alcance desse argumento. A equivalência é de cálculo: ela
+justifica estimar sobre células em vez de indivíduos, e nada mais. As hipóteses
+de que depende a leitura dos coeficientes, entre elas a comparabilidade entre
+períodos e a janela temporal empregada, são questão separada, tratada na
+Seção~\ref{sec:limites}.
 
 \subsection{Construção do par pessoa-trimestre}
 \label{sec:par}
