@@ -290,6 +290,9 @@ espúria entre informalidade medida e não resposta.
 
 ## A regressão, em linguagem simples
 
+> Versão curta. Para o tratamento completo, do zero, com erro-padrão, valor-p e leitura
+> linha a linha da Tabela 4, veja [GUIA_REGRESSAO.md](GUIA_REGRESSAO.md).
+
 A equação estimada, para o par `i` com ocupação de origem `c`, UF `u` e trimestre `t`:
 
 ```
