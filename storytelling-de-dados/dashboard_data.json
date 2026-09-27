@@ -1,0 +1,1197 @@
+{
+ "meta": {
+  "titulo": "Clássico da IA — PNAD Contínua × exposição à inteligência artificial",
+  "fonte": "PNAD Contínua trimestral (IBGE), via Base dos Dados; índice AIOE de Felten, Raj e Seamans (2021)",
+  "gerado_por": "storytelling-de-dados/gera_dashboard_data.py",
+  "base": "data/processed/pnadc_transicoes.parquet (painel agregado em células)",
+  "janela": "2019T1 a 2025T3",
+  "pos_inicio": [
+   2023,
+   1
+  ],
+  "excluidos": [
+   [
+    2022,
+    4
+   ]
+  ],
+  "cortes_quartis_aioe": [
+   -0.9901,
+   -0.3716,
+   0.7108
+  ],
+  "n_transicoes": 2452987,
+  "trimestres_fora_das_medias": [
+   "2020T1",
+   "2020T2",
+   "2020T3",
+   "2020T4",
+   "2021T1",
+   "2021T2",
+   "2021T3"
+  ],
+  "n_min_celula": 30,
+  "amostra": "pessoas de 18 a 65 anos, ocupadas na origem, reencontradas no trimestre seguinte; peso amostral da origem",
+  "aviso_de_uso": "Material da disciplina de storytelling de dados. Descritivo: não é o resultado estimado da dissertação e não afirma causalidade.",
+  "veredito_var": {
+   "gap_pre_pp": 5.07,
+   "gap_pos_pp": 5.26,
+   "diferenca_de_inclinacao_pre": 0.0202,
+   "veredito": "lance limpo"
+  }
+ },
+ "auditoria": {
+  "trimestres": "2019T1 a 2025T3",
+  "celulas": 4014438,
+  "transicoes_no_painel": 4017289,
+  "transicoes_usadas": 3066748,
+  "pct_pareado": 80.2,
+  "pct_peso_origem_sem_aioe": 1.08,
+  "trimestres_de_coleta_atipica": [
+   "2020T2",
+   "2020T3",
+   "2020T4",
+   "2021T1",
+   "2021T2"
+  ],
+  "obs_por_trimestre": [
+   {
+    "ano": 2019,
+    "trimestre": 1,
+    "obs": 176956,
+    "pop_mi": 71.48,
+    "pct_pareado": 0.79
+   },
+   {
+    "ano": 2019,
+    "trimestre": 2,
+    "obs": 178833,
+    "pop_mi": 72.75,
+    "pct_pareado": 0.8
+   },
+   {
+    "ano": 2019,
+    "trimestre": 3,
+    "obs": 178022,
+    "pop_mi": 73.39,
+    "pct_pareado": 0.82
+   },
+   {
+    "ano": 2019,
+    "trimestre": 4,
+    "obs": 177082,
+    "pop_mi": 74.16,
+    "pct_pareado": 0.79
+   },
+   {
+    "ano": 2020,
+    "trimestre": 1,
+    "obs": 154547,
+    "pop_mi": 71.89,
+    "pct_pareado": 0.75
+   },
+   {
+    "ano": 2020,
+    "trimestre": 2,
+    "obs": 103546,
+    "pop_mi": 63.81,
+    "pct_pareado": 0.85
+   },
+   {
+    "ano": 2020,
+    "trimestre": 3,
+    "obs": 100946,
+    "pop_mi": 64.05,
+    "pct_pareado": 0.83
+   },
+   {
+    "ano": 2020,
+    "trimestre": 4,
+    "obs": 93954,
+    "pop_mi": 66.46,
+    "pct_pareado": 0.81
+   },
+   {
+    "ano": 2021,
+    "trimestre": 1,
+    "obs": 89658,
+    "pop_mi": 66.85,
+    "pct_pareado": 0.8
+   },
+   {
+    "ano": 2021,
+    "trimestre": 2,
+    "obs": 107163,
+    "pop_mi": 69.03,
+    "pct_pareado": 0.79
+   },
+   {
+    "ano": 2021,
+    "trimestre": 3,
+    "obs": 135661,
+    "pop_mi": 71.94,
+    "pct_pareado": 0.75
+   },
+   {
+    "ano": 2021,
+    "trimestre": 4,
+    "obs": 147169,
+    "pop_mi": 74.54,
+    "pct_pareado": 0.75
+   },
+   {
+    "ano": 2022,
+    "trimestre": 1,
+    "obs": 150369,
+    "pop_mi": 73.91,
+    "pct_pareado": 0.76
+   },
+   {
+    "ano": 2022,
+    "trimestre": 2,
+    "obs": 158583,
+    "pop_mi": 76.8,
+    "pct_pareado": 0.78
+   },
+   {
+    "ano": 2022,
+    "trimestre": 3,
+    "obs": 161093,
+    "pop_mi": 76.77,
+    "pct_pareado": 0.78
+   },
+   {
+    "ano": 2022,
+    "trimestre": 4,
+    "obs": 155644,
+    "pop_mi": 75.56,
+    "pct_pareado": 0.79
+   },
+   {
+    "ano": 2023,
+    "trimestre": 1,
+    "obs": 151104,
+    "pop_mi": 75.42,
+    "pct_pareado": 0.79
+   },
+   {
+    "ano": 2023,
+    "trimestre": 2,
+    "obs": 153255,
+    "pop_mi": 76.28,
+    "pct_pareado": 0.81
+   },
+   {
+    "ano": 2023,
+    "trimestre": 3,
+    "obs": 158557,
+    "pop_mi": 77.19,
+    "pct_pareado": 0.8
+   },
+   {
+    "ano": 2023,
+    "trimestre": 4,
+    "obs": 157746,
+    "pop_mi": 79.12,
+    "pct_pareado": 0.82
+   },
+   {
+    "ano": 2024,
+    "trimestre": 1,
+    "obs": 158375,
+    "pop_mi": 77.67,
+    "pct_pareado": 0.82
+   },
+   {
+    "ano": 2024,
+    "trimestre": 2,
+    "obs": 159960,
+    "pop_mi": 79.51,
+    "pct_pareado": 0.84
+   },
+   {
+    "ano": 2024,
+    "trimestre": 3,
+    "obs": 161588,
+    "pop_mi": 77.51,
+    "pct_pareado": 0.82
+   },
+   {
+    "ano": 2024,
+    "trimestre": 4,
+    "obs": 158990,
+    "pop_mi": 78.4,
+    "pct_pareado": 0.83
+   },
+   {
+    "ano": 2025,
+    "trimestre": 1,
+    "obs": 157744,
+    "pop_mi": 77.48,
+    "pct_pareado": 0.84
+   },
+   {
+    "ano": 2025,
+    "trimestre": 2,
+    "obs": 161907,
+    "pop_mi": 79.17,
+    "pct_pareado": 0.84
+   },
+   {
+    "ano": 2025,
+    "trimestre": 3,
+    "obs": 168837,
+    "pop_mi": 79.79,
+    "pct_pareado": 0.83
+   }
+  ],
+  "unidade": "célula de transição (pessoa-trimestre agregada); n é o número de pares",
+  "origem_dos_dados": "data/processed/pnadc_transicoes.parquet, o mesmo painel da Tabela 4",
+  "alertas": [
+   "14 trimestres com pareamento abaixo de 80%: 2019T1, 2019T2, 2019T4, 2020T1, 2021T1, 2021T2, 2021T3, 2021T4, 2022T1, 2022T2, 2022T3, 2022T4, 2023T1, 2023T3",
+   "Coleta majoritariamente por telefone em 2020T2, 2020T3, 2020T4, 2021T1, 2021T2: a taxa medida de mudança de ocupação cai por mudança de medida, não por mudança no mercado.",
+   "Auditoria de identidade (duplicatas id×trimestre, sexo e idade inconsistentes) não roda aqui: é feita no ambiente remoto, antes da agregação. O que chega ao disco local já vem em células."
+  ]
+ },
+ "destino_por_quartil": [
+  {
+   "periodo": "pré",
+   "q": "Q1",
+   "Mesmo grupo": 68.11,
+   "Outro grupo": 19.47,
+   "Desocupado": 4.78,
+   "Fora da força": 7.64,
+   "n_obs": 270138
+  },
+  {
+   "periodo": "pré",
+   "q": "Q2",
+   "Mesmo grupo": 70.4,
+   "Outro grupo": 20.2,
+   "Desocupado": 2.97,
+   "Fora da força": 6.43,
+   "n_obs": 295237
+  },
+  {
+   "periodo": "pré",
+   "q": "Q3",
+   "Mesmo grupo": 72.85,
+   "Outro grupo": 19.11,
+   "Desocupado": 2.91,
+   "Fora da força": 5.13,
+   "n_obs": 237496
+  },
+  {
+   "periodo": "pré",
+   "q": "Q4",
+   "Mesmo grupo": 69.35,
+   "Outro grupo": 24.48,
+   "Desocupado": 2.33,
+   "Fora da força": 3.84,
+   "n_obs": 227814
+  },
+  {
+   "periodo": "pós",
+   "q": "Q1",
+   "Mesmo grupo": 68.59,
+   "Outro grupo": 20.06,
+   "Desocupado": 3.23,
+   "Fora da força": 8.13,
+   "n_obs": 361995
+  },
+  {
+   "periodo": "pós",
+   "q": "Q2",
+   "Mesmo grupo": 70.81,
+   "Outro grupo": 20.78,
+   "Desocupado": 2.14,
+   "Fora da força": 6.28,
+   "n_obs": 401978
+  },
+  {
+   "periodo": "pós",
+   "q": "Q3",
+   "Mesmo grupo": 72.78,
+   "Outro grupo": 19.93,
+   "Desocupado": 2.0,
+   "Fora da força": 5.28,
+   "n_obs": 336558
+  },
+  {
+   "periodo": "pós",
+   "q": "Q4",
+   "Mesmo grupo": 69.23,
+   "Outro grupo": 25.34,
+   "Desocupado": 1.63,
+   "Fora da força": 3.79,
+   "n_obs": 321771
+  }
+ ],
+ "dif_pos_pre": [
+  {
+   "q": "Q1",
+   "Mesmo grupo": 0.48,
+   "Outro grupo": 0.59,
+   "Desocupado": -1.55,
+   "Fora da força": 0.49
+  },
+  {
+   "q": "Q2",
+   "Mesmo grupo": 0.41,
+   "Outro grupo": 0.58,
+   "Desocupado": -0.83,
+   "Fora da força": -0.15
+  },
+  {
+   "q": "Q3",
+   "Mesmo grupo": -0.07,
+   "Outro grupo": 0.82,
+   "Desocupado": -0.91,
+   "Fora da força": 0.15
+  },
+  {
+   "q": "Q4",
+   "Mesmo grupo": -0.12,
+   "Outro grupo": 0.86,
+   "Desocupado": -0.7,
+   "Fora da força": -0.05
+  }
+ ],
+ "grupo_destino": [
+  {
+   "periodo": "pré",
+   "q": "Q1",
+   "Agropecuária": 13.49,
+   "Apoio administrativo": 5.65,
+   "Dirigentes e gerentes": 2.39,
+   "Forças armadas e policiais": 0.11,
+   "Indústria, construção e ofícios": 17.16,
+   "Ocupações elementares": 15.26,
+   "Operadores de máquinas": 14.43,
+   "Profissionais das ciências e intelectuais": 2.16,
+   "Serviços e vendas": 22.49,
+   "Técnicos de nível médio": 6.87,
+   "n_obs": 54218
+  },
+  {
+   "periodo": "pré",
+   "q": "Q2",
+   "Agropecuária": 2.43,
+   "Apoio administrativo": 7.44,
+   "Dirigentes e gerentes": 4.19,
+   "Forças armadas e policiais": 0.33,
+   "Indústria, construção e ofícios": 14.19,
+   "Ocupações elementares": 27.96,
+   "Operadores de máquinas": 11.69,
+   "Profissionais das ciências e intelectuais": 3.65,
+   "Serviços e vendas": 18.05,
+   "Técnicos de nível médio": 10.05,
+   "n_obs": 55860
+  },
+  {
+   "periodo": "pré",
+   "q": "Q3",
+   "Agropecuária": 2.2,
+   "Apoio administrativo": 12.76,
+   "Dirigentes e gerentes": 11.97,
+   "Forças armadas e policiais": 0.29,
+   "Indústria, construção e ofícios": 17.2,
+   "Ocupações elementares": 14.12,
+   "Operadores de máquinas": 6.72,
+   "Profissionais das ciências e intelectuais": 11.74,
+   "Serviços e vendas": 12.94,
+   "Técnicos de nível médio": 10.07,
+   "n_obs": 45279
+  },
+  {
+   "periodo": "pré",
+   "q": "Q4",
+   "Agropecuária": 1.05,
+   "Apoio administrativo": 14.49,
+   "Dirigentes e gerentes": 12.33,
+   "Forças armadas e policiais": 0.28,
+   "Indústria, construção e ofícios": 7.61,
+   "Ocupações elementares": 6.68,
+   "Operadores de máquinas": 3.73,
+   "Profissionais das ciências e intelectuais": 14.85,
+   "Serviços e vendas": 19.95,
+   "Técnicos de nível médio": 19.02,
+   "n_obs": 55287
+  },
+  {
+   "periodo": "pós",
+   "q": "Q1",
+   "Agropecuária": 12.07,
+   "Apoio administrativo": 5.88,
+   "Dirigentes e gerentes": 2.03,
+   "Forças armadas e policiais": 0.15,
+   "Indústria, construção e ofícios": 17.68,
+   "Ocupações elementares": 15.61,
+   "Operadores de máquinas": 14.83,
+   "Profissionais das ciências e intelectuais": 2.4,
+   "Serviços e vendas": 21.54,
+   "Técnicos de nível médio": 7.82,
+   "n_obs": 72613
+  },
+  {
+   "periodo": "pós",
+   "q": "Q2",
+   "Agropecuária": 1.99,
+   "Apoio administrativo": 7.98,
+   "Dirigentes e gerentes": 3.38,
+   "Forças armadas e policiais": 0.35,
+   "Indústria, construção e ofícios": 14.36,
+   "Ocupações elementares": 27.02,
+   "Operadores de máquinas": 11.28,
+   "Profissionais das ciências e intelectuais": 4.44,
+   "Serviços e vendas": 18.31,
+   "Técnicos de nível médio": 10.9,
+   "n_obs": 76697
+  },
+  {
+   "periodo": "pós",
+   "q": "Q3",
+   "Agropecuária": 1.82,
+   "Apoio administrativo": 13.38,
+   "Dirigentes e gerentes": 10.03,
+   "Forças armadas e policiais": 0.29,
+   "Indústria, construção e ofícios": 16.38,
+   "Ocupações elementares": 13.62,
+   "Operadores de máquinas": 7.53,
+   "Profissionais das ciências e intelectuais": 13.36,
+   "Serviços e vendas": 12.25,
+   "Técnicos de nível médio": 11.31,
+   "n_obs": 65515
+  },
+  {
+   "periodo": "pós",
+   "q": "Q4",
+   "Agropecuária": 0.81,
+   "Apoio administrativo": 14.69,
+   "Dirigentes e gerentes": 11.25,
+   "Forças armadas e policiais": 0.25,
+   "Indústria, construção e ofícios": 7.09,
+   "Ocupações elementares": 5.63,
+   "Operadores de máquinas": 3.59,
+   "Profissionais das ciências e intelectuais": 16.2,
+   "Serviços e vendas": 19.31,
+   "Técnicos de nível médio": 21.18,
+   "n_obs": 79579
+  }
+ ],
+ "direcao_exposicao": [
+  {
+   "periodo": "pré",
+   "q": "Q1",
+   "Mais exposta": 66.66,
+   "Menos exposta": 0.0,
+   "Mesmo quartil": 33.34,
+   "n_obs": 54070
+  },
+  {
+   "periodo": "pré",
+   "q": "Q2",
+   "Mais exposta": 37.15,
+   "Menos exposta": 33.21,
+   "Mesmo quartil": 29.64,
+   "n_obs": 55591
+  },
+  {
+   "periodo": "pré",
+   "q": "Q3",
+   "Mais exposta": 31.16,
+   "Menos exposta": 43.64,
+   "Mesmo quartil": 25.21,
+   "n_obs": 45033
+  },
+  {
+   "periodo": "pré",
+   "q": "Q4",
+   "Mais exposta": 0.0,
+   "Menos exposta": 45.63,
+   "Mesmo quartil": 54.37,
+   "n_obs": 55006
+  },
+  {
+   "periodo": "pós",
+   "q": "Q1",
+   "Mais exposta": 65.99,
+   "Menos exposta": 0.0,
+   "Mesmo quartil": 34.01,
+   "n_obs": 72435
+  },
+  {
+   "periodo": "pós",
+   "q": "Q2",
+   "Mais exposta": 38.16,
+   "Menos exposta": 32.05,
+   "Mesmo quartil": 29.79,
+   "n_obs": 76334
+  },
+  {
+   "periodo": "pós",
+   "q": "Q3",
+   "Mais exposta": 31.72,
+   "Menos exposta": 43.02,
+   "Mesmo quartil": 25.26,
+   "n_obs": 65162
+  },
+  {
+   "periodo": "pós",
+   "q": "Q4",
+   "Mais exposta": 0.0,
+   "Menos exposta": 44.04,
+   "Mesmo quartil": 55.96,
+   "n_obs": 79220
+  }
+ ],
+ "serie_q1_q4": [
+  {
+   "tri_lbl": "2019T1",
+   "q": "Q1",
+   "pct_muda_grupo": 19.06,
+   "pct_vai_desocupado": 4.94,
+   "pct_sai_forca": 6.64,
+   "n_obs": 36290,
+   "coleta_remota": false,
+   "nas_medias": true
+  },
+  {
+   "tri_lbl": "2019T1",
+   "q": "Q4",
+   "pct_muda_grupo": 23.86,
+   "pct_vai_desocupado": 2.63,
+   "pct_sai_forca": 3.55,
+   "n_obs": 30956,
+   "coleta_remota": false,
+   "nas_medias": true
+  },
+  {
+   "tri_lbl": "2019T2",
+   "q": "Q1",
+   "pct_muda_grupo": 18.24,
+   "pct_vai_desocupado": 5.62,
+   "pct_sai_forca": 6.8,
+   "n_obs": 36996,
+   "coleta_remota": false,
+   "nas_medias": true
+  },
+  {
+   "tri_lbl": "2019T2",
+   "q": "Q4",
+   "pct_muda_grupo": 23.5,
+   "pct_vai_desocupado": 2.23,
+   "pct_sai_forca": 3.55,
+   "n_obs": 31353,
+   "coleta_remota": false,
+   "nas_medias": true
+  },
+  {
+   "tri_lbl": "2019T3",
+   "q": "Q1",
+   "pct_muda_grupo": 18.73,
+   "pct_vai_desocupado": 4.9,
+   "pct_sai_forca": 6.82,
+   "n_obs": 38066,
+   "coleta_remota": false,
+   "nas_medias": true
+  },
+  {
+   "tri_lbl": "2019T3",
+   "q": "Q4",
+   "pct_muda_grupo": 23.44,
+   "pct_vai_desocupado": 2.34,
+   "pct_sai_forca": 3.52,
+   "n_obs": 32148,
+   "coleta_remota": false,
+   "nas_medias": true
+  },
+  {
+   "tri_lbl": "2019T4",
+   "q": "Q1",
+   "pct_muda_grupo": 18.23,
+   "pct_vai_desocupado": 5.72,
+   "pct_sai_forca": 7.58,
+   "n_obs": 36350,
+   "coleta_remota": false,
+   "nas_medias": true
+  },
+  {
+   "tri_lbl": "2019T4",
+   "q": "Q4",
+   "pct_muda_grupo": 23.36,
+   "pct_vai_desocupado": 2.92,
+   "pct_sai_forca": 4.2,
+   "n_obs": 30917,
+   "coleta_remota": false,
+   "nas_medias": true
+  },
+  {
+   "tri_lbl": "2020T1",
+   "q": "Q1",
+   "pct_muda_grupo": 8.71,
+   "pct_vai_desocupado": 5.69,
+   "pct_sai_forca": 11.24,
+   "n_obs": 28244,
+   "coleta_remota": true,
+   "nas_medias": false
+  },
+  {
+   "tri_lbl": "2020T1",
+   "q": "Q4",
+   "pct_muda_grupo": 12.45,
+   "pct_vai_desocupado": 2.57,
+   "pct_sai_forca": 5.47,
+   "n_obs": 26792,
+   "coleta_remota": true,
+   "nas_medias": false
+  },
+  {
+   "tri_lbl": "2020T2",
+   "q": "Q1",
+   "pct_muda_grupo": 9.0,
+   "pct_vai_desocupado": 4.03,
+   "pct_sai_forca": 7.34,
+   "n_obs": 20785,
+   "coleta_remota": true,
+   "nas_medias": false
+  },
+  {
+   "tri_lbl": "2020T2",
+   "q": "Q4",
+   "pct_muda_grupo": 11.11,
+   "pct_vai_desocupado": 2.02,
+   "pct_sai_forca": 4.46,
+   "n_obs": 21298,
+   "coleta_remota": true,
+   "nas_medias": false
+  },
+  {
+   "tri_lbl": "2020T3",
+   "q": "Q1",
+   "pct_muda_grupo": 9.03,
+   "pct_vai_desocupado": 3.1,
+   "pct_sai_forca": 4.17,
+   "n_obs": 20641,
+   "coleta_remota": true,
+   "nas_medias": false
+  },
+  {
+   "tri_lbl": "2020T3",
+   "q": "Q4",
+   "pct_muda_grupo": 11.07,
+   "pct_vai_desocupado": 1.34,
+   "pct_sai_forca": 2.23,
+   "n_obs": 20043,
+   "coleta_remota": true,
+   "nas_medias": false
+  },
+  {
+   "tri_lbl": "2020T4",
+   "q": "Q1",
+   "pct_muda_grupo": 9.56,
+   "pct_vai_desocupado": 3.94,
+   "pct_sai_forca": 4.25,
+   "n_obs": 18826,
+   "coleta_remota": true,
+   "nas_medias": false
+  },
+  {
+   "tri_lbl": "2020T4",
+   "q": "Q4",
+   "pct_muda_grupo": 11.28,
+   "pct_vai_desocupado": 2.37,
+   "pct_sai_forca": 2.31,
+   "n_obs": 18180,
+   "coleta_remota": true,
+   "nas_medias": false
+  },
+  {
+   "tri_lbl": "2021T1",
+   "q": "Q1",
+   "pct_muda_grupo": 9.08,
+   "pct_vai_desocupado": 3.33,
+   "pct_sai_forca": 4.22,
+   "n_obs": 17904,
+   "coleta_remota": true,
+   "nas_medias": false
+  },
+  {
+   "tri_lbl": "2021T1",
+   "q": "Q4",
+   "pct_muda_grupo": 11.92,
+   "pct_vai_desocupado": 1.74,
+   "pct_sai_forca": 1.92,
+   "n_obs": 17045,
+   "coleta_remota": true,
+   "nas_medias": false
+  },
+  {
+   "tri_lbl": "2021T2",
+   "q": "Q1",
+   "pct_muda_grupo": 9.65,
+   "pct_vai_desocupado": 2.67,
+   "pct_sai_forca": 3.32,
+   "n_obs": 21822,
+   "coleta_remota": true,
+   "nas_medias": false
+  },
+  {
+   "tri_lbl": "2021T2",
+   "q": "Q4",
+   "pct_muda_grupo": 12.71,
+   "pct_vai_desocupado": 1.6,
+   "pct_sai_forca": 1.36,
+   "n_obs": 19568,
+   "coleta_remota": true,
+   "nas_medias": false
+  },
+  {
+   "tri_lbl": "2021T3",
+   "q": "Q1",
+   "pct_muda_grupo": 9.6,
+   "pct_vai_desocupado": 2.91,
+   "pct_sai_forca": 3.89,
+   "n_obs": 26328,
+   "coleta_remota": true,
+   "nas_medias": false
+  },
+  {
+   "tri_lbl": "2021T3",
+   "q": "Q4",
+   "pct_muda_grupo": 13.38,
+   "pct_vai_desocupado": 1.27,
+   "pct_sai_forca": 1.72,
+   "n_obs": 22274,
+   "coleta_remota": true,
+   "nas_medias": false
+  },
+  {
+   "tri_lbl": "2021T4",
+   "q": "Q1",
+   "pct_muda_grupo": 20.77,
+   "pct_vai_desocupado": 5.47,
+   "pct_sai_forca": 9.13,
+   "n_obs": 29025,
+   "coleta_remota": false,
+   "nas_medias": true
+  },
+  {
+   "tri_lbl": "2021T4",
+   "q": "Q4",
+   "pct_muda_grupo": 26.07,
+   "pct_vai_desocupado": 2.9,
+   "pct_sai_forca": 4.83,
+   "n_obs": 23696,
+   "coleta_remota": false,
+   "nas_medias": true
+  },
+  {
+   "tri_lbl": "2022T1",
+   "q": "Q1",
+   "pct_muda_grupo": 21.16,
+   "pct_vai_desocupado": 3.88,
+   "pct_sai_forca": 8.09,
+   "n_obs": 29568,
+   "coleta_remota": false,
+   "nas_medias": true
+  },
+  {
+   "tri_lbl": "2022T1",
+   "q": "Q4",
+   "pct_muda_grupo": 26.26,
+   "pct_vai_desocupado": 2.08,
+   "pct_sai_forca": 3.77,
+   "n_obs": 24491,
+   "coleta_remota": false,
+   "nas_medias": true
+  },
+  {
+   "tri_lbl": "2022T2",
+   "q": "Q1",
+   "pct_muda_grupo": 20.19,
+   "pct_vai_desocupado": 4.07,
+   "pct_sai_forca": 8.11,
+   "n_obs": 31870,
+   "coleta_remota": false,
+   "nas_medias": true
+  },
+  {
+   "tri_lbl": "2022T2",
+   "q": "Q4",
+   "pct_muda_grupo": 25.36,
+   "pct_vai_desocupado": 1.95,
+   "pct_sai_forca": 3.57,
+   "n_obs": 26866,
+   "coleta_remota": false,
+   "nas_medias": true
+  },
+  {
+   "tri_lbl": "2022T3",
+   "q": "Q1",
+   "pct_muda_grupo": 19.65,
+   "pct_vai_desocupado": 3.54,
+   "pct_sai_forca": 8.13,
+   "n_obs": 31973,
+   "coleta_remota": false,
+   "nas_medias": true
+  },
+  {
+   "tri_lbl": "2022T3",
+   "q": "Q4",
+   "pct_muda_grupo": 24.22,
+   "pct_vai_desocupado": 1.57,
+   "pct_sai_forca": 3.79,
+   "n_obs": 27387,
+   "coleta_remota": false,
+   "nas_medias": true
+  },
+  {
+   "tri_lbl": "2023T1",
+   "q": "Q1",
+   "pct_muda_grupo": 18.8,
+   "pct_vai_desocupado": 3.66,
+   "pct_sai_forca": 8.01,
+   "n_obs": 30150,
+   "coleta_remota": false,
+   "nas_medias": true
+  },
+  {
+   "tri_lbl": "2023T1",
+   "q": "Q4",
+   "pct_muda_grupo": 23.64,
+   "pct_vai_desocupado": 1.61,
+   "pct_sai_forca": 3.86,
+   "n_obs": 26182,
+   "coleta_remota": false,
+   "nas_medias": true
+  },
+  {
+   "tri_lbl": "2023T2",
+   "q": "Q1",
+   "pct_muda_grupo": 19.19,
+   "pct_vai_desocupado": 3.46,
+   "pct_sai_forca": 8.06,
+   "n_obs": 30846,
+   "coleta_remota": false,
+   "nas_medias": true
+  },
+  {
+   "tri_lbl": "2023T2",
+   "q": "Q4",
+   "pct_muda_grupo": 23.41,
+   "pct_vai_desocupado": 1.66,
+   "pct_sai_forca": 3.72,
+   "n_obs": 27451,
+   "coleta_remota": false,
+   "nas_medias": true
+  },
+  {
+   "tri_lbl": "2023T3",
+   "q": "Q1",
+   "pct_muda_grupo": 19.54,
+   "pct_vai_desocupado": 3.55,
+   "pct_sai_forca": 8.0,
+   "n_obs": 31927,
+   "coleta_remota": false,
+   "nas_medias": true
+  },
+  {
+   "tri_lbl": "2023T3",
+   "q": "Q4",
+   "pct_muda_grupo": 24.29,
+   "pct_vai_desocupado": 1.71,
+   "pct_sai_forca": 3.7,
+   "n_obs": 28219,
+   "coleta_remota": false,
+   "nas_medias": true
+  },
+  {
+   "tri_lbl": "2023T4",
+   "q": "Q1",
+   "pct_muda_grupo": 19.85,
+   "pct_vai_desocupado": 3.98,
+   "pct_sai_forca": 8.83,
+   "n_obs": 32969,
+   "coleta_remota": false,
+   "nas_medias": true
+  },
+  {
+   "tri_lbl": "2023T4",
+   "q": "Q4",
+   "pct_muda_grupo": 25.48,
+   "pct_vai_desocupado": 2.17,
+   "pct_sai_forca": 4.31,
+   "n_obs": 29158,
+   "coleta_remota": false,
+   "nas_medias": true
+  },
+  {
+   "tri_lbl": "2024T1",
+   "q": "Q1",
+   "pct_muda_grupo": 20.0,
+   "pct_vai_desocupado": 3.34,
+   "pct_sai_forca": 7.84,
+   "n_obs": 32926,
+   "coleta_remota": false,
+   "nas_medias": true
+  },
+  {
+   "tri_lbl": "2024T1",
+   "q": "Q4",
+   "pct_muda_grupo": 26.44,
+   "pct_vai_desocupado": 1.58,
+   "pct_sai_forca": 3.44,
+   "n_obs": 29224,
+   "coleta_remota": false,
+   "nas_medias": true
+  },
+  {
+   "tri_lbl": "2024T2",
+   "q": "Q1",
+   "pct_muda_grupo": 20.31,
+   "pct_vai_desocupado": 3.07,
+   "pct_sai_forca": 7.64,
+   "n_obs": 33780,
+   "coleta_remota": false,
+   "nas_medias": true
+  },
+  {
+   "tri_lbl": "2024T2",
+   "q": "Q4",
+   "pct_muda_grupo": 25.11,
+   "pct_vai_desocupado": 1.41,
+   "pct_sai_forca": 3.5,
+   "n_obs": 30147,
+   "coleta_remota": false,
+   "nas_medias": true
+  },
+  {
+   "tri_lbl": "2024T3",
+   "q": "Q1",
+   "pct_muda_grupo": 20.75,
+   "pct_vai_desocupado": 2.74,
+   "pct_sai_forca": 7.85,
+   "n_obs": 33488,
+   "coleta_remota": false,
+   "nas_medias": true
+  },
+  {
+   "tri_lbl": "2024T3",
+   "q": "Q4",
+   "pct_muda_grupo": 25.05,
+   "pct_vai_desocupado": 1.6,
+   "pct_sai_forca": 3.64,
+   "n_obs": 29451,
+   "coleta_remota": false,
+   "nas_medias": true
+  },
+  {
+   "tri_lbl": "2024T4",
+   "q": "Q1",
+   "pct_muda_grupo": 20.56,
+   "pct_vai_desocupado": 3.65,
+   "pct_sai_forca": 8.67,
+   "n_obs": 33822,
+   "coleta_remota": false,
+   "nas_medias": true
+  },
+  {
+   "tri_lbl": "2024T4",
+   "q": "Q4",
+   "pct_muda_grupo": 26.25,
+   "pct_vai_desocupado": 2.28,
+   "pct_sai_forca": 4.22,
+   "n_obs": 29577,
+   "coleta_remota": false,
+   "nas_medias": true
+  },
+  {
+   "tri_lbl": "2025T1",
+   "q": "Q1",
+   "pct_muda_grupo": 20.72,
+   "pct_vai_desocupado": 2.67,
+   "pct_sai_forca": 7.76,
+   "n_obs": 32956,
+   "coleta_remota": false,
+   "nas_medias": true
+  },
+  {
+   "tri_lbl": "2025T1",
+   "q": "Q4",
+   "pct_muda_grupo": 26.37,
+   "pct_vai_desocupado": 1.47,
+   "pct_sai_forca": 3.58,
+   "n_obs": 29723,
+   "coleta_remota": false,
+   "nas_medias": true
+  },
+  {
+   "tri_lbl": "2025T2",
+   "q": "Q1",
+   "pct_muda_grupo": 20.34,
+   "pct_vai_desocupado": 2.68,
+   "pct_sai_forca": 8.24,
+   "n_obs": 33898,
+   "coleta_remota": false,
+   "nas_medias": true
+  },
+  {
+   "tri_lbl": "2025T2",
+   "q": "Q4",
+   "pct_muda_grupo": 26.59,
+   "pct_vai_desocupado": 1.29,
+   "pct_sai_forca": 3.94,
+   "n_obs": 30683,
+   "coleta_remota": false,
+   "nas_medias": true
+  },
+  {
+   "tri_lbl": "2025T3",
+   "q": "Q1",
+   "pct_muda_grupo": 20.38,
+   "pct_vai_desocupado": 2.76,
+   "pct_sai_forca": 8.45,
+   "n_obs": 35233,
+   "coleta_remota": false,
+   "nas_medias": true
+  },
+  {
+   "tri_lbl": "2025T3",
+   "q": "Q4",
+   "pct_muda_grupo": 25.72,
+   "pct_vai_desocupado": 1.24,
+   "pct_sai_forca": 3.81,
+   "n_obs": 31956,
+   "coleta_remota": false,
+   "nas_medias": true
+  }
+ ],
+ "sankey_pos": [
+  {
+   "origem": "Serviços e vendas",
+   "destino": "Ocupações elementares",
+   "mil_pessoas_por_trimestre": 633.8
+  },
+  {
+   "origem": "Ocupações elementares",
+   "destino": "Serviços e vendas",
+   "mil_pessoas_por_trimestre": 616.9
+  },
+  {
+   "origem": "Ocupações elementares",
+   "destino": "Indústria, construção e ofícios",
+   "mil_pessoas_por_trimestre": 462.8
+  },
+  {
+   "origem": "Indústria, construção e ofícios",
+   "destino": "Ocupações elementares",
+   "mil_pessoas_por_trimestre": 442.3
+  },
+  {
+   "origem": "Técnicos de nível médio",
+   "destino": "Profissionais das ciências e intelectuais",
+   "mil_pessoas_por_trimestre": 412.0
+  },
+  {
+   "origem": "Profissionais das ciências e intelectuais",
+   "destino": "Técnicos de nível médio",
+   "mil_pessoas_por_trimestre": 404.9
+  },
+  {
+   "origem": "Técnicos de nível médio",
+   "destino": "Apoio administrativo",
+   "mil_pessoas_por_trimestre": 389.0
+  },
+  {
+   "origem": "Serviços e vendas",
+   "destino": "Indústria, construção e ofícios",
+   "mil_pessoas_por_trimestre": 388.0
+  },
+  {
+   "origem": "Indústria, construção e ofícios",
+   "destino": "Operadores de máquinas",
+   "mil_pessoas_por_trimestre": 384.2
+  },
+  {
+   "origem": "Apoio administrativo",
+   "destino": "Técnicos de nível médio",
+   "mil_pessoas_por_trimestre": 383.8
+  },
+  {
+   "origem": "Indústria, construção e ofícios",
+   "destino": "Serviços e vendas",
+   "mil_pessoas_por_trimestre": 383.2
+  },
+  {
+   "origem": "Operadores de máquinas",
+   "destino": "Indústria, construção e ofícios",
+   "mil_pessoas_por_trimestre": 378.5
+  },
+  {
+   "origem": "Serviços e vendas",
+   "destino": "Apoio administrativo",
+   "mil_pessoas_por_trimestre": 354.5
+  },
+  {
+   "origem": "Serviços e vendas",
+   "destino": "Técnicos de nível médio",
+   "mil_pessoas_por_trimestre": 351.3
+  },
+  {
+   "origem": "Apoio administrativo",
+   "destino": "Serviços e vendas",
+   "mil_pessoas_por_trimestre": 345.2
+  },
+  {
+   "origem": "Técnicos de nível médio",
+   "destino": "Serviços e vendas",
+   "mil_pessoas_por_trimestre": 339.9
+  },
+  {
+   "origem": "Ocupações elementares",
+   "destino": "Operadores de máquinas",
+   "mil_pessoas_por_trimestre": 316.4
+  },
+  {
+   "origem": "Agropecuária",
+   "destino": "Ocupações elementares",
+   "mil_pessoas_por_trimestre": 312.6
+  },
+  {
+   "origem": "Ocupações elementares",
+   "destino": "Agropecuária",
+   "mil_pessoas_por_trimestre": 311.0
+  },
+  {
+   "origem": "Operadores de máquinas",
+   "destino": "Ocupações elementares",
+   "mil_pessoas_por_trimestre": 303.3
+  },
+  {
+   "origem": "Indústria, construção e ofícios",
+   "destino": "Técnicos de nível médio",
+   "mil_pessoas_por_trimestre": 288.3
+  },
+  {
+   "origem": "Técnicos de nível médio",
+   "destino": "Indústria, construção e ofícios",
+   "mil_pessoas_por_trimestre": 281.9
+  },
+  {
+   "origem": "Dirigentes e gerentes",
+   "destino": "Serviços e vendas",
+   "mil_pessoas_por_trimestre": 257.9
+  },
+  {
+   "origem": "Serviços e vendas",
+   "destino": "Dirigentes e gerentes",
+   "mil_pessoas_por_trimestre": 256.8
+  },
+  {
+   "origem": "Serviços e vendas",
+   "destino": "Profissionais das ciências e intelectuais",
+   "mil_pessoas_por_trimestre": 255.8
+  }
+ ]
+}

@@ -7,46 +7,78 @@ dos dados já estimados, preparados para contar a história em um painel.
 ## Pedido da aula
 
 Construir um painel em HTML que conte a história do trabalho, começando pelo contraste
-entre as ocupações mais e menos expostas à inteligência artificial. O painel em si é
-montado em outra conversa; esta pasta reúne os dados e o texto de apoio.
+entre as ocupações mais e menos expostas à inteligência artificial. O painel foi desenhado
+em outra conversa (`classico_da_ia.html`) e aqui ele foi preenchido com os números reais do
+projeto.
 
-## O que tem aqui
+## O painel
 
 | Arquivo | Para que serve |
 | --- | --- |
-| `dados_painel.json` | **O arquivo para carregar no painel.** Reúne tudo em uma estrutura só: metadados, números-chave, as dez ocupações com suas taxas, a distribuição do AIOE em faixas, os agregados pré e pós, os coeficientes, os avisos obrigatórios e o roteiro das seis telas. |
-| `gera_json.py` | Regera o JSON a partir dos CSV desta pasta: `uv run python storytelling-de-dados/gera_json.py`. |
-| `BRIEFING_DASH.md` | O documento principal. Resumo do trabalho, tabela de-para das dez ocupações, números autorizados, o que a história pode e não pode afirmar, roteiro de seis telas e, na seção 6, um prompt pronto para copiar e colar na conversa em que o painel será construído. |
-| `dez_ocupacoes.csv` | As cinco ocupações de maior e as cinco de menor exposição, entre as que têm ao menos 100 mil trabalhadores, com AIOE, teletrabalhabilidade, tamanho e taxas de mudança de ocupação, deslocamento no gradiente e saída do emprego, no pré e no pós. |
-| `exposicao_por_ocupacao.csv` | As 416 ocupações com AIOE, teletrabalhabilidade e número médio de trabalhadores por trimestre. Serve para gráficos de distribuição. |
+| `classico_da_ia.html` | **O painel, pronto e com os dados reais dentro.** Basta abrir no navegador: a faixa do topo aparece verde, com "Dados reais carregados". Não precisa de servidor nem de carregar arquivo. |
+| `dashboard_data.json` | Os dados que estão embutidos no HTML, no formato que o painel exige. Serve também para recarregar pelo botão da faixa do topo. |
+| `gera_dashboard_data.py` | Regera o JSON a partir do painel do projeto: `uv run python storytelling-de-dados/gera_dashboard_data.py`. Depois é só colar o conteúdo dentro do `<script id="dados-embutidos">` do HTML. |
+| `BRIEFING_PIPELINE.md` | O briefing da outra conversa, com as decisões da reunião de 22/09 e o passo a passo original (BigQuery → auditoria → painel). Guardado como registro. |
+| `auditoria_e_fluxos.py` | Script da outra conversa que monta as tabelas do painel a partir de microdados individuais. **Não roda neste repositório** (veja abaixo). |
+| `baixar_painel_pnadc.py` | Script da outra conversa que baixaria o painel individual do BigQuery. **Não deve ser rodado sem falar com o Danny** (veja abaixo). |
+
+## Por que o pipeline do BigQuery não foi usado
+
+O `auditoria_e_fluxos.py` espera `data/painel_final.parquet`, um painel com uma linha por
+pessoa e por trimestre. Esse arquivo não existe aqui, e não existe de propósito: a Seção 3.2
+da dissertação diz que o pareamento das pessoas é feito no ambiente remoto e que só os
+resultados já agregados em células vêm para o computador. Rodar o `baixar_painel_pnadc.py`
+traria microdados individuais para o disco local e deixaria essa frase falsa. Além disso,
+ele precisa de um projeto do Google Cloud, que o `config.yaml` não tem preenchido.
+
+A saída é a mesma sem quebrar nada: o `gera_dashboard_data.py` produz exatamente o mesmo
+JSON a partir de `data/processed/pnadc_transicoes.parquet`, o painel agregado que já
+reproduz a Tabela 4. Cada célula guarda trimestre, ocupação de origem e de destino, condição
+no destino, o AIOE dos dois lados, o peso somado e o número de pares. Como tudo o que o
+painel mostra são médias ponderadas, somar pesos por célula dá o mesmo número que somar por
+pessoa.
+
+## Os números que estão no painel
+
+Janela de 2019T1 a 2025T3, pessoas de 18 a 65 anos, ocupadas na origem, reencontradas no
+trimestre seguinte. 2.452.987 transições entram nas médias.
+
+| O que | Verdão (Q4, mais expostos) | Mengão (Q1, menos expostos) |
+| --- | --- | --- |
+| Mudou de grande grupo de ocupação, pré | 24,5% | 19,5% |
+| Mudou de grande grupo de ocupação, pós | 25,3% | 20,1% |
+| Diferença | +0,9 p.p. | +0,6 p.p. |
+| Ficou desempregado, pré → pós | 2,3% → 1,6% (−0,7 p.p.) | 4,8% → 3,2% (−1,6 p.p.) |
+| Parou de trabalhar e de procurar, pré → pós | 3,8% → 3,8% (−0,0 p.p.) | 7,6% → 8,1% (+0,5 p.p.) |
+
+O VAR do painel compara as duas linhas antes do lançamento: a distância média era de 5,0
+pontos antes e passou a 5,3 pontos depois, com as inclinações do pré praticamente iguais.
+
+## Uma decisão que muda o número do placar
+
+Entre 2020T1 e 2021T3 o IBGE pesquisou majoritariamente por telefone, e a taxa medida de
+mudança de ocupação cai quase pela metade (de cerca de 23% para cerca de 11% no Q4). Não é o
+mercado que mudou, é a forma de perguntar. Se esses trimestres entram na média do "pré", o
+painel mostra um salto de mais de 5 pontos depois do ChatGPT que é quase todo artefato de
+medida. Por isso eles ficam **fora das médias de antes e depois**, mas **continuam no gráfico
+do VAR**, marcados em cinza, para a quebra ficar visível na aula.
+
+Para voltar atrás, basta trocar `FORA_DAS_MEDIAS_COLETA_REMOTA` para `False` no topo do
+`gera_dashboard_data.py`. Vale lembrar que as taxas de `dados_painel.json` e do
+`BRIEFING_DASH.md` (23,6% para 31,8%, por exemplo) foram calculadas com a janela inteira e,
+portanto, carregam esse mesmo efeito de medida.
+
+## O material de apoio
+
+| Arquivo | Para que serve |
+| --- | --- |
+| `BRIEFING_DASH.md` | Resumo do trabalho, tabela de-para das dez ocupações, números autorizados, o que a história pode e não pode afirmar, roteiro de seis telas e, na seção 6, um prompt pronto para colar em outra conversa. |
+| `dados_painel.json` | Reúne em uma estrutura só os metadados, números-chave, as dez ocupações, a distribuição do AIOE, os agregados pré e pós, os coeficientes, os avisos e o roteiro das telas. |
+| `gera_json.py` | Regera o `dados_painel.json` a partir dos CSV desta pasta. |
+| `dez_ocupacoes.csv` | As cinco ocupações de maior e as cinco de menor exposição, entre as que têm ao menos 100 mil trabalhadores. |
+| `exposicao_por_ocupacao.csv` | As 416 ocupações com AIOE, teletrabalhabilidade e número médio de trabalhadores por trimestre. |
 | `descritivas_desfechos.csv` | Médias ponderadas dos sete desfechos, no pré e no pós. |
 | `coeficientes.csv` | Coeficientes estimados dos sete desfechos, com erro-padrão e intervalo. |
-
-## Como usar
-
-1. Abra o `BRIEFING_DASH.md` e leia as seções 1 a 5 para ter a história na cabeça.
-2. Copie o bloco da seção 6 e cole na conversa onde o painel será construído. Ele é
-   autossuficiente: carrega contexto, números e regras, sem precisar anexar arquivo.
-3. Para alimentar o painel, use o `dados_painel.json`. Os CSV continuam aqui como fonte
-   bruta, todos em UTF-8 com cabeçalho em português.
-
-## Estrutura do `dados_painel.json`
-
-| Chave | Conteúdo |
-| --- | --- |
-| `meta` | título, fonte, janela, marco temporal, número de transições e as unidades usadas |
-| `numeros_chave` | trabalhadores na base, share com AIOE abaixo de zero, totais dos dois grupos e o critério de seleção das dez ocupações |
-| `ocupacoes_destaque` | as dez ocupações, cada uma com AIOE, tamanho e taxas pré e pós |
-| `distribuicao_aioe` | sete faixas de exposição, com ocupações, trabalhadores e participação |
-| `agregados` | os sete desfechos, com taxa pré, taxa pós e variação em pontos percentuais |
-| `coeficientes` | efeito estimado, erro-padrão, intervalo de 95% e valor-p |
-| `avisos` | as cinco ressalvas que o painel precisa mostrar |
-| `telas` | o roteiro de seis telas, com título, mensagem, número de destaque e quais blocos de dados usar |
-
-Taxas vêm em porcentagem (52.1 significa 52,1%) e efeitos em pontos percentuais. Um
-detalhe de navegador: abrindo o HTML direto do disco, com `file://`, o `fetch` do JSON
-costuma ser bloqueado. Ou sirva a pasta por um servidor local, ou cole o conteúdo do JSON
-dentro do próprio HTML.
 
 ## Três coisas que o painel não pode errar
 
@@ -54,15 +86,15 @@ dentro do próprio HTML.
    contém muitas outras mudanças.
 2. **Não tratar exposição como hierarquia.** AIOE menor significa menos exposição à IA, e
    não emprego pior ou salário menor.
-3. **Não mostrar o nível da taxa de deslocamento no gradiente sem explicação.** Quem está
-   no topo do índice só tem para onde descer, então dirigentes financeiros aparecem com
-   70% e trabalhadores da construção com 0,08%. Boa parte disso é mecânico. O certo é
-   mostrar as duas direções juntas ou a variação entre períodos.
+3. **Não mostrar a direção do movimento sem explicação.** Quem está no quartil do topo só
+   tem para onde descer e quem está no de baixo só tem para onde subir, então parte da
+   divisão "foi para ocupação mais ou menos exposta" é mecânica. O painel já traz esse aviso
+   embaixo das barras de direção.
 
 ## Procedência dos dados
 
-Os CSV vieram de `data/interim/exposicao_cod.parquet`,
-`data/processed/pnadc_transicoes.parquet` e `output/tabelas/`, do mesmo repositório. As
-taxas por ocupação são médias ponderadas pelo peso amostral, calculadas no domínio em que
-cada desfecho está definido. O número de trabalhadores é a soma dos pesos dividida pelos
-27 trimestres, ou seja, uma média por trimestre, e não um total acumulado.
+Os CSV e o `dashboard_data.json` vieram de `data/interim/exposicao_cod.parquet`,
+`data/processed/pnadc_transicoes.parquet` e `output/tabelas/`, do mesmo repositório. As taxas
+são médias ponderadas pelo peso amostral da origem. O número de trabalhadores nos CSV é a
+soma dos pesos dividida pelos 27 trimestres, ou seja, uma média por trimestre, e não um total
+acumulado.

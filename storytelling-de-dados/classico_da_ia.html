@@ -1,0 +1,1895 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Clássico da IA: Verdão × Mengão no mercado de trabalho</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;800;900&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --verdao:#0a6b3b; --verdao-2:#15924f; --mengao:#d4142e; --preto:#000;
+  --led:#ffb627; --grass:#1a6e3c; --grass-2:#1f7c45; --chalk:#f4f7f1;
+  --bg:#eef1ea; --ink:#15201a; --muted:#56655b; --line:#cdd6cc; --card:#ffffff;
+  --display:"Big Shoulders Display", Impact, "Arial Narrow", sans-serif;
+  --body:"Barlow", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){ :root:not([data-theme="light"]){
+  --bg:#0b1710; --ink:#e8efe9; --muted:#9db0a3; --line:#25382c; --card:#122219;
+}}
+:root[data-theme="dark"]{ --bg:#0b1710; --ink:#e8efe9; --muted:#9db0a3; --line:#25382c; --card:#122219; }
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.5}
+img,svg{max-width:100%}
+button,input{font:inherit}
+:focus-visible{outline:3px solid var(--led);outline-offset:2px}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+h2{font-family:var(--display);font-weight:900;font-size:clamp(2.2rem,5vw,3.4rem);line-height:.95;margin:0 0 .4em;letter-spacing:.01em}
+.lede{max-width:62ch;color:var(--muted);margin:0 0 1.6rem}
+section{padding:72px 0 24px}
+.tempo{font-family:var(--display);font-weight:800;font-size:1.05rem;color:var(--verdao-2);margin-bottom:.3rem}
+:root[data-theme="dark"] .tempo{color:#5fd38f}
+
+/* ---------- aviso de dados ---------- */
+.databar{position:sticky;top:0;z-index:20;background:var(--led);color:#1d1400;font-weight:600;font-size:.92rem;
+  display:flex;gap:12px;align-items:center;justify-content:center;flex-wrap:wrap;padding:8px 16px;padding-top:calc(8px + env(safe-area-inset-top,0px))}
+.databar.real{background:var(--verdao);color:#fff}
+.databar label{background:#1d1400;color:var(--led);padding:4px 12px;border-radius:999px;cursor:pointer}
+.databar.real label{background:#fff;color:var(--verdao)}
+.databar input{position:absolute;width:1px;height:1px;opacity:0}
+
+/* ---------- hero / estádio ---------- */
+.estadio{background:radial-gradient(ellipse at 50% -20%,#3a5a45 0%,#07120b 60%);color:#fff;overflow:hidden;position:relative}
+.refletores{position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(circle at 8% 0%,rgba(255,255,230,.35),transparent 28%),radial-gradient(circle at 92% 0%,rgba(255,255,230,.35),transparent 28%)}
+.placar{position:relative;max-width:980px;margin:0 auto;padding:40px 20px 0;text-align:center}
+.competicao{font-family:var(--display);font-weight:800;font-size:1.1rem;color:var(--led);letter-spacing:.06em}
+.board{margin:14px auto 0;display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);align-items:stretch;gap:0;
+  background:#050806;border:3px solid #2a2f2b;border-radius:14px;box-shadow:0 0 0 6px #111,0 30px 60px rgba(0,0,0,.6);overflow:hidden}
+.time{padding:18px 14px;display:flex;flex-direction:column;align-items:center;gap:6px}
+.time.v{background:linear-gradient(180deg,var(--verdao),#054a28)}
+.time.m{background:repeating-linear-gradient(180deg,var(--mengao) 0 18px,var(--preto) 18px 36px)}
+.time .nome{font-family:var(--display);font-weight:900;font-size:clamp(1.8rem,5vw,3rem);line-height:1}
+.time .quem{font-size:.9rem;opacity:.92;max-width:22ch}
+.time.m .nome,.time.m .quem{text-shadow:0 2px 0 #000}
+.gols{display:flex;align-items:center;gap:10px;padding:10px 18px;font-family:var(--display);font-weight:900;color:var(--led);
+  font-size:clamp(3rem,10vw,6.5rem);line-height:1;text-shadow:0 0 18px rgba(255,182,39,.55);font-variant-numeric:tabular-nums}
+.gols .x{font-size:.45em;color:#8a8f8b;text-shadow:none}
+.legenda-placar{font-size:.92rem;color:#c9d6cc;margin:10px auto 0;max-width:60ch}
+.ticker{margin-top:18px;background:#000;border-top:2px solid var(--led);border-bottom:2px solid var(--led);overflow:hidden;white-space:nowrap}
+.ticker span{display:inline-block;padding:8px 0;font-family:var(--display);font-weight:800;font-size:1.15rem;color:var(--led);animation:tick 38s linear infinite}
+@keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.gramado-hero{position:relative;height:190px;margin-top:0;
+  background:repeating-linear-gradient(90deg,var(--grass) 0 70px,var(--grass-2) 70px 140px)}
+.gramado-hero::before{content:"";position:absolute;left:50%;top:0;bottom:0;border-left:3px solid rgba(255,255,255,.7)}
+.gramado-hero::after{content:"";position:absolute;left:50%;top:50%;width:120px;height:120px;border:3px solid rgba(255,255,255,.7);border-radius:50%;transform:translate(-50%,-50%)}
+.fila{position:absolute;bottom:14px;left:0;right:0;display:flex;justify-content:center;gap:clamp(2px,1.2vw,14px);z-index:2}
+.fila .jog{width:clamp(34px,7vw,64px);opacity:0;transform:translateY(40px)}
+.fila .jog.in{animation:entra .7s cubic-bezier(.2,.8,.2,1.2) forwards}
+@keyframes entra{to{opacity:1;transform:translateY(0)}}
+.regra{background:var(--card);border:2px solid var(--ink);border-radius:10px;padding:16px 20px;margin:28px 0 0;display:flex;gap:16px;align-items:center}
+.regra .cartao{flex:0 0 38px;height:52px;background:var(--led);border-radius:4px;transform:rotate(-8deg);box-shadow:2px 3px 0 var(--ink)}
+.regra p{margin:0}
+
+/* ---------- entenda o jogo ---------- */
+.entenda{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.lance{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px 18px 16px;display:flex;flex-direction:column;gap:10px}
+.lance h3{font-family:var(--display);font-weight:900;font-size:1.9rem;line-height:1;margin:0}
+.lance h3 small{display:block;font-family:var(--body);font-weight:600;font-size:.9rem;color:var(--muted);margin-top:4px;line-height:1.3}
+.lance p{margin:0;font-size:.96rem}
+.lance .obs{font-size:.86rem;color:var(--muted)}
+.visual{background:var(--bg);border-radius:10px;padding:14px 12px 10px}
+.regua{position:relative;height:130px}
+.regua .trilho{position:absolute;left:4%;right:4%;bottom:26px;height:12px;border-radius:6px;background:linear-gradient(90deg,#3c6e8f,#8a958d,#e08a1e)}
+.regua .pino{position:absolute;bottom:40px;width:44px;transform:translateX(-50%);text-align:center}
+.regua .rot{position:absolute;bottom:0;font-size:.78rem;color:var(--muted)}
+.filaq{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}
+.filaq .bloco{text-align:center}
+.filaq .mini{display:flex;justify-content:center}
+.filaq .mini div{width:25%;max-width:24px}
+.filaq .chave{border-top:3px solid var(--c);margin-top:4px;padding-top:4px;font-size:.78rem;line-height:1.2;font-weight:600}
+.visitas{display:flex;align-items:flex-start;justify-content:space-between;gap:4px}
+.visitas .v{flex:1;text-align:center;font-size:.74rem;line-height:1.15;color:var(--muted)}
+.visitas .bola{width:34px;height:34px;margin:0 auto 4px;border-radius:50%;background:#fff;border:3px solid var(--ink);display:grid;place-items:center;font-family:var(--display);font-weight:900;color:var(--ink)}
+.visitas .seta{color:var(--muted);font-size:.8rem;padding-top:8px}
+.grupos-mini{display:flex;justify-content:space-between;gap:2px}
+.grupos-mini div{flex:1;max-width:34px}
+@media (max-width:820px){.entenda{grid-template-columns:minmax(0,1fr)}}
+
+/* ---------- boneco ---------- */
+.boneco{display:block;width:100%;height:auto;overflow:visible}
+.boneco .perna{transform-box:fill-box;transform-origin:50% 0}
+.corre .perna.e{animation:passo .32s ease-in-out infinite alternate}
+.corre .perna.d{animation:passo .32s ease-in-out infinite alternate-reverse}
+.corre .braco{transform-box:fill-box;transform-origin:50% 0;animation:passo .32s ease-in-out infinite alternate-reverse}
+@keyframes passo{from{transform:rotate(-22deg)}to{transform:rotate(22deg)}}
+
+/* ---------- escalação ---------- */
+.escalacao{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px}
+@media (max-width:820px){.escalacao{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.ficha{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 10px 12px;text-align:center;position:relative}
+.ficha .num{position:absolute;top:8px;left:10px;font-family:var(--display);font-weight:900;font-size:1.6rem;color:var(--line)}
+.ficha .fig{width:72px;margin:0 auto 6px}
+.ficha b{display:block;font-size:.95rem;line-height:1.2}
+.ficha small{display:block;color:var(--muted);font-size:.8rem;line-height:1.3;margin-top:4px}
+.ficha em{display:block;font-style:normal;font-size:.84rem;line-height:1.3;margin-top:6px}
+
+/* ---------- mercado da bola ---------- */
+.mercado{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:20px;align-items:start}
+.campo-scroll{overflow-x:auto;border-radius:12px}
+.campo{position:relative;min-width:620px;aspect-ratio:16/10;border-radius:12px;overflow:hidden;
+  background:repeating-linear-gradient(90deg,var(--grass) 0 10%,var(--grass-2) 10% 20%);box-shadow:inset 0 0 0 4px rgba(255,255,255,.75)}
+.campo svg.linhas{position:absolute;inset:0;width:100%;height:100%}
+.no{position:absolute;transform:translate(-50%,-50%);width:9%;min-width:52px;background:none;border:0;padding:0;cursor:pointer;color:#fff;text-align:center}
+.no .fig{width:70%;margin:0 auto;filter:drop-shadow(0 3px 2px rgba(0,0,0,.4))}
+.no span{display:block;font-size:.7rem;font-weight:700;line-height:1.1;background:rgba(0,0,0,.55);border-radius:4px;padding:2px 4px;margin-top:2px}
+.no[aria-pressed="true"] span{background:var(--led);color:#1d1400}
+.no[aria-pressed="false"].apagado{opacity:.35}
+.viajante{position:absolute;left:0;top:0;width:34px;pointer-events:none;z-index:3;filter:drop-shadow(0 2px 2px rgba(0,0,0,.45))}
+.eixo{display:flex;justify-content:space-between;font-size:.82rem;color:var(--muted);margin-top:8px}
+.painel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px}
+.painel h3{font-family:var(--display);font-weight:800;font-size:1.5rem;margin:0 0 4px;line-height:1}
+.painel p{margin:0 0 10px;color:var(--muted);font-size:.9rem}
+.transf{list-style:none;margin:0;padding:0;counter-reset:t}
+.transf li{display:grid;grid-template-columns:22px 1fr auto;gap:8px;align-items:center;padding:7px 0;border-top:1px solid var(--line);font-size:.88rem;line-height:1.25}
+.transf li::before{counter-increment:t;content:counter(t);font-family:var(--display);font-weight:900;font-size:1.2rem;color:var(--verdao-2)}
+.transf .val{font-family:var(--display);font-weight:800;font-size:1.15rem;font-variant-numeric:tabular-nums}
+.limpar{margin-top:10px;background:none;border:1px solid var(--line);color:var(--ink);padding:6px 12px;border-radius:999px;cursor:pointer}
+
+/* ---------- estatísticas ---------- */
+.stats{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow-x:auto}
+.stats table{width:100%;border-collapse:collapse;min-width:640px}
+.stats th,.stats td{padding:12px 14px;text-align:left;border-bottom:1px solid var(--line);vertical-align:middle}
+.stats th{font-size:.85rem;color:var(--muted);font-weight:600}
+.stats td.q{font-weight:700;white-space:nowrap}
+.q4{color:var(--verdao-2)} .q1{color:var(--mengao)}
+.barra{display:grid;grid-template-columns:34px 1fr 48px;align-items:center;gap:6px;font-size:.78rem;color:var(--muted)}
+.barra i{display:block;height:9px;border-radius:5px;background:var(--line)}
+.barra i b{display:block;height:100%;border-radius:5px}
+.barra .v{text-align:right;font-variant-numeric:tabular-nums;color:var(--ink)}
+.chip{display:inline-block;margin-top:4px;font-weight:700;font-size:.82rem;padding:1px 8px;border-radius:999px;font-variant-numeric:tabular-nums}
+.chip.up{background:rgba(224,138,30,.18);color:#9a5a08}
+.chip.down{background:rgba(60,110,143,.16);color:#2f5f7f}
+:root[data-theme="dark"] .chip.up{color:#f2b25c} :root[data-theme="dark"] .chip.down{color:#8fc0e0}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .chip.up{color:#f2b25c} :root:not([data-theme="light"]) .chip.down{color:#8fc0e0}}
+.chip.zero{background:var(--line);color:var(--muted)}
+.duelo{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:22px}
+.lado{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;border-top:8px solid var(--verdao)}
+.lado.m{border-top-image:none;border-top:8px solid var(--mengao);box-shadow:inset 0 8px 0 -4px #000}
+.lado h3{font-family:var(--display);font-weight:800;font-size:1.5rem;margin:0 0 8px;line-height:1}
+.dest{display:grid;grid-template-columns:30px 1fr 54px;gap:8px;align-items:center;margin:6px 0;font-size:.86rem;line-height:1.15}
+.dest .fig{width:30px}
+.dest i{display:block;height:8px;border-radius:4px;margin-top:3px}
+.dest .v{text-align:right;font-family:var(--display);font-weight:800;font-size:1.1rem}
+.direcao{display:flex;height:34px;border-radius:8px;overflow:hidden;margin:6px 0 4px;font-size:.78rem;font-weight:700;color:#fff}
+.direcao div{display:flex;align-items:center;justify-content:center;min-width:0;overflow:hidden;white-space:nowrap}
+.leg{display:flex;gap:14px;flex-wrap:wrap;font-size:.82rem;color:var(--muted)}
+.leg span::before{content:"";display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:5px;background:var(--c);vertical-align:-1px}
+
+/* ---------- VAR ---------- */
+.var{background:#0a0f0c;color:#fff;border-radius:14px;padding:18px;border:3px solid #26302a}
+.var .topo{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:center;margin-bottom:10px}
+.var .leg{color:#b9c7bd}
+.var .tela{font-family:var(--display);font-weight:900;font-size:1.6rem;color:var(--led);display:flex;align-items:center;gap:10px}
+.var .tela::before{content:"";width:12px;height:12px;border-radius:50%;background:var(--mengao);animation:pisca 1s steps(2) infinite}
+@keyframes pisca{50%{opacity:.15}}
+.seg{display:flex;gap:4px;background:#1b241e;border-radius:999px;padding:4px}
+.seg button{border:0;background:none;color:#cbd6ce;padding:6px 12px;border-radius:999px;cursor:pointer;font-size:.85rem}
+.seg button[aria-pressed="true"]{background:var(--led);color:#1d1400;font-weight:700}
+.var svg{width:100%;height:auto;display:block}
+.veredito{margin-top:10px;font-size:.95rem;color:#dfe8e1}
+.var-scroll{overflow-x:auto}
+
+footer{padding:40px 0 60px;color:var(--muted);font-size:.86rem}
+footer p{max-width:75ch}
+
+@media (max-width:820px){
+  .mercado{grid-template-columns:minmax(0,1fr)}
+  .duelo{grid-template-columns:minmax(0,1fr)}
+  .time .quem{font-size:.75rem}
+  .gols{padding:10px 6px;font-size:clamp(2.2rem,11vw,3.4rem);gap:4px}
+  .time{padding:12px 6px}
+  .time .nome{font-size:clamp(1.3rem,6.5vw,1.8rem)}
+  .databar{font-size:.8rem;gap:8px;padding:6px 10px}
+  .databar #dataMsg{flex-basis:100%;text-align:center}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;scroll-behavior:auto!important}
+  .fila .jog{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+
+<div class="databar" id="databar" role="status">
+  <span id="dataMsg">Dados ilustrativos: carregue o dashboard_data.json para ver o painel real.</span>
+  <label for="arquivo">Carregar dashboard_data.json</label>
+  <input type="file" id="arquivo" accept=".json,application/json">
+</div>
+
+<header class="estadio">
+  <div class="refletores"></div>
+  <div class="placar">
+    <div class="competicao">Campeonato Brasileiro de Transições Ocupacionais, edição pós-ChatGPT</div>
+    <div class="board" aria-label="Placar">
+      <div class="time v">
+        <div class="nome">Verdão</div>
+        <div class="quem">Os 25% de trabalhadores mais expostos à IA. Técnico: Ricardo</div>
+      </div>
+      <div class="gols"><span id="golV">0,0</span><span class="x">×</span><span id="golM">0,0</span></div>
+      <div class="time m">
+        <div class="nome">Mengão</div>
+        <div class="quem">Os 25% de trabalhadores menos expostos à IA. Técnico: Prof. Danny</div>
+      </div>
+    </div>
+    <p class="legenda-placar" id="legendaPlacar">O placar mostra: a cada 100 trabalhadores de cada time, quantos mudaram de tipo de trabalho em 3 meses, depois que o ChatGPT foi lançado.</p>
+  </div>
+  <div class="ticker" aria-hidden="true"><span id="ticker"></span></div>
+  <div class="gramado-hero"><div class="fila" id="fila"></div></div>
+</header>
+
+<main class="wrap">
+  <div class="regra">
+    <div class="cartao" aria-hidden="true"></div>
+    <p><strong>A pergunta do jogo:</strong> depois que o ChatGPT chegou, em novembro de 2022, as pessoas cujo trabalho se parece mais com o que a IA faz começaram a mudar de emprego de um jeito diferente das outras? <strong>Cartão amarelo para quem confundir:</strong> estar exposto à IA não quer dizer que a pessoa usa IA, nem que vai perder o emprego.</p>
+  </div>
+
+  <section id="entenda">
+    <div class="tempo">Antes do apito</div>
+    <h2>Entenda o jogo em quatro lances</h2>
+    <p class="lede">Quatro ideias explicam o painel inteiro. Vale ler antes de ver o placar.</p>
+    <div class="entenda">
+      <article class="lance">
+        <h3>AIOE<small>A nota de exposição de cada profissão à IA</small></h3>
+        <div class="visual"><div class="regua" id="regua"></div></div>
+        <p>Pesquisadores americanos (Felten, Raj e Seamans) deram uma nota para cada profissão. A nota diz o quanto as habilidades que o trabalho pede, como ler, escrever, calcular ou organizar informação, se parecem com o que a IA já sabe fazer. Nota alta quer dizer que a IA "joga na mesma posição" daquele trabalhador.</p>
+        <p class="obs">Usamos essa nota adaptada aos códigos de profissão do Brasil. Ela mostra semelhança, não demissão: um médico pode ter nota alta e continuar muito necessário.</p>
+      </article>
+      <article class="lance">
+        <h3>Quartil<small>Dividir a fila em quatro partes iguais</small></h3>
+        <div class="visual"><div class="filaq" id="filaq"></div></div>
+        <p>Imagine todos os trabalhadores numa fila, do que tem a menor nota de exposição ao que tem a maior. Cortamos a fila em 4 pedaços do mesmo tamanho. Cada pedaço é um quartil e tem 25% das pessoas.</p>
+        <p class="obs">O Q1 (Mengão) são os 25% menos expostos. O Q4 (Verdão) são os 25% mais expostos. Q2 e Q3 são o meio de tabela.</p>
+      </article>
+      <article class="lance">
+        <h3>Painel da PNAD<small>Acompanhar a mesma pessoa ao longo do tempo</small></h3>
+        <div class="visual"><div class="visitas" id="visitas"></div></div>
+        <p>A PNAD Contínua é a pesquisa do IBGE que mede emprego e desemprego no Brasil. Cada casa sorteada recebe o entrevistador 5 vezes seguidas, uma a cada 3 meses. Como é a mesma pessoa respondendo, dá para ver se ela mudou de trabalho, perdeu o emprego ou parou de trabalhar.</p>
+        <p class="obs">Chamamos isso de painel: é como acompanhar o mesmo jogador por 5 rodadas seguidas, em vez de ver só uma foto.</p>
+      </article>
+      <article class="lance">
+        <h3>Grupos de ocupação<small>As 10 posições do campo</small></h3>
+        <div class="visual"><div class="grupos-mini" id="gruposMini"></div></div>
+        <p>O IBGE junta todas as profissões em 10 grandes grupos, do gerente ao agricultor. "Mudar de tipo de trabalho", no placar, é trocar de grupo: um vendedor que vira auxiliar de escritório, por exemplo.</p>
+        <p class="obs">As <strong>ocupações elementares</strong> são trabalhos simples, que se aprendem rápido e não pedem estudo formal: faxineiro, ajudante de obra, gari, empregada doméstica, carregador.</p>
+      </article>
+    </div>
+  </section>
+
+  <section id="escalacao">
+    <div class="tempo">Pré-jogo</div>
+    <h2>A escalação</h2>
+    <p class="lede">Os 10 grandes grupos de profissões do IBGE, cada um com um boneco e exemplos de quem joga ali. No mercado da bola, logo abaixo, você vê quem troca de posição.</p>
+    <div class="escalacao" id="escalacaoGrid"></div>
+  </section>
+
+  <section id="mercado">
+    <div class="tempo">1º tempo</div>
+    <h2>Mercado da bola</h2>
+    <p class="lede">Cada boneco correndo é uma pessoa que mudou de tipo de trabalho em 3 meses, depois do ChatGPT. Por exemplo: um vendedor que virou auxiliar de escritório. Quanto mais grossa a linha, mais gente fez aquele caminho. Toque em uma posição para ver só quem sai dela.</p>
+    <div class="mercado">
+      <div>
+        <div class="campo-scroll">
+          <div class="campo" id="campo">
+            <svg class="linhas" id="linhas" viewBox="0 0 1000 625" preserveAspectRatio="none" aria-hidden="true"></svg>
+          </div>
+        </div>
+        <div class="eixo"><span>Ocupações manuais</span><span>Ocupações de escritório e intelectuais</span></div>
+      </div>
+      <aside class="painel">
+        <h3 id="painelTit">Maiores transferências</h3>
+        <p id="painelSub">Milhares de pessoas a cada 3 meses, depois do ChatGPT.</p>
+        <ol class="transf" id="listaTransf"></ol>
+        <button class="limpar" id="limpar" hidden>Mostrar todas as posições</button>
+      </aside>
+    </div>
+  </section>
+
+  <section id="estatisticas">
+    <div class="tempo">Intervalo</div>
+    <h2>Estatísticas da partida</h2>
+    <p class="lede">Pegamos quem estava trabalhando e olhamos o que aconteceu 3 meses depois. A barra clara é antes do ChatGPT; a escura, depois. O selo mostra quanto mudou, em pontos: se passou de 5% para 6%, é +1 ponto.</p>
+    <div class="stats"><table id="tabStats"></table></div>
+
+    <div class="duelo">
+      <div class="lado" id="ladoV"></div>
+      <div class="lado m" id="ladoM"></div>
+    </div>
+  </section>
+
+  <section id="var">
+    <div class="tempo">2º tempo</div>
+    <h2>Chama o VAR</h2>
+    <p class="lede">Antes de dizer que a IA fez o gol, o VAR confere uma condição: antes do apito (o lançamento do ChatGPT), as duas linhas precisam andar lado a lado. Se já vinham se afastando antes, a diferença não é culpa da IA. Os estatísticos chamam essa condição de "tendências paralelas".</p>
+    <div class="var">
+      <div class="topo">
+        <div class="tela">VAR em análise</div>
+        <div class="seg" role="group" aria-label="Indicador">
+          <button data-m="pct_muda_grupo" aria-pressed="true">Mudou de trabalho</button>
+          <button data-m="pct_vai_desocupado" aria-pressed="false">Ficou desempregado</button>
+          <button data-m="pct_sai_forca" aria-pressed="false">Parou de trabalhar</button>
+        </div>
+      </div>
+      <div class="var-scroll"><svg id="grafVar" viewBox="0 0 900 360" role="img" aria-label="Evolução a cada 3 meses: Verdão contra Mengão"></svg></div>
+      <div class="leg" style="margin-top:6px"><span style="--c:#15924f">Verdão: 25% mais expostos</span><span style="--c:#d4142e">Mengão: 25% menos expostos</span></div>
+      <p class="veredito" id="veredito"></p>
+    </div>
+  </section>
+</main>
+
+<footer class="wrap">
+  <p><strong>Resumo em uma frase.</strong> Seguimos as mesmas pessoas a cada 3 meses e comparamos quem tem trabalho mais parecido com a IA (Verdão) com quem tem trabalho menos parecido (Mengão), antes e depois do ChatGPT. Por enquanto isso é uma descrição do jogo; provar que a IA causou a diferença é o próximo passo da pesquisa.</p>
+  <p><strong>Nota técnica.</strong> Painel PNAD Contínua, pares de trimestres consecutivos do mesmo indivíduo, ocupado na origem. Exposição pelo C-AIOE (Felten, Raj e Seamans, 2021), com quartis fixados na distribuição pré-ChatGPT. O 4º trimestre de 2022 fica fora da comparação, porque o lançamento ocorreu no meio dele. Mudança de ocupação medida no grande grupo (1 dígito) para reduzir erro de codificação entre entrevistas. Janela de 2019T1 a 2025T3, pessoas de 18 a 65 anos ocupadas na origem. Os trimestres em que o IBGE pesquisou por telefone (2020T1 a 2021T3) entram no gráfico do VAR, mas ficam fora das médias de antes e depois: neles a taxa medida de mudança de ocupação cai quase pela metade, e comparar telefone com visita presencial criaria uma diferença que não é do mercado de trabalho. Tudo aqui é descritivo; o efeito causal depende do diff-in-diff e do teste de pré-tendências.</p>
+  <p id="rodapeDados"></p>
+</footer>
+
+<!-- Dados embutidos acima. Para regerar: uv run python storytelling-de-dados/gera_dashboard_data.py -->
+<script id="dados-embutidos" type="application/json">
+{
+ "meta": {
+  "titulo": "Clássico da IA — PNAD Contínua × exposição à inteligência artificial",
+  "fonte": "PNAD Contínua trimestral (IBGE), via Base dos Dados; índice AIOE de Felten, Raj e Seamans (2021)",
+  "gerado_por": "storytelling-de-dados/gera_dashboard_data.py",
+  "base": "data/processed/pnadc_transicoes.parquet (painel agregado em células)",
+  "janela": "2019T1 a 2025T3",
+  "pos_inicio": [
+   2023,
+   1
+  ],
+  "excluidos": [
+   [
+    2022,
+    4
+   ]
+  ],
+  "cortes_quartis_aioe": [
+   -0.9901,
+   -0.3716,
+   0.7108
+  ],
+  "n_transicoes": 2452987,
+  "trimestres_fora_das_medias": [
+   "2020T1",
+   "2020T2",
+   "2020T3",
+   "2020T4",
+   "2021T1",
+   "2021T2",
+   "2021T3"
+  ],
+  "n_min_celula": 30,
+  "amostra": "pessoas de 18 a 65 anos, ocupadas na origem, reencontradas no trimestre seguinte; peso amostral da origem",
+  "aviso_de_uso": "Material da disciplina de storytelling de dados. Descritivo: não é o resultado estimado da dissertação e não afirma causalidade.",
+  "veredito_var": {
+   "gap_pre_pp": 5.07,
+   "gap_pos_pp": 5.26,
+   "diferenca_de_inclinacao_pre": 0.0202,
+   "veredito": "lance limpo"
+  }
+ },
+ "auditoria": {
+  "trimestres": "2019T1 a 2025T3",
+  "celulas": 4014438,
+  "transicoes_no_painel": 4017289,
+  "transicoes_usadas": 3066748,
+  "pct_pareado": 80.2,
+  "pct_peso_origem_sem_aioe": 1.08,
+  "trimestres_de_coleta_atipica": [
+   "2020T2",
+   "2020T3",
+   "2020T4",
+   "2021T1",
+   "2021T2"
+  ],
+  "obs_por_trimestre": [
+   {
+    "ano": 2019,
+    "trimestre": 1,
+    "obs": 176956,
+    "pop_mi": 71.48,
+    "pct_pareado": 0.79
+   },
+   {
+    "ano": 2019,
+    "trimestre": 2,
+    "obs": 178833,
+    "pop_mi": 72.75,
+    "pct_pareado": 0.8
+   },
+   {
+    "ano": 2019,
+    "trimestre": 3,
+    "obs": 178022,
+    "pop_mi": 73.39,
+    "pct_pareado": 0.82
+   },
+   {
+    "ano": 2019,
+    "trimestre": 4,
+    "obs": 177082,
+    "pop_mi": 74.16,
+    "pct_pareado": 0.79
+   },
+   {
+    "ano": 2020,
+    "trimestre": 1,
+    "obs": 154547,
+    "pop_mi": 71.89,
+    "pct_pareado": 0.75
+   },
+   {
+    "ano": 2020,
+    "trimestre": 2,
+    "obs": 103546,
+    "pop_mi": 63.81,
+    "pct_pareado": 0.85
+   },
+   {
+    "ano": 2020,
+    "trimestre": 3,
+    "obs": 100946,
+    "pop_mi": 64.05,
+    "pct_pareado": 0.83
+   },
+   {
+    "ano": 2020,
+    "trimestre": 4,
+    "obs": 93954,
+    "pop_mi": 66.46,
+    "pct_pareado": 0.81
+   },
+   {
+    "ano": 2021,
+    "trimestre": 1,
+    "obs": 89658,
+    "pop_mi": 66.85,
+    "pct_pareado": 0.8
+   },
+   {
+    "ano": 2021,
+    "trimestre": 2,
+    "obs": 107163,
+    "pop_mi": 69.03,
+    "pct_pareado": 0.79
+   },
+   {
+    "ano": 2021,
+    "trimestre": 3,
+    "obs": 135661,
+    "pop_mi": 71.94,
+    "pct_pareado": 0.75
+   },
+   {
+    "ano": 2021,
+    "trimestre": 4,
+    "obs": 147169,
+    "pop_mi": 74.54,
+    "pct_pareado": 0.75
+   },
+   {
+    "ano": 2022,
+    "trimestre": 1,
+    "obs": 150369,
+    "pop_mi": 73.91,
+    "pct_pareado": 0.76
+   },
+   {
+    "ano": 2022,
+    "trimestre": 2,
+    "obs": 158583,
+    "pop_mi": 76.8,
+    "pct_pareado": 0.78
+   },
+   {
+    "ano": 2022,
+    "trimestre": 3,
+    "obs": 161093,
+    "pop_mi": 76.77,
+    "pct_pareado": 0.78
+   },
+   {
+    "ano": 2022,
+    "trimestre": 4,
+    "obs": 155644,
+    "pop_mi": 75.56,
+    "pct_pareado": 0.79
+   },
+   {
+    "ano": 2023,
+    "trimestre": 1,
+    "obs": 151104,
+    "pop_mi": 75.42,
+    "pct_pareado": 0.79
+   },
+   {
+    "ano": 2023,
+    "trimestre": 2,
+    "obs": 153255,
+    "pop_mi": 76.28,
+    "pct_pareado": 0.81
+   },
+   {
+    "ano": 2023,
+    "trimestre": 3,
+    "obs": 158557,
+    "pop_mi": 77.19,
+    "pct_pareado": 0.8
+   },
+   {
+    "ano": 2023,
+    "trimestre": 4,
+    "obs": 157746,
+    "pop_mi": 79.12,
+    "pct_pareado": 0.82
+   },
+   {
+    "ano": 2024,
+    "trimestre": 1,
+    "obs": 158375,
+    "pop_mi": 77.67,
+    "pct_pareado": 0.82
+   },
+   {
+    "ano": 2024,
+    "trimestre": 2,
+    "obs": 159960,
+    "pop_mi": 79.51,
+    "pct_pareado": 0.84
+   },
+   {
+    "ano": 2024,
+    "trimestre": 3,
+    "obs": 161588,
+    "pop_mi": 77.51,
+    "pct_pareado": 0.82
+   },
+   {
+    "ano": 2024,
+    "trimestre": 4,
+    "obs": 158990,
+    "pop_mi": 78.4,
+    "pct_pareado": 0.83
+   },
+   {
+    "ano": 2025,
+    "trimestre": 1,
+    "obs": 157744,
+    "pop_mi": 77.48,
+    "pct_pareado": 0.84
+   },
+   {
+    "ano": 2025,
+    "trimestre": 2,
+    "obs": 161907,
+    "pop_mi": 79.17,
+    "pct_pareado": 0.84
+   },
+   {
+    "ano": 2025,
+    "trimestre": 3,
+    "obs": 168837,
+    "pop_mi": 79.79,
+    "pct_pareado": 0.83
+   }
+  ],
+  "unidade": "célula de transição (pessoa-trimestre agregada); n é o número de pares",
+  "origem_dos_dados": "data/processed/pnadc_transicoes.parquet, o mesmo painel da Tabela 4",
+  "alertas": [
+   "14 trimestres com pareamento abaixo de 80%: 2019T1, 2019T2, 2019T4, 2020T1, 2021T1, 2021T2, 2021T3, 2021T4, 2022T1, 2022T2, 2022T3, 2022T4, 2023T1, 2023T3",
+   "Coleta majoritariamente por telefone em 2020T2, 2020T3, 2020T4, 2021T1, 2021T2: a taxa medida de mudança de ocupação cai por mudança de medida, não por mudança no mercado.",
+   "Auditoria de identidade (duplicatas id×trimestre, sexo e idade inconsistentes) não roda aqui: é feita no ambiente remoto, antes da agregação. O que chega ao disco local já vem em células."
+  ]
+ },
+ "destino_por_quartil": [
+  {
+   "periodo": "pré",
+   "q": "Q1",
+   "Mesmo grupo": 68.11,
+   "Outro grupo": 19.47,
+   "Desocupado": 4.78,
+   "Fora da força": 7.64,
+   "n_obs": 270138
+  },
+  {
+   "periodo": "pré",
+   "q": "Q2",
+   "Mesmo grupo": 70.4,
+   "Outro grupo": 20.2,
+   "Desocupado": 2.97,
+   "Fora da força": 6.43,
+   "n_obs": 295237
+  },
+  {
+   "periodo": "pré",
+   "q": "Q3",
+   "Mesmo grupo": 72.85,
+   "Outro grupo": 19.11,
+   "Desocupado": 2.91,
+   "Fora da força": 5.13,
+   "n_obs": 237496
+  },
+  {
+   "periodo": "pré",
+   "q": "Q4",
+   "Mesmo grupo": 69.35,
+   "Outro grupo": 24.48,
+   "Desocupado": 2.33,
+   "Fora da força": 3.84,
+   "n_obs": 227814
+  },
+  {
+   "periodo": "pós",
+   "q": "Q1",
+   "Mesmo grupo": 68.59,
+   "Outro grupo": 20.06,
+   "Desocupado": 3.23,
+   "Fora da força": 8.13,
+   "n_obs": 361995
+  },
+  {
+   "periodo": "pós",
+   "q": "Q2",
+   "Mesmo grupo": 70.81,
+   "Outro grupo": 20.78,
+   "Desocupado": 2.14,
+   "Fora da força": 6.28,
+   "n_obs": 401978
+  },
+  {
+   "periodo": "pós",
+   "q": "Q3",
+   "Mesmo grupo": 72.78,
+   "Outro grupo": 19.93,
+   "Desocupado": 2.0,
+   "Fora da força": 5.28,
+   "n_obs": 336558
+  },
+  {
+   "periodo": "pós",
+   "q": "Q4",
+   "Mesmo grupo": 69.23,
+   "Outro grupo": 25.34,
+   "Desocupado": 1.63,
+   "Fora da força": 3.79,
+   "n_obs": 321771
+  }
+ ],
+ "dif_pos_pre": [
+  {
+   "q": "Q1",
+   "Mesmo grupo": 0.48,
+   "Outro grupo": 0.59,
+   "Desocupado": -1.55,
+   "Fora da força": 0.49
+  },
+  {
+   "q": "Q2",
+   "Mesmo grupo": 0.41,
+   "Outro grupo": 0.58,
+   "Desocupado": -0.83,
+   "Fora da força": -0.15
+  },
+  {
+   "q": "Q3",
+   "Mesmo grupo": -0.07,
+   "Outro grupo": 0.82,
+   "Desocupado": -0.91,
+   "Fora da força": 0.15
+  },
+  {
+   "q": "Q4",
+   "Mesmo grupo": -0.12,
+   "Outro grupo": 0.86,
+   "Desocupado": -0.7,
+   "Fora da força": -0.05
+  }
+ ],
+ "grupo_destino": [
+  {
+   "periodo": "pré",
+   "q": "Q1",
+   "Agropecuária": 13.49,
+   "Apoio administrativo": 5.65,
+   "Dirigentes e gerentes": 2.39,
+   "Forças armadas e policiais": 0.11,
+   "Indústria, construção e ofícios": 17.16,
+   "Ocupações elementares": 15.26,
+   "Operadores de máquinas": 14.43,
+   "Profissionais das ciências e intelectuais": 2.16,
+   "Serviços e vendas": 22.49,
+   "Técnicos de nível médio": 6.87,
+   "n_obs": 54218
+  },
+  {
+   "periodo": "pré",
+   "q": "Q2",
+   "Agropecuária": 2.43,
+   "Apoio administrativo": 7.44,
+   "Dirigentes e gerentes": 4.19,
+   "Forças armadas e policiais": 0.33,
+   "Indústria, construção e ofícios": 14.19,
+   "Ocupações elementares": 27.96,
+   "Operadores de máquinas": 11.69,
+   "Profissionais das ciências e intelectuais": 3.65,
+   "Serviços e vendas": 18.05,
+   "Técnicos de nível médio": 10.05,
+   "n_obs": 55860
+  },
+  {
+   "periodo": "pré",
+   "q": "Q3",
+   "Agropecuária": 2.2,
+   "Apoio administrativo": 12.76,
+   "Dirigentes e gerentes": 11.97,
+   "Forças armadas e policiais": 0.29,
+   "Indústria, construção e ofícios": 17.2,
+   "Ocupações elementares": 14.12,
+   "Operadores de máquinas": 6.72,
+   "Profissionais das ciências e intelectuais": 11.74,
+   "Serviços e vendas": 12.94,
+   "Técnicos de nível médio": 10.07,
+   "n_obs": 45279
+  },
+  {
+   "periodo": "pré",
+   "q": "Q4",
+   "Agropecuária": 1.05,
+   "Apoio administrativo": 14.49,
+   "Dirigentes e gerentes": 12.33,
+   "Forças armadas e policiais": 0.28,
+   "Indústria, construção e ofícios": 7.61,
+   "Ocupações elementares": 6.68,
+   "Operadores de máquinas": 3.73,
+   "Profissionais das ciências e intelectuais": 14.85,
+   "Serviços e vendas": 19.95,
+   "Técnicos de nível médio": 19.02,
+   "n_obs": 55287
+  },
+  {
+   "periodo": "pós",
+   "q": "Q1",
+   "Agropecuária": 12.07,
+   "Apoio administrativo": 5.88,
+   "Dirigentes e gerentes": 2.03,
+   "Forças armadas e policiais": 0.15,
+   "Indústria, construção e ofícios": 17.68,
+   "Ocupações elementares": 15.61,
+   "Operadores de máquinas": 14.83,
+   "Profissionais das ciências e intelectuais": 2.4,
+   "Serviços e vendas": 21.54,
+   "Técnicos de nível médio": 7.82,
+   "n_obs": 72613
+  },
+  {
+   "periodo": "pós",
+   "q": "Q2",
+   "Agropecuária": 1.99,
+   "Apoio administrativo": 7.98,
+   "Dirigentes e gerentes": 3.38,
+   "Forças armadas e policiais": 0.35,
+   "Indústria, construção e ofícios": 14.36,
+   "Ocupações elementares": 27.02,
+   "Operadores de máquinas": 11.28,
+   "Profissionais das ciências e intelectuais": 4.44,
+   "Serviços e vendas": 18.31,
+   "Técnicos de nível médio": 10.9,
+   "n_obs": 76697
+  },
+  {
+   "periodo": "pós",
+   "q": "Q3",
+   "Agropecuária": 1.82,
+   "Apoio administrativo": 13.38,
+   "Dirigentes e gerentes": 10.03,
+   "Forças armadas e policiais": 0.29,
+   "Indústria, construção e ofícios": 16.38,
+   "Ocupações elementares": 13.62,
+   "Operadores de máquinas": 7.53,
+   "Profissionais das ciências e intelectuais": 13.36,
+   "Serviços e vendas": 12.25,
+   "Técnicos de nível médio": 11.31,
+   "n_obs": 65515
+  },
+  {
+   "periodo": "pós",
+   "q": "Q4",
+   "Agropecuária": 0.81,
+   "Apoio administrativo": 14.69,
+   "Dirigentes e gerentes": 11.25,
+   "Forças armadas e policiais": 0.25,
+   "Indústria, construção e ofícios": 7.09,
+   "Ocupações elementares": 5.63,
+   "Operadores de máquinas": 3.59,
+   "Profissionais das ciências e intelectuais": 16.2,
+   "Serviços e vendas": 19.31,
+   "Técnicos de nível médio": 21.18,
+   "n_obs": 79579
+  }
+ ],
+ "direcao_exposicao": [
+  {
+   "periodo": "pré",
+   "q": "Q1",
+   "Mais exposta": 66.66,
+   "Menos exposta": 0.0,
+   "Mesmo quartil": 33.34,
+   "n_obs": 54070
+  },
+  {
+   "periodo": "pré",
+   "q": "Q2",
+   "Mais exposta": 37.15,
+   "Menos exposta": 33.21,
+   "Mesmo quartil": 29.64,
+   "n_obs": 55591
+  },
+  {
+   "periodo": "pré",
+   "q": "Q3",
+   "Mais exposta": 31.16,
+   "Menos exposta": 43.64,
+   "Mesmo quartil": 25.21,
+   "n_obs": 45033
+  },
+  {
+   "periodo": "pré",
+   "q": "Q4",
+   "Mais exposta": 0.0,
+   "Menos exposta": 45.63,
+   "Mesmo quartil": 54.37,
+   "n_obs": 55006
+  },
+  {
+   "periodo": "pós",
+   "q": "Q1",
+   "Mais exposta": 65.99,
+   "Menos exposta": 0.0,
+   "Mesmo quartil": 34.01,
+   "n_obs": 72435
+  },
+  {
+   "periodo": "pós",
+   "q": "Q2",
+   "Mais exposta": 38.16,
+   "Menos exposta": 32.05,
+   "Mesmo quartil": 29.79,
+   "n_obs": 76334
+  },
+  {
+   "periodo": "pós",
+   "q": "Q3",
+   "Mais exposta": 31.72,
+   "Menos exposta": 43.02,
+   "Mesmo quartil": 25.26,
+   "n_obs": 65162
+  },
+  {
+   "periodo": "pós",
+   "q": "Q4",
+   "Mais exposta": 0.0,
+   "Menos exposta": 44.04,
+   "Mesmo quartil": 55.96,
+   "n_obs": 79220
+  }
+ ],
+ "serie_q1_q4": [
+  {
+   "tri_lbl": "2019T1",
+   "q": "Q1",
+   "pct_muda_grupo": 19.06,
+   "pct_vai_desocupado": 4.94,
+   "pct_sai_forca": 6.64,
+   "n_obs": 36290,
+   "coleta_remota": false,
+   "nas_medias": true
+  },
+  {
+   "tri_lbl": "2019T1",
+   "q": "Q4",
+   "pct_muda_grupo": 23.86,
+   "pct_vai_desocupado": 2.63,
+   "pct_sai_forca": 3.55,
+   "n_obs": 30956,
+   "coleta_remota": false,
+   "nas_medias": true
+  },
+  {
+   "tri_lbl": "2019T2",
+   "q": "Q1",
+   "pct_muda_grupo": 18.24,
+   "pct_vai_desocupado": 5.62,
+   "pct_sai_forca": 6.8,
+   "n_obs": 36996,
+   "coleta_remota": false,
+   "nas_medias": true
+  },
+  {
+   "tri_lbl": "2019T2",
+   "q": "Q4",
+   "pct_muda_grupo": 23.5,
+   "pct_vai_desocupado": 2.23,
+   "pct_sai_forca": 3.55,
+   "n_obs": 31353,
+   "coleta_remota": false,
+   "nas_medias": true
+  },
+  {
+   "tri_lbl": "2019T3",
+   "q": "Q1",
+   "pct_muda_grupo": 18.73,
+   "pct_vai_desocupado": 4.9,
+   "pct_sai_forca": 6.82,
+   "n_obs": 38066,
+   "coleta_remota": false,
+   "nas_medias": true
+  },
+  {
+   "tri_lbl": "2019T3",
+   "q": "Q4",
+   "pct_muda_grupo": 23.44,
+   "pct_vai_desocupado": 2.34,
+   "pct_sai_forca": 3.52,
+   "n_obs": 32148,
+   "coleta_remota": false,
+   "nas_medias": true
+  },
+  {
+   "tri_lbl": "2019T4",
+   "q": "Q1",
+   "pct_muda_grupo": 18.23,
+   "pct_vai_desocupado": 5.72,
+   "pct_sai_forca": 7.58,
+   "n_obs": 36350,
+   "coleta_remota": false,
+   "nas_medias": true
+  },
+  {
+   "tri_lbl": "2019T4",
+   "q": "Q4",
+   "pct_muda_grupo": 23.36,
+   "pct_vai_desocupado": 2.92,
+   "pct_sai_forca": 4.2,
+   "n_obs": 30917,
+   "coleta_remota": false,
+   "nas_medias": true
+  },
+  {
+   "tri_lbl": "2020T1",
+   "q": "Q1",
+   "pct_muda_grupo": 8.71,
+   "pct_vai_desocupado": 5.69,
+   "pct_sai_forca": 11.24,
+   "n_obs": 28244,
+   "coleta_remota": true,
+   "nas_medias": false
+  },
+  {
+   "tri_lbl": "2020T1",
+   "q": "Q4",
+   "pct_muda_grupo": 12.45,
+   "pct_vai_desocupado": 2.57,
+   "pct_sai_forca": 5.47,
+   "n_obs": 26792,
+   "coleta_remota": true,
+   "nas_medias": false
+  },
+  {
+   "tri_lbl": "2020T2",
+   "q": "Q1",
+   "pct_muda_grupo": 9.0,
+   "pct_vai_desocupado": 4.03,
+   "pct_sai_forca": 7.34,
+   "n_obs": 20785,
+   "coleta_remota": true,
+   "nas_medias": false
+  },
+  {
+   "tri_lbl": "2020T2",
+   "q": "Q4",
+   "pct_muda_grupo": 11.11,
+   "pct_vai_desocupado": 2.02,
+   "pct_sai_forca": 4.46,
+   "n_obs": 21298,
+   "coleta_remota": true,
+   "nas_medias": false
+  },
+  {
+   "tri_lbl": "2020T3",
+   "q": "Q1",
+   "pct_muda_grupo": 9.03,
+   "pct_vai_desocupado": 3.1,
+   "pct_sai_forca": 4.17,
+   "n_obs": 20641,
+   "coleta_remota": true,
+   "nas_medias": false
+  },
+  {
+   "tri_lbl": "2020T3",
+   "q": "Q4",
+   "pct_muda_grupo": 11.07,
+   "pct_vai_desocupado": 1.34,
+   "pct_sai_forca": 2.23,
+   "n_obs": 20043,
+   "coleta_remota": true,
+   "nas_medias": false
+  },
+  {
+   "tri_lbl": "2020T4",
+   "q": "Q1",
+   "pct_muda_grupo": 9.56,
+   "pct_vai_desocupado": 3.94,
+   "pct_sai_forca": 4.25,
+   "n_obs": 18826,
+   "coleta_remota": true,
+   "nas_medias": false
+  },
+  {
+   "tri_lbl": "2020T4",
+   "q": "Q4",
+   "pct_muda_grupo": 11.28,
+   "pct_vai_desocupado": 2.37,
+   "pct_sai_forca": 2.31,
+   "n_obs": 18180,
+   "coleta_remota": true,
+   "nas_medias": false
+  },
+  {
+   "tri_lbl": "2021T1",
+   "q": "Q1",
+   "pct_muda_grupo": 9.08,
+   "pct_vai_desocupado": 3.33,
+   "pct_sai_forca": 4.22,
+   "n_obs": 17904,
+   "coleta_remota": true,
+   "nas_medias": false
+  },
+  {
+   "tri_lbl": "2021T1",
+   "q": "Q4",
+   "pct_muda_grupo": 11.92,
+   "pct_vai_desocupado": 1.74,
+   "pct_sai_forca": 1.92,
+   "n_obs": 17045,
+   "coleta_remota": true,
+   "nas_medias": false
+  },
+  {
+   "tri_lbl": "2021T2",
+   "q": "Q1",
+   "pct_muda_grupo": 9.65,
+   "pct_vai_desocupado": 2.67,
+   "pct_sai_forca": 3.32,
+   "n_obs": 21822,
+   "coleta_remota": true,
+   "nas_medias": false
+  },
+  {
+   "tri_lbl": "2021T2",
+   "q": "Q4",
+   "pct_muda_grupo": 12.71,
+   "pct_vai_desocupado": 1.6,
+   "pct_sai_forca": 1.36,
+   "n_obs": 19568,
+   "coleta_remota": true,
+   "nas_medias": false
+  },
+  {
+   "tri_lbl": "2021T3",
+   "q": "Q1",
+   "pct_muda_grupo": 9.6,
+   "pct_vai_desocupado": 2.91,
+   "pct_sai_forca": 3.89,
+   "n_obs": 26328,
+   "coleta_remota": true,
+   "nas_medias": false
+  },
+  {
+   "tri_lbl": "2021T3",
+   "q": "Q4",
+   "pct_muda_grupo": 13.38,
+   "pct_vai_desocupado": 1.27,
+   "pct_sai_forca": 1.72,
+   "n_obs": 22274,
+   "coleta_remota": true,
+   "nas_medias": false
+  },
+  {
+   "tri_lbl": "2021T4",
+   "q": "Q1",
+   "pct_muda_grupo": 20.77,
+   "pct_vai_desocupado": 5.47,
+   "pct_sai_forca": 9.13,
+   "n_obs": 29025,
+   "coleta_remota": false,
+   "nas_medias": true
+  },
+  {
+   "tri_lbl": "2021T4",
+   "q": "Q4",
+   "pct_muda_grupo": 26.07,
+   "pct_vai_desocupado": 2.9,
+   "pct_sai_forca": 4.83,
+   "n_obs": 23696,
+   "coleta_remota": false,
+   "nas_medias": true
+  },
+  {
+   "tri_lbl": "2022T1",
+   "q": "Q1",
+   "pct_muda_grupo": 21.16,
+   "pct_vai_desocupado": 3.88,
+   "pct_sai_forca": 8.09,
+   "n_obs": 29568,
+   "coleta_remota": false,
+   "nas_medias": true
+  },
+  {
+   "tri_lbl": "2022T1",
+   "q": "Q4",
+   "pct_muda_grupo": 26.26,
+   "pct_vai_desocupado": 2.08,
+   "pct_sai_forca": 3.77,
+   "n_obs": 24491,
+   "coleta_remota": false,
+   "nas_medias": true
+  },
+  {
+   "tri_lbl": "2022T2",
+   "q": "Q1",
+   "pct_muda_grupo": 20.19,
+   "pct_vai_desocupado": 4.07,
+   "pct_sai_forca": 8.11,
+   "n_obs": 31870,
+   "coleta_remota": false,
+   "nas_medias": true
+  },
+  {
+   "tri_lbl": "2022T2",
+   "q": "Q4",
+   "pct_muda_grupo": 25.36,
+   "pct_vai_desocupado": 1.95,
+   "pct_sai_forca": 3.57,
+   "n_obs": 26866,
+   "coleta_remota": false,
+   "nas_medias": true
+  },
+  {
+   "tri_lbl": "2022T3",
+   "q": "Q1",
+   "pct_muda_grupo": 19.65,
+   "pct_vai_desocupado": 3.54,
+   "pct_sai_forca": 8.13,
+   "n_obs": 31973,
+   "coleta_remota": false,
+   "nas_medias": true
+  },
+  {
+   "tri_lbl": "2022T3",
+   "q": "Q4",
+   "pct_muda_grupo": 24.22,
+   "pct_vai_desocupado": 1.57,
+   "pct_sai_forca": 3.79,
+   "n_obs": 27387,
+   "coleta_remota": false,
+   "nas_medias": true
+  },
+  {
+   "tri_lbl": "2023T1",
+   "q": "Q1",
+   "pct_muda_grupo": 18.8,
+   "pct_vai_desocupado": 3.66,
+   "pct_sai_forca": 8.01,
+   "n_obs": 30150,
+   "coleta_remota": false,
+   "nas_medias": true
+  },
+  {
+   "tri_lbl": "2023T1",
+   "q": "Q4",
+   "pct_muda_grupo": 23.64,
+   "pct_vai_desocupado": 1.61,
+   "pct_sai_forca": 3.86,
+   "n_obs": 26182,
+   "coleta_remota": false,
+   "nas_medias": true
+  },
+  {
+   "tri_lbl": "2023T2",
+   "q": "Q1",
+   "pct_muda_grupo": 19.19,
+   "pct_vai_desocupado": 3.46,
+   "pct_sai_forca": 8.06,
+   "n_obs": 30846,
+   "coleta_remota": false,
+   "nas_medias": true
+  },
+  {
+   "tri_lbl": "2023T2",
+   "q": "Q4",
+   "pct_muda_grupo": 23.41,
+   "pct_vai_desocupado": 1.66,
+   "pct_sai_forca": 3.72,
+   "n_obs": 27451,
+   "coleta_remota": false,
+   "nas_medias": true
+  },
+  {
+   "tri_lbl": "2023T3",
+   "q": "Q1",
+   "pct_muda_grupo": 19.54,
+   "pct_vai_desocupado": 3.55,
+   "pct_sai_forca": 8.0,
+   "n_obs": 31927,
+   "coleta_remota": false,
+   "nas_medias": true
+  },
+  {
+   "tri_lbl": "2023T3",
+   "q": "Q4",
+   "pct_muda_grupo": 24.29,
+   "pct_vai_desocupado": 1.71,
+   "pct_sai_forca": 3.7,
+   "n_obs": 28219,
+   "coleta_remota": false,
+   "nas_medias": true
+  },
+  {
+   "tri_lbl": "2023T4",
+   "q": "Q1",
+   "pct_muda_grupo": 19.85,
+   "pct_vai_desocupado": 3.98,
+   "pct_sai_forca": 8.83,
+   "n_obs": 32969,
+   "coleta_remota": false,
+   "nas_medias": true
+  },
+  {
+   "tri_lbl": "2023T4",
+   "q": "Q4",
+   "pct_muda_grupo": 25.48,
+   "pct_vai_desocupado": 2.17,
+   "pct_sai_forca": 4.31,
+   "n_obs": 29158,
+   "coleta_remota": false,
+   "nas_medias": true
+  },
+  {
+   "tri_lbl": "2024T1",
+   "q": "Q1",
+   "pct_muda_grupo": 20.0,
+   "pct_vai_desocupado": 3.34,
+   "pct_sai_forca": 7.84,
+   "n_obs": 32926,
+   "coleta_remota": false,
+   "nas_medias": true
+  },
+  {
+   "tri_lbl": "2024T1",
+   "q": "Q4",
+   "pct_muda_grupo": 26.44,
+   "pct_vai_desocupado": 1.58,
+   "pct_sai_forca": 3.44,
+   "n_obs": 29224,
+   "coleta_remota": false,
+   "nas_medias": true
+  },
+  {
+   "tri_lbl": "2024T2",
+   "q": "Q1",
+   "pct_muda_grupo": 20.31,
+   "pct_vai_desocupado": 3.07,
+   "pct_sai_forca": 7.64,
+   "n_obs": 33780,
+   "coleta_remota": false,
+   "nas_medias": true
+  },
+  {
+   "tri_lbl": "2024T2",
+   "q": "Q4",
+   "pct_muda_grupo": 25.11,
+   "pct_vai_desocupado": 1.41,
+   "pct_sai_forca": 3.5,
+   "n_obs": 30147,
+   "coleta_remota": false,
+   "nas_medias": true
+  },
+  {
+   "tri_lbl": "2024T3",
+   "q": "Q1",
+   "pct_muda_grupo": 20.75,
+   "pct_vai_desocupado": 2.74,
+   "pct_sai_forca": 7.85,
+   "n_obs": 33488,
+   "coleta_remota": false,
+   "nas_medias": true
+  },
+  {
+   "tri_lbl": "2024T3",
+   "q": "Q4",
+   "pct_muda_grupo": 25.05,
+   "pct_vai_desocupado": 1.6,
+   "pct_sai_forca": 3.64,
+   "n_obs": 29451,
+   "coleta_remota": false,
+   "nas_medias": true
+  },
+  {
+   "tri_lbl": "2024T4",
+   "q": "Q1",
+   "pct_muda_grupo": 20.56,
+   "pct_vai_desocupado": 3.65,
+   "pct_sai_forca": 8.67,
+   "n_obs": 33822,
+   "coleta_remota": false,
+   "nas_medias": true
+  },
+  {
+   "tri_lbl": "2024T4",
+   "q": "Q4",
+   "pct_muda_grupo": 26.25,
+   "pct_vai_desocupado": 2.28,
+   "pct_sai_forca": 4.22,
+   "n_obs": 29577,
+   "coleta_remota": false,
+   "nas_medias": true
+  },
+  {
+   "tri_lbl": "2025T1",
+   "q": "Q1",
+   "pct_muda_grupo": 20.72,
+   "pct_vai_desocupado": 2.67,
+   "pct_sai_forca": 7.76,
+   "n_obs": 32956,
+   "coleta_remota": false,
+   "nas_medias": true
+  },
+  {
+   "tri_lbl": "2025T1",
+   "q": "Q4",
+   "pct_muda_grupo": 26.37,
+   "pct_vai_desocupado": 1.47,
+   "pct_sai_forca": 3.58,
+   "n_obs": 29723,
+   "coleta_remota": false,
+   "nas_medias": true
+  },
+  {
+   "tri_lbl": "2025T2",
+   "q": "Q1",
+   "pct_muda_grupo": 20.34,
+   "pct_vai_desocupado": 2.68,
+   "pct_sai_forca": 8.24,
+   "n_obs": 33898,
+   "coleta_remota": false,
+   "nas_medias": true
+  },
+  {
+   "tri_lbl": "2025T2",
+   "q": "Q4",
+   "pct_muda_grupo": 26.59,
+   "pct_vai_desocupado": 1.29,
+   "pct_sai_forca": 3.94,
+   "n_obs": 30683,
+   "coleta_remota": false,
+   "nas_medias": true
+  },
+  {
+   "tri_lbl": "2025T3",
+   "q": "Q1",
+   "pct_muda_grupo": 20.38,
+   "pct_vai_desocupado": 2.76,
+   "pct_sai_forca": 8.45,
+   "n_obs": 35233,
+   "coleta_remota": false,
+   "nas_medias": true
+  },
+  {
+   "tri_lbl": "2025T3",
+   "q": "Q4",
+   "pct_muda_grupo": 25.72,
+   "pct_vai_desocupado": 1.24,
+   "pct_sai_forca": 3.81,
+   "n_obs": 31956,
+   "coleta_remota": false,
+   "nas_medias": true
+  }
+ ],
+ "sankey_pos": [
+  {
+   "origem": "Serviços e vendas",
+   "destino": "Ocupações elementares",
+   "mil_pessoas_por_trimestre": 633.8
+  },
+  {
+   "origem": "Ocupações elementares",
+   "destino": "Serviços e vendas",
+   "mil_pessoas_por_trimestre": 616.9
+  },
+  {
+   "origem": "Ocupações elementares",
+   "destino": "Indústria, construção e ofícios",
+   "mil_pessoas_por_trimestre": 462.8
+  },
+  {
+   "origem": "Indústria, construção e ofícios",
+   "destino": "Ocupações elementares",
+   "mil_pessoas_por_trimestre": 442.3
+  },
+  {
+   "origem": "Técnicos de nível médio",
+   "destino": "Profissionais das ciências e intelectuais",
+   "mil_pessoas_por_trimestre": 412.0
+  },
+  {
+   "origem": "Profissionais das ciências e intelectuais",
+   "destino": "Técnicos de nível médio",
+   "mil_pessoas_por_trimestre": 404.9
+  },
+  {
+   "origem": "Técnicos de nível médio",
+   "destino": "Apoio administrativo",
+   "mil_pessoas_por_trimestre": 389.0
+  },
+  {
+   "origem": "Serviços e vendas",
+   "destino": "Indústria, construção e ofícios",
+   "mil_pessoas_por_trimestre": 388.0
+  },
+  {
+   "origem": "Indústria, construção e ofícios",
+   "destino": "Operadores de máquinas",
+   "mil_pessoas_por_trimestre": 384.2
+  },
+  {
+   "origem": "Apoio administrativo",
+   "destino": "Técnicos de nível médio",
+   "mil_pessoas_por_trimestre": 383.8
+  },
+  {
+   "origem": "Indústria, construção e ofícios",
+   "destino": "Serviços e vendas",
+   "mil_pessoas_por_trimestre": 383.2
+  },
+  {
+   "origem": "Operadores de máquinas",
+   "destino": "Indústria, construção e ofícios",
+   "mil_pessoas_por_trimestre": 378.5
+  },
+  {
+   "origem": "Serviços e vendas",
+   "destino": "Apoio administrativo",
+   "mil_pessoas_por_trimestre": 354.5
+  },
+  {
+   "origem": "Serviços e vendas",
+   "destino": "Técnicos de nível médio",
+   "mil_pessoas_por_trimestre": 351.3
+  },
+  {
+   "origem": "Apoio administrativo",
+   "destino": "Serviços e vendas",
+   "mil_pessoas_por_trimestre": 345.2
+  },
+  {
+   "origem": "Técnicos de nível médio",
+   "destino": "Serviços e vendas",
+   "mil_pessoas_por_trimestre": 339.9
+  },
+  {
+   "origem": "Ocupações elementares",
+   "destino": "Operadores de máquinas",
+   "mil_pessoas_por_trimestre": 316.4
+  },
+  {
+   "origem": "Agropecuária",
+   "destino": "Ocupações elementares",
+   "mil_pessoas_por_trimestre": 312.6
+  },
+  {
+   "origem": "Ocupações elementares",
+   "destino": "Agropecuária",
+   "mil_pessoas_por_trimestre": 311.0
+  },
+  {
+   "origem": "Operadores de máquinas",
+   "destino": "Ocupações elementares",
+   "mil_pessoas_por_trimestre": 303.3
+  },
+  {
+   "origem": "Indústria, construção e ofícios",
+   "destino": "Técnicos de nível médio",
+   "mil_pessoas_por_trimestre": 288.3
+  },
+  {
+   "origem": "Técnicos de nível médio",
+   "destino": "Indústria, construção e ofícios",
+   "mil_pessoas_por_trimestre": 281.9
+  },
+  {
+   "origem": "Dirigentes e gerentes",
+   "destino": "Serviços e vendas",
+   "mil_pessoas_por_trimestre": 257.9
+  },
+  {
+   "origem": "Serviços e vendas",
+   "destino": "Dirigentes e gerentes",
+   "mil_pessoas_por_trimestre": 256.8
+  },
+  {
+   "origem": "Serviços e vendas",
+   "destino": "Profissionais das ciências e intelectuais",
+   "mil_pessoas_por_trimestre": 255.8
+  }
+ ]
+}
+</script>
+<script>
+(() => {
+"use strict";
+const GRUPOS = [
+  ["0","Forças armadas e policiais"],["1","Dirigentes e gerentes"],["2","Profissionais das ciências e intelectuais"],
+  ["3","Técnicos de nível médio"],["4","Apoio administrativo"],["5","Serviços e vendas"],["6","Agropecuária"],
+  ["7","Indústria, construção e ofícios"],["8","Operadores de máquinas"],["9","Ocupações elementares"]];
+const NOME2COD = Object.fromEntries(GRUPOS.map(([c,n]) => [n,c]));
+const CURTO = {"0":"Forças armadas","1":"Gerentes","2":"Intelectuais","3":"Técnicos","4":"Administrativo",
+  "5":"Serviços e vendas","6":"Agropecuária","7":"Indústria e obras","8":"Operadores","9":"Elementares"};
+const POS = {"9":[8,50],"6":[21,22],"7":[21,78],"8":[35,50],"5":[49,24],"0":[49,76],"3":[63,50],"1":[77,22],"4":[77,78],"2":[91,50]};
+const PELE = ["#8d5524","#c68642","#e0ac69","#f1c27d","#5c3a1e","#a0673a","#d9a066","#7a4a26","#eac086","#b87333"];
+const CAMISA = {"0":"#5b6b3a","1":"#2d3e66","2":"#4f7fbf","3":"#2f8f9d","4":"#8a5fb8","5":"#e0782f","6":"#b38b2d","7":"#c9472b","8":"#4c5a63","9":"#7d8f3a"};
+const EXEMPLOS = {"0":"Soldado, policial militar, bombeiro militar","1":"Diretor de empresa, gerente de banco, gerente de loja",
+  "2":"Médico, professor, advogado, engenheiro, analista de sistemas","3":"Técnico de enfermagem, técnico em informática, corretor",
+  "4":"Recepcionista, auxiliar de escritório, caixa, atendente de telemarketing","5":"Vendedor, cabeleireiro, cozinheiro, garçom, vigilante",
+  "6":"Agricultor, pescador, criador de gado","7":"Pedreiro, eletricista, mecânico, costureira, padeiro",
+  "8":"Motorista, operador de máquina na fábrica","9":"Faxineiro, ajudante de obra, gari, empregada doméstica"};
+const DESTS = ["Mesmo grupo","Outro grupo","Desocupado","Fora da força"];
+const fmt = (v,d=1) => (v==null||isNaN(v)) ? "–" : Number(v).toLocaleString("pt-BR",{minimumFractionDigits:d,maximumFractionDigits:d});
+const reduz = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+/* ======================= bonecos (SVG original) ======================= */
+function boneco(cod, o = {}) {
+  const i = Number(cod), pele = PELE[i % PELE.length];
+  const cam = o.camisa || CAMISA[cod], corre = o.corre ? "corre" : "";
+  let listras = "";
+  if (o.time === "m") listras = `<rect x="20" y="36" width="24" height="5" fill="#000"/><rect x="20" y="46" width="24" height="5" fill="#000"/>`;
+  let fundo = "", frente = "", cabeca = "", mao = "";
+  switch (cod) {
+    case "0": cabeca = `<path d="M20 14 Q32 2 44 14 Z" fill="#3f4a26"/><rect x="18" y="13" width="28" height="4" rx="2" fill="#2b331a"/><circle cx="32" cy="9" r="2" fill="#ffd34d"/>`;
+              frente = `<rect x="23" y="36" width="6" height="4" fill="#ffd34d"/>`; break;
+    case "1": frente = `<path d="M32 31 l-3 4 l3 14 l3 -14 z" fill="#c8102e"/><path d="M26 30 L32 36 L38 30" fill="none" stroke="#fff" stroke-width="2"/>`;
+              mao = `<rect x="46" y="52" width="13" height="10" rx="2" fill="#5a3a1a"/><rect x="50" y="49" width="5" height="4" rx="1" fill="none" stroke="#5a3a1a" stroke-width="1.5"/>`; break;
+    case "2": fundo = `<rect x="18" y="30" width="28" height="32" rx="5" fill="#fbfbfb" stroke="#d8d8d8"/>`;
+              cabeca = `<circle cx="28" cy="19" r="3.2" fill="none" stroke="#222" stroke-width="1.6"/><circle cx="36" cy="19" r="3.2" fill="none" stroke="#222" stroke-width="1.6"/><path d="M31 19 h2" stroke="#222" stroke-width="1.4"/>`;
+              mao = `<rect x="4" y="46" width="11" height="14" rx="1.5" fill="#e9d8a6" stroke="#8a6d2a"/><path d="M6 56 l2-3 l2 2 l3-5" fill="none" stroke="#c8102e" stroke-width="1.3"/>`; break;
+    case "3": cabeca = `<path d="M21 14 Q32 3 43 14 Z" fill="#1f5f9e"/><rect x="36" y="12" width="12" height="3" rx="1.5" fill="#1f5f9e"/>`;
+              mao = `<rect x="44" y="46" width="14" height="18" rx="2" fill="#263238"/><rect x="46" y="48" width="10" height="12" fill="#6fd3ff"/>`; break;
+    case "4": cabeca = `<path d="M21 18 Q32 2 43 18" fill="none" stroke="#222" stroke-width="2.5"/><rect x="19" y="16" width="4" height="7" rx="2" fill="#222"/><path d="M21 22 Q24 28 29 27" fill="none" stroke="#222" stroke-width="1.6"/>`;
+              mao = `<rect x="3" y="48" width="12" height="14" fill="#fff" stroke="#999"/><path d="M5 52h8M5 55h8M5 58h6" stroke="#999"/>`; break;
+    case "5": frente = `<rect x="23" y="38" width="18" height="22" rx="3" fill="#fff3d6"/><rect x="28" y="44" width="8" height="5" rx="1" fill="#e0b56a"/>`;
+              mao = `<path d="M46 50 h12 l-2 14 h-8 z" fill="#f2c14e"/><path d="M49 50 q3 -5 6 0" fill="none" stroke="#a37b1c" stroke-width="1.5"/>`; break;
+    case "6": cabeca = `<ellipse cx="32" cy="12" rx="17" ry="4" fill="#e7c35a"/><path d="M24 12 Q32 1 40 12 Z" fill="#d9b24a"/><rect x="24" y="10" width="16" height="2.5" fill="#a0522d"/>`;
+              mao = `<path d="M52 30 L52 72" stroke="#8b5a2b" stroke-width="2.5"/><path d="M47 30 h10 v4 h-10 z" fill="#8a8f93"/>`; break;
+    case "7": cabeca = `<path d="M20 15 Q32 0 44 15 Z" fill="#ffc400"/><rect x="17" y="14" width="30" height="3.5" rx="1.7" fill="#e0a800"/>`;
+              mao = `<path d="M50 46 L57 62" stroke="#6d4c2b" stroke-width="3"/><rect x="45" y="42" width="11" height="5" rx="1" fill="#555" transform="rotate(25 50 44)"/>`; break;
+    case "8": cabeca = `<path d="M21 15 Q32 4 43 15 Z" fill="#c62828"/><rect x="40" y="13" width="9" height="3" rx="1.5" fill="#c62828"/>`;
+              frente = `<circle cx="32" cy="50" r="10" fill="none" stroke="#333" stroke-width="3"/><circle cx="32" cy="50" r="2.5" fill="#333"/><path d="M22 50h20M32 40v8" stroke="#333" stroke-width="2"/>`; break;
+    case "9": fundo = `<path d="M50 22 L40 80" stroke="#8b5a2b" stroke-width="2.5"/><path d="M34 78 L46 78 L44 90 L32 90 Z" fill="#d9a441"/>`;
+              cabeca = `<path d="M21 14 Q32 5 43 14 Z" fill="#2e7d32"/>`; break;
+  }
+  return `<svg class="boneco ${corre}" viewBox="0 0 64 96" aria-hidden="true">
+    ${fundo}
+    <g class="perna e"><rect x="23.5" y="58" width="7" height="26" rx="3.5" fill="#263238"/><ellipse cx="26" cy="86" rx="6" ry="3" fill="#111"/></g>
+    <g class="perna d"><rect x="33.5" y="58" width="7" height="26" rx="3.5" fill="#263238"/><ellipse cx="38" cy="86" rx="6" ry="3" fill="#111"/></g>
+    <g class="braco"><path d="M22 34 L13 54" stroke="${pele}" stroke-width="6" stroke-linecap="round"/></g>
+    <path d="M42 34 L51 54" stroke="${pele}" stroke-width="6" stroke-linecap="round"/>
+    <rect x="20" y="29" width="24" height="31" rx="7" fill="${cam}"/>${listras}
+    ${frente}${mao}
+    <rect x="29" y="25" width="6" height="6" fill="${pele}"/>
+    <circle cx="32" cy="18" r="10" fill="${pele}"/>
+    <circle cx="28.5" cy="18" r="1.3" fill="#1a1a1a"/><circle cx="35.5" cy="18" r="1.3" fill="#1a1a1a"/>
+    <path d="M28.5 22.5 Q32 25 35.5 22.5" fill="none" stroke="#1a1a1a" stroke-width="1.3" stroke-linecap="round"/>
+    ${cabeca}
+  </svg>`;
+}
+
+/* ======================= dados ilustrativos ======================= */
+function demo() {
+  const pre = {Q1:[88.0,4.1,3.4,4.5],Q2:[88.6,4.6,2.9,3.9],Q3:[89.2,5.0,2.5,3.3],Q4:[90.1,5.2,1.8,2.9]};
+  const pos = {Q1:[88.4,4.0,3.1,4.5],Q2:[88.7,4.9,2.6,3.8],Q3:[88.9,5.7,2.3,3.1],Q4:[89.1,6.4,1.7,2.8]};
+  const A = [];
+  for (const [per,obj] of [["pré",pre],["pós",pos]]) for (const q of ["Q1","Q2","Q3","Q4"]) {
+    const r = {periodo:per,q,n_obs:4000}; DESTS.forEach((d,i)=> r[d]=obj[q][i]); A.push(r);
+  }
+  const pesoQ4 = {"0":1,"1":14,"2":10,"3":16,"4":9,"5":22,"6":3,"7":10,"8":6,"9":9};
+  const pesoQ1 = {"0":2,"1":4,"2":3,"3":6,"4":7,"5":30,"6":14,"7":17,"8":10,"9":7};
+  const pesoQ4pre = {"0":1,"1":11,"2":8,"3":14,"4":11,"5":24,"6":4,"7":11,"8":7,"9":9};
+  const B = [];
+  const mk = (per,q,p) => { const t = Object.values(p).reduce((a,b)=>a+b,0); const r={periodo:per,q,n_obs:600};
+    GRUPOS.forEach(([c,n]) => r[n] = +(100*p[c]/t).toFixed(2)); return r; };
+  B.push(mk("pré","Q4",pesoQ4pre), mk("pós","Q4",pesoQ4), mk("pré","Q1",pesoQ1), mk("pós","Q1",pesoQ1));
+  const D = [
+    {periodo:"pré",q:"Q4","Menos exposta":55,"Mesmo quartil":27,"Mais exposta":18},
+    {periodo:"pós",q:"Q4","Menos exposta":49,"Mesmo quartil":31,"Mais exposta":20},
+    {periodo:"pré",q:"Q1","Menos exposta":22,"Mesmo quartil":30,"Mais exposta":48},
+    {periodo:"pós",q:"Q1","Menos exposta":21,"Mesmo quartil":29,"Mais exposta":50}];
+  const E = []; let s = 7;
+  const rnd = () => { s = (s*9301+49297)%233280; return s/233280 - .5; };
+  for (let ano=2020; ano<=2025; ano++) for (let t=1; t<=4; t++) {
+    if (ano===2022 && t===4) continue;
+    const pos_ = ano>2022;
+    E.push({tri_lbl:`${ano}T${t}`,q:"Q4",pct_muda_grupo:+(5.1+(pos_?1.2:0)+rnd()*.5).toFixed(2),pct_vai_desocupado:+(1.9-(pos_?.15:0)+rnd()*.3).toFixed(2),pct_sai_forca:+(2.9+rnd()*.4).toFixed(2),n_obs:900});
+    E.push({tri_lbl:`${ano}T${t}`,q:"Q1",pct_muda_grupo:+(4.1+rnd()*.5).toFixed(2),pct_vai_desocupado:+(3.3-(pos_?.3:0)+rnd()*.3).toFixed(2),pct_sai_forca:+(4.5+rnd()*.4).toFixed(2),n_obs:900});
+  }
+  const L = [["5","9",98],["9","5",91],["5","4",62],["4","5",55],["7","9",58],["9","7",52],["3","2",44],["4","1",38],
+    ["5","1",35],["3","4",31],["6","9",40],["9","6",36],["8","7",29],["7","8",27],["4","3",26],["2","3",22],["1","5",24],["0","5",8]];
+  const S = L.map(([a,b,v]) => ({origem:GRUPOS[a][1],destino:GRUPOS[b][1],mil_pessoas_por_trimestre:v}));
+  return {meta:{n_transicoes:0,demo:true},auditoria:{},destino_por_quartil:A,grupo_destino:B,direcao_exposicao:D,serie_q1_q4:E,sankey_pos:S};
+}
+
+/* ======================= render ======================= */
+let DATA = null, filtro = null, spawnTimer = null;
+const $ = id => document.getElementById(id);
+const pega = (arr,per,q) => (arr||[]).find(r => r.periodo===per && r.q===q) || {};
+const qMax = () => { const qs = new Set((DATA.destino_por_quartil||[]).map(r=>r.q)); return [...qs].sort().pop() || "Q4"; };
+
+function placar() {
+  const QM = qMax(), A = DATA.destino_por_quartil;
+  const v = pega(A,"pós",QM)["Outro grupo"], m = pega(A,"pós","Q1")["Outro grupo"];
+  const dv = v - pega(A,"pré",QM)["Outro grupo"], dm = m - pega(A,"pré","Q1")["Outro grupo"];
+  $("golV").textContent = fmt(v); $("golM").textContent = fmt(m);
+  const lider = v>m ? "Verdão na frente: os mais expostos trocam mais de ocupação" : v<m ? "Mengão na frente: os menos expostos trocam mais de ocupação" : "Empate no placar";
+  const frases = [lider,
+    `Do antes para o depois do ChatGPT: Verdão ${dv>=0?"+":""}${fmt(dv)} ponto, Mengão ${dm>=0?"+":""}${fmt(dm)} ponto`,
+    `O Verdão mudou ${fmt(dv-dm)} ponto a mais que o Mengão, mas o gol só vale depois do VAR`,
+    "Narração: Ricardo, palmeirense", "Comentários: Prof. Danny, flamenguista",
+    "Arbitragem: IBGE, pesquisa PNAD Contínua", "Bola da vez: a nota de exposição à IA"];
+  const t = frases.join("     ⚽     ") + "     ⚽     ";
+  $("ticker").textContent = t + t;
+}
+
+function fila() {
+  const f = $("fila"); f.innerHTML = "";
+  ["9","6","7","8","5","0","3","1","4","2"].forEach((c,i) => {
+    const d = document.createElement("div");
+    const m = i>=5; d.className = "jog"; d.innerHTML = boneco(c,{camisa: m? "#d4142e":"#0a6b3b", time: m?"m":""});
+    f.appendChild(d);
+    setTimeout(() => d.classList.add("in"), reduz ? 0 : 250 + i*120);
+  });
+}
+
+function escalacao() {
+  $("escalacaoGrid").innerHTML = GRUPOS.map(([c,n]) =>
+    `<div class="ficha"><span class="num">${c}</span><div class="fig">${boneco(c)}</div><b>${CURTO[c]}</b><em>${EXEMPLOS[c]}</em><small>Nome oficial: ${n}${c==="9"?". São trabalhos simples, que se aprendem rápido":""}</small></div>`).join("");
+}
+
+function entenda() {
+  const rg = [["9",10,"Faxineiro"],["5",45,"Vendedor"],["2",88,"Analista"]];
+  $("regua").innerHTML = `<div class="trilho"></div>` + rg.map(([c,x,n]) => `<div class="pino" style="left:${x}%">${boneco(c)}<small style="display:block;font-size:.7rem;line-height:1;color:var(--muted);margin-top:-2px">${n}</small></div>`).join("") +
+    `<span class="rot" style="left:4%">Nota baixa: pouco parecido com a IA</span><span class="rot" style="right:4%">Nota alta</span>`;
+  const blocos = [["Q1","Mengão: 25% menos expostos","#d4142e",["9","6","7","8"],"m","#d4142e"],["Q2","Meio de tabela","#8a958d",["7","5","0","8"],"","#8a958d"],
+    ["Q3","Meio de tabela","#8a958d",["5","3","1","4"],"","#8a958d"],["Q4","Verdão: 25% mais expostos","#15924f",["4","1","3","2"],"","#0a6b3b"]];
+  $("filaq").innerHTML = blocos.map(([q,t,c,cs,tm,cam]) => `<div class="bloco"><div class="mini">${cs.map(x=>`<div>${boneco(x,{camisa:cam,time:tm})}</div>`).join("")}</div>
+    <div class="chave" style="--c:${c}">${q}<br><span style="font-weight:400;color:var(--muted)">${t}</span></div></div>`).join("");
+  $("visitas").innerHTML = [1,2,3,4,5].map(i => `<div class="v"><div class="bola">${i}ª</div>${i===1?"1ª visita":i===5?"última":"+3 meses"}</div>`).join(`<span class="seta" aria-hidden="true">›</span>`);
+  $("gruposMini").innerHTML = ["9","6","7","8","5","0","3","1","4","2"].map(c=>`<div title="${CURTO[c]}">${boneco(c)}</div>`).join("");
+}
+
+function linksFiltrados() {
+  return (DATA.sankey_pos||[]).map(l => ({o:NOME2COD[l.origem], d:NOME2COD[l.destino], v:+l.mil_pessoas_por_trimestre}))
+    .filter(l => l.o && l.d && l.v>0 && (!filtro || l.o===filtro));
+}
+
+function curva(o,d) {
+  const [x1,y1] = POS[o], [x2,y2] = POS[d];
+  const mx=(x1+x2)/2, my=(y1+y2)/2, dx=x2-x1, dy=y2-y1, len=Math.hypot(dx,dy)||1;
+  return {x1,y1,x2,y2,cx:mx - dy/len*12, cy:my + dx/len*12*1.6};
+}
+
+function campo() {
+  const c = $("campo");
+  c.querySelectorAll(".no,.viajante").forEach(e=>e.remove());
+  const links = linksFiltrados(), max = Math.max(1,...links.map(l=>l.v));
+  const svg = $("linhas");
+  let h = `<rect x="500" y="0" width="0" height="625"/><line x1="500" y1="0" x2="500" y2="625" stroke="rgba(255,255,255,.55)" stroke-width="3"/>
+    <circle cx="500" cy="312" r="70" fill="none" stroke="rgba(255,255,255,.55)" stroke-width="3"/>
+    <rect x="0" y="170" width="110" height="285" fill="none" stroke="rgba(255,255,255,.55)" stroke-width="3"/>
+    <rect x="890" y="170" width="110" height="285" fill="none" stroke="rgba(255,255,255,.55)" stroke-width="3"/>`;
+  links.forEach(l => {
+    const k = curva(l.o,l.d);
+    h += `<path d="M${k.x1*10} ${k.y1*6.25} Q${k.cx*10} ${k.cy*6.25} ${k.x2*10} ${k.y2*6.25}" fill="none" stroke="rgba(255,236,170,.55)" stroke-width="${1.5+9*l.v/max}" stroke-linecap="round" stroke-dasharray="${reduz?"0":"2 10"}"/>`;
+  });
+  svg.innerHTML = h;
+  const ativos = new Set(links.flatMap(l=>[l.o,l.d]));
+  GRUPOS.forEach(([cod]) => {
+    const b = document.createElement("button");
+    b.className = "no" + (filtro && filtro!==cod && !ativos.has(cod) ? " apagado":"");
+    b.style.left = POS[cod][0]+"%"; b.style.top = POS[cod][1]+"%";
+    b.setAttribute("aria-pressed", filtro===cod ? "true":"false");
+    b.setAttribute("aria-label", `Ver transferências que saem de ${CURTO[cod]}`);
+    b.innerHTML = `<div class="fig">${boneco(cod)}</div><span>${CURTO[cod]}</span>`;
+    b.onclick = () => { filtro = filtro===cod ? null : cod; campo(); painel(); };
+    c.appendChild(b);
+  });
+}
+
+function painel() {
+  const links = linksFiltrados().sort((a,b)=>b.v-a.v).slice(0,8);
+  $("painelTit").textContent = filtro ? `Saindo de ${CURTO[filtro]}` : "Maiores transferências";
+  $("listaTransf").innerHTML = links.length ? links.map(l =>
+    `<li><span>${CURTO[l.o]} para <strong>${CURTO[l.d]}</strong></span><span class="val">${fmt(l.v)}</span></li>`).join("")
+    : "<li><span>Sem transferências registradas a partir desta posição.</span><span></span></li>";
+  $("limpar").hidden = !filtro;
+}
+$("limpar").onclick = () => { filtro = null; campo(); painel(); };
+
+function viajar() {
+  const links = linksFiltrados(); if (!links.length) return;
+  const c = $("campo"); if (c.querySelectorAll(".viajante").length > 16) return;
+  const tot = links.reduce((a,l)=>a+l.v,0); let r = Math.random()*tot, l = links[0];
+  for (const x of links) { r -= x.v; if (r<=0) { l = x; break; } }
+  const W = c.clientWidth, H = c.clientHeight, k = curva(l.o,l.d);
+  const el = document.createElement("div");
+  el.className = "viajante"; el.innerHTML = boneco(l.o,{corre:true});
+  c.appendChild(el);
+  const fr = [];
+  for (let i=0;i<=16;i++){ const t=i/16, u=1-t;
+    const x = (u*u*k.x1 + 2*u*t*k.cx + t*t*k.x2)/100*W - 17, y = (u*u*k.y1 + 2*u*t*k.cy + t*t*k.y2)/100*H - 40;
+    fr.push({transform:`translate(${x}px,${y}px) scaleX(${k.x2<k.x1?-1:1})`, opacity: i===0||i===16 ? 0 : 1}); }
+  el.animate(fr,{duration:2600,easing:"ease-in-out"}).onfinish = () => el.remove();
+}
+function iniciarViagens() {
+  clearInterval(spawnTimer);
+  if (reduz) return;
+  spawnTimer = setInterval(() => { if (!document.hidden) viajar(); }, 320);
+}
+
+function stats() {
+  const A = DATA.destino_por_quartil, qs = [...new Set(A.map(r=>r.q))].sort().reverse(), QM = qMax();
+  const cores = {"Outro grupo":"var(--verdao-2)","Desocupado":"var(--mengao)","Fora da força":"#6b7a70"};
+  const cols = ["Outro grupo","Desocupado","Fora da força"];
+  const escala = Math.max(1,...A.flatMap(r=>cols.map(c=>+r[c]||0)))*1.1;
+  let h = `<thead><tr><th>Time (grupo de exposição)</th>${cols.map(c=>`<th>${c==="Outro grupo"?"Mudou de tipo de trabalho":c==="Desocupado"?"Ficou desempregado":"Parou de trabalhar e de procurar emprego"}</th>`).join("")}</tr></thead><tbody>`;
+  qs.forEach(q => {
+    const pr = pega(A,"pré",q), po = pega(A,"pós",q);
+    const rot = q===QM ? `<span class="q4">Verdão</span><br><small style="font-weight:400;color:var(--muted)">${q}: 25% mais expostos</small>` : q==="Q1" ? `<span class="q1">Mengão</span><br><small style="font-weight:400;color:var(--muted)">${q}: 25% menos expostos</small>` : `Meio de tabela<br><small style="font-weight:400;color:var(--muted)">${q}</small>`;
+    h += `<tr><td class="q">${rot}</td>` + cols.map(c => {
+      const a=+pr[c], b=+po[c], d=b-a, cls = Math.abs(d)<0.05?"zero":d>0?"up":"down";
+      return `<td><div class="barra"><span>pré</span><i><b style="width:${100*a/escala}%;background:${cores[c]};opacity:.35"></b></i><span class="v">${fmt(a)}%</span></div>
+        <div class="barra"><span>pós</span><i><b style="width:${100*b/escala}%;background:${cores[c]}"></b></i><span class="v">${fmt(b)}%</span></div>
+        <span class="chip ${cls}">${d>=0?"+":""}${fmt(d)} p.p.</span></td>`;
+    }).join("") + "</tr>";
+  });
+  $("tabStats").innerHTML = h + "</tbody>";
+
+  const lado = (q, time) => {
+    const B = pega(DATA.grupo_destino,"pós",q);
+    const itens = GRUPOS.map(([c,n]) => [c, +B[n]||0]).filter(x=>x[1]>0).sort((a,b)=>b[1]-a[1]).slice(0,5);
+    const mx = Math.max(1,...itens.map(x=>x[1]));
+    const D = pega(DATA.direcao_exposicao,"pós",q);
+    const me=+D["Menos exposta"]||0, mq=+D["Mesmo quartil"]||0, ma=+D["Mais exposta"]||0, tt=(me+mq+ma)||1;
+    const cor = time==="v" ? "var(--verdao-2)" : "var(--mengao)";
+    const nome = time==="v" ? `Verdão: 25% mais expostos` : `Mengão: 25% menos expostos`;
+    return `<h3>${nome}</h3><p class="lede" style="margin-bottom:8px;font-size:.9rem">Quem mudou de tipo de trabalho foi parar principalmente em:</p>` +
+      (itens.length ? itens.map(([c,v]) => `<div class="dest"><div class="fig">${boneco(c,{camisa: time==="v"?"#0a6b3b":"#d4142e", time: time==="m"?"m":""})}</div>
+        <div>${CURTO[c]}<i style="width:${100*v/mx}%;background:${cor}"></i></div><div class="v">${fmt(v,0)}%</div></div>`).join("")
+        : `<p>Sem dados de destino para ${q}.</p>`) +
+      `<p class="lede" style="margin:14px 0 4px;font-size:.9rem">O trabalho novo é mais ou menos parecido com a IA do que o antigo?</p>
+       <div class="direcao"><div style="width:${100*me/tt}%;background:#3c6e8f">${me/tt>.12?fmt(100*me/tt,0)+"%":""}</div>
+       <div style="width:${100*mq/tt}%;background:#8a958d">${mq/tt>.12?fmt(100*mq/tt,0)+"%":""}</div>
+       <div style="width:${100*ma/tt}%;background:#e08a1e">${ma/tt>.12?fmt(100*ma/tt,0)+"%":""}</div></div>
+       <div class="leg"><span style="--c:#3c6e8f">Menos exposta</span><span style="--c:#8a958d">Mesmo quartil</span><span style="--c:#e08a1e">Mais exposta</span></div>
+       <p class="lede" style="margin:8px 0 0;font-size:.82rem;color:var(--muted)">Cuidado ao ler: quem já está no quartil do topo só tem para onde descer, e quem está no de baixo só tem para onde subir. Boa parte dessa divisão é mecânica, e não uma escolha das pessoas.</p>`;
+  };
+  $("ladoV").innerHTML = lado(QM,"v"); $("ladoM").innerHTML = lado("Q1","m");
+}
+
+let metrica = "pct_muda_grupo";
+function varChart() {
+  const QM = qMax(), E = DATA.serie_q1_q4 || [];
+  const ord = s => { const [a,t] = s.split("T"); return (+a)*4 + (+t); };
+  const fora = new Set(E.filter(r => r.nas_medias === false).map(r => r.tri_lbl));
+  const conta = i => !fora.has(tris[i]);
+  const tris = [...new Set(E.map(r=>r.tri_lbl))].sort((a,b)=>ord(a)-ord(b));
+  const svg = $("grafVar");
+  if (!tris.length) { svg.innerHTML = `<text x="450" y="180" fill="#ccc" text-anchor="middle">Sem série trimestral nos dados.</text>`; return; }
+  const W=900,H=360,L=48,R=18,T=26,B=46;
+  const ser = q => tris.map(t => { const r = E.find(x=>x.tri_lbl===t && x.q===q); return r ? +r[metrica] : null; });
+  const sV = ser(QM), sM = ser("Q1"), vals = [...sV,...sM].filter(v=>v!=null);
+  let lo = Math.min(...vals), hi = Math.max(...vals); const pad = (hi-lo)*.2 || .5; lo = Math.max(0,lo-pad); hi += pad;
+  const tmin = ord(tris[0]), tmax = ord(tris[tris.length-1]);
+  const X = t => L + (ord(t)-tmin)/(tmax-tmin||1)*(W-L-R), Y = v => T + (1-(v-lo)/(hi-lo))*(H-T-B);
+  const xCorte = L + (2022*4+4 - tmin)/(tmax-tmin||1)*(W-L-R);
+  let h = `<rect x="${L}" y="${T}" width="${Math.max(0,xCorte-L)}" height="${H-T-B}" fill="rgba(255,255,255,.04)"/>`;
+  const trisFora = tris.filter(t => fora.has(t));
+  if (trisFora.length) {
+    const x0 = X(trisFora[0]) - 6, x1 = X(trisFora[trisFora.length-1]) + 6;
+    h += `<rect x="${x0}" y="${T}" width="${Math.max(0,x1-x0)}" height="${H-T-B}" fill="rgba(107,122,112,.22)"/>
+          <text x="${(x0+x1)/2}" y="${T+16}" fill="#9fb0a6" font-size="11" text-anchor="middle">pesquisa por telefone</text>
+          <text x="${(x0+x1)/2}" y="${T+30}" fill="#9fb0a6" font-size="11" text-anchor="middle">medida quebrada: fora da conta</text>`;
+  }
+  for (let i=0;i<=4;i++){ const v = lo+(hi-lo)*i/4, y=Y(v);
+    h += `<line x1="${L}" x2="${W-R}" y1="${y}" y2="${y}" stroke="#26302a"/><text x="${L-8}" y="${y+4}" fill="#8fa196" font-size="12" text-anchor="end">${fmt(v)}%</text>`; }
+  tris.forEach((t,i) => { if (t.endsWith("T1")) h += `<text x="${X(t)}" y="${H-20}" fill="#8fa196" font-size="12" text-anchor="middle">${t.slice(0,4)}</text>`; });
+  h += `<line x1="${xCorte}" x2="${xCorte}" y1="${T-6}" y2="${H-B}" stroke="#ffb627" stroke-width="2" stroke-dasharray="6 5"/>
+        <text x="${xCorte+6}" y="${T+8}" fill="#ffb627" font-size="13" font-weight="700">Apito: ChatGPT (nov/2022)</text>
+        <text x="${L+8}" y="${H-B-8}" fill="#8fa196" font-size="12">Antes do apito: as linhas deveriam andar lado a lado</text>`;
+  const linha = (s,cor,id) => {
+    let d = "", pts = "";
+    s.forEach((v,i) => { if (v==null) return; d += (d?"L":"M") + X(tris[i]) + " " + Y(v) + " ";
+      pts += `<circle cx="${X(tris[i])}" cy="${Y(v)}" r="3.5" fill="${conta(i)?cor:"#6b7a70"}"/>`; });
+    return `<path id="${id}" d="${d}" fill="none" stroke="${cor}" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round"/>${pts}`;
+  };
+  h += linha(sM,"#d4142e","lM") + linha(sV,"#15924f","lV");
+  svg.innerHTML = h;
+  if (!reduz) ["lV","lM"].forEach(id => { const p = document.getElementById(id); const n = p.getTotalLength();
+    p.style.strokeDasharray = n; p.style.strokeDashoffset = n;
+    p.animate([{strokeDashoffset:n},{strokeDashoffset:0}],{duration:1600,easing:"ease-out",fill:"forwards"}); });
+
+  const corte = 2022*4+4, med = (s,f) => { const x = s.filter((v,i)=>v!=null && conta(i) && f(ord(tris[i]))); return x.length ? x.reduce((a,b)=>a+b,0)/x.length : NaN; };
+  const gapPre = med(sV,t=>t<corte) - med(sM,t=>t<corte), gapPos = med(sV,t=>t>corte) - med(sM,t=>t>corte);
+  const limpa = s => s.map((v,i)=>[ord(tris[i]),v,i]).filter(([t,v,i])=>t<corte && v!=null && conta(i));
+  const preV = limpa(sV), preM = limpa(sM);
+  const incl = a => { if (a.length<3) return NaN; const mx=a.reduce((s,[t])=>s+t,0)/a.length, my=a.reduce((s,[,v])=>s+v,0)/a.length;
+    return a.reduce((s,[t,v])=>s+(t-mx)*(v-my),0)/a.reduce((s,[t])=>s+(t-mx)**2,0); };
+  const dInc = incl(preV) - incl(preM);
+  $("veredito").innerHTML = `Antes do ChatGPT, o Verdão ficava em média <strong>${fmt(gapPre,1)} ponto</strong> acima do Mengão. Depois, a distância passou para <strong>${fmt(gapPos,1)} pontos</strong>. ` +
+    (Math.abs(dInc) < 0.03 ? "<strong>Lance limpo à primeira vista:</strong> antes do apito as duas linhas andavam lado a lado, então a comparação parece justa. A confirmação vem com os testes estatísticos da dissertação." :
+     "<strong>Lance duvidoso:</strong> as linhas já se afastavam antes do apito. Não dá para culpar só a IA; a dissertação precisa de testes extras para decidir.") +
+    (fora.size ? ` <span style="color:#9fb0a6">Os ${fora.size} trimestres de pesquisa por telefone (2020 e 2021) aparecem no gráfico, mas ficam fora dessa conta: neles a taxa medida cai quase pela metade por mudança na forma de perguntar, não por mudança no mercado.</span>` : "");
+}
+document.querySelectorAll(".seg button").forEach(b => b.onclick = () => {
+  metrica = b.dataset.m; document.querySelectorAll(".seg button").forEach(x=>x.setAttribute("aria-pressed", x===b?"true":"false")); varChart(); });
+
+function rodape() {
+  const m = DATA.meta||{}, a = DATA.auditoria||{};
+  $("rodapeDados").textContent = m.demo ? "Números ilustrativos, gerados só para mostrar o funcionamento do painel. Não usar em apresentação." :
+    `Dados reais: ${Number(m.n_transicoes||0).toLocaleString("pt-BR")} transições válidas; período do painel ${a.trimestres||"–"}.`;
+}
+
+function render(d, real) {
+  DATA = d; filtro = null;
+  const bar = $("databar");
+  bar.classList.toggle("real", !!real);
+  $("dataMsg").textContent = real ? `Dados reais carregados: ${Number((d.meta||{}).n_transicoes||0).toLocaleString("pt-BR")} transições.` :
+    "Dados ilustrativos: carregue o dashboard_data.json para ver o painel real.";
+  placar(); campo(); painel(); stats(); varChart(); rodape(); iniciarViagens();
+}
+
+function valida(d) {
+  const falta = ["destino_por_quartil","grupo_destino","direcao_exposicao","serie_q1_q4","sankey_pos"].filter(k => !Array.isArray(d[k]));
+  if (falta.length) throw new Error("O arquivo não tem as chaves: " + falta.join(", ") + ". Gere de novo com auditoria_e_fluxos.py.");
+  return d;
+}
+$("arquivo").onchange = e => {
+  const f = e.target.files[0]; if (!f) return;
+  const rd = new FileReader();
+  rd.onload = () => {
+    try { const d = valida(JSON.parse(rd.result)); render(d, true);
+      try { localStorage.setItem("classico_ia_dados", rd.result); } catch(_) {} }
+    catch (err) { $("dataMsg").textContent = "Não foi possível ler o arquivo. " + err.message; }
+  };
+  rd.readAsText(f);
+};
+
+fila(); escalacao(); entenda();
+let inicial = null;
+try { const emb = document.getElementById("dados-embutidos").textContent.trim(); if (emb) inicial = valida(JSON.parse(emb)); } catch(_) { inicial = null; }
+if (!inicial) { try { const s = localStorage.getItem("classico_ia_dados"); if (s) inicial = valida(JSON.parse(s)); } catch(_) { inicial = null; } }
+render(inicial || demo(), !!inicial);
+})();
+</script>
+</body>
+</html>
