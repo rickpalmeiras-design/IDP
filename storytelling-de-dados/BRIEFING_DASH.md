@@ -1,6 +1,7 @@
 # Briefing para o dashboard de storytelling
 
-Material de apoio para construir um painel em HTML **em outra conversa**. Reúne o resumo
+Material de apoio para construir um painel em HTML **em outra conversa**. Faz parte da
+pasta da matéria; veja o [README.md](README.md) para o índice. Reúne o resumo
 do trabalho, a tabela de-para das ocupações escolhidas, os números autorizados e um prompt
 pronto para colar. Não é texto da dissertação.
 
