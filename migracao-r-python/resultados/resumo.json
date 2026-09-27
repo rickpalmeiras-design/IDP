@@ -1,0 +1,19 @@
+{
+  "data_da_comparacao": "2026-09-27",
+  "mesmo_arquivo_de_dados": true,
+  "sha256_dados": "c178ad5f6cd855cdee7a069fd58dd32838b49a71c2c501f3f897f1a90a74313b",
+  "motor_r": "0.14.2",
+  "motor_python": "pyfixest 0.60.0",
+  "minutos_do_motor_r": 9.8,
+  "modelos": 7,
+  "termos_comparados": 28,
+  "mesma_amostra": true,
+  "mesmos_clusters": true,
+  "diferenca_maxima": {
+    "estimativa": 7.454000090778568e-12,
+    "erro_padrao": 5.023900002606996e-11,
+    "p_valor_conservador": 1.2371569213520672e-08,
+    "ic95_inferior_conservador": 9.150189991553176e-11,
+    "ic95_superior_conservador": 1.0543889979869325e-10
+  }
+}

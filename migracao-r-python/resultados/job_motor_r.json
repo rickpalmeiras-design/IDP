@@ -1,0 +1,41 @@
+{
+  "nome": "05_pnadc",
+  "dados": "C:\\Users\\Rick\\Documents\\GitHub\\ricardo-pnadc\\data\\interim\\estimacao\\05_pnadc.csv",
+  "modelos": [
+    {
+      "nome": "pareado",
+      "formula": "pareado ~ aioe_origem:pos + telework:pos + idade + idade_quadrado | cod_origem + sigla_uf^mes + sexo + raca + escolaridade + tempo_emprego_categoria + tamanho_empresa_categoria + setor"
+    },
+    {
+      "nome": "muda_ocupacao_2",
+      "formula": "muda_ocupacao_2 ~ aioe_origem:pos + telework:pos + idade + idade_quadrado | cod_origem + sigla_uf^mes + sexo + raca + escolaridade + tempo_emprego_categoria + tamanho_empresa_categoria + setor"
+    },
+    {
+      "nome": "muda_ocupacao_3",
+      "formula": "muda_ocupacao_3 ~ aioe_origem:pos + telework:pos + idade + idade_quadrado | cod_origem + sigla_uf^mes + sexo + raca + escolaridade + tempo_emprego_categoria + tamanho_empresa_categoria + setor"
+    },
+    {
+      "nome": "sai_do_emprego",
+      "formula": "sai_do_emprego ~ aioe_origem:pos + telework:pos + idade + idade_quadrado | cod_origem + sigla_uf^mes + sexo + raca + escolaridade + tempo_emprego_categoria + tamanho_empresa_categoria + setor"
+    },
+    {
+      "nome": "formal_para_informal",
+      "formula": "formal_para_informal ~ aioe_origem:pos + telework:pos + idade + idade_quadrado | cod_origem + sigla_uf^mes + sexo + raca + escolaridade + tempo_emprego_categoria + tamanho_empresa_categoria + setor"
+    },
+    {
+      "nome": "mobilidade_descendente_aioe",
+      "formula": "mobilidade_descendente_aioe ~ aioe_origem:pos + telework:pos + idade + idade_quadrado | cod_origem + sigla_uf^mes + sexo + raca + escolaridade + tempo_emprego_categoria + tamanho_empresa_categoria + setor"
+    },
+    {
+      "nome": "mobilidade_ascendente_aioe",
+      "formula": "mobilidade_ascendente_aioe ~ aioe_origem:pos + telework:pos + idade + idade_quadrado | cod_origem + sigla_uf^mes + sexo + raca + escolaridade + tempo_emprego_categoria + tamanho_empresa_categoria + setor"
+    }
+  ],
+  "sha256_dados": "c178ad5f6cd855cdee7a069fd58dd32838b49a71c2c501f3f897f1a90a74313b",
+  "cluster": "id_upa",
+  "pesos": "peso_total",
+  "alpha": 0.05,
+  "seed": 1895,
+  "threads": 2,
+  "output": "C:\\Users\\Rick\\Documents\\GitHub\\ricardo-pnadc\\migracao-r-python\\resultados\\motor-r"
+}

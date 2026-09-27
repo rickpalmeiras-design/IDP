@@ -63,14 +63,44 @@ uv run python migracao-r-python/comparar_motores.py
 
 ### O que a verificação produziu
 
-<!-- RESULTADOS -->
+Rodada em 27/09/2026, com `fixest 0.14.2` em R 4.6.1 contra `pyfixest 0.60.0`. O motor R
+levou 9,8 minutos nos sete modelos. Os dois leram o mesmo arquivo, confirmado pelo sha256
+`c178ad5f…4313b`, e chegaram à mesma amostra e ao mesmo número de clusters em todos os
+modelos: 2.880.049 observações e 31.036 UPAs em `muda_ocupacao_2`, por exemplo.
+
+Nos 28 termos comparados, estas são as maiores diferenças em valor absoluto:
+
+| Quantidade | Maior diferença |
+| --- | --- |
+| Estimativa | 7,5 × 10⁻¹² |
+| Erro-padrão | 5,0 × 10⁻¹¹ |
+| Valor-p conservador | 1,2 × 10⁻⁸ |
+| Limite inferior do IC95 | 9,2 × 10⁻¹¹ |
+| Limite superior do IC95 | 1,1 × 10⁻¹⁰ |
+
+Para dar escala: o menor coeficiente estimado em todo o conjunto é 5,5 × 10⁻⁶, e a maior
+diferença relativa entre os dois motores é de 5,7 × 10⁻⁹, ou seja, cerca de um bilionésimo do
+valor do coeficiente. A maior diferença de valor-p aparece em `sai_do_emprego`, no termo de
+teletrabalho: 0,161136 nos dois motores, com a divergência na oitava casa decimal.
+
+O coeficiente central do trabalho, a interação entre AIOE e o período pós-ChatGPT na mudança
+de ocupação a dois dígitos, que é o que aparece na Tabela 4:
+
+| | Estimativa | Erro-padrão |
+| --- | --- | --- |
+| R, `fixest` | 0,002778374536617300 | 0,001281175146379300 |
+| Python, `pyfixest` | 0,002778374535073900 | 0,001281175168234900 |
+
+As duas versões coincidem até a décima primeira casa decimal. Diferenças dessa ordem são
+ruído de ponto flutuante, do tipo que aparece só por causa da ordem em que cada biblioteca
+soma os mesmos números. Não há nenhuma diferença de resultado entre os dois motores.
 
 ## O que tem em `resultados/`
 
 | Arquivo | Conteúdo |
 | --- | --- |
 | `comparacao_coeficientes.csv` | Uma linha por modelo e termo, com estimativa, erro-padrão, valor-p conservador e intervalo nos dois motores, e a diferença entre eles. |
-| `resumo.json` | As diferenças máximas, a versão de cada pacote e a confirmação de que a amostra e o número de clusters batem. |
+| `resumo.json` | As diferenças máximas, a versão de cada pacote (o campo `motor_r` traz a versão do `fixest`, como o próprio script em R a grava) e a confirmação de que a amostra e o número de clusters batem. |
 | `motor-r/` | A saída bruta do motor R: coeficientes, matriz de variância e metadados dos sete modelos. |
 | `job_motor_r.json` | O job usado na reestimação em R, igual ao da etapa 05 com a pasta de saída trocada. |
 
