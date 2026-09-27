@@ -1,0 +1,15 @@
+﻿variavel,periodo,celulas,media_ponderada
+pareado,Pre,2111852,0.783350449854495
+pareado,Pos,1902586,0.8122576085052905
+muda_ocupacao_2,Pre,1509307,0.2092235400046537
+muda_ocupacao_2,Pos,1411950,0.2803502013110689
+muda_ocupacao_3,Pre,1509307,0.2362332211457761
+muda_ocupacao_3,Pos,1411950,0.3179359140226614
+sai_do_emprego,Pre,1661274,0.0790029901621158
+sai_do_emprego,Pos,1558368,0.0812155965393986
+formal_para_informal,Pre,878324,0.0523127635625903
+formal_para_informal,Pos,835566,0.0881153689598093
+mobilidade_descendente_aioe,Pre,1490487,0.1276370859912817
+mobilidade_descendente_aioe,Pos,1395640,0.1739570722656508
+mobilidade_ascendente_aioe,Pre,1490487,0.128723678267158
+mobilidade_ascendente_aioe,Pos,1395640,0.1744987902363832

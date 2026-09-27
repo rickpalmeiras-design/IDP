@@ -1,0 +1,11 @@
+﻿grupo,cod,ocupacao,aioe,teletrabalhabilidade,trabalhadores_media_trimestral,muda_ocup_pre,muda_ocup_pos,desce_gradiente_pre,desce_gradiente_pos,sai_emprego_pre,sai_emprego_pos
+Mais expostas,1211,Dirigentes financeiros,1.4462,1.0,122564.0,0.5208,0.6199,0.6431,0.7005,0.0222,0.0183
+Mais expostas,2619,Profissionais em direito não classificados anteriormente,1.4316,1.0,106582.0,0.2024,0.2965,0.2632,0.3676,0.009,0.023
+Mais expostas,2411,Contadores,1.4262,0.6667,393230.0,0.1949,0.2873,0.1963,0.2925,0.0239,0.0243
+Mais expostas,2413,Analistas financeiros,1.4173,1.0,124972.0,0.3715,0.4652,0.3696,0.465,0.0188,0.0285
+Mais expostas,2634,Psicólogos,1.4162,1.0,237704.0,0.0861,0.1051,0.0844,0.1041,0.0323,0.0339
+Menos expostas,9211,Trabalhadores elementares da agricultura,-1.6013,0.0,1079640.0,0.2543,0.3644,0.0242,0.0401,0.1848,0.1988
+Menos expostas,9122,Lavadores de veículos,-1.6299,0.0,206338.0,0.2247,0.3051,0.0185,0.0156,0.1073,0.0873
+Menos expostas,9412,Ajudantes de cozinha,-1.6307,0.0,524768.0,0.2912,0.4378,0.0029,0.0037,0.1258,0.1363
+Menos expostas,7131,Pintores e empapeladores,-1.6578,0.0,522537.0,0.1705,0.2226,0.0197,0.0284,0.1158,0.1011
+Menos expostas,9313,Trabalhadores elementares da construção de edifícios,-1.7313,0.0,1305249.0,0.2982,0.3942,0.0009,0.0008,0.1794,0.1726
