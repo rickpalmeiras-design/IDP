@@ -1,4 +1,4 @@
-"""Gera dashboard_data.json para o painel `classico_da_ia.html`.
+"""Gera dados/dashboard_data.json para o painel `painel/classico_da_ia.html`.
 
 Este script faz o mesmo que o `auditoria_e_fluxos.py` (vindo da outra conversa), mas
 partindo do que este repositório realmente tem: `data/processed/pnadc_transicoes.parquet`,
@@ -11,9 +11,10 @@ condição no destino, AIOE dos dois lados, o peso somado e o número de transi�
 que o painel mostra são médias ponderadas, então basta somar pesos por célula em vez de
 por pessoa. O número de observações de cada casa é a soma da coluna `n`.
 
-    uv run python storytelling-de-dados/gera_dashboard_data.py
+    uv run python storytelling-de-dados/consultas/gera_dashboard_data.py
 
-Saída: storytelling-de-dados/dashboard_data.json, no formato que o `valida()` do HTML exige.
+Saídas: storytelling-de-dados/dados/dashboard_data.json, no formato que o `valida()` do HTML
+exige, e o mesmo conteúdo já embutido no bloco `<script id="dados-embutidos">` do painel.
 """
 import json
 import sys
@@ -22,10 +23,13 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
-RAIZ = Path(__file__).resolve().parents[1]
+RAIZ = Path(__file__).resolve().parents[2]
 PAINEL = RAIZ / 'data' / 'processed' / 'pnadc_transicoes.parquet'
-PASTA = Path(__file__).resolve().parent
-SAIDA = PASTA / 'dashboard_data.json'
+PASTA = Path(__file__).resolve().parents[1]
+SAIDA = PASTA / 'dados' / 'dashboard_data.json'
+HTML = PASTA / 'painel' / 'classico_da_ia.html'
+ABRE = '<script id="dados-embutidos" type="application/json">'
+FECHA = '</script>'
 
 # ----------------------------- decisões do recorte -----------------------------
 # Trimestre de origem da transição. A janela completa é a da dissertação (27 trimestres).
@@ -210,6 +214,19 @@ def veredito_var(E, qmax):
             'veredito': 'lance limpo' if abs(d_incl) < 0.03 else 'lance duvidoso'}
 
 
+def embutir(texto):
+    """Escreve o JSON dentro do bloco <script id="dados-embutidos"> do painel.
+
+    Evita o copia e cola do passo 5 do briefing: o HTML fica sempre com o mesmo
+    conteúdo do arquivo em dados/.
+    """
+    s = HTML.read_text(encoding='utf-8')
+    i = s.index(ABRE) + len(ABRE)
+    j = s.index(FECHA, i)
+    corpo = '\n' + texto.strip() + '\n'
+    HTML.write_text(s[:i] + corpo + s[j:], encoding='utf-8')
+
+
 def main():
     sys.stdout.reconfigure(encoding='utf-8', errors='replace')
     df = carregar()
@@ -224,7 +241,7 @@ def main():
             'titulo': 'Clássico da IA — PNAD Contínua × exposição à inteligência artificial',
             'fonte': 'PNAD Contínua trimestral (IBGE), via Base dos Dados; índice AIOE de '
                      'Felten, Raj e Seamans (2021)',
-            'gerado_por': 'storytelling-de-dados/gera_dashboard_data.py',
+            'gerado_por': 'storytelling-de-dados/consultas/gera_dashboard_data.py',
             'base': 'data/processed/pnadc_transicoes.parquet (painel agregado em células)',
             'janela': aud['trimestres'],
             'pos_inicio': list(POS_INICIO),
@@ -248,13 +265,15 @@ def main():
         'sankey_pos': json.loads(S.to_json(orient='records', force_ascii=False)),
     }
     dados['meta']['veredito_var'] = veredito_var(E, qmax)
-    SAIDA.write_text(json.dumps(dados, ensure_ascii=False, indent=1), encoding='utf-8')
+    texto = json.dumps(dados, ensure_ascii=False, indent=1)
+    SAIDA.write_text(texto, encoding='utf-8')
+    embutir(texto)
 
     print(f'fora das médias (coleta remota): {int(p[~p.nas_medias].n.sum()):,} transições'
           .replace(',', '.'))
     placar_v = A.loc[('pós', qmax), 'Outro grupo']
     placar_m = A.loc[('pós', 'Q1'), 'Outro grupo']
-    print(f'{SAIDA.name}: {SAIDA.stat().st_size / 1024:.1f} KB')
+    print(f'{SAIDA.name}: {SAIDA.stat().st_size / 1024:.1f} KB, embutido em {HTML.name}')
     print(f'transições nas médias: {int(p[p.nas_medias].n.sum()):,}'.replace(',', '.'))
     print(f'cortes dos quartis (AIOE): {[round(float(c), 3) for c in cortes]}')
     print(f'placar pós — Verdão {qmax} {placar_v:.1f} x {placar_m:.1f} Mengão Q1')

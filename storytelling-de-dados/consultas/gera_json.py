@@ -1,8 +1,8 @@
-"""Gera dados_painel.json a partir dos CSV desta pasta.
+"""Gera dados/dados_painel.json a partir dos CSV de dados/.
 
 Roda sozinho, sem tocar no pipeline da dissertação:
 
-    uv run python storytelling-de-dados/gera_json.py
+    uv run python storytelling-de-dados/consultas/gera_json.py
 
 Tudo o que o painel precisa fica em um único arquivo, com números já no formato de
 exibição (porcentagem com uma casa, pontos percentuais com duas) e com os avisos que o
@@ -13,7 +13,7 @@ from pathlib import Path
 
 import pandas as pd
 
-PASTA = Path(__file__).resolve().parent
+PASTA = Path(__file__).resolve().parents[1] / 'dados'
 SAIDA = PASTA / 'dados_painel.json'
 
 ROTULOS = {

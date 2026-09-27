@@ -8,7 +8,7 @@ Responsável: Ricardo Carvalho | Orientador: Prof. Danny de Castro Soares (IDP)
 > (BigQuery → `painel_final.parquet` → `auditoria_e_fluxos.py`) **não foi executado**: ele
 > traria microdados individuais para o disco local, o que a Seção 3.2 da dissertação diz que
 > não é feito, e exige um projeto do Google Cloud que o `config.yaml` não tem. O painel foi
-> preenchido com os mesmos números por outro caminho, o `gera_dashboard_data.py`, que parte
+> preenchido com os mesmos números por outro caminho, o `consultas/gera_dashboard_data.py`, que parte
 > do painel agregado do projeto. O que mudou em relação ao combinado está no `README.md`:
 > a janela começa em 2019T1 (e não 2021T1) e os trimestres de coleta por telefone ficam fora
 > das médias de pré e pós. O resto — pós a partir de 2023T1, 2022T4 fora, quartis fixados no
@@ -28,9 +28,9 @@ Atende aos três tópicos da reunião de 22/09:
 
 | Arquivo | Papel |
 | --- | --- |
-| `storytelling-de-dados/baixar_painel_pnadc.py` | Query no BigQuery (Base dos Dados) + merge com C-AIOE. Gera `data/painel_final.parquet` |
-| `storytelling-de-dados/auditoria_e_fluxos.py` | Auditoria do painel + tabelas de fluxo. Gera `out/` e `out/dashboard_data.json` |
-| `storytelling-de-dados/classico_da_ia.html` | Dashboard. Lê os dados do bloco `<script id="dados-embutidos">` |
+| `storytelling-de-dados/consultas/baixar_painel_pnadc.py` | Query no BigQuery (Base dos Dados) + merge com C-AIOE. Gera `data/painel_final.parquet` |
+| `storytelling-de-dados/consultas/auditoria_e_fluxos.py` | Auditoria do painel + tabelas de fluxo. Gera `out/` e `out/dashboard_data.json` |
+| `storytelling-de-dados/painel/classico_da_ia.html` | Dashboard. Lê os dados do bloco `<script id="dados-embutidos">` |
 | `data/cod_aioe.csv` | Crosswalk COD → C-AIOE (colunas `cod`, `aioe`). Exportar do crosswalk já validado (427/434 códigos) |
 
 ## Passo a passo
