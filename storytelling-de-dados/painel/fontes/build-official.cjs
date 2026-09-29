@@ -77,9 +77,9 @@ html=html.slice(0,footStart)+`function rodape() {
  const note=document.createElement('p');note.textContent='Os alertas acima são os registrados no arquivo de origem. A auditoria de identidade não está disponível neste painel agregado. Não há contagens individuais por rota para verificar o limite de 30 observações.';box.appendChild(note);
 }
 `+html.slice(footEnd);
-html=html.replace('</style>','.databar.real{background:#175235;color:#fff}.databar.real label{color:#174626;background:#e5f1d5}.official-audit{border:1px solid #526348;padding:15px;border-radius:6px;margin-top:20px}.official-audit summary{cursor:pointer;font-weight:700}.official-audit p,.official-audit li{font-size:14px;line-height:1.6}.var .tela{transition:color .25s}.var .tela.revisando{color:#ff7c8c}.var .tela.revisando::before{background:#ff7c8c}.var-acoes{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:0 0 10px}.revar{background:#1c3330;border:1px solid #4b6a5f;color:#eaf3ef;padding:7px 14px;border-radius:999px;cursor:pointer;font:13px var(--body)}.revar:hover{border-color:#d7fe61;color:#d7fe61}.var-dica{font-size:12px;color:#9fb6a9}.seg button{transition:background .18s,color .18s}.veredito .num{color:#d7fe61;font-weight:700;font-variant-numeric:tabular-nums}@media (prefers-reduced-motion: reduce){.var .tela::before{animation:none}}</style>');
-html=html.replace('<div class="tela">VAR em análise</div>','<div class="tela" id="varTela"><span class="tela-txt">VAR em análise</span></div>');
-html=html.replace('<div class="var-scroll">','<div class="var-acoes"><button type="button" id="revar" class="revar">Rever o lance</button><span class="var-dica">Troque o indicador e o VAR revisa o lance de novo.</span></div><div class="var-scroll">');
+html=html.replace('</style>','.databar.real{background:#175235;color:#fff}.databar.real label{color:#174626;background:#e5f1d5}.official-audit{border:1px solid #526348;padding:15px;border-radius:6px;margin-top:20px}.official-audit summary{cursor:pointer;font-weight:700}.official-audit p,.official-audit li{font-size:14px;line-height:1.6}.var .tela{transition:color .25s}.var .tela.revisando{color:#ff7c8c}.var .tela.revisando::before{background:#ff7c8c}.var-acoes{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:0 0 10px}.revar{background:#1c3330;border:1px solid #4b6a5f;color:#eaf3ef;padding:7px 14px;border-radius:999px;cursor:pointer;font:13px var(--body)}.revar:hover{border-color:#d7fe61;color:#d7fe61}.var-dica{font-size:12px;color:#9fb6a9}.seg button{transition:background .18s,color .18s}.veredito .num{color:#d7fe61;font-weight:700;font-variant-numeric:tabular-nums}.var .tela{gap:12px}.arbitro{flex:0 0 auto;overflow:visible}.arbitro .varbox{filter:drop-shadow(0 0 0 transparent);transition:filter .3s}.tela.revisando .arbitro .varbox{filter:drop-shadow(0 0 7px #d7fe61aa)}.revar.rod[aria-pressed="true"]{border-color:#d7fe61;color:#d7fe61}@media (prefers-reduced-motion: reduce){.var .tela::before{animation:none}.revar.rod{display:none}}@media(max-width:600px){.arbitro{width:42px;height:45px}.var-dica{width:100%}}</style>');
+html=html.replace('<div class="tela">VAR em análise</div>','<div class="tela" id="varTela"><svg class="arbitro" id="arbitro" viewBox="0 0 140 150" width="54" height="58" role="img" aria-label="Árbitro fazendo o sinal do VAR"><g fill="none" stroke="#e8f0e4" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"><circle cx="70" cy="22" r="12" fill="#e8f0e4" stroke="none"/><path d="M70 36 V96"/><path d="M70 96 L57 141"/><path d="M70 96 L84 141"/><path class="braco" d="M70 52 L36 79 L40 54"/><path class="braco" d="M70 52 L104 79 L100 54"/></g><rect class="varbox" x="40" y="50" width="60" height="34" rx="3" fill="none" stroke="#d7fe61" stroke-width="5"/></svg><span class="tela-txt">VAR em análise</span></div>');
+html=html.replace('<div class="var-scroll">','<div class="var-acoes"><button type="button" id="rodizio" class="revar rod" aria-pressed="false">Rodar sozinho</button><button type="button" id="revar" class="revar">Rever o lance</button><span class="var-dica">O VAR passa pelos três indicadores sozinho. Clique em um deles para assumir o controle.</span></div><div class="var-scroll">');
 html=html.replace(`document.querySelectorAll(".seg button").forEach(b => b.onclick = () => {
   metrica = b.dataset.m; document.querySelectorAll(".seg button").forEach(x=>x.setAttribute("aria-pressed", x===b?"true":"false")); varChart(); });`,`let varTimer=null;
 /* A tela do VAR acompanha a troca de aba: entra em revisao, depois anuncia o
@@ -93,21 +93,56 @@ function telaVar(estado) {
 }
 function revisar() {
  if(reduz){ varChart(false); telaVar("pronto"); return; }
- telaVar("revisando"); varChart(true);
+ telaVar("revisando"); apitaVar(); varChart(true);
  clearTimeout(varTimer); varTimer=setTimeout(()=>telaVar("pronto"),1150);
+}
+/* O sinal do VAR: o retângulo é redesenhado entre as mãos e os braços sobem. */
+function apitaVar() {
+ const svg=document.getElementById("arbitro"); if(!svg||reduz) return;
+ const box=svg.querySelector(".varbox"),bracos=svg.querySelectorAll(".braco"),per=2*(60+34);
+ try{
+  if(box&&box.animate){box.style.strokeDasharray=per;box.animate([{strokeDashoffset:per,opacity:.3},{strokeDashoffset:0,opacity:1}],{duration:720,easing:'ease-out'});}
+  bracos.forEach(b=>{if(b.animate)b.animate([{transform:'translateY(5px)'},{transform:'translateY(-2px)'},{transform:'translateY(0)'}],{duration:640,easing:'ease-out'});});
+  if(svg.animate)svg.animate([{transform:'scale(.94)'},{transform:'scale(1)'}],{duration:430,easing:'cubic-bezier(.2,1.5,.5,1)'});
+ }catch(_){}
+}
+/* Rodízio: o VAR passa sozinho pelos três indicadores enquanto a seção está à
+   vista e a aba do navegador, aberta. Um clique em qualquer indicador encerra o
+   rodízio, porque a partir daí quem escolhe é quem está lendo. */
+let rodTimer=null,rodLigado=false,varAVista=false;
+function botaoRodizio(){ return document.getElementById("rodizio"); }
+function rodizio(liga) {
+ rodLigado=liga&&!reduz;
+ clearInterval(rodTimer); rodTimer=null;
+ const bt=botaoRodizio();
+ if(bt){ bt.setAttribute("aria-pressed",String(rodLigado)); bt.textContent=rodLigado?"Pausar rodízio":"Rodar sozinho"; }
+ if(rodLigado) rodTimer=setInterval(()=>{ if(document.hidden||!varAVista) return; proximoIndicador(); },6500);
+}
+function proximoIndicador() {
+ const bs=[...document.querySelectorAll(".seg button")]; if(!bs.length) return;
+ const atual=bs.findIndex(x=>x.getAttribute("aria-pressed")==="true");
+ const b=bs[(atual+1)%bs.length];
+ metrica=b.dataset.m;
+ bs.forEach(x=>x.setAttribute("aria-pressed", x===b?"true":"false"));
+ revisar();
 }
 document.querySelectorAll(".seg button").forEach(b => b.onclick = () => {
  metrica = b.dataset.m;
  document.querySelectorAll(".seg button").forEach(x=>x.setAttribute("aria-pressed", x===b?"true":"false"));
+ rodizio(false);
  revisar();
 });
 const btRevar=document.getElementById("revar"); if(btRevar) btRevar.onclick=revisar;
+const btRod=botaoRodizio(); if(btRod) btRod.onclick=()=>rodizio(!rodLigado);
 telaVar("pronto");
 /* Na primeira vez que a secao aparece na tela, o VAR revisa sozinho. O grafico
    ja esta desenhado antes disso: a animacao parte de um estado completo. */
 if(!reduz && "IntersectionObserver" in window){
  const alvo=document.getElementById("var");
- if(alvo){ const io=new IntersectionObserver(es=>{for(const e of es) if(e.isIntersecting){io.disconnect();revisar();}},{threshold:.3}); io.observe(alvo); }
+ if(alvo){ let primeira=true;
+  const io=new IntersectionObserver(es=>{for(const e of es){ varAVista=e.isIntersecting;
+   if(e.isIntersecting&&primeira){ primeira=false; revisar(); rodizio(true); } }},{threshold:.3});
+  io.observe(alvo); }
 }`);
 
 fs.writeFileSync(__dirname+'/../classico_da_ia.html',html);

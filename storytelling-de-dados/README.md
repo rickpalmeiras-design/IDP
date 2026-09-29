@@ -29,6 +29,13 @@ storytelling-de-dados/
 | `validacao-dados-oficiais.json` | O que a montagem conferiu antes de gravar o painel: o sha256 do `dashboard_data.json` que entrou, o número de linhas de cada tabela e a lista de verificações. |
 | `fontes/` | De onde o painel sai. `classico_animado.html` é a página com a metáfora do jogo; `assets/` guarda o estádio e a prancha dos atletas em PNG, com os prompts que os geraram; `build-stadium.cjs` junta os dois e embute as imagens; `build-official.cjs` injeta o `dados/dashboard_data.json`, apaga o gerador de demonstração e grava o painel. Para refazer: `node storytelling-de-dados/painel/fontes/build-stadium.cjs` e depois `node .../build-official.cjs`. |
 
+Na seção "Chama o VAR", o painel passa sozinho pelos três indicadores: a cada troca o
+árbitro faz o sinal do VAR, o gráfico é redesenhado da esquerda para a direita e o veredito
+entra em seguida. Clicar em um indicador encerra o rodízio e devolve o controle a quem lê; o
+botão "Rodar sozinho" religa. Sob preferência de movimento reduzido nada disso roda: o
+gráfico aparece pronto e o rodízio nem começa. O árbitro é um pictograma vetorial, desenhado
+no próprio HTML, sem semelhança com nenhum árbitro real.
+
 Os atletas são uma representação visual dos fluxos de trabalhadores. O uniforme e o rosto
 de cada um não dizem nada sobre a exposição à IA da ocupação: são desenho, não medida. A
 comparação descritiva do painel e a inspeção visual das séries não comprovam causalidade.
