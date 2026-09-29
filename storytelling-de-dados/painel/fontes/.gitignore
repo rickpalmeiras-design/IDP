@@ -1,0 +1,5 @@
+# Intermediários da montagem. Saem de build-stadium.cjs e não precisam de versão:
+# matchday.html ainda aponta para assets/, e classico_matchday.html é a mesma
+# página com as imagens embutidas, antes de receber os dados do projeto.
+matchday.html
+classico_matchday.html

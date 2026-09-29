@@ -1,0 +1,20 @@
+{
+  "source": "storytelling-de-dados/dados/dashboard_data.json",
+  "sha256": "c16b393e75e02ce05af420d57c1179983dd764498e248790633665fb644ae661",
+  "n_transicoes": 2452987,
+  "rows": {
+    "destino_por_quartil": 8,
+    "grupo_destino": 8,
+    "direcao_exposicao": 8,
+    "serie_q1_q4": 52,
+    "sankey_pos": 25
+  },
+  "output": "classico_da_ia.html",
+  "checks": [
+    "Embedded JSON identical to source",
+    "No demo generator or stored data fallback",
+    "JavaScript syntax valid",
+    "Quartile counts sum to metadata",
+    "Destination percentages sum to 100% within rounding"
+  ]
+}

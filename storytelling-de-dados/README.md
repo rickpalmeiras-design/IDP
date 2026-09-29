@@ -9,13 +9,13 @@ dos dados já estimados, preparados para contar a história em um painel.
 Construir um painel em HTML que conte a história do trabalho, começando pelo contraste
 entre as ocupações mais e menos expostas à inteligência artificial. O painel foi desenhado
 em outra conversa (`painel/classico_da_ia.html`) e aqui ele foi preenchido com os números reais do
-projeto.
+projeto, pela montagem que está em `painel/fontes/`.
 
 ## Como a pasta está organizada
 
 ```
 storytelling-de-dados/
-├── painel/      o HTML final, pronto para abrir
+├── painel/      o HTML final, pronto para abrir, e as fontes que o montam
 ├── dados/       o que o painel lê e os CSV de apoio
 ├── consultas/   os scripts que geram os dados
 └── briefing/    os dois documentos de texto
@@ -25,7 +25,13 @@ storytelling-de-dados/
 
 | Arquivo | Para que serve |
 | --- | --- |
-| `classico_da_ia.html` | **O painel, pronto e com os dados reais dentro.** Basta abrir no navegador: a faixa do topo aparece verde, com "Dados reais carregados". Não precisa de servidor nem de carregar arquivo. |
+| `classico_da_ia.html` | **O painel, pronto e com os dados reais dentro.** Um arquivo só, de 16 MB, com o estádio e os atletas embutidos como imagem. Dê dois cliques e ele abre no navegador: a faixa do topo aparece verde, com "Dados do projeto: 2.452.987 transições nas médias". Não precisa de servidor, de internet nem de carregar arquivo. |
+| `validacao-dados-oficiais.json` | O que a montagem conferiu antes de gravar o painel: o sha256 do `dashboard_data.json` que entrou, o número de linhas de cada tabela e a lista de verificações. |
+| `fontes/` | De onde o painel sai. `classico_animado.html` é a página com a metáfora do jogo; `assets/` guarda o estádio e a prancha dos atletas em PNG, com os prompts que os geraram; `build-stadium.cjs` junta os dois e embute as imagens; `build-official.cjs` injeta o `dados/dashboard_data.json`, apaga o gerador de demonstração e grava o painel. Para refazer: `node storytelling-de-dados/painel/fontes/build-stadium.cjs` e depois `node .../build-official.cjs`. |
+
+Os atletas são uma representação visual dos fluxos de trabalhadores. O uniforme e o rosto
+de cada um não dizem nada sobre a exposição à IA da ocupação: são desenho, não medida. A
+comparação descritiva do painel e a inspeção visual das séries não comprovam causalidade.
 
 ### `consultas/`
 
