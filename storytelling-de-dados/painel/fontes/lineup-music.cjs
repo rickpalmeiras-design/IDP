@@ -1,58 +1,49 @@
-// Barra de trilha no topo do painel, com botao para desligar.
+// Trilha do painel: um botao na barra do topo, e nada mais.
 //
-// A gravacao nao e embutida no arquivo: o que entra e o player oficial do
-// Spotify, servido pelo proprio detentor dos direitos. E um iframe simples, sem
-// API e sem script externo, que e o que tem mais chance de carregar quando o
-// HTML e aberto direto do disco. O player do YouTube, usado antes, precisa
-// carregar a IFrame API e costuma recusar a origem file://.
+// A gravacao nao e embutida no arquivo. O que entra e o player oficial do
+// Spotify, um iframe simples, sem API e sem script externo, que e o que tem mais
+// chance de carregar quando o HTML e aberto direto do disco. O player do
+// YouTube, usado antes, precisa da IFrame API e recusa a origem file://.
 //
-// Para trocar a trilha, mude ALBUM (ou use .../embed/track/ID para uma faixa).
+// O player so aparece, e so e requisitado ao Spotify, depois que alguem liga a
+// musica: o iframe nasce sem src. Ele precisa ficar visivel enquanto toca,
+// porque o embed do Spotify nao tem como ser comandado de fora; esconde-lo
+// seria o mesmo que desliga-lo.
+//
+// Para trocar a trilha, mude ALBUM (ou use embed/track/ID para uma faixa so).
 module.exports = function music(html) {
-  const ALBUM = '1zfrABBjKnIhKIub9UCI1N';     // Shakira No Rio - As Melhores
-  const FAIXA = 'Waka Waka (This Time for Africa)';
-  const ARTISTA = 'Shakira · faixa 3 do álbum';
-  const LINK = 'https://open.spotify.com/album/' + ALBUM;
+  const ALBUM = '1zfrABBjKnIhKIub9UCI1N';   // Shakira No Rio - As Melhores
+  const FONTE = 'https://open.spotify.com/embed/album/' + ALBUM + '?utm_source=generator';
 
-  const barra = '<div class="trilha" id="trilha">' +
-    '<div class="trilha-info"><span class="trilha-kicker">TRILHA DA PARTIDA</span>' +
-    '<b>' + FAIXA + '</b><span class="trilha-art">' + ARTISTA + '</span>' +
-    '<a href="' + LINK + '" target="_blank" rel="noopener noreferrer">Abrir no Spotify ↗</a></div>' +
-    '<div class="trilha-player"><iframe title="Spotify: ' + FAIXA + '" ' +
-    'src="https://open.spotify.com/embed/album/' + ALBUM + '?utm_source=generator" ' +
+  const barra = '<div class="trilha" id="trilha" hidden>' +
+    '<iframe id="trilhaFrame" title="Spotify: Waka Waka (This Time for Africa)" data-src="' + FONTE + '" ' +
     'loading="lazy" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">' +
-    '</iframe></div>' +
-    '<p class="trilha-status" id="trilhaStatus">Aperte o play no player para ouvir. O Spotify não toca sozinho; sem conta conectada, reproduz trechos de 30 segundos. Para desligar, use o botão na barra do topo.</p>' +
+    '</iframe>' +
+    '<p class="trilha-status">Waka Waka é a faixa 3 da lista. Aperte o play no player: o Spotify não toca sozinho e, sem conta conectada, reproduz trechos de 30 segundos.</p>' +
     '</div>';
 
   if (!html.includes('</header>')) throw Error('Cabeçalho não encontrado para a trilha');
   html = html.replace('</header>', '</header>\n' + barra);
 
   html = html.replace('</style>',
-    '.trilha{display:flex;flex-wrap:wrap;align-items:center;gap:14px 20px;max-width:1240px;margin:14px auto 0;' +
-    'padding:14px 18px;border:1px solid #42664d;border-radius:10px;background:linear-gradient(120deg,#183d29,#101f18)}' +
-    '.trilha-info{display:flex;flex-direction:column;gap:3px;min-width:210px;flex:1 1 210px}' +
-    '.trilha-kicker{font:600 10px var(--body);letter-spacing:2px;color:#d7fe61}' +
-    '.trilha-info b{font-size:17px;color:#f1f7ea;line-height:1.2}' +
-    '.trilha-art{font:13px var(--body);color:#b9cfbe}' +
-    '.trilha-info a{font:13px var(--body);color:#d7fe61;margin-top:3px}' +
-    '.trilha-player{flex:1 1 340px;min-width:280px;max-width:520px}' +
-    '.trilha-player iframe{width:100%;height:152px;border:0;border-radius:10px}' +
-    '#trilhaOff{padding:9px 16px;border:1px solid #577a5e;border-radius:6px;cursor:pointer;' +
-    'font:700 13px var(--body);background:transparent;color:#cfe0cf;align-self:center}' +
-    '#trilhaOff:hover{border-color:#d7fe61;color:#d7fe61}' +
-    '.trilha-status{flex-basis:100%;margin:0;font:12px var(--body);color:#a8c0ad;line-height:1.45}' +
-    '@media(max-width:700px){.trilha{margin:12px 16px 0;padding:14px}.trilha-player{min-width:0}}' +
+    '.trilha{display:flex;flex-wrap:wrap;align-items:center;gap:12px 18px;max-width:1240px;' +
+    'margin:12px auto 0;padding:12px 18px;border:1px solid #42664d;border-radius:10px;' +
+    'background:linear-gradient(120deg,#183d29,#101f18)}' +
+    '.trilha iframe{flex:1 1 320px;min-width:260px;max-width:520px;height:152px;border:0;border-radius:10px}' +
+    '.trilha-status{flex:1 1 240px;margin:0;font:12px/1.5 var(--body);color:#a8c0ad}' +
+    '@media(max-width:700px){.trilha{margin:12px 16px 0}.trilha iframe{min-width:0}}' +
     '</style>');
 
   const script = String.raw`<script>
 (()=>{
  const barra=document.getElementById('trilha'),botao=document.getElementById('musicaToggle'),
-       quadro=barra&&barra.querySelector('iframe');
+       quadro=document.getElementById('trilhaFrame');
  if(!barra||!botao||!quadro)return;
- const fonte=quadro.src;
- let ligada=true;
- /* Esvaziar o src para o player, e devolve-lo recomeca do zero. Esconder a
-    barra sem esvaziar deixaria o som tocando atras. */
+ const fonte=quadro.dataset.src;
+ let ligada=false;
+ botao.textContent='Ligar música';
+ /* Esvaziar o src para o player de verdade. Esconder a barra sem esvaziar
+    deixaria o som tocando atras. */
  botao.onclick=()=>{
   ligada=!ligada;
   if(ligada){quadro.src=fonte;barra.hidden=false;}
