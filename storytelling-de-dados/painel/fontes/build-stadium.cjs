@@ -26,7 +26,8 @@ html=html.slice(0,start)+`function boneco(cod, o = {}) {
  // Nas composições explicitamente identificadas como time, preserva a camisa do lado.
  if(o.time==='m') row=1;
  else if(o.camisa) row=0;
- return '<span class="athlete '+(o.corre?'running':'')+'" aria-hidden="true" style="background-position:'+col*100/3+'% '+row*100+'%"></span>';
+ const mov = o.move ? ' mv-'+o.move : '';
+ return '<span class="athlete '+(o.corre?'running':'')+mov+'" aria-hidden="true" style="background-position:'+col*100/3+'% '+row*100+'%"></span>';
 }
 
 `+html.slice(end);
