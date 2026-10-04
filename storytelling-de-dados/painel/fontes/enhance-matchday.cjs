@@ -5,7 +5,7 @@ module.exports=function enhance(html){
  html=html.slice(0,begin)+[
  'function boneco(cod,o={}) {',
  'let id=o.corre?Number(o.athlete)||0:Number(cod)||0;if(o.time===\'m\'&&!o.corre)id=4+id%4;',
- 'if(!o.corre&&!o.move)return \'<span class="position-token" aria-hidden="true">\'+(o.numero??cod)+\'</span>\';',
+ 'if(!o.corre&&!o.move)return \'<span class="position-token" aria-hidden="true">\'+(o.numero ?? (typeof NUMERO !== "undefined" ? NUMERO[cod] : null) ?? cod)+\'</span>\';',
 "if(id===8)return '<img class=\"card-athlete\" src=\"assets/flaco-lopez.png\" alt=\"\" loading=\"lazy\">';",
 "if(id===9)return '<img class=\"card-athlete\" src=\"assets/player-extra-crest.png\" alt=\"\" loading=\"lazy\">';",
  'return \'<span class="athlete \'+(o.corre?\'running\':\'card-athlete\')+\'" aria-hidden="true" style="background-position:\'+(id%4)*100/3+\'% \'+Math.floor(id/4)*100+\'%"></span>\';',
