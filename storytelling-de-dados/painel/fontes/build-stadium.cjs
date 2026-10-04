@@ -54,8 +54,12 @@ body{background:radial-gradient(ellipse at 50% 4%,#19372a44,transparent 34%),#09
  .athlete{background-image:url('assets/players-men-v2.png')}.no span.athlete{background-image:url('assets/players-men-v2.png');background-color:transparent;background-size:400% 200%;background-repeat:no-repeat;padding:0;margin:0;border:0;border-radius:0;box-shadow:none;width:100%;aspect-ratio:3/4}
 `;
 html=html.replace('</style>',styles+'</style>');
+html=require('./polish-panel.cjs')(html);
+html=require('./enhance-matchday.cjs')(html);
+html=require('./lineup-music.cjs')(html);
 fs.writeFileSync(__dirname+'/matchday.html',html);
-const standalone=html.replaceAll("url('assets/stadium.png')","url('data:image/png;base64,"+fs.readFileSync(__dirname+'/assets/stadium.png').toString('base64')+"')").replaceAll("url('assets/players.png')","url('data:image/png;base64,"+fs.readFileSync(__dirname+'/assets/'+playerAsset).toString('base64')+"')").replaceAll("url('assets/players-men-v2.png')","url('data:image/png;base64,"+fs.readFileSync(__dirname+'/assets/'+playerAsset).toString('base64')+"')");
+const standalone=html.replaceAll('src="assets/player-extra.png"','src="data:image/png;base64,'+fs.readFileSync(__dirname+'/assets/player-extra.png').toString('base64')+'"').replaceAll('src="assets/flaco-lopez.png"','src="data:image/png;base64,'+fs.readFileSync(__dirname+'/assets/flaco-lopez.png').toString('base64')+'"').replaceAll("url('assets/stadium.png')","url('data:image/png;base64,"+fs.readFileSync(__dirname+'/assets/stadium.png').toString('base64')+"')").replaceAll("url('assets/players.png')","url('data:image/png;base64,"+fs.readFileSync(__dirname+'/assets/'+playerAsset).toString('base64')+"')").replaceAll("url('assets/players-men-v2.png')","url('data:image/png;base64,"+fs.readFileSync(__dirname+'/assets/'+playerAsset).toString('base64')+"')");
 fs.writeFileSync(__dirname+'/classico_matchday.html',standalone);
 for(const m of html.matchAll(/<script(?:\s[^>]*)?>([\s\S]*?)<\/script>/g))if(m[1].trim())new vm.Script(m[1]);
 console.log('Matchday built; standalone assets embedded; script syntax valid.');
+
