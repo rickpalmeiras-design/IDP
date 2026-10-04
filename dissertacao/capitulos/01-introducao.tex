@@ -1,53 +1,143 @@
 \section{Introdução}
+\label{sec:introducao}
 
-%%=============================================================================
-%% NOTA DE TRABALHO -- LEIA ANTES DE ESCREVER
-%%
-%% A INTRODUÇÃO É A ÚLTIMA COISA QUE ESCREVEREMOS.
-%%
-%% Motivo: a introdução tem de prometer exatamente o que o trabalho entrega.
-%% Enquanto a especificação, a amostra e a leitura dos resultados ainda estão
-%% se estabilizando (Capítulos 3 e 4), qualquer introdução escrita agora vira
-%% dívida: promete efeito causal onde há associação condicional, promete
-%% horizonte longo onde a margem é trimestral, promete "impacto da IA" onde o
-%% tratamento é um índice ocupacional. Escrevemos a introdução, o resumo e o
-%% abstract juntos, no fim, a partir do que os Capítulos 3, 4 e 5 já disserem.
-%%
-%% Ordem de escrita combinada: Capítulo 3 -> Capítulo 4 -> Capítulo 5 ->
-%% Capítulo 2 (fechamento da literatura) -> Capítulo 1 -> resumo/abstract.
-%%=============================================================================
+O lançamento público do ChatGPT, em 30 de novembro de 2022, colocou ao alcance
+de qualquer pessoa com acesso à internet uma tecnologia que até então circulava
+em ambientes especializados. Não é o primeiro marco da automação recente nem,
+provavelmente, o mais importante, mas tem uma propriedade rara em economia do
+trabalho: é único, nacional, datado e exterior às decisões de qualquer
+trabalhador ou firma da amostra. É por essa propriedade, e não por uma hipótese
+sobre a velocidade da adoção, que esta dissertação o utiliza como referência
+temporal. A pergunta não é se as empresas brasileiras adotaram modelos de
+linguagem, coisa que as bases disponíveis não informam, e sim se as ocupações
+teoricamente mais suscetíveis a essa tecnologia passaram a exibir, depois do
+marco, um padrão de transição diferente do das demais.
 
-Esta seção será redigida ao final, depois de fechados os procedimentos
-metodológicos, os resultados preliminares e as considerações. O objetivo é
-garantir que a promessa feita aqui corresponda exatamente ao que o desenho
-identifica e ao que os dados sustentam.
+A literatura que trata do tema está organizada em torno de duas estratégias.
+A primeira mede a exposição da ocupação a partir do seu conteúdo de tarefas:
+\citeonline{felten2021} constroem o \textit{Artificial Intelligence Occupational
+Exposure} (AIOE) ligando habilidades ocupacionais a progressos documentados em
+aplicações de inteligência artificial, e \citeonline{eloundou2024} refazem o
+exercício tarefa a tarefa, especificamente para modelos de linguagem de grande
+porte. A segunda observa a adoção diretamente, em ambientes em que ela é
+registrada: \citeonline{brynjolfsson2025} estimam ganhos de produtividade com
+implantação escalonada dentro de uma firma, e \citeonline{humlum2025} examinam
+o mercado dinamarquês com exposição ocupacional e horizonte curto, encontrando
+efeitos nulos e precisamente estimados. O desenho que liga as duas pontas,
+usar a intensidade de exposição como fonte de variação quando o choque é comum a
+todos, vem de \citeonline{acemoglu2020}. Essa evidência foi produzida, porém, em
+mercados de trabalho cuja principal margem de ajuste é o vínculo formal, e diz
+pouco sobre uma economia em que a travessia da fronteira entre formalidade e
+informalidade é frequente e não separa dois mercados estanques
+\parencite{ulyssea2020,meghir2015}.
 
-Quando for escrita, a introdução deverá cobrir, nesta ordem:
+Daí o problema de pesquisa desta dissertação: \textbf{trabalhadores em ocupações
+mais expostas à inteligência artificial passaram a apresentar transições de
+trabalho distintas depois do lançamento público do ChatGPT?} Por transição
+entende-se o que acontece a uma mesma pessoa entre duas entrevistas trimestrais
+consecutivas da PNAD Contínua: mudar de ocupação, sair do emprego, passar de um
+vínculo formal para um informal ou deslocar-se no gradiente de exposição, para
+cima ou para baixo. ``Mais expostas'' é uma propriedade da ocupação de origem,
+medida pelo AIOE, e não uma propriedade do trabalhador nem da firma.
+
+Quatro hipóteses de trabalho organizam a investigação, todas escritas de modo a
+poderem ser rejeitadas pelos dados:
 
 \begin{enumerate}[label=\alph*)]
-  \item \textbf{contextualização}: a difusão de modelos de linguagem de grande
-        porte a partir do lançamento público do ChatGPT, em 30 de novembro de
-        2022, e por que esse marco é usado como referência temporal;
-  \item \textbf{problema de pesquisa}: trabalhadores em ocupações mais expostas
-        à inteligência artificial passaram a apresentar transições de trabalho
-        diferentes (mudança de ocupação, saída do emprego, informalização,
-        deslocamento no gradiente de exposição) depois desse marco?
-  \item \textbf{hipóteses}: as hipóteses de trabalho que serão confrontadas com
-        os desfechos do Capítulo~\ref{sec:resultados}, escritas de forma que
-        possam ser rejeitadas;
-  \item \textbf{objetivo geral e objetivos específicos}: medir o gradiente condicional de transição ocupacional por unidade de AIOE e
-        descrever a mobilidade entre faixas de exposição, deixando explícito que
-        a validação do desenho (estudo de evento, testes de tendência
-        pré-marco e bateria de sensibilidade) fica para a agenda do
-        Capítulo~\ref{sec:melhorias};
-  \item \textbf{justificativa}: a inexistência, no Brasil, de medida direta de
-        adoção de inteligência artificial em bases representativas, e o que uma
-        medida de exposição ocupacional aplicada a um painel domiciliar
-        rotativo permite e não permite concluir;
-  \item \textbf{delimitação}: o que o trabalho \emph{não} pretende identificar,
-        antecipando a Seção~\ref{sec:limites};
-  \item \textbf{estrutura do texto}: um parágrafo apresentando os cinco
-        capítulos.
+  \item \textbf{frequência}: depois do marco, ocupações de origem mais expostas
+        passaram a apresentar \emph{mais} mudança de ocupação do que as menos
+        expostas;
+  \item \textbf{direção}: esse movimento adicional é assimétrico, com aumento
+        das transições para ocupações menos expostas e redução das transições
+        para ocupações mais expostas;
+  \item \textbf{vínculo}: maior exposição associa-se a \emph{mais} saída do
+        emprego e a \emph{mais} transição de vínculo formal para informal, que é
+        a previsão da leitura corrente sobre deslocamento tecnológico em um
+        mercado de trabalho com informalidade elevada;
+  \item \textbf{atrito}: o gradiente de exposição na probabilidade de reencontrar
+        a pessoa na entrevista seguinte permaneceu estável entre os dois
+        períodos, condição necessária para que as três hipóteses anteriores
+        sejam lidas como algo além de seleção longitudinal.
 \end{enumerate}
 
-% TODO: substituir todo o conteúdo acima pelo texto final da introdução.
+As quatro são confrontadas no Capítulo~\ref{sec:resultados}. Adiante-se que a
+terceira não se sustenta: o gradiente estimado nas duas margens de vínculo tem
+sinal oposto ao previsto, resultado que a Seção~\ref{sec:limites} e o
+Capítulo~\ref{sec:melhorias} ajudam a qualificar.
+
+O objetivo geral é medir o gradiente condicional de transição ocupacional por
+unidade de exposição à inteligência artificial e descrever a mobilidade entre
+faixas de exposição, antes e depois do marco. Os objetivos específicos são:
+construir, a partir de um painel domiciliar rotativo não desenhado para uso
+longitudinal, uma base de transições individuais com regras de identidade
+explícitas e auditáveis (Seção~\ref{sec:par}); transportar a medida de exposição
+da classificação ocupacional americana para a brasileira e documentar o custo
+dessa travessia (Seção~\ref{sec:exposicao}); estimar, para sete desfechos de
+transição, o gradiente associado à exposição, mantendo a teletrabalhabilidade
+interagida com o período na mesma forma funcional do tratamento, dada a
+correlação de $0{,}702$ entre os dois índices (Seção~\ref{sec:espec}); e
+descrever a mobilidade entre faixas de exposição por matriz de transição, com
+teste formal de igualdade entre os períodos. A validação do desenho (estudo de
+evento, teste de tendências anteriores ao marco, análise de sensibilidade a
+violações de paralelismo e medidas alternativas de exposição) não integra os
+objetivos desta versão, e está organizada, com ordem de execução e justificativa
+de prioridade, no Capítulo~\ref{sec:melhorias}.
+
+A justificativa é, em primeiro lugar, de disponibilidade de dados. Não existe,
+no Brasil, medida direta de adoção de inteligência artificial em base
+representativa da população ocupada; não há o equivalente nacional dos registros
+de implantação usados por \citeonline{brynjolfsson2025}. O que existe é uma
+pesquisa domiciliar trimestral, de abrangência nacional, com estrutura de painel
+rotativo e codificação ocupacional detalhada, e é essa a única porta de entrada
+hoje aberta para a pergunta. Aplicar a ela uma medida de exposição ocupacional
+permite dizer se as margens de transição se moveram de forma desigual ao longo
+do gradiente de exposição; não permite dizer que a inteligência artificial
+causou esse movimento, nem identificar o canal pelo qual ele teria ocorrido. Em
+segundo lugar, a justificativa é de recorte: o traço que distingue o caso
+brasileiro dos mercados em que a literatura foi construída é a informalidade, e
+tratá-la como desfecho próprio, e não como característica fixa do trabalhador,
+é o que permite verificar se o ajuste, havendo algum, ocorre na saída do emprego
+ou na natureza do vínculo. Em terceiro, a justificativa é de calibragem: a
+rotatividade ocupacional brasileira já é elevada em um trimestre comum
+\parencite{higano2023,wroblevski2024}, de modo que qualquer gradiente atribuído
+à exposição precisa ser lido como desvio sobre esse pano de fundo, e nunca
+confundido com ele.
+
+A delimitação acompanha de perto o que o desenho permite, e a
+Seção~\ref{sec:limites} a desenvolve em detalhe. Esta dissertação não observa
+adoção de ferramenta alguma: o tratamento é um índice de exposição potencial da
+ocupação, construído para a estrutura ocupacional americana e anterior à difusão
+dos modelos generativos. Não há variação exógena na intensidade do choque, de
+modo que qualquer fator que tenha atingido ocupações expostas de maneira
+diferencial no mesmo período entra no coeficiente. Esta versão do trabalho
+reporta um único cenário de estimação, sem bateria de sensibilidade, razão pela
+qual os coeficientes são apresentados como \textbf{associação condicional} e não
+como estimativas causais. O horizonte é de um trimestre, o que exclui
+realocação lenta, requalificação e carreira. A amostra condiciona a origem a
+estar ocupada, e portanto nada diz sobre quem procura o primeiro emprego, margem
+em que um efeito de exposição talvez apareça primeiro. Direção no
+gradiente não é bem-estar: deslocar-se para ocupação de menor AIOE significa
+menor exposição à inteligência artificial, e não salário menor ou contrato pior.
+Por fim, a série utilizada atravessa uma descontinuidade na taxa medida de
+mudança de ocupação durante os trimestres de coleta telefônica de 2020 e 2021,
+coincidente com a alteração no modo de coleta da pesquisa
+\parencite{ibge2022tratamento} e de causa ainda não demonstrada; esse é o limite
+mais sério do trabalho e encabeça a agenda posterior.
+
+O texto está organizado em cinco capítulos. Este primeiro apresenta o problema,
+as hipóteses, os objetivos e os limites. O Capítulo~\ref{sec:literatura} faz a
+revisão de literatura em duas camadas: primeiro as cinco leituras das quais o
+trabalho depende diretamente para justificar a medida de tratamento, a medida
+alternativa, o que se sabe sobre o efeito da ferramenta e o desenho de
+identificação; depois a revisão propriamente dita, ampliada com a literatura
+brasileira de mobilidade ocupacional e informalidade. O
+Capítulo~\ref{sec:metodo} descreve os procedimentos metodológicos: a fonte, a
+reconstrução do par pessoa-trimestre, a filtragem da amostra, a construção da
+medida de exposição, a definição dos sete desfechos, a especificação
+econométrica e a inferência, encerrando com a seção que explicita o que o
+desenho não identifica. O Capítulo~\ref{sec:resultados} apresenta os resultados
+preliminares, em três blocos: descrição da amostra e das margens de transição,
+resultado principal e síntese. O Capítulo~\ref{sec:melhorias} retoma a pergunta
+de pesquisa à luz do que foi encontrado e organiza a agenda de melhorias
+posteriores em quatro frentes, com indicação de qual limitação específica cada
+uma pretende resolver.
