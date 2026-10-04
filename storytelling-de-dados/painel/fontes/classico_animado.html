@@ -235,7 +235,7 @@ body{background:#081313}.wrap{max-width:1280px}.matchnav{padding:17px max(24px,c
 .card-destaque{display:grid;grid-template-columns:28px 52px 1fr;gap:11px;align-items:center;padding:12px 0;border-top:1px solid var(--line)}
 .card-destaque .medalha{font-family:var(--display);font-size:1.5rem;color:var(--muted);line-height:1}
 .card-destaque .txt b{display:block;font-size:1.02rem;line-height:1.2}
-.card-destaque .txt .chip{margin:4px 0 0}.card-destaque .chip{display:inline-block;padding:3px 9px;border-radius:999px;font-weight:700;font-size:.78rem;line-height:1.45;border:1px solid}.card-destaque .chip.up{background:#dff0e3;color:#09562f;border-color:#a3d0b3}.card-destaque .chip.down{background:#fbe0e4;color:#941024;border-color:#eeaeb9}.card-destaque .chip.zero{background:#e9ece8;color:#454f48;border-color:#cdd6cc}
+.card-destaque .txt .chip{margin:4px 0 0}#musicaToggle{padding:5px 12px;border:1px solid currentColor;border-radius:999px;background:transparent;color:inherit;cursor:pointer;font:600 12px var(--body)}#musicaToggle:hover{opacity:.78}.card-destaque .chip{display:inline-block;padding:3px 9px;border-radius:999px;font-weight:700;font-size:.78rem;line-height:1.45;border:1px solid}.card-destaque .chip.up{background:#dff0e3;color:#09562f;border-color:#a3d0b3}.card-destaque .chip.down{background:#fbe0e4;color:#941024;border-color:#eeaeb9}.card-destaque .chip.zero{background:#e9ece8;color:#454f48;border-color:#cdd6cc}
 .card-destaque .txt em{display:block;font-style:normal;font-size:.81rem;color:var(--muted);line-height:1.4;margin-top:4px}
 
 /* ---- a sumula e a tabela dos proximos jogos ------------------------------- */
@@ -263,8 +263,7 @@ body{background:#081313}.wrap{max-width:1280px}.matchnav{padding:17px max(24px,c
 
 <div class="databar" id="databar" role="status">
   <span id="dataMsg">Dados ilustrativos: carregue o dashboard_data.json para ver o painel real.</span>
-  <label for="arquivo">Carregar dashboard_data.json</label>
-  <input type="file" id="arquivo" accept=".json,application/json">
+  <button type="button" id="musicaToggle">Desligar música</button>
 </div>
 
 <header class="estadio">
@@ -816,16 +815,6 @@ function valida(d) {
   if (falta.length) throw new Error("O arquivo não tem as chaves: " + falta.join(", ") + ". Gere de novo com auditoria_e_fluxos.py.");
   return d;
 }
-$("arquivo").onchange = e => {
-  const f = e.target.files[0]; if (!f) return;
-  const rd = new FileReader();
-  rd.onload = () => {
-    try { const d = valida(JSON.parse(rd.result)); render(d, true);
-      try { localStorage.setItem("classico_ia_animado_dados", rd.result); } catch(_) {} }
-    catch (err) { $("dataMsg").textContent = "Não foi possível ler o arquivo. " + err.message; }
-  };
-  rd.readAsText(f);
-};
 
 $("play").onclick=()=>{playing=!playing;$("play").textContent=playing?"Ⅱ Pausar partida":"▶ Retomar partida";$("play").setAttribute("aria-pressed",String(playing));document.querySelectorAll('.viajante').forEach(e=>e.getAnimations().forEach(a=>playing?a.play():a.pause()));iniciarViagens();};
 $("speed").onchange=()=>{speed=Number($("speed").value);iniciarViagens();};

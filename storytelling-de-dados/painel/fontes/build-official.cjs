@@ -25,7 +25,6 @@ const demoStart=html.indexOf('function demo() {'),demoEnd=html.indexOf('/* =====
 assert(demoStart>0&&demoEnd>demoStart);html=html.slice(0,demoStart)+html.slice(demoEnd);
 troca(/if \(!inicial\) \{ try \{ const s = localStorage[\s\S]*?\}\s*catch\(_\) \{ inicial = null; \} \}/,'');
 troca('render(inicial || demo(), !!inicial);','if(inicial){render(inicial,true);}else{$("dataMsg").textContent="Erro ao ler os dados oficiais embutidos. Carregue o JSON do projeto.";}');
-troca(/\s*try \{ localStorage\.setItem\([^\n]+\} catch\(_\) \{\}/,'');
 troca('PÓS / FLUXOS ILUSTRATIVOS','PÓS / DADOS DO PROJETO');
 troca('Dados ilustrativos: carregue o dashboard_data.json para ver o painel real.','Dados oficiais do projeto · carregando…');
 troca('EDIÇÃO EXPERIMENTAL','DADOS DO PROJETO');
