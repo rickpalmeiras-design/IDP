@@ -21,7 +21,7 @@ html=html.slice(0,start)+`function boneco(cod, o = {}) {
  const c=Number(cod)||0;
  // No campo, os oito atletas distintos ocupam os códigos 0–7. Os códigos 8 e 9
  // repetem um representante de cada clube porque há dez grupos ocupacionais.
- const campo=[[0,0],[0,1],[0,2],[0,3],[1,0],[1,1],[1,2],[1,3],[0,0],[1,0]];
+ const campo=[[0,0],[0,1],[1,3],[0,3],[1,0],[1,1],[1,2],[0,2],[0,0],[1,0]];
  let [row,col]=campo[c]||campo[0];
  // Nas composições explicitamente identificadas como time, preserva a camisa do lado.
  if(o.time==='m') row=1;

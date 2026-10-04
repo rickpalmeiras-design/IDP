@@ -7,24 +7,35 @@ for(const r of data.destino_por_quartil){const sum=['Mesmo grupo','Outro grupo',
 assert.equal(data.destino_por_quartil.find(r=>r.q==='Q4'&&r.periodo==='pós')['Outro grupo'],25.34);
 assert.equal(data.destino_por_quartil.find(r=>r.q==='Q1'&&r.periodo==='pós')['Outro grupo'],20.06);
 let html=fs.readFileSync(__dirname+'/classico_matchday.html','utf8');
-html=html.replace('<title>Clássico da IA · Matchday</title>','<title>Clássico da IA · Matchday · Dados oficiais</title>');
-html=html.replace('<script id="dados-embutidos" type="application/json"></script>','<script id="dados-embutidos" type="application/json">\n'+raw.replace(/</g,'\\u003c')+'\n</script>');
+// Troca que acusa quando nao encontra. Um replace calado deixa o painel sair
+// sem o codigo que deveria ter entrado, e nada no build denuncia.
+let nTroca = 0;
+function troca(alvo, novo) {
+  nTroca++;
+  const achou = alvo instanceof RegExp ? alvo.test(html) : html.includes(alvo);
+  assert(achou, 'troca ' + nTroca + ': nao encontrei o alvo:\n' + String(alvo).slice(0, 120));
+  const antes = html.length;
+  html = html.replace(alvo, novo);
+  assert(html.length !== antes || alvo === novo, 'a troca nao mudou nada: ' + String(alvo).slice(0, 60));
+}
+troca('<title>Clássico da IA · Matchday</title>','<title>Clássico da IA · Matchday · Dados oficiais</title>');
+troca('<script id="dados-embutidos" type="application/json"></script>','<script id="dados-embutidos" type="application/json">\n'+raw.replace(/</g,'\\u003c')+'\n</script>');
 // Remove synthetic data generation altogether; failed loading must never fall back to a demo.
 const demoStart=html.indexOf('function demo() {'),demoEnd=html.indexOf('/* ======================= render',demoStart);
 assert(demoStart>0&&demoEnd>demoStart);html=html.slice(0,demoStart)+html.slice(demoEnd);
-html=html.replace(/if \(!inicial\) \{ try \{ const s = localStorage[\s\S]*?\}\s*catch\(_\) \{ inicial = null; \} \}/,'');
-html=html.replace('render(inicial || demo(), !!inicial);','if(inicial){render(inicial,true);}else{$("dataMsg").textContent="Erro ao ler os dados oficiais embutidos. Carregue o JSON do projeto.";}');
-html=html.replace(/\s*try \{ localStorage\.setItem\([^\n]+\} catch\(_\) \{\}/,'');
-html=html.replace('PÓS / FLUXOS ILUSTRATIVOS','PÓS / DADOS DO PROJETO');
-html=html.replace('Dados ilustrativos: carregue o dashboard_data.json para ver o painel real.','Dados oficiais do projeto · carregando…');
-html=html.replace('EDIÇÃO EXPERIMENTAL','DADOS DO PROJETO');
-html=html.replace('<div class="databar" id="databar"','<div class="databar real" id="databar"');
-html=html.replace('Arquivo carregado: ${Number((d.meta||{}).n_transicoes||0).toLocaleString("pt-BR")} transições.','Dados do projeto: ${Number((d.meta||{}).n_transicoes||0).toLocaleString("pt-BR")} transições nas médias · ${(d.meta||{}).janela||""}.');
-html=html.replace('const bar = $("databar");','$("liveLabel").textContent="PÓS / FLUXOS DO ARQUIVO";\n  const bar = $("databar");');
-html=html.replace('Se já vinham se afastando antes, a diferença não é culpa da IA.','Se já vinham se afastando antes, a comparação exige investigação adicional.');
-html=html.replace('<div class="duelo">','<p class="lede" style="font-size:14px;margin:16px 0">Recorte das médias: 2020T1 a 2021T3 ficam de fora por mudança no modo de coleta; 2022T4 também é excluído. O pós começa em 2023T1. Taxas ponderadas pelo peso da origem.</p><div class="duelo">');
-html=html.replace('  <section id="var">','  <p class="lede" style="font-size:14px;margin-top:18px"><strong>Direção da exposição:</strong> a mudança é entre quartis. Q4 não tem quartil acima e Q1 não tem quartil abaixo: parte do resultado é mecânica. Menor exposição não significa emprego pior.</p>\n  <section id="var">');
-html=html.replace('<p id="rodapeDados"></p>','<p id="rodapeDados"></p><details class="official-audit"><summary>Procedência e alertas da auditoria</summary><div id="officialAudit"></div></details>');
+troca(/if \(!inicial\) \{ try \{ const s = localStorage[\s\S]*?\}\s*catch\(_\) \{ inicial = null; \} \}/,'');
+troca('render(inicial || demo(), !!inicial);','if(inicial){render(inicial,true);}else{$("dataMsg").textContent="Erro ao ler os dados oficiais embutidos. Carregue o JSON do projeto.";}');
+troca(/\s*try \{ localStorage\.setItem\([^\n]+\} catch\(_\) \{\}/,'');
+troca('PÓS / FLUXOS ILUSTRATIVOS','PÓS / DADOS DO PROJETO');
+troca('Dados ilustrativos: carregue o dashboard_data.json para ver o painel real.','Dados oficiais do projeto · carregando…');
+troca('EDIÇÃO EXPERIMENTAL','DADOS DO PROJETO');
+troca('<div class="databar" id="databar"','<div class="databar real" id="databar"');
+troca('Arquivo carregado: ${Number((d.meta||{}).n_transicoes||0).toLocaleString("pt-BR")} transições.','Dados do projeto: ${Number((d.meta||{}).n_transicoes||0).toLocaleString("pt-BR")} transições nas médias · ${(d.meta||{}).janela||""}.');
+troca('const bar = $("databar");','$("liveLabel").textContent="PÓS / FLUXOS DO ARQUIVO";\n  const bar = $("databar");');
+troca('Se já vinham se afastando antes, a diferença não é culpa da IA.','Se já vinham se afastando antes, a comparação exige investigação adicional.');
+troca('<div class="duelo">','<p class="lede" style="font-size:14px;margin:16px 0">Recorte das médias: 2020T1 a 2021T3 ficam de fora por mudança no modo de coleta; 2022T4 também é excluído. O pós começa em 2023T1. Taxas ponderadas pelo peso da origem.</p><div class="duelo">');
+troca('  <section id="var">','  <p class="lede" style="font-size:14px;margin-top:18px"><strong>Direção da exposição:</strong> a mudança é entre quartis. Q4 não tem quartil acima e Q1 não tem quartil abaixo: parte do resultado é mecânica. Menor exposição não significa emprego pior.</p>\n  <section id="var">');
+troca('<p id="rodapeDados"></p>','<p id="rodapeDados"></p><details class="official-audit"><summary>Procedência e alertas da auditoria</summary><div id="officialAudit"></div></details>');
 const chartStart=html.indexOf('function varChart() {'),chartEnd=html.indexOf('document.querySelectorAll(".seg button")',chartStart);
 assert(chartStart>0&&chartEnd>chartStart);
 html=html.slice(0,chartStart)+`function varChart(anima) {
@@ -77,12 +88,12 @@ html=html.slice(0,footStart)+`function rodape() {
  const note=document.createElement('p');note.textContent='Os alertas acima são os registrados no arquivo de origem. A auditoria de identidade não está disponível neste painel agregado. Não há contagens individuais por rota para verificar o limite de 30 observações.';box.appendChild(note);
 }
 `+html.slice(footEnd);
-html=html.replace('</style>','.databar.real{background:#175235;color:#fff}.databar.real label{color:#174626;background:#e5f1d5}.official-audit{border:1px solid #526348;padding:15px;border-radius:6px;margin-top:20px}.official-audit summary{cursor:pointer;font-weight:700}.official-audit p,.official-audit li{font-size:14px;line-height:1.6}.var .tela{transition:color .25s}.var .tela.revisando{color:#ff7c8c}.var .tela.revisando::before{background:#ff7c8c}.var-acoes{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:0 0 10px}.revar{background:#1c3330;border:1px solid #4b6a5f;color:#eaf3ef;padding:7px 14px;border-radius:999px;cursor:pointer;font:13px var(--body)}.revar:hover{border-color:#d7fe61;color:#d7fe61}.var-dica{font-size:12px;color:#9fb6a9}.seg button{transition:background .18s,color .18s}.veredito .num{color:#d7fe61;font-weight:700;font-variant-numeric:tabular-nums}.var .tela{gap:12px}.arbitro{flex:0 0 auto;align-self:center;transition:filter .3s}.tela.revisando .arbitro{filter:drop-shadow(0 0 12px #d7fe6188)}.revar.rod[aria-pressed="true"]{border-color:#d7fe61;color:#d7fe61}@media (prefers-reduced-motion: reduce){.var .tela::before{animation:none}.revar.rod{display:none}}@media(max-width:600px){.arbitro{width:104px;height:156px}.var-dica{width:100%}}</style>');
+troca('</style>','.databar.real{background:#175235;color:#fff}.databar.real label{color:#174626;background:#e5f1d5}.official-audit{border:1px solid #526348;padding:15px;border-radius:6px;margin-top:20px}.official-audit summary{cursor:pointer;font-weight:700}.official-audit p,.official-audit li{font-size:14px;line-height:1.6}.var .tela{transition:color .25s}.var .tela.revisando{color:#ff7c8c}.var .tela.revisando::before{background:#ff7c8c}.var-acoes{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:0 0 10px}.revar{background:#1c3330;border:1px solid #4b6a5f;color:#eaf3ef;padding:7px 14px;border-radius:999px;cursor:pointer;font:13px var(--body)}.revar:hover{border-color:#d7fe61;color:#d7fe61}.var-dica{font-size:12px;color:#9fb6a9}.seg button{transition:background .18s,color .18s}.veredito .num{color:#d7fe61;font-weight:700;font-variant-numeric:tabular-nums}.var .tela{gap:12px}.arbitro{flex:0 0 auto;align-self:center;transition:filter .3s}.tela.revisando .arbitro{filter:drop-shadow(0 0 12px #d7fe6188)}.revar.rod[aria-pressed="true"]{border-color:#d7fe61;color:#d7fe61}@media (prefers-reduced-motion: reduce){.var .tela::before{animation:none}.revar.rod{display:none}}@media(max-width:600px){.arbitro{width:104px;height:156px}.var-dica{width:100%}}</style>');
 const arbitroPng=fs.readFileSync(__dirname+'/assets/referee.png').toString('base64');
 const ARBITRO='<img class="arbitro" id="arbitro" width="160" height="240" alt="Representação realista de Anderson Daronco fazendo o sinal do VAR, com os indicadores desenhando um quadrado à frente do peito" src="data:image/png;base64,'+arbitroPng+'">';
-html=html.replace('<div class="tela">VAR em análise</div>','<div class="tela" id="varTela">'+ARBITRO+'<span class="tela-txt">VAR em análise</span></div>');
-html=html.replace('<div class="var-scroll">','<div class="var-acoes"><button type="button" id="rodizio" class="revar rod" aria-pressed="false">Rodar sozinho</button><button type="button" id="revar" class="revar">Rever o lance</button><span class="var-dica">O VAR passa pelos três indicadores sozinho. Clique em um deles para assumir o controle.</span></div><div class="var-scroll">');
-html=html.replace(`document.querySelectorAll(".seg button").forEach(b => b.onclick = () => {
+troca('<div class="tela">VAR em análise</div>','<div class="tela" id="varTela">'+ARBITRO+'<span class="tela-txt">VAR em análise</span></div>');
+troca('<div class="var-scroll">','<div class="var-acoes"><button type="button" id="rodizio" class="revar rod" aria-pressed="false">Rodar sozinho</button><button type="button" id="revar" class="revar">Rever o lance</button><span class="var-dica">O VAR passa pelos três indicadores sozinho. Clique em um deles para assumir o controle.</span></div><div class="var-scroll">');
+troca(`document.querySelectorAll(".seg button").forEach(b => b.onclick = () => {
   metrica = b.dataset.m; document.querySelectorAll(".seg button").forEach(x=>x.setAttribute("aria-pressed", x===b?"true":"false")); varChart(); });`,`let varTimer=null;
 /* A tela do VAR acompanha a troca de aba: entra em revisao, depois anuncia o
    indicador revisado. Sob movimento reduzido nao ha piscada nem espera. */
