@@ -1,8 +1,26 @@
-# Apresentação da dissertação
+# Apresentações da dissertação
 
 Slides e roteiro de fala para uma apresentação de **15 minutos**, em **12 slides**, baseados nos
 Capítulos 2 a 5 da dissertação. Tema em verde escuro (o verde do Palmeiras, o mesmo `006437` da
-dissertação), títulos em Cambria e texto em Calibri.
+dissertação). São **dez opções numeradas de 01 a 10**, com variações acadêmicas de layout,
+paleta e títulos em Cambria ou Times New Roman, com texto em Calibri. Todas mantêm os mesmos
+12 slides, números, leituras nas notas e cronograma de 15 minutos.
+
+| Número | Arquivo | Composição |
+| ---: | --- | --- |
+| 01 | `apresentacao_01.pptx` | Verde acadêmico, composição original. |
+| 02 | `apresentacao_02.pptx` | Gráficos à esquerda, caixas retangulares. |
+| 03 | `apresentacao_03.pptx` | Títulos clássicos centralizados. |
+| 04 | `apresentacao_04.pptx` | Composição editorial, gráficos à esquerda. |
+| 05 | `apresentacao_05.pptx` | Verde profundo, composição plana, títulos centralizados. |
+| 06 | `apresentacao_06.pptx` | Verde institucional, gráficos à esquerda, títulos centralizados. |
+| 07 | `apresentacao_07.pptx` | Títulos clássicos, composição plana. |
+| 08 | `apresentacao_08.pptx` | Editorial, gráficos à esquerda, títulos clássicos centralizados. |
+| 09 | `apresentacao_09.pptx` | Fundo verde suave, caixas retangulares, títulos centralizados. |
+| 10 | `apresentacao_10.pptx` | Composição plana, evidências à esquerda, títulos clássicos. |
+
+`apresentacao_dissertacao.pptx` permanece disponível como arquivo original sem numeração.
+As opções variam a apresentação visual, preservando o argumento da dissertação.
 
 ## O que tem aqui
 
@@ -12,6 +30,8 @@ dissertação), títulos em Cambria e texto em Calibri.
 | `roteiro.md` | O mesmo texto falado, em um documento só, com o quadro de tempo e as referências. |
 | `conteudo.js` | Fonte única do texto falado e do tempo de cada slide. |
 | `gerar_apresentacao.js` | Gera o `.pptx`. |
+| `gerar_todas.js` | Gera os dez `.pptx` numerados. |
+| `variantes.js` | Define os layouts e temas das dez opções. |
 | `gerar_roteiro.js` | Gera o `roteiro.md` a partir do `conteudo.js`. |
 | `contar.js` | Confere se as leituras cabem nos 15 minutos. |
 | `prepara_dados.py` | Lê as tabelas `.tex` da dissertação e o CSV do AIOE e grava `dados_slides.json`. |
@@ -69,7 +89,10 @@ npm install
 node contar.js                  # confere o tempo das leituras
 node gerar_apresentacao.js      # gera o .pptx
 node gerar_roteiro.js           # gera o roteiro.md
+node gerar_todas.js             # gera apresentacao_01.pptx até apresentacao_10.pptx
 ```
+
+Para regenerar apenas uma opção, use `node gerar_apresentacao.js --versao 2`, por exemplo.
 
 Para mudar o tempo de um slide ou o texto falado, edite `conteudo.js` e rode `contar.js`: ele mostra a folga de
 cada slide e avisa se o total deixou de somar 900 segundos.

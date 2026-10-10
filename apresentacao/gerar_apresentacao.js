@@ -11,9 +11,14 @@ const fs = require('fs');
 const pptxgen = require('pptxgenjs');
 const { applyTheme } = require('./ferramentas/apply_theme.js');
 const { SLIDES, RITMO_PALAVRAS_POR_MINUTO } = require('./conteudo.js');
+const { VARIANTES, configurarLayouts } = require('./variantes.js');
+const argumento = process.argv.indexOf('--versao');
+const numeroVersao = argumento === -1 ? 1 : Number(process.argv[argumento + 1]);
+const variante = VARIANTES.find(v => v.numero === numeroVersao);
+if (!variante) throw new Error('Use --versao com um número de 1 a 10.');
 
 const D = JSON.parse(fs.readFileSync(path.join(__dirname, 'dados_slides.json'), 'utf8'));
-const ARQUIVO = path.join(__dirname, 'apresentacao_dissertacao.pptx');
+const ARQUIVO = path.join(__dirname, argumento === -1 ? 'apresentacao_dissertacao.pptx' : `apresentacao_${String(numeroVersao).padStart(2, '0')}.pptx`);
 
 // ------------------------------------------------------------------ tema ----
 // O verde do Palmeiras é o mesmo da dissertação (verdepalmeiras, 006437).
@@ -36,6 +41,12 @@ const THEME = {
     folHlink: '4E6A5C',
   },
 };
+THEME.name = variante.nome;
+THEME.headFontFace = variante.titulo || 'Cambria';
+Object.assign(THEME.colors, {
+  accent1: variante.verde, dk2: variante.profundo, accent2: variante.profundo,
+  lt2: variante.claro, lt1: variante.fundo || 'FFFFFF', hlink: variante.verde,
+});
 const H = THEME.colors;   // hex, para os gráficos (que não aceitam cor de tema)
 
 const pres = new pptxgen();
@@ -46,6 +57,7 @@ pres.author = 'Ricardo Carvalho';
 pres.subject = 'Apresentação da dissertação de mestrado, resultados preliminares';
 pres.company = 'IDP';
 const C = pres.SchemeColor;
+configurarLayouts(pres, variante);
 
 // ------------------------------------------------------------- utilidades ----
 const L = 0.6, R = 12.73, LARG = R - L;          // margens laterais da área útil
@@ -60,7 +72,7 @@ pres.defineSlideMaster({
   title: 'CONTEUDO',
   background: { color: C.background1 },
   objects: [
-    { placeholder: { options: { name: 'title', type: 'title', x: L, y: 0.4, w: LARG, h: 0.95, fontSize: 34, bold: true, color: C.text2, align: 'left', valign: 'middle', margin: 0 }, text: 'Título do slide' } },
+    { placeholder: { options: { name: 'title', type: 'title', x: L, y: 0.4, w: LARG, h: 0.95, fontSize: 34, bold: true, color: C.text2, align: variante.centralizar ? 'center' : 'left', valign: 'middle', margin: 0 }, text: 'Título do slide' } },
     { text: { text: FOOT, options: { x: L, y: 7.0, w: 10.5, h: 0.3, fontSize: 10, color: C.accent6, margin: 0 } } },
   ],
   slideNumber: { x: 12.1, y: 7.0, w: 0.63, h: 0.3, fontSize: 10, color: C.accent6, align: 'right' },
@@ -69,7 +81,7 @@ pres.defineSlideMaster({
   title: 'ABERTURA',
   background: { color: C.text2 },
   objects: [
-    { placeholder: { options: { name: 'title', type: 'title', x: 0.9, y: 1.55, w: 9.6, h: 2.5, fontSize: 38, bold: true, color: C.background1, align: 'left', valign: 'top', margin: 0 }, text: 'Título' } },
+    { placeholder: { options: { name: 'title', type: 'title', x: 0.9, y: 1.55, w: 9.6, h: 2.5, fontSize: 38, bold: true, color: C.background1, align: variante.centralizar ? 'center' : 'left', valign: 'top', margin: 0 }, text: 'Título' } },
     { placeholder: { options: { name: 'subtitulo', type: 'body', x: 0.9, y: 4.2, w: 9.6, h: 0.9, fontSize: 20, color: C.accent4, align: 'left', valign: 'top', margin: 0 }, text: 'Subtítulo' } },
   ],
 });
@@ -77,7 +89,7 @@ pres.defineSlideMaster({
   title: 'FECHO',
   background: { color: C.text2 },
   objects: [
-    { placeholder: { options: { name: 'title', type: 'title', x: L, y: 0.4, w: LARG, h: 0.95, fontSize: 34, bold: true, color: C.background1, align: 'left', valign: 'middle', margin: 0 }, text: 'Título do slide' } },
+    { placeholder: { options: { name: 'title', type: 'title', x: L, y: 0.4, w: LARG, h: 0.95, fontSize: 34, bold: true, color: C.background1, align: variante.centralizar ? 'center' : 'left', valign: 'middle', margin: 0 }, text: 'Título do slide' } },
     { text: { text: FOOT, options: { x: L, y: 7.0, w: 10.5, h: 0.3, fontSize: 10, color: C.accent4, margin: 0 } } },
   ],
   slideNumber: { x: 12.1, y: 7.0, w: 0.63, h: 0.3, fontSize: 10, color: C.accent4, align: 'right' },

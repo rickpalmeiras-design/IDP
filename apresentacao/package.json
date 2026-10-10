@@ -3,6 +3,6 @@
   "version": "1.0.0",
   "private": true,
   "description": "Gerador dos slides da apresentação da dissertação (pptxgenjs).",
-  "scripts": { "build": "node gerar_apresentacao.js" },
+  "scripts": { "build": "node gerar_apresentacao.js", "build:todas": "node gerar_todas.js" },
   "dependencies": { "pptxgenjs": "^3.12.0" }
 }
