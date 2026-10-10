@@ -1,0 +1,313 @@
+{
+  "principal": {
+    "A": [
+      {
+        "desfecho": "Transição para menor AIOE",
+        "efeito": 2.187,
+        "ep": 0.105,
+        "lo": 1.982,
+        "hi": 2.393,
+        "p": "<0,001"
+      },
+      {
+        "desfecho": "Muda de ocupação (3 dígitos)",
+        "efeito": 0.861,
+        "ep": 0.136,
+        "lo": 0.594,
+        "hi": 1.128,
+        "p": "<0,001"
+      },
+      {
+        "desfecho": "Muda de ocupação (2 dígitos)",
+        "efeito": 0.278,
+        "ep": 0.128,
+        "lo": 0.027,
+        "hi": 0.529,
+        "p": 0.03
+      },
+      {
+        "desfecho": "Saída do emprego",
+        "efeito": -0.25,
+        "ep": 0.075,
+        "lo": -0.398,
+        "hi": -0.103,
+        "p": "<0,001"
+      },
+      {
+        "desfecho": "Pareamento (teste de atrito)",
+        "efeito": -0.261,
+        "ep": 0.141,
+        "lo": -0.536,
+        "hi": 0.015,
+        "p": 0.064
+      },
+      {
+        "desfecho": "Transição de formal para informal",
+        "efeito": -0.673,
+        "ep": 0.094,
+        "lo": -0.858,
+        "hi": -0.488,
+        "p": "<0,001"
+      },
+      {
+        "desfecho": "Transição para maior AIOE",
+        "efeito": -1.364,
+        "ep": 0.103,
+        "lo": -1.566,
+        "hi": -1.161,
+        "p": "<0,001"
+      }
+    ],
+    "B": [
+      {
+        "desfecho": "Transição para menor AIOE",
+        "efeito": -0.239,
+        "ep": 0.255,
+        "lo": -0.739,
+        "hi": 0.262,
+        "p": 0.35
+      },
+      {
+        "desfecho": "Muda de ocupação (3 dígitos)",
+        "efeito": 0.093,
+        "ep": 0.309,
+        "lo": -0.512,
+        "hi": 0.698,
+        "p": 0.763
+      },
+      {
+        "desfecho": "Muda de ocupação (2 dígitos)",
+        "efeito": 0.391,
+        "ep": 0.29,
+        "lo": -0.178,
+        "hi": 0.96,
+        "p": 0.178
+      },
+      {
+        "desfecho": "Saída do emprego",
+        "efeito": 0.215,
+        "ep": 0.153,
+        "lo": -0.086,
+        "hi": 0.515,
+        "p": 0.161
+      },
+      {
+        "desfecho": "Pareamento (teste de atrito)",
+        "efeito": -0.362,
+        "ep": 0.291,
+        "lo": -0.932,
+        "hi": 0.208,
+        "p": 0.213
+      },
+      {
+        "desfecho": "Transição de formal para informal",
+        "efeito": 1.734,
+        "ep": 0.199,
+        "lo": 1.345,
+        "hi": 2.124,
+        "p": "<0,001"
+      },
+      {
+        "desfecho": "Transição para maior AIOE",
+        "efeito": 0.762,
+        "ep": 0.221,
+        "lo": 0.33,
+        "hi": 1.195,
+        "p": "<0,001"
+      }
+    ]
+  },
+  "descritivas": [
+    {
+      "desfecho": "Pareamento entre entrevistas",
+      "pre": 0.783,
+      "pos": 0.812,
+      "dif": 0.029
+    },
+    {
+      "desfecho": "Saída do emprego",
+      "pre": 0.079,
+      "pos": 0.081,
+      "dif": 0.002
+    },
+    {
+      "desfecho": "Transição de formal para informal",
+      "pre": 0.052,
+      "pos": 0.088,
+      "dif": 0.036
+    },
+    {
+      "desfecho": "Muda de ocupação (2 dígitos)",
+      "pre": 0.209,
+      "pos": 0.28,
+      "dif": 0.071
+    },
+    {
+      "desfecho": "Muda de ocupação (3 dígitos)",
+      "pre": 0.236,
+      "pos": 0.318,
+      "dif": 0.082
+    },
+    {
+      "desfecho": "Transição para menor AIOE",
+      "pre": 0.128,
+      "pos": 0.174,
+      "dif": 0.046
+    },
+    {
+      "desfecho": "Transição para maior AIOE",
+      "pre": 0.129,
+      "pos": 0.174,
+      "dif": 0.046
+    }
+  ],
+  "matriz": [
+    {
+      "origem": "Q1 (menor exposição)",
+      "valores": [
+        -3.6,
+        2.03,
+        1.04,
+        0.34,
+        0.19
+      ]
+    },
+    {
+      "origem": "Q2",
+      "valores": [
+        2.05,
+        -4.97,
+        1.6,
+        0.75,
+        0.57
+      ]
+    },
+    {
+      "origem": "Q3",
+      "valores": [
+        1.17,
+        1.83,
+        -6.42,
+        1.55,
+        1.87
+      ]
+    },
+    {
+      "origem": "Q4",
+      "valores": [
+        0.69,
+        1.22,
+        2.46,
+        -8.06,
+        3.69
+      ]
+    },
+    {
+      "origem": "Q5 (maior exposição)",
+      "valores": [
+        0.26,
+        0.82,
+        1.92,
+        2.78,
+        -5.79
+      ]
+    }
+  ],
+  "escala": [
+    {
+      "dominio": "Todas as origens (pareamento)",
+      "pessoas_transicoes": 3963359,
+      "celulas": 3960584,
+      "ocupacoes": 413,
+      "upas": 31145
+    },
+    {
+      "dominio": "Pares (saída do emprego)",
+      "pessoas_transicoes": 3178582,
+      "celulas": 3176283,
+      "ocupacoes": 413,
+      "upas": 31047
+    },
+    {
+      "dominio": "Destino ocupado (muda de ocupação)",
+      "pessoas_transicoes": 2882225,
+      "celulas": 2880049,
+      "ocupacoes": 413,
+      "upas": 31036
+    },
+    {
+      "dominio": "AIOE nos dois lados (margens direcionais)",
+      "pessoas_transicoes": 2879139,
+      "celulas": 2876964,
+      "ocupacoes": 413,
+      "upas": 31036
+    },
+    {
+      "dominio": "Origem formal (informalização)",
+      "pessoas_transicoes": 1677310,
+      "celulas": 1676862,
+      "ocupacoes": 411,
+      "upas": 30360
+    }
+  ],
+  "aioe": {
+    "n": 416,
+    "media": 0.0053,
+    "dp": 0.9445,
+    "bordas": [
+      -2.123,
+      -1.98,
+      -1.837,
+      -1.695,
+      -1.552,
+      -1.409,
+      -1.266,
+      -1.123,
+      -0.981,
+      -0.838,
+      -0.695,
+      -0.552,
+      -0.41,
+      -0.267,
+      -0.124,
+      0.019,
+      0.161,
+      0.304,
+      0.447,
+      0.59,
+      0.732,
+      0.875,
+      1.018,
+      1.161,
+      1.303,
+      1.446
+    ],
+    "contagens": [
+      1,
+      1,
+      5,
+      6,
+      11,
+      12,
+      13,
+      42,
+      18,
+      13,
+      23,
+      19,
+      14,
+      11,
+      17,
+      25,
+      13,
+      12,
+      18,
+      11,
+      7,
+      34,
+      32,
+      38,
+      20
+    ]
+  }
+}
