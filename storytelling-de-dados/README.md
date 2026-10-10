@@ -36,7 +36,8 @@ sozinho" religa. Sob preferência de movimento reduzido nada disso roda: o gráf
 pronto e o rodízio nem começa.
 
 O árbitro é uma imagem gerada por inteligência artificial, inspirada em Anderson Daronco, sem
-vínculo oficial nem endosso — o rodapé do painel diz isso. O arquivo está em
+vínculo oficial nem endosso. O painel não traz mais essa indicação no rodapé: ela só consta aqui
+e no `PROMPTS.md`. O arquivo está em
 `painel/fontes/assets/referee.png`, com as credenciais de procedência C2PA que a geração
 gravou, e o prompt usado ficou em `painel/fontes/assets/PROMPTS.md`.
 

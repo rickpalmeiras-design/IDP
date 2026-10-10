@@ -43,7 +43,6 @@ html=html.replace('width:44px;pointer-events:none','width:42px;pointer-events:no
 html=html.replace('const el = document.createElement("div");\n  el.className = "viajante";', 'const el = document.createElement("div");\n  el.className = "viajante";');
 html=html.replace('$("play").onclick=()=>{playing=!playing;','$("camera").onclick=()=>{const active=$("camera").getAttribute("aria-pressed")!=="true";$("camera").setAttribute("aria-pressed",String(active));$("camera").textContent=active?"▱ Revenir à vista tática".replace("Revenir à","Voltar à"):"▱ Câmera de transmissão";$("campo").closest(".campo-scroll").classList.toggle("broadcast",active);};\n$("play").onclick=()=>{playing=!playing;document.body.classList.toggle("paused",!playing);');
 html=html.replace('if(!reduz){playing=true;', 'if(!reduz){playing=true;document.body.classList.remove("paused");');
-html=html.replace('<footer class="wrap">','<footer class="wrap"><p class="asset-credit">MATCHDAY · Visual de futebol digital. Personagens masculinos inspirados visualmente em Vitor Roque, Gustavo Gómez, Andreas Pereira e Jhon Arias; Pedro, Arrascaeta, Samuel Lino e Bruno Henrique. Representação artística: não identifica ocupações, exposição à IA ou dados individuais. Sem vínculo oficial com clubes, atletas ou franquias de videogame. O árbitro da seção do VAR é uma representação artística realista gerada por IA e inspirada em Anderson Daronco, sem vínculo oficial ou endosso.</p>');
 const styles=`
 /* Matchday: new raster stadium and full-body athlete assets. */
 :root{--led:#d7fe61;--grass:#204e24;--grass-2:#295d28;--bg:#09100e;--card:#14211b;--line:#324536;--muted:#abc0b0}
@@ -57,6 +56,7 @@ html=html.replace('</style>',styles+'</style>');
 html=require('./polish-panel.cjs')(html);
 html=require('./enhance-matchday.cjs')(html);
 html=require('./broadcast-strip.cjs')(html);
+html=require('./closing-figure.cjs')(html);
 fs.writeFileSync(__dirname+'/matchday.html',html);
 const standalone=html.replaceAll('src="assets/player-extra-crest.png"','src="data:image/png;base64,'+fs.readFileSync(__dirname+'/assets/player-extra-crest.png').toString('base64')+'"').replaceAll('src="assets/flaco-lopez.png"','src="data:image/png;base64,'+fs.readFileSync(__dirname+'/assets/flaco-lopez.png').toString('base64')+'"').replaceAll("url('assets/stadium.png')","url('data:image/png;base64,"+fs.readFileSync(__dirname+'/assets/stadium.png').toString('base64')+"')").replaceAll("url('assets/players.png')","url('data:image/png;base64,"+fs.readFileSync(__dirname+'/assets/'+playerAsset).toString('base64')+"')").replaceAll("url('assets/players-men-crests-v3.png')","url('data:image/png;base64,"+fs.readFileSync(__dirname+'/assets/'+playerAsset).toString('base64')+"')");
 fs.writeFileSync(__dirname+'/classico_matchday.html',standalone);
