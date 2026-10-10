@@ -256,10 +256,34 @@ body{background:#081313}.wrap{max-width:1280px}.matchnav{padding:17px max(24px,c
 .tabela-prox b{display:block;font-size:.98rem}
 .tabela-prox small{display:block;color:var(--muted);font-size:.76rem;margin-top:3px}
 @media(max-width:820px){.destaques{grid-template-columns:1fr}.card-destaque{grid-template-columns:24px 44px 1fr}}
+
+/* ---- o placar final ------------------------------------------------------- */
+.pf{display:grid;grid-template-columns:1fr auto 1fr;gap:16px;align-items:stretch;margin-top:18px}
+.pf-bloco{background:#0f2a1f;color:#eaf3ef;border:1px solid #2e5a43;border-radius:12px;padding:20px 22px;text-align:center}
+.pf-final{border:2px solid #d7fe61;box-shadow:0 0 0 4px #d7fe6122}
+.pf-rot{display:block;font:700 12px var(--body);letter-spacing:1.4px;text-transform:uppercase;color:#d7fe61}
+.pf-sub{display:block;min-height:16px;margin-top:5px;font:12px var(--body);color:#a8c0ad}
+.pf-gols{display:flex;align-items:baseline;justify-content:center;gap:18px;margin:12px 0 6px;font-family:var(--display);color:#fff}
+.pf-gols b{font-size:3.6rem;line-height:1;font-weight:900;font-variant-numeric:tabular-nums}
+.pf-gols i{font-style:normal;font-size:2rem;color:#7d9b86}
+.pf-times{display:flex;justify-content:center;gap:42px;font:700 13px var(--body);letter-spacing:.8px}
+.pf-times .v{color:#6fd49a}
+.pf-times .m{color:#ff8a98}
+.pf-seta{align-self:center;font-size:2.2rem;color:#d7fe61}
+.pf-leg{margin:16px 0 0;max-width:80ch;font-size:.97rem;line-height:1.55}
+@media(max-width:760px){.pf{grid-template-columns:1fr}.pf-seta{transform:rotate(90deg);justify-self:center}.pf-gols b{font-size:3rem}}
+
+/* ---- nota: o que e p.p. -------------------------------------------------- */
+.nota-pp{display:flex;gap:16px;align-items:flex-start;margin-top:22px;padding:16px 20px;background:#12261d;color:#dbe8de;border:1px solid #2e5a43;border-left:4px solid #d7fe61;border-radius:8px}
+.nota-pp-tag{flex:none;padding:3px 9px;border-radius:999px;background:#d7fe61;color:#14251a;font:800 11px var(--body);letter-spacing:1.2px;text-transform:uppercase}
+.nota-pp b{display:block;font-size:1.02rem;color:#fff}
+.nota-pp p{margin:5px 0 0;font-size:.92rem;line-height:1.55;color:#c3d4c8}
+.nota-pp strong{color:#fff}
+@media(max-width:600px){.nota-pp{flex-direction:column;gap:10px}}
 </style>
 </head>
 <body>
-<nav class="matchnav"><a class="matchbrand" href="#">CLÁSSICO<span>DA IA</span></a><div><a href="#mercado">A partida</a><a href="#estatisticas">Placar completo</a><a href="#var">VAR</a><a href="original.html" target="_blank" rel="noopener">Original ↗</a></div></nav>
+<nav class="matchnav"><a class="matchbrand" href="#">CLÁSSICO<span>DA IA</span></a><div><a href="#mercado">A partida</a><a href="#estatisticas">Placar completo</a><a href="#var">VAR</a></div></nav>
 
 <div class="databar" id="databar" role="status">
   <span id="dataMsg">Dados ilustrativos: carregue o dashboard_data.json para ver o painel real.</span>
@@ -274,7 +298,7 @@ body{background:#081313}.wrap{max-width:1280px}.matchnav{padding:17px max(24px,c
         <div class="nome">Verdão</div>
         <div class="quem">Os 25% de trabalhadores mais expostos à IA. Técnico: Ricardo</div>
       </div>
-      <div class="gols"><span id="golV">0,0</span><span class="x">×</span><span id="golM">0,0</span></div>
+      <div class="gols"><span id="golV">0</span><span class="x">×</span><span id="golM">0</span></div>
       <div class="time m">
         <div class="nome">Mengão</div>
         <div class="quem">Os 25% de trabalhadores menos expostos à IA. Técnico: Prof. Danny</div>
@@ -369,7 +393,7 @@ body{background:#081313}.wrap{max-width:1280px}.matchnav{padding:17px max(24px,c
   <section id="var">
     <div class="tempo">2º tempo</div>
     <h2>Chama o VAR</h2>
-    <p class="lede">Antes de dizer que a IA fez o gol, o VAR confere uma condição: antes do apito (o lançamento do ChatGPT), as duas linhas precisam andar lado a lado. Se já vinham se afastando antes, a diferença não é culpa da IA. Os estatísticos chamam essa condição de "tendências paralelas".</p>
+    <p class="lede">O placar final só vale se este lance for limpo. Antes de dizer que a IA fez o gol, o VAR confere uma condição: antes do apito (o lançamento do ChatGPT), as duas linhas precisam andar lado a lado. Se já vinham se afastando antes, a diferença não é culpa da IA. Os estatísticos chamam essa condição de "tendências paralelas".</p>
     <div class="var">
       <div class="topo">
         <div class="tela">VAR em análise</div>
@@ -384,12 +408,42 @@ body{background:#081313}.wrap{max-width:1280px}.matchnav{padding:17px max(24px,c
       <p class="veredito" id="veredito"></p>
     </div>
   </section>
+  <aside class="nota-pp" id="notaPP" aria-label="O que é p.p.">
+    <span class="nota-pp-tag">Nota</span>
+    <div>
+      <b>O que é p.p.?</b>
+      <p><strong>p.p.</strong> quer dizer <strong>ponto percentual</strong>: é a diferença entre duas porcentagens. Se uma taxa passa de 5% para 6%, ela subiu <strong>1 p.p.</strong> Não é o mesmo que dizer que subiu 1%: em termos relativos, de 5% para 6% a taxa cresceu 20%. O painel conta em pontos porque é a diferença direta entre as duas porcentagens, fácil de conferir.</p>
+    </div>
+  </aside>
+
   <section id="destaques">
     <div class="tempo">Fim de jogo</div>
     <h2>Os destaques da partida</h2>
     <p class="lede">Os três tipos de trabalho que mais mudaram em cada time, comparando antes e depois do ChatGPT. O número é a diferença em pontos: quanto o destino ganhou ou perdeu espaço entre quem trocou de trabalho.</p>
     <div class="destaques" id="destaquesGrid"></div>
     <p class="obs" style="margin-top:14px">Destaque aqui quer dizer <strong>maior mudança</strong>, e não melhor ou pior emprego. Um grupo pode crescer como destino simplesmente porque é grande.</p>
+  </section>
+
+  <section id="placar-final">
+    <div class="tempo">Apito final</div>
+    <h2>O placar final</h2>
+    <p class="lede">O jogo começou 0 × 0, mas os times não chegaram do zero: cada um trazia a sua pontuação no campeonato, que é o que já acontecia antes do ChatGPT. Cada número responde a uma pergunta: de cada 100 trabalhadores do time, quantos mudaram de tipo de trabalho em 3 meses?</p>
+    <div class="pf">
+      <div class="pf-bloco">
+        <span class="pf-rot">Pontuação no campeonato antes da partida</span>
+        <span class="pf-sub" id="pfAntesSub"></span>
+        <div class="pf-gols"><b id="pfAV">–</b><i>×</i><b id="pfAM">–</b></div>
+        <div class="pf-times"><span class="v">Verdão</span><span class="m">Mengão</span></div>
+      </div>
+      <div class="pf-seta" aria-hidden="true">→</div>
+      <div class="pf-bloco pf-final">
+        <span class="pf-rot">Placar da partida, depois do ChatGPT</span>
+        <span class="pf-sub" id="pfDepoisSub"></span>
+        <div class="pf-gols"><b id="pfDV">0</b><i>×</i><b id="pfDM">0</b></div>
+        <div class="pf-times"><span class="v">Verdão</span><span class="m">Mengão</span></div>
+      </div>
+    </div>
+    <p class="pf-leg" id="pfLeg"></p>
   </section>
 
   <section id="sumula">
@@ -546,14 +600,12 @@ function countScore(id, value) {
   const start=performance.now(); const tick=now=>{const t=Math.min(1,(now-start)/1100);el.textContent=fmt(value*(1-(1-t)**3));if(t<1)requestAnimationFrame(tick);};requestAnimationFrame(tick);
 }
 function placar() {
-  const QM = qMax(), A = DATA.destino_por_quartil;
-  const v = pega(A,"pós",QM)["Outro grupo"], m = pega(A,"pós","Q1")["Outro grupo"];
-  const dv = v - pega(A,"pré",QM)["Outro grupo"], dm = m - pega(A,"pré","Q1")["Outro grupo"];
-  countScore("golV",v); countScore("golM",m);
-  const lider = v>m ? "Verdão na frente: os mais expostos trocam mais de ocupação" : v<m ? "Mengão na frente: os menos expostos trocam mais de ocupação" : "Empate no placar";
-  const frases = [lider,
-    `Do antes para o depois do ChatGPT: Verdão ${dv>=0?"+":""}${fmt(dv)} ponto, Mengão ${dm>=0?"+":""}${fmt(dm)} ponto`,
-    `O Verdão mudou ${fmt(dv-dm)} ponto a mais que o Mengão, mas o gol só vale depois do VAR`,
+  /* A partida comeca 0 x 0: o topo nao anuncia numero nenhum. O placar com a
+     pontuacao de antes e o resultado de depois so aparece no fim, depois do
+     VAR (placarFinal). */
+  $("golV").textContent = "0"; $("golM").textContent = "0";
+  const frases = ["Placar 0 × 0: a bola vai rolar",
+    "A pergunta da partida: a IA entrou em jogo, o trabalho mudou?",
     "Narração: Ricardo, palmeirense", "Comentários: Prof. Danny, flamenguista",
     "Arbitragem: IBGE, pesquisa PNAD Contínua", "Bola da vez: a nota de exposição à IA"];
   const t = frases.join("     ⚽     ") + "     ⚽     ";
@@ -775,23 +827,49 @@ function destaques() {
 function sumula() {
   const QM = qMax(), A = DATA.destino_por_quartil;
   const g = (per, q) => +pega(A, per, q)["Outro grupo"] || 0;
+  const pt = v => fmt(v) + " ponto" + (Math.abs(v) >= 2 ? "s" : "");
   const subV = g("pós", QM) - g("pré", QM), subM = g("pós", "Q1") - g("pré", "Q1");
-  const D = q => pega(DATA.direcao_exposicao, "pós", q);
+  /* Fatia de quem trocou de grupo e foi para ocupacao menos exposta. E um
+     nivel, e o nivel tem uma armadilha: quem esta na base da fila nao tem para
+     onde descer, entao o Mengao e zero por construcao. O que se compara aqui e
+     o antes e o depois do mesmo time, nunca um time contra o outro. */
+  const menosEm = (per, q) => { const d = pega(DATA.direcao_exposicao, per, q), t = (+d["Menos exposta"] || 0) + (+d["Mesmo quartil"] || 0) + (+d["Mais exposta"] || 0); return t ? 100 * (+d["Menos exposta"] || 0) / t : 0; };
   const dD = q => (+pega(A, "pós", q)["Desocupado"] || 0) - (+pega(A, "pré", q)["Desocupado"] || 0);
-  const mov = v => (v < 0 ? "caiu " : "subiu ") + fmt(Math.abs(v)) + " ponto" + (Math.abs(v) >= 2 ? "s" : "");
-  const menos = q => { const d = D(q), t = (+d["Menos exposta"] || 0) + (+d["Mesmo quartil"] || 0) + (+d["Mais exposta"] || 0); return t ? 100 * (+d["Menos exposta"] || 0) / t : 0; };
+  const mov = v => (v < 0 ? "caiu " : "subiu ") + pt(Math.abs(v));
+  const gapD = dD(QM) - dD("Q1");
   const linhas = [
-    ["Os dois times trocaram mais de trabalho.",
-     `A troca de tipo de trabalho subiu ${fmt(subV)} pontos no Verdão e ${fmt(subM)} pontos no Mengão. O jogo ficou mais corrido para todo mundo, não só para quem está exposto à IA.`],
-    ["Quem está mais exposto desceu mais no gradiente.",
-     `Entre quem trocou de trabalho no Verdão, ${fmt(menos(QM), 0)}% foram para uma ocupação menos parecida com a IA. No Mengão isso quase não existe, porque abaixo deles quase não há degrau.`],
-    ["Ficar desempregado não subiu para os mais expostos.",
-     `A chance de estar desocupado três meses depois ${mov(dD(QM))} no Verdão e ${mov(dD("Q1"))} no Mengão. Quem está mais exposto à IA não ficou mais desempregado, que é o contrário do que a conversa de botequim costuma prever. Informalidade este painel não mede.`]
+    ["Os dois times trocaram um pouco mais de trabalho.",
+     `A troca de tipo de trabalho subiu ${pt(subV)} no Verdão e ${pt(subM)} no Mengão. O jogo ficou um pouco mais corrido para todo mundo, não só para quem está exposto à IA.`],
+    ["Quem trocou de trabalho foi para os mesmos lugares de antes.",
+     `No Verdão, ${fmt(menosEm("pré", QM))}% de quem trocou foi para uma ocupação menos parecida com a IA antes do ChatGPT, e ${fmt(menosEm("pós", QM))}% depois. No Mengão essa fatia é zero nos dois períodos, porque quem está na base da fila não tem degrau para descer: o número vem da posição na fila, não da IA.`],
+    ["Ficar desempregado caiu nos dois times.",
+     `A chance de estar desocupado três meses depois ${mov(dD(QM))} no Verdão e ${mov(dD("Q1"))} no Mengão. Os mais expostos melhoraram ${gapD > 0 ? "menos" : "mais"}, por ${fmt(Math.abs(gapD), 2)} ponto, mas ninguém ficou mais desempregado. Informalidade e o efeito com controles estão na dissertação, e não neste painel.`]
   ];
   $("sumulaTexto").innerHTML = linhas.map(([t, p], i) =>
     `<div class="linha-sumula"><span class="n">${i + 1}</span><div><b>${t}</b><p>${p}</p></div></div>`).join("") +
     `<div class="linha-sumula alerta"><span class="n">!</span><div><b>O juiz não apitou pênalti.</b>
       <p>Nada disso prova que a IA causou o movimento. São dados descritivos de um período que também teve pandemia, volta do trabalho presencial e mudança no modo de entrevista do IBGE. A tabela abaixo mostra o que falta jogar.</p></div></div>`;
+}
+
+/* O placar final: a pontuacao de antes da partida e o resultado de depois do
+   ChatGPT. O "depois" sobe de 0 ate o valor quando a secao entra na tela. */
+function placarFinal() {
+  const QM = qMax(), A = DATA.destino_por_quartil;
+  const g = (per, q) => +pega(A, per, q)["Outro grupo"];
+  const aV = g("pré", QM), aM = g("pré", "Q1"), dV = g("pós", QM), dM = g("pós", "Q1");
+  if (![aV, aM, dV, dM].every(Number.isFinite)) return;
+  $("pfAV").textContent = fmt(aV); $("pfAM").textContent = fmt(aM);
+  const meta = DATA.meta || {}, fora = meta.trimestres_fora_das_medias || [], pos = meta.pos_inicio;
+  const ini = (meta.janela || "").split(" a ")[0], ex = (meta.excluidos || [])[0];
+  const fim = ex ? `${ex[0]}T${ex[1] - 1}` : "2022T3";
+  $("pfAntesSub").textContent = ini && fora.length ? `${ini} a ${fim}, sem ${fora[0]} a ${fora[fora.length - 1]}` : "";
+  $("pfDepoisSub").textContent = pos ? `a partir de ${pos[0]}T${pos[1]}` : "";
+  const gapA = aV - aM, gapD = dV - dM;
+  $("pfLeg").innerHTML = `O Verdão já abriu a partida ${gapA >= 0 ? "na frente" : "atrás"}, por <strong>${fmt(Math.abs(gapA))} pontos</strong>. Depois do ChatGPT a diferença ficou em <strong>${fmt(Math.abs(gapD))}</strong>: uma variação de ${fmt(Math.abs(gapD - gapA), 2)} ponto. É essa variação, e não o ${fmt(dV)} sozinho, que importa.`;
+  const sobe = () => { countScore("pfDV", dV); countScore("pfDM", dM); };
+  if (reduz || !("IntersectionObserver" in window)) { sobe(); return; }
+  const io = new IntersectionObserver(es => { for (const e of es) if (e.isIntersecting) { io.disconnect(); sobe(); } }, { threshold: .4 });
+  io.observe($("placar-final"));
 }
 
 function rodape() {
@@ -806,7 +884,7 @@ function render(d, real) {
   bar.classList.toggle("real", !!real && !d.meta?.demo);
   $("dataMsg").textContent = real && !d.meta?.demo ? `Arquivo carregado: ${Number((d.meta||{}).n_transicoes||0).toLocaleString("pt-BR")} transições.` :
     "Dados ilustrativos: carregue o dashboard_data.json para ver o painel real.";
-  placar(); campo(); painel(); stats(); varChart(); destaques(); sumula(); rodape(); iniciarViagens();
+  placar(); campo(); painel(); stats(); varChart(); destaques(); placarFinal(); sumula(); rodape(); iniciarViagens();
 }
 
 function valida(d) {

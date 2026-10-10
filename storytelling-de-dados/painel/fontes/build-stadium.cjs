@@ -56,6 +56,7 @@ body{background:radial-gradient(ellipse at 50% 4%,#19372a44,transparent 34%),#09
 html=html.replace('</style>',styles+'</style>');
 html=require('./polish-panel.cjs')(html);
 html=require('./enhance-matchday.cjs')(html);
+html=require('./broadcast-strip.cjs')(html);
 fs.writeFileSync(__dirname+'/matchday.html',html);
 const standalone=html.replaceAll('src="assets/player-extra-crest.png"','src="data:image/png;base64,'+fs.readFileSync(__dirname+'/assets/player-extra-crest.png').toString('base64')+'"').replaceAll('src="assets/flaco-lopez.png"','src="data:image/png;base64,'+fs.readFileSync(__dirname+'/assets/flaco-lopez.png').toString('base64')+'"').replaceAll("url('assets/stadium.png')","url('data:image/png;base64,"+fs.readFileSync(__dirname+'/assets/stadium.png').toString('base64')+"')").replaceAll("url('assets/players.png')","url('data:image/png;base64,"+fs.readFileSync(__dirname+'/assets/'+playerAsset).toString('base64')+"')").replaceAll("url('assets/players-men-crests-v3.png')","url('data:image/png;base64,"+fs.readFileSync(__dirname+'/assets/'+playerAsset).toString('base64')+"')");
 fs.writeFileSync(__dirname+'/classico_matchday.html',standalone);
