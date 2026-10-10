@@ -865,7 +865,9 @@ function placarFinal() {
   $("pfAntesSub").textContent = ini && fora.length ? `${ini} a ${fim}, sem ${fora[0]} a ${fora[fora.length - 1]}` : "";
   $("pfDepoisSub").textContent = pos ? `a partir de ${pos[0]}T${pos[1]}` : "";
   const gapA = aV - aM, gapD = dV - dM;
-  $("pfLeg").innerHTML = `O Verdão já abriu a partida ${gapA >= 0 ? "na frente" : "atrás"}, por <strong>${fmt(Math.abs(gapA))} pontos</strong>. Depois do ChatGPT a diferença ficou em <strong>${fmt(Math.abs(gapD))}</strong>: uma variação de ${fmt(Math.abs(gapD - gapA), 2)} ponto. É essa variação, e não o ${fmt(dV)} sozinho, que importa.`;
+  /* A diferenca de taxas vira "a cada 100 trabalhadores": e o que se le sem estatistica. */
+  const lado = gapA >= 0 ? ["saía na frente", "a mais"] : ["ficava atrás", "a menos"];
+  $("pfLeg").innerHTML = `Antes do ChatGPT, o Verdão já ${lado[0]}: a cada 100 trabalhadores, <strong>${fmt(Math.abs(gapA))}</strong> ${lado[1]} trocavam de tipo de trabalho do que no Mengão. Depois do ChatGPT essa diferença foi para <strong>${fmt(Math.abs(gapD))}</strong>, uma variação de <strong>${fmt(Math.abs(gapD - gapA), 2)} ponto</strong>. O que importa é essa variação, e não o ${fmt(dV)} sozinho.`;
   const sobe = () => { countScore("pfDV", dV); countScore("pfDM", dM); };
   if (reduz || !("IntersectionObserver" in window)) { sobe(); return; }
   const io = new IntersectionObserver(es => { for (const e of es) if (e.isIntersecting) { io.disconnect(); sobe(); } }, { threshold: .4 });

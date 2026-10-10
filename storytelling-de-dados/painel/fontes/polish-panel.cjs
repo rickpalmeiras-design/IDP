@@ -1,9 +1,9 @@
 module.exports=function polish(html){
  const replace=(a,b)=>{if(!html.includes(a))throw Error('Missing polish target: '+a.slice(0,70));html=html.replace(a,b)};
  replace('O MERCADO<br>ENTRA EM <em>CAMPO.</em>','A IA ENTROU EM JOGO.<em>O TRABALHO MUDOU?</em>');
- replace('De uma ocupação à outra.<br>Acompanhe o movimento de quem trabalha.','A bola vai rolar! Acompanhe o duelo entre os trabalhadores mais e menos expostos à IA e compare o que mudou depois do lançamento do ChatGPT. Fique até o apito final: é lá que você descobre o placar!');
+ replace('De uma ocupação à outra.<br>Acompanhe o movimento de quem trabalha.','Dois times em campo. O Verdão reúne os trabalhadores cujo trabalho mais se parece com o que a IA faz; o Mengão, os que menos se parecem. A pergunta é simples: depois do ChatGPT, quem mudou mais de tipo de trabalho?');
  html=html.replace(/<p class="legenda-placar" id="legendaPlacar">[\s\S]*?<\/p>/,'<p class="legenda-placar" id="legendaPlacar">A partida começa em 0 × 0. Ao longo do jogo, vamos comparar os dois times antes e depois do lançamento do ChatGPT. O placar será revelado no apito final.</p>');
- html=html.replace(/<p><strong>A pergunta do jogo:<\/strong>[\s\S]*?<\/p>/,'<p><strong>O jogo de hoje:</strong> Verdão × Mengão, o clássico da IA. A bola vai rolar! Acompanhe o duelo entre os trabalhadores mais e menos expostos à IA e compare o que mudou depois do lançamento do ChatGPT. Fique até o apito final: é lá que você descobre o placar!</p>');
+ html=html.replace(/<p><strong>A pergunta do jogo:<\/strong>[\s\S]*?<\/p>/,'<p>A bola vai rolar! Acompanhe o duelo entre os trabalhadores mais e menos expostos à IA e compare o que mudou depois do lançamento do ChatGPT. Fique até o apito final: é lá que você descobre o placar!</p>');
  html=html.replace('Os 10 grandes grupos de profissões do IBGE, cada um com um boneco e exemplos de quem joga ali. No mercado da bola, no início da página, você vê quem troca de posição.','Conheça os dez grandes grupos ocupacionais do IBGE. Os números identificam as posições no campo; os exemplos ajudam a reconhecer cada grupo.');
  html=html.replace('mas o gol só vale depois do VAR','uma diferença descritiva, não um efeito comprovado da IA');
  const start=html.indexOf('function boneco(cod, o = {}) {'), end=html.indexOf('/* ======================= dados ilustrativos',start);
