@@ -280,6 +280,11 @@ body{background:#081313}.wrap{max-width:1280px}.matchnav{padding:17px max(24px,c
 .nota-pp p{margin:5px 0 0;font-size:.92rem;line-height:1.55;color:#c3d4c8}
 .nota-pp strong{color:#fff}
 @media(max-width:600px){.nota-pp{flex-direction:column;gap:10px}}
+
+/* ---- explicacao comum abaixo dos graficos do VAR --------------------------- */
+.var-aviso{margin-top:16px;padding:14px 18px;background:#12261d;color:#dbe8de;border:1px solid #2e5a43;border-left:4px solid #d7fe61;border-radius:8px}
+.var-aviso b{display:block;font-size:1.02rem;color:#fff}
+.var-aviso p{margin:6px 0 0;font-size:.93rem;line-height:1.6;color:#c3d4c8}
 </style>
 </head>
 <body>
@@ -406,6 +411,10 @@ body{background:#081313}.wrap{max-width:1280px}.matchnav{padding:17px max(24px,c
       <div class="var-scroll"><svg id="grafVar" viewBox="0 0 900 360" role="img" aria-label="Evolução a cada 3 meses: Verdão contra Mengão"></svg></div>
       <div class="leg" style="margin-top:6px"><span style="--c:#15924f">Verdão: 25% mais expostos</span><span style="--c:#d4142e">Mengão: 25% menos expostos</span></div>
       <p class="veredito" id="veredito"></p>
+      <div class="var-aviso">
+        <b>O que esses números permitem dizer?</b>
+        <p>Eles mostram se a distância entre os grupos aumentou ou diminuiu depois do lançamento do ChatGPT. Isso não prova que a IA provocou a mudança: outros fatores também podem ter influenciado os resultados. Para investigar causa e efeito, é preciso ir além dos gráficos e verificar, entre outras condições, se os grupos já seguiam caminhos semelhantes antes do lançamento.</p>
+      </div>
     </div>
   </section>
   <aside class="nota-pp" id="notaPP" aria-label="O que é p.p.">

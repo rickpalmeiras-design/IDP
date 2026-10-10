@@ -33,7 +33,7 @@ troca('Arquivo carregado: ${Number((d.meta||{}).n_transicoes||0).toLocaleString(
 troca('const bar = $("databar");','$("liveLabel").textContent="PÓS / FLUXOS DO ARQUIVO";\n  const bar = $("databar");');
 troca('Se já vinham se afastando antes, a diferença não é culpa da IA.','Se já vinham se afastando antes, a comparação exige investigação adicional.');
 troca('<div class="duelo">','<p class="lede" style="font-size:14px;margin:16px 0">Recorte das médias: 2020T1 a 2021T3 ficam de fora por mudança no modo de coleta; 2022T4 também é excluído. O pós começa em 2023T1. Taxas ponderadas pelo peso da origem.</p><div class="duelo">');
-troca('  <section id="var">','  <p class="lede" style="font-size:14px;margin-top:18px"><strong>Direção da exposição:</strong> a mudança é entre quartis. Q4 não tem quartil acima e Q1 não tem quartil abaixo: parte do resultado é mecânica. Menor exposição não significa emprego pior.</p>\n  <section id="var">');
+troca('  <section id="var">','  <p class="lede" style="font-size:14px;margin-top:18px"><strong>Direção da exposição:</strong> os trabalhadores estão divididos em quatro grupos (quartis), do menos ao mais exposto à IA. Quem está no grupo mais exposto (Q4, o Verdão) só pode ficar nele ou ir para um grupo menos exposto; quem está no menos exposto (Q1, o Mengão) só pode ficar nele ou ir para um grupo mais exposto. Por isso, parte do resultado vem dessa divisão em grupos, e não de um efeito da IA. Ir para um grupo menos exposto também não significa conseguir um emprego pior.</p>\n  <section id="var">');
 troca('<p id="rodapeDados"></p>','<p id="rodapeDados"></p><details class="official-audit"><summary>Procedência e alertas da auditoria</summary><div id="officialAudit"></div></details>');
 const chartStart=html.indexOf('function varChart() {'),chartEnd=html.indexOf('document.querySelectorAll(".seg button")',chartStart);
 assert(chartStart>0&&chartEnd>chartStart);
@@ -72,7 +72,23 @@ function tocaVar(vao) {
 }
 function vereditoVar(pre,pos,anima) {
  const v=$("veredito");v.replaceChildren();
- const partes=[['Nas médias ponderadas do recorte, a diferença Q4 − Q1 é ',0],[fmt(pre,2)+' p.p.',1],[' no pré e ',0],[fmt(pos,2)+' p.p.',1],[' no pós. A diferença das mudanças é ',0],[fmt(pos-pre,2)+' p.p.',1],[' Esta comparação é descritiva; a inspeção visual não comprova tendências paralelas nem causalidade.',0]];
+ const NOME={pct_muda_grupo:'percentual de pessoas que mudaram de tipo de trabalho',
+  pct_vai_desocupado:'percentual de pessoas que ficaram desempregadas',
+  pct_sai_forca:'percentual de pessoas que pararam de trabalhar e de procurar emprego'}[metrica]||'indicador';
+ const aPre=Math.abs(pre),aPos=Math.abs(pos),d=aPos-aPre;
+ const un=x=>Math.abs(x)>=2?' pontos percentuais.':' ponto percentual.';
+ let partes;
+ if(pre*pos>0){
+  /* Mesmo sinal antes e depois: da para falar em distancia entre os grupos. */
+  const pouco=Math.abs(d)<0.5?'um pouco ':'';
+  partes=[['No grupo mais exposto à IA (Verdão), o '+NOME+' '+(pre>0?'já era maior':'era menor')+' antes do ChatGPT. A distância para o grupo menos exposto (Mengão) '+(d>=0?'passou de ':'caiu de '),0],
+   [fmt(aPre,2),1],[' para ',0],[fmt(aPos,2),1],[un(aPos),0]];
+  if(Math.abs(d)<0.005)partes.push([' Ou seja, a distância entre os grupos não mudou.',0]);
+  else if(d>0)partes.push([' Ou seja, os grupos ficaram '+pouco+'mais distantes: ',0],[fmt(d,2),1],[(d>=2?' pontos':' ponto')+' a mais.',0]);
+  else partes.push([' Ou seja, os grupos ficaram '+pouco+'mais próximos: a distância diminuiu ',0],[fmt(-d,2),1],[(-d>=2?' pontos.':' ponto.'),0]);
+ }else{
+  partes=[['A diferença entre o grupo mais exposto (Verdão) e o menos exposto (Mengão) passou de ',0],[fmt(pre,2),1],[' para ',0],[fmt(pos,2),1],[' pontos percentuais.',0]];
+ }
  for(const par of partes){const el=document.createElement(par[1]?'b':'span');if(par[1])el.className='num';el.textContent=par[0];v.appendChild(el);}
  if(anima&&!reduz&&v.animate){try{v.animate([{opacity:0,transform:'translateY(7px)'},{opacity:1,transform:'none'}],{duration:420,delay:820,easing:'ease-out',fill:'backwards'});}catch(_){}}
 }
