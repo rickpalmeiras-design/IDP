@@ -1,6 +1,6 @@
 // Figura de fecho, abaixo da tabela dos próximos jogos.
 //
-// A ilustração "Em busca do título de mestre" vem do autor do painel. O original
+// A imagem "Em busca do título de mestre" vem do autor do painel. O original
 // está em assets/titulo-mestre.png (3 MB); o que entra no HTML é uma versão em
 // JPEG de qualidade 90 (0,65 MB), para o arquivo único não passar de 30 MB.
 // O lugar da figura é marcado no fonte por <!--FIGURA_FECHO-->.
@@ -12,7 +12,7 @@ module.exports = function closing(html) {
   if (!html.includes(marca)) throw Error('Marca da figura de fecho não encontrada');
 
   const b64 = fs.readFileSync(path.join(__dirname, 'assets', 'titulo-mestre.jpg')).toString('base64');
-  const alt = 'Ilustração em desenho: um jogador do Palmeiras e um do Flamengo correm lado a lado em direção a um pódio ' +
+  const alt = 'Imagem de estádio: um jogador de camisa verde do Palmeiras e um de camisa rubro-negra do Flamengo correm lado a lado em direção a um pódio ' +
     'com as taças da Libertadores, do Brasileirão e da Copa do Brasil. No pódio está escrito "Em busca do título de ' +
     'mestre", e um capelo de formatura repousa sobre ele.';
   const figura = '<figure class="fecho"><img src="data:image/jpeg;base64,' + b64 + '" alt="' + alt + '"></figure>';
