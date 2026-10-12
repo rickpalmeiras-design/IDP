@@ -1,0 +1,37 @@
+const assert = require('assert');
+module.exports = function enquadraVar(html) {
+ const start=html.indexOf('<section id="var">'), end=html.indexOf('<section id="destaques">',start);
+ assert(start>0&&end>start);
+ let block=html.slice(start,end);
+ const intro=block.match(/<p class="lede">([\s\S]*?)<\/p>/)[1];
+ const sample=block.match(/<p class="recorte-visivel">([\s\S]*?)<\/p>/)[1];
+ const pp=block.match(/<aside class="nota-pp"[\s\S]*?<\/aside>/)[0];
+ block=block.replace('<div class="tempo">2º tempo</div>','').replace('<div class="tempo">Chama o VAR</div>','<div class="var-heading"><span class="tempo">2º tempo · Chama o VAR</span><button type="button" id="varFullscreen" class="revar">Tela cheia</button></div>');
+ block=block.replace(/<p class="lede">[\s\S]*?<\/p>/,'');
+ block=block.replace(/<p class="recorte-visivel">[\s\S]*?<\/p>/,'');
+ block=block.replace(/<span class="var-dica">[\s\S]*?<\/span>/,'');
+ const actions=block.match(/<div class="var-acoes">[\s\S]*?<\/div>/)[0];
+ block=block.replace(actions,'').replace('<div class="var-scroll">',actions+'<div class="var-scroll">');
+ block=block.replace(/<div class="var-aviso">[\s\S]*?<\/div>/,'<p class="var-caution">Comparação descritiva: os gráficos não demonstram que a IA causou as mudanças.</p><p class="var-source">Fonte: PNAD Contínua/IBGE · AIOE (Felten, Raj e Seamans, 2021).</p>');
+ block=block.replace(pp,'');
+ block=block.replace('</section>','<details class="var-method"><summary>Como ler o gráfico · recorte e pontos percentuais</summary><p>'+intro+'</p><p>'+sample+'</p>'+pp+'</details></section>');
+ html=html.slice(0,start)+block+html.slice(end);
+ const before='if(anima&&!reduz&&v.animate)';
+ assert(html.includes(before));
+ html=html.replace(before,`v.textContent='Distância entre os grupos: '+fmt(aPre,2)+' → '+fmt(aPos,2)+' p.p. '+(Math.abs(d)<0.005?'Sem mudança.':(d>0?'Aumentou ':'Diminuiu ')+fmt(Math.abs(d),2)+' p.p.');
+ ${before}`);
+ html=html.replace('A diferença já existia antes do ChatGPT e ', 'A distância entre os grupos ');
+ html=html.replace('A saída da força de trabalho teve movimentos diferentes entre os grupos','Saída da força de trabalho: os grupos se afastaram');
+ html=html.replace('revisar(); rodizio(true);','revisar();');
+ html=html.replace('W=900,H=360','W=900,H=260').replace('id="grafVar" viewBox="0 0 900 360"','id="grafVar" viewBox="0 0 900 260"');
+ html=html.replace('</style>',`#var{padding:20px 0 12px;scroll-margin-top:48px}#var .var-heading{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:8px}#var .tempo{margin:0}#var #tituloVar{font-size:clamp(25px,2.8vw,38px);line-height:1.05;margin:0 0 12px;max-width:1100px}#var .var{padding:12px 18px;border-width:1px}#var .topo{margin:0;gap:8px}#var .tela{font-size:20px;gap:8px}#var .arbitro{width:38px;height:57px}#var .tela::before{width:7px;height:7px}#var .seg button{font-size:14px;padding:8px 12px}#var .var-acoes{justify-content:flex-end;margin:-4px 0 0;gap:8px}#var .revar{font-size:13px;padding:5px 12px}#var .var-scroll{overflow-x:auto}#var #grafVar{display:block;width:100%;height:clamp(230px,38vh,340px);min-width:0;max-width:100%}#var .leg{font-size:14px;gap:18px}#var .veredito{font-size:19px;line-height:1.3;margin:10px 0;font-weight:600;color:#e3ffab}#var .var-caution{font-size:14px;line-height:1.4;margin:6px 0;color:#dde7db}#var .var-source{font-size:12px;color:#a9bba9;margin:6px 0 0}#var .var-method{margin:10px 0 0;font-size:14px;color:#bdcbbd}#var .var-method summary{cursor:pointer;padding:6px 0}#var .var-method p{max-width:90ch;line-height:1.5}#var .nota-pp{margin:12px 0;padding:12px}#var:fullscreen{background:#09100e;padding:24px 5vw;overflow:auto;box-sizing:border-box}#var:fullscreen #grafVar{height:44vh}@media(max-width:700px){#var .topo{display:block}#var .tela{font-size:17px}#var .seg{display:flex;margin:6px 0}#var .seg button{flex:1;font-size:12px;padding:8px}#var .var{padding:10px}#var .var-acoes{margin:6px 0}#var #grafVar{min-width:580px;height:232px;max-width:none}#var .veredito{font-size:17px}#var .leg{font-size:12px;gap:10px}#var #tituloVar{font-size:27px}} </style>`);
+ html=html.replace('<span id="liveLabel">','<button type="button" id="campoFullscreen">Tela cheia</button><span id="liveLabel">');
+ html=html.replace('</style>',`#mercado:fullscreen{background:#09100e;padding:16px 24px;overflow:auto;box-sizing:border-box;display:flex;flex-direction:column;gap:8px}#mercado:fullscreen>.tempo{margin:0;font-size:12px}#mercado:fullscreen>h2{font-size:30px;line-height:1;margin:0}#mercado:fullscreen>.lede{font-size:14px;line-height:1.35;margin:0;max-width:110ch}#mercado:fullscreen .match-controls{margin:0;padding:8px 0;flex-shrink:0}#mercado:fullscreen .mercado{flex:1;min-height:0;grid-template-columns:minmax(0,1fr) 280px;gap:16px}#mercado:fullscreen .mercado>div{min-height:0;display:flex;flex-direction:column}#mercado:fullscreen .campo-scroll{flex:1;min-height:0}#mercado:fullscreen .campo{height:100%;aspect-ratio:auto;min-width:0}#mercado:fullscreen .painel{max-height:100%;overflow:auto}#mercado:fullscreen .eixo{margin:0;flex-shrink:0}@media(max-width:700px){#mercado:fullscreen{padding:12px;display:block}#mercado:fullscreen .mercado{display:block}#mercado:fullscreen .campo{height:55vh;min-height:300px}#mercado:fullscreen .painel{margin-top:12px;max-height:none}} </style>`);
+ html=html.replace('</body>',`<script>
+ document.getElementById('campoFullscreen').onclick=async()=>{try{if(document.fullscreenElement)await document.exitFullscreen();else await document.getElementById('mercado').requestFullscreen();}catch(e){document.getElementById('mercado').scrollIntoView({block:'start'});}};
+ document.addEventListener('fullscreenchange',()=>{document.getElementById('campoFullscreen').textContent=document.fullscreenElement?.id==='mercado'?'Sair da tela cheia':'Tela cheia';});
+ document.getElementById('varFullscreen').onclick=async()=>{try{if(document.fullscreenElement)await document.exitFullscreen();else await document.getElementById('var').requestFullscreen();}catch(e){document.getElementById('var').scrollIntoView({block:'start'});}};
+ document.addEventListener('fullscreenchange',()=>{document.getElementById('varFullscreen').textContent=document.fullscreenElement?.id==='var'?'Sair da tela cheia':'Tela cheia';});
+ </script></body>`);
+ return html.replace(/^[ \t]+$/gm, "");
+};

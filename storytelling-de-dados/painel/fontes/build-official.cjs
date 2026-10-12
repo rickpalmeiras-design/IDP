@@ -174,6 +174,7 @@ if(!reduz && "IntersectionObserver" in window){
 }`);
 
 html=require('./narrativa-final.cjs')(html);
+html=require('./enquadra-var.cjs')(html);
 
 fs.writeFileSync(__dirname+'/../classico_da_ia.html',html);
 const embedded=JSON.parse(html.match(/<script id="dados-embutidos" type="application\/json">([\s\S]*?)<\/script>/)[1]);assert.deepStrictEqual(embedded,data);assert(!html.includes('function demo()'));assert(!html.includes('localStorage.getItem'));assert(!html.includes('FLUXOS ILUSTRATIVOS'));
