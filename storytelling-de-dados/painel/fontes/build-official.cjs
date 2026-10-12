@@ -173,6 +173,8 @@ if(!reduz && "IntersectionObserver" in window){
   io.observe(alvo); }
 }`);
 
+html=require('./narrativa-final.cjs')(html);
+
 fs.writeFileSync(__dirname+'/../classico_da_ia.html',html);
 const embedded=JSON.parse(html.match(/<script id="dados-embutidos" type="application\/json">([\s\S]*?)<\/script>/)[1]);assert.deepStrictEqual(embedded,data);assert(!html.includes('function demo()'));assert(!html.includes('localStorage.getItem'));assert(!html.includes('FLUXOS ILUSTRATIVOS'));
 for(const m of html.matchAll(/<script(?:\s[^>]*)?>([\s\S]*?)<\/script>/g)){if(m[0].includes('application/json'))continue;if(m[1].trim())new vm.Script(m[1]);}
