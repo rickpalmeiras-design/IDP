@@ -34,6 +34,8 @@ function configurarLayouts(pres, variante) {
         if (variante.quadrado && op.shape === pres.ShapeType.roundRect) op.shape = pres.ShapeType.rect;
         if (variante.plano && op.fill && op.fill.color === pres.SchemeColor.background2) {
           op.fill = { ...op.fill, color: pres.SchemeColor.background1 };
+          // Sem o fundo verde-gelo, o cartão precisa de contorno para não sumir.
+          op.line = { color: pres.SchemeColor.accent4, width: 1 };
         }
         if (limites && Number.isFinite(op.x) && Number.isFinite(op.w) && op.y >= 1.45 && op.y < 6.65) {
           const [fimEsquerda, inicioDireita] = limites;

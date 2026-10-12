@@ -7,7 +7,8 @@
 // 900 segundos. A coluna "folga" é o que sobra (+) ou falta (-) em cada slide.
 const { SLIDES, RITMO_PALAVRAS_POR_MINUTO } = require('./conteudo.js');
 
-const palavras = t => (t.match(/[\p{L}\p{N}][\p{L}\p{N}.,%\-]*/gu) || []).length;
+// Marcas de gesto entre colchetes não são faladas e ficam fora da contagem.
+const palavras = t => (t.replace(/\[[^\]]*\]/g, '').match(/[\p{L}\p{N}][\p{L}\p{N}.,%\-]*/gu) || []).length;
 const mmss = s => `${Math.floor(s / 60)}:${String(Math.round(s % 60)).padStart(2, '0')}`;
 const porSegundo = RITMO_PALAVRAS_POR_MINUTO / 60;
 

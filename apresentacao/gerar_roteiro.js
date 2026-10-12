@@ -8,7 +8,8 @@ const fs = require('fs');
 const path = require('path');
 const { SLIDES, RITMO_PALAVRAS_POR_MINUTO } = require('./conteudo.js');
 
-const palavras = t => (t.match(/[\p{L}\p{N}][\p{L}\p{N}.,%\-]*/gu) || []).length;
+// Marcas de gesto entre colchetes não são faladas e ficam fora da contagem.
+const palavras = t => (t.replace(/\[[^\]]*\]/g, '').match(/[\p{L}\p{N}][\p{L}\p{N}.,%\-]*/gu) || []).length;
 const mmss = s => `${Math.floor(s / 60)}:${String(Math.round(s % 60)).padStart(2, '0')}`;
 const porSegundo = RITMO_PALAVRAS_POR_MINUTO / 60;
 
@@ -56,6 +57,8 @@ Duração: **15 minutos exatos**, em 12 slides. O mesmo texto está nas notas do
 - A coluna **Relógio** da tabela é o ponto de controle: ao terminar cada slide, o cronômetro deve marcar aquele tempo. Se
   estiver adiantado, respire e deixe o gráfico falar; se estiver atrasado, corte primeiro as ressalvas já ditas
   (o slide 9 e o slide 11 têm margem para isso).
+- Narre os dados, não leia o slide. Os trechos entre colchetes, como *[Aponte para o histograma.]*, são
+  marcas de gesto: indicam para onde apontar e não se leem em voz alta.
 - Ensaie com cronômetro. O ritmo de cada pessoa varia, e a estimativa acima é só um ponto de partida.
 
 ## Quadro de tempo

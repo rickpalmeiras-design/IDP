@@ -44,26 +44,63 @@ Abra o `.pptx` no PowerPoint e use o **Modo Apresentador** (Apresentação de Sl
 Apresentador): as notas de cada slide mostram o tempo previsto, o ponto de controle do relógio e a leitura.
 Se preferir papel, imprima o `roteiro.md`.
 
+## A história em três atos
+
+Todas as opções contam a mesma história, e cada slide mostra no alto em que ato está.
+
+| Ato | Slides | Carta | O que diz |
+| --- | --- | --- | --- |
+| **Contexto** | 2 e 3 | slide 2 | O ChatGPT chegou ao público em 30/11/2022; a pergunta; o que a literatura sabe e a lacuna. |
+| **Tensão** | 4 a 8 | slide 8 | Os obstáculos para responder (dados, medida, desenho) e o achado de que a mobilidade subiu para todos: então, a IA explica alguma parte? |
+| **Resolução** | 9 a 12 | slide 12 | O gradiente, o vínculo preservado, os limites e a resposta em três níveis. |
+
 ## Os 12 slides e o tempo
 
-| # | Slide | Tempo | Relógio |
-| ---: | --- | ---: | ---: |
-| 1 | Abertura | 0:30 | 0:30 |
-| 2 | A pergunta de pesquisa | 1:15 | 1:45 |
-| 3 | O que a literatura já mostra | 1:15 | 3:00 |
-| 4 | Dados: a PNAD Contínua em painel | 1:15 | 4:15 |
-| 5 | Como medir a exposição à IA | 1:15 | 5:30 |
-| 6 | Sete desfechos de transição | 1:00 | 6:30 |
-| 7 | Desenho: diferenças em diferenças contínuas | 1:30 | 8:00 |
-| 8 | A mobilidade subiu em todas as faixas | 1:15 | 9:15 |
-| 9 | Resultado principal: o gradiente de exposição | 1:45 | 11:00 |
-| 10 | Vínculo no emprego e teste de atrito | 1:15 | 12:15 |
-| 11 | O que o desenho permite e o que não permite | 1:15 | 13:30 |
-| 12 | Conclusões e próximos passos | 1:30 | 15:00 |
+Cada título diz a conclusão do slide, e não só o assunto.
 
-As leituras foram calibradas para **125 palavras por minuto**. Somadas, ocupam cerca de 14:54 de fala, e cada
-slide fica a até 3 segundos do tempo reservado a ele. Isso é uma estimativa: o ritmo de cada pessoa varia, e
-só um ensaio com cronômetro garante os 15 minutos.
+| # | Título | Ato | Tempo | Relógio |
+| ---: | --- | --- | ---: | ---: |
+| 1 | Abertura | | 0:30 | 0:30 |
+| 2 | A IA chegou para todos no mesmo dia. O trabalho mudou? | Contexto | 1:40 | 2:10 |
+| 3 | A literatura mede a exposição; o Brasil não mede o uso | Contexto | 1:15 | 3:25 |
+| 4 | A PNAD Contínua segue a mesma pessoa por cinco trimestres | Tensão | 1:10 | 4:35 |
+| 5 | A exposição à IA varia muito entre as ocupações | Tensão | 1:20 | 5:55 |
+| 6 | Sete desfechos: vínculo, mobilidade e direção | Tensão | 1:00 | 6:55 |
+| 7 | Sem grupo de controle, comparo intensidades de exposição | Tensão | 1:20 | 8:15 |
+| 8 | A mobilidade subiu em todas as faixas de exposição | Tensão | 1:15 | 9:30 |
+| 9 | Mais exposição, mais mudança para ocupações menos expostas | Resolução | 1:30 | 11:00 |
+| 10 | Mais exposição veio com o vínculo no emprego preservado | Resolução | 1:20 | 12:20 |
+| 11 | Os dados mostram associação, ainda não causalidade | Resolução | 1:20 | 13:40 |
+| 12 | Mudou a direção, não o vínculo; a causa segue em aberto | Resolução | 1:20 | 15:00 |
+
+As leituras foram escritas para serem faladas: frases curtas, poucos números lidos em voz alta e o jargão
+explicado na primeira vez. A **125 palavras por minuto**, somam cerca de **13:19** de fala, e cada slide tem
+de 3 a 11 segundos de folga para pausas e troca de slide. Isso é uma estimativa: o ritmo de cada pessoa varia,
+e só um ensaio com cronômetro garante que a fala fique abaixo de 15 minutos.
+
+Os trechos entre colchetes nas notas, como *[Aponte para o histograma.]*, são marcas de gesto: indicam para
+onde apontar, para narrar o gráfico em vez de ler o slide, e não entram na contagem de tempo.
+
+## Cores com intenção
+
+| Cor | Significa | Onde aparece |
+| --- | --- | --- |
+| Verde claro | **antes** do ChatGPT | barras "pré" (slide 8) e faixa "antes" das linhas do tempo (slides 2 e 7) |
+| Verde Palmeiras | **depois** do ChatGPT e o efeito principal | barras "pós", o β, os números de resultado |
+| Verde profundo | as cartas da história e as sínteses | cartas de contexto, tensão e resolução; faixas de lacuna e síntese |
+| Dourado | **o marco e os alertas** | a linha do ChatGPT (slides 2 e 7) e o "✕ causal" (slide 12) |
+| Cinza-esverdeado | o que é secundário ou não se sustenta | fontes, teste de atrito, "o que não sustentam" |
+
+## Critérios de avaliação
+
+| Critério | Onde está |
+| --- | --- |
+| Clareza narrativa | Três atos marcados em todos os slides, com uma carta para cada ato (slides 2, 8 e 12): pergunta, desenvolvimento e conclusão. |
+| Escolha dos gráficos | Barras agrupadas para comparar antes e depois (8); colunas para a variação por faixa (8); histograma para a distribuição do índice (5); gráfico de pontos com intervalo de confiança para sete coeficientes (9); barras para o tamanho de cada amostra (4). |
+| Relevância | Slide 2 (notas) e faixa "Lacuna e relevância" (slide 3): mudar de trabalho afeta renda, informalidade e qualificação, e o Brasil, com tanta informalidade, pode reagir diferente dos países ricos. |
+| Uso intencional de cores | Tabela acima, aplicada igual nas dez opções. |
+| Qualidade dos títulos | Títulos de slide e de gráfico dizem a conclusão (tabela acima). |
+| Apresentação oral | Notas em fala simples, com marcas de gesto para narrar os gráficos. |
 
 ## O que é de onde
 

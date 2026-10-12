@@ -10,7 +10,7 @@ const path = require('path');
 const fs = require('fs');
 const pptxgen = require('pptxgenjs');
 const { applyTheme } = require('./ferramentas/apply_theme.js');
-const { SLIDES, RITMO_PALAVRAS_POR_MINUTO } = require('./conteudo.js');
+const { SLIDES, ATOS, RITMO_PALAVRAS_POR_MINUTO } = require('./conteudo.js');
 const { VARIANTES, configurarLayouts } = require('./variantes.js');
 const argumento = process.argv.indexOf('--versao');
 const numeroVersao = argumento === -1 ? 1 : Number(process.argv[argumento + 1]);
@@ -72,7 +72,7 @@ pres.defineSlideMaster({
   title: 'CONTEUDO',
   background: { color: C.background1 },
   objects: [
-    { placeholder: { options: { name: 'title', type: 'title', x: L, y: 0.4, w: LARG, h: 0.95, fontSize: 34, bold: true, color: C.text2, align: variante.centralizar ? 'center' : 'left', valign: 'middle', margin: 0 }, text: 'Título do slide' } },
+    { placeholder: { options: { name: 'title', type: 'title', x: L, y: 0.4, w: LARG, h: 0.95, fontSize: 30, bold: true, color: C.text2, align: variante.centralizar ? 'center' : 'left', valign: 'middle', margin: 0 }, text: 'Título do slide' } },
     { text: { text: FOOT, options: { x: L, y: 7.0, w: 10.5, h: 0.3, fontSize: 10, color: C.accent6, margin: 0 } } },
   ],
   slideNumber: { x: 12.1, y: 7.0, w: 0.63, h: 0.3, fontSize: 10, color: C.accent6, align: 'right' },
@@ -82,14 +82,14 @@ pres.defineSlideMaster({
   background: { color: C.text2 },
   objects: [
     { placeholder: { options: { name: 'title', type: 'title', x: 0.9, y: 1.55, w: 9.6, h: 2.5, fontSize: 38, bold: true, color: C.background1, align: variante.centralizar ? 'center' : 'left', valign: 'top', margin: 0 }, text: 'Título' } },
-    { placeholder: { options: { name: 'subtitulo', type: 'body', x: 0.9, y: 4.2, w: 9.6, h: 0.9, fontSize: 20, color: C.accent4, align: 'left', valign: 'top', margin: 0 }, text: 'Subtítulo' } },
+    { placeholder: { options: { name: 'subtitulo', type: 'body', x: 0.9, y: 4.2, w: 9.6, h: 0.9, fontSize: 20, color: C.accent4, align: variante.centralizar ? 'center' : 'left', valign: 'top', margin: 0 }, text: 'Subtítulo' } },
   ],
 });
 pres.defineSlideMaster({
   title: 'FECHO',
   background: { color: C.text2 },
   objects: [
-    { placeholder: { options: { name: 'title', type: 'title', x: L, y: 0.4, w: LARG, h: 0.95, fontSize: 34, bold: true, color: C.background1, align: variante.centralizar ? 'center' : 'left', valign: 'middle', margin: 0 }, text: 'Título do slide' } },
+    { placeholder: { options: { name: 'title', type: 'title', x: L, y: 0.4, w: LARG, h: 0.95, fontSize: 30, bold: true, color: C.background1, align: variante.centralizar ? 'center' : 'left', valign: 'middle', margin: 0 }, text: 'Título do slide' } },
     { text: { text: FOOT, options: { x: L, y: 7.0, w: 10.5, h: 0.3, fontSize: 10, color: C.accent4, margin: 0 } } },
   ],
   slideNumber: { x: 12.1, y: 7.0, w: 0.63, h: 0.3, fontSize: 10, color: C.accent4, align: 'right' },
@@ -135,13 +135,38 @@ function opcoesGrafico(extra) {
   }, extra);
 }
 
+// Carta de um ato da história (contexto, tensão, resolução): fundo verde
+// profundo, rótulo em caixa alta e uma frase.
+function cartaAto(slide, ato, texto, x, y, w, h, extra = {}) {
+  slide.addText([
+    { text: ato.toUpperCase(), options: { bold: true, fontSize: 13, color: C.accent4, charSpacing: 3, breakLine: true } },
+    { text: texto, options: { fontSize: extra.fontSize || 17, color: C.background1 } },
+  ], Object.assign({
+    shape: pres.ShapeType.roundRect, rectRadius: 0.1, x, y, w, h,
+    fill: { color: C.accent2 }, line: { type: 'none' }, margin: [0.12, 0.3, 0.12, 0.3], valign: 'middle',
+    paraSpaceAfter: 4, objectName: 'Carta: ' + ato,
+  }, extra.opcoes || {}));
+}
+// Marcador discreto, no alto à direita, de em que ato da história o slide está.
+function marcadorAto(slide, ato, escuro) {
+  const runs = [];
+  ATOS.forEach((a, i) => {
+    const atual = a === ato;
+    runs.push({ text: (atual ? '● ' : '') + a.toUpperCase(), options: { bold: atual, color: atual ? (escuro ? C.background1 : C.accent1) : (escuro ? C.accent4 : C.accent6) } });
+    if (i < ATOS.length - 1) runs.push({ text: '   ·   ', options: { color: escuro ? C.accent4 : C.accent6 } });
+  });
+  slide.addText(runs, { x: 6.73, y: 0.1, w: 6.0, h: 0.28, fontSize: 11, charSpacing: 1.5, align: 'right', valign: 'middle', margin: 0, isTextBox: true, objectName: 'Ato da história' });
+}
+
 const NOTAS = {};
 for (const s of SLIDES) NOTAS[s.id] = s;
 let relogio = 0;
-function notas(slide, id, n) {
+function notas(slide, id, n, escuro = false) {
   const s = NOTAS[id];
   relogio += s.segundos;
-  const cab = `[Slide ${n} de ${SLIDES.length} · tempo previsto ${mmss(s.segundos)} · deve terminar em ${mmss(relogio)} do relógio]`;
+  if (s.ato) marcadorAto(slide, s.ato, escuro);
+  const ato = s.ato ? ` · ${s.ato.toUpperCase()}` : '';
+  const cab = `[Slide ${n} de ${SLIDES.length}${ato} · tempo previsto ${mmss(s.segundos)} · ao terminar, o relógio marca ${mmss(relogio)}]`;
   slide.addNotes(`${cab}\n\n${s.leitura}`);
 }
 
@@ -152,14 +177,16 @@ pres.addSection({ title: 'Abertura' });
   // Duas circunferências ao fundo: o círculo central de um campo, sem apelo de torcida.
   s.addShape(pres.ShapeType.ellipse, { x: 9.9, y: 3.0, w: 6.4, h: 6.4, fill: { color: C.accent1, transparency: 70 }, line: { color: C.accent3, width: 1.5, transparency: 40 }, objectName: 'Circunferência maior' });
   s.addShape(pres.ShapeType.ellipse, { x: 11.2, y: 4.5, w: 4.0, h: 4.0, fill: { color: C.accent1, transparency: 60 }, line: { color: C.accent4, width: 1, transparency: 50 }, objectName: 'Circunferência menor' });
-  rotulo(s, 'DISSERTAÇÃO DE MESTRADO · RESULTADOS PRELIMINARES', 0.9, 0.95, 9, C.accent4);
+  // Nas opções de título centralizado, a capa inteira acompanha o título.
+  const alinhar = variante.centralizar ? 'center' : 'left';
+  s.addText('DISSERTAÇÃO DE MESTRADO · RESULTADOS PRELIMINARES', { x: 0.9, y: 0.95, w: 9.6, h: 0.3, fontSize: 12, bold: true, color: C.accent4, charSpacing: 2, align: alinhar, margin: 0, isTextBox: true, objectName: 'Rótulo' });
   s.addText(SLIDES[0].titulo, { placeholder: 'title' });
-  s.addText('evidências de painel da PNAD Contínua após o lançamento público do ChatGPT', { placeholder: 'subtitulo' });
+  s.addText('evidências de painel da PNAD Contínua após o lançamento público do ChatGPT', { placeholder: 'subtitulo', align: alinhar });
   s.addText([
     { text: 'Ricardo Carvalho', options: { bold: true, fontSize: 20, color: C.background1, breakLine: true } },
     { text: 'Orientador: Prof. Dr. Danny de Castro Soares', options: { fontSize: 16, color: C.accent4, breakLine: true } },
     { text: 'Instituto Brasileiro de Ensino, Desenvolvimento e Pesquisa · Brasília · 2026', options: { fontSize: 14, color: C.accent4 } },
-  ], { x: 0.9, y: 5.55, w: 9.6, h: 1.2, margin: 0, valign: 'top', isTextBox: true, objectName: 'Autoria' });
+  ], { x: 0.9, y: 5.55, w: 9.6, h: 1.2, margin: 0, valign: 'top', align: alinhar, isTextBox: true, objectName: 'Autoria' });
   notas(s, 'titulo', 1);
 }
 
@@ -168,29 +195,30 @@ pres.addSection({ title: 'Abertura' });
   const s = pres.addSlide({ masterName: 'CONTEUDO', sectionTitle: 'Abertura' });
   s.addText(SLIDES[1].titulo, { placeholder: 'title' });
 
+  // Carta do contexto
+  cartaAto(s, 'Contexto', 'Em 30/11/2022, o ChatGPT chegou ao público: uma IA que escreve, resume e programa ficou ao alcance de qualquer trabalhador.', L, 1.5, LARG, 1.05, { fontSize: 19 });
+
   // A pergunta
-  cartao(s, L, 1.55, LARG, 1.65, [
-    { text: 'Trabalhadores em ocupações mais expostas à inteligência artificial passaram a apresentar transições de trabalho distintas depois do lançamento do ChatGPT?', options: { fontFace: '+mj-lt', fontSize: 28, color: C.text2, italic: true } },
-  ], 'Pergunta de pesquisa', { margin: [0.12, 0.3, 0.12, 0.3], valign: 'middle' });
+  rotulo(s, 'A PERGUNTA', L, 2.68, 4);
+  s.addText('Quem trabalha em ocupações mais expostas à IA passou a mudar de trabalho de um jeito diferente depois desse marco?', { x: L, y: 2.95, w: LARG, h: 0.75, fontFace: '+mj-lt', fontSize: 22, italic: true, color: C.text2, valign: 'top', margin: 0, isTextBox: true, objectName: 'Pergunta de pesquisa' });
 
   // Linha do tempo: 15 trimestres pré, 12 pós
   const wPre = LARG * 15 / 27, xMarco = L + wPre;
-  s.addText('PRÉ · 15 trimestres de origem', { shape: pres.ShapeType.rect, x: L, y: 4.05, w: wPre, h: 0.55, fill: { color: C.accent3 }, line: { type: 'none' }, color: C.background1, bold: true, fontSize: 14, align: 'center', valign: 'middle', margin: 0, objectName: 'Período pré' });
-  s.addText('PÓS · 12 trimestres de origem', { shape: pres.ShapeType.rect, x: xMarco, y: 4.05, w: LARG - wPre, h: 0.55, fill: { color: C.accent1 }, line: { type: 'none' }, color: C.background1, bold: true, fontSize: 14, align: 'center', valign: 'middle', margin: 0, objectName: 'Período pós' });
-  s.addShape(pres.ShapeType.line, { x: xMarco, y: 3.68, w: 0, h: 1.08, line: { color: C.accent5, width: 2.5 }, objectName: 'Marco' });
-  s.addText('30/11/2022 · lançamento público do ChatGPT', { x: xMarco - 2.6, y: 3.4, w: 5.2, h: 0.3, fontSize: 14, bold: true, color: C.text2, align: 'center', margin: 0, isTextBox: true, objectName: 'Rótulo do marco' });
-  s.addText('2019T1', { x: L, y: 4.66, w: 1.5, h: 0.28, fontSize: 12, color: C.accent6, margin: 0, isTextBox: true });
-  s.addText('2022T3 | 2022T4', { x: xMarco - 1.2, y: 4.66, w: 2.4, h: 0.28, fontSize: 12, color: C.accent6, align: 'center', margin: 0, isTextBox: true });
-  s.addText('2025T3', { x: R - 1.5, y: 4.66, w: 1.5, h: 0.28, fontSize: 12, color: C.accent6, align: 'right', margin: 0, isTextBox: true });
+  s.addText('ANTES · 15 trimestres', { shape: pres.ShapeType.rect, x: L, y: 4.2, w: wPre, h: 0.46, fill: { color: C.accent4 }, line: { type: 'none' }, color: C.text2, bold: true, fontSize: 14, align: 'center', valign: 'middle', margin: 0, objectName: 'Período pré' });
+  s.addText('DEPOIS · 12 trimestres', { shape: pres.ShapeType.rect, x: xMarco, y: 4.2, w: LARG - wPre, h: 0.46, fill: { color: C.accent1 }, line: { type: 'none' }, color: C.background1, bold: true, fontSize: 14, align: 'center', valign: 'middle', margin: 0, objectName: 'Período pós' });
+  s.addShape(pres.ShapeType.line, { x: xMarco, y: 4.1, w: 0, h: 0.68, line: { color: C.accent5, width: 2.5 }, objectName: 'Marco' });
+  s.addText('30/11/2022 · ChatGPT', { x: xMarco - 2.6, y: 3.84, w: 5.2, h: 0.26, fontSize: 13, bold: true, color: C.text2, align: 'center', margin: 0, isTextBox: true, objectName: 'Rótulo do marco' });
+  s.addText('2019', { x: L, y: 4.7, w: 1.5, h: 0.26, fontSize: 12, color: C.accent6, margin: 0, isTextBox: true });
+  s.addText('2025', { x: R - 1.5, y: 4.7, w: 1.5, h: 0.26, fontSize: 12, color: C.accent6, align: 'right', margin: 0, isTextBox: true });
 
   // Três definições
   const defs = [
-    ['Exposição', 'Propriedade da ocupação, medida por um índice. Não é adoção de IA nem risco de demissão.'],
-    ['Transição', 'O que acontece com a mesma pessoa entre duas entrevistas trimestrais consecutivas.'],
-    ['Marco', 'Lançamento do ChatGPT: único, nacional e exterior às decisões de quem está na amostra.'],
+    ['Exposição', 'Quanto as tarefas da ocupação se parecem com o que a IA faz. Não é uso de IA nem risco de demissão.'],
+    ['Transição', 'O que acontece com a mesma pessoa de um trimestre para o seguinte.'],
+    ['Marco', 'O lançamento do ChatGPT: data certa, vale para o país inteiro e ninguém da amostra o escolheu.'],
   ];
   const w3 = (LARG - 2 * 0.22) / 3;
-  defs.forEach(([t, d], i) => cartao(s, L + i * (w3 + 0.22), 5.15, w3, 1.45, [
+  defs.forEach(([t, d], i) => cartao(s, L + i * (w3 + 0.22), 5.15, w3, 1.3, [
     { text: t, options: { bold: true, fontSize: 18, color: C.accent1, breakLine: true } },
     { text: d, options: { fontSize: 15 } },
   ], 'Definição: ' + t));
@@ -229,8 +257,8 @@ pres.addSection({ title: 'Abertura' });
     s.addText(runs, { x: x + 0.2, y: 2.45, w: w3 - 0.4, h: 2.7, valign: 'top', margin: 0, isTextBox: true, objectName: 'Itens da coluna ' + n });
   });
   s.addText([
-    { text: 'LACUNA  ', options: { bold: true, fontSize: 13, color: C.accent5, charSpacing: 2 } },
-    { text: 'Não há, no Brasil, medida direta de adoção de IA em base representativa. Por isso: exposição ocupacional aplicada a um painel domiciliar rotativo.', options: { fontSize: 17, color: C.background1 } },
+    { text: 'LACUNA E RELEVÂNCIA  ', options: { bold: true, fontSize: 13, color: C.accent5, charSpacing: 2 } },
+    { text: 'Com tanta informalidade, o Brasil pode reagir à IA de outro jeito que os países ricos, mas não há medida direta do uso de IA. Por isso: exposição ocupacional num painel domiciliar.', options: { fontSize: 17, color: C.background1 } },
   ], { shape: pres.ShapeType.roundRect, rectRadius: 0.1, x: L, y: 5.55, w: LARG, h: 1.0, fill: { color: C.accent2 }, line: { type: 'none' }, margin: [0.1, 0.3, 0.1, 0.3], valign: 'middle', objectName: 'Lacuna' });
   notas(s, 'literatura', 3);
 }
@@ -258,7 +286,7 @@ pres.addSection({ title: 'Dados e método' });
   ], 'Regra do par', { fontSize: 14, margin: [0.12, 0.2, 0.1, 0.2] });
 
   const x0 = 4.85;
-  tituloGrafico(s, 'Pessoas-transições por domínio de estimação', x0, 1.5, R - x0);
+  tituloGrafico(s, 'Cada desfecho usa a sua parte da base (pessoas-transições)', x0, 1.5, R - x0);
   const rot = ['Pareamento (todas as origens)', 'Saída do emprego (pares)', 'Muda de ocupação (destino ocupado)', 'Margens direcionais (AIOE nos dois lados)', 'Informalização (origem formal)'];
   s.addChart(pres.charts.BAR, [{ name: 'Pessoas-transições', labels: rot, values: esc.map(r => r.pessoas_transicoes) }], opcoesGrafico({
     x: x0, y: 1.95, w: R - x0, h: 4.55, barDir: 'bar', barGapWidthPct: 45, chartColors: [H.accent1], catAxisOrientation: 'maxMin',
@@ -293,7 +321,7 @@ pres.addSection({ title: 'Dados e método' });
   });
 
   const x0 = 5.9;
-  tituloGrafico(s, 'Distribuição do AIOE entre os códigos ocupacionais', x0, 1.5, R - x0);
+  tituloGrafico(s, 'As ocupações se espalham por toda a escala do AIOE', x0, 1.5, R - x0);
   const a = D.aioe;
   const labels = a.contagens.map((_, i) => (i % 4 === 0 ? f(a.bordas[i], 1) : ''));   // só um rótulo a cada quatro faixas
   s.addChart(pres.charts.BAR, [{ name: 'Ocupações', labels, values: a.contagens }], opcoesGrafico({
@@ -345,10 +373,8 @@ pres.addSection({ title: 'Dados e método' });
     s.addText(runs, { x: x + 0.25, y: 2.6, w: w3 - 0.5, h: 2.75, valign: 'top', margin: 0, isTextBox: true, objectName: 'Desfechos da família ' + n });
   });
   s.addText([
-    { text: 'Domínio próprio. ', options: { bold: true, color: C.accent4 } },
-    { text: 'Cada desfecho é estimado onde está definido, e ausência nunca vira zero. ', options: { color: C.background1 } },
-    { text: 'Margens direcionais. ', options: { bold: true, color: C.accent4 } },
-    { text: 'Leem-se juntas: origens mais expostas têm mais destinos possíveis abaixo delas.', options: { color: C.background1 } },
+    { text: 'Duas regras. ', options: { bold: true, color: C.accent4 } },
+    { text: 'Destino não observado nunca vira zero. As duas direções se leem juntas: quem está no topo da exposição tem mais espaço para descer do que para subir.', options: { color: C.background1 } },
   ], { shape: pres.ShapeType.roundRect, rectRadius: 0.1, x: L, y: 5.7, w: LARG, h: 0.9, fill: { color: C.accent2 }, line: { type: 'none' }, fontSize: 16, margin: [0.1, 0.3, 0.1, 0.3], valign: 'middle', objectName: 'Observação' });
   notas(s, 'desfechos', 6);
 }
@@ -380,7 +406,7 @@ pres.addSection({ title: 'Dados e método' });
   ], 'Bloco: ' + t));
 
   const wPre = LARG * 15 / 27, xMarco = L + wPre;
-  s.addText('Pré · 2019T1 a 2022T3 · 15 trimestres', { shape: pres.ShapeType.rect, x: L, y: 5.7, w: wPre, h: 0.5, fill: { color: C.accent3 }, line: { type: 'none' }, color: C.background1, bold: true, fontSize: 14, align: 'center', valign: 'middle', margin: 0, objectName: 'Período pré' });
+  s.addText('Pré · 2019T1 a 2022T3 · 15 trimestres', { shape: pres.ShapeType.rect, x: L, y: 5.7, w: wPre, h: 0.5, fill: { color: C.accent4 }, line: { type: 'none' }, color: C.text2, bold: true, fontSize: 14, align: 'center', valign: 'middle', margin: 0, objectName: 'Período pré' });
   s.addText('Pós · 2022T4 a 2025T3 · 12 trimestres', { shape: pres.ShapeType.rect, x: xMarco, y: 5.7, w: LARG - wPre, h: 0.5, fill: { color: C.accent1 }, line: { type: 'none' }, color: C.background1, bold: true, fontSize: 14, align: 'center', valign: 'middle', margin: 0, objectName: 'Período pós' });
   s.addShape(pres.ShapeType.line, { x: xMarco, y: 5.55, w: 0, h: 0.8, line: { color: C.accent5, width: 2.5 }, objectName: 'Marco' });
   s.addText('Tratamento contínuo: não há grupo tratado e grupo de controle, e sim uma intensidade de exposição que varia entre ocupações.', { x: L, y: 6.42, w: LARG, h: 0.4, fontSize: 13, italic: true, color: C.accent6, margin: 0, isTextBox: true, objectName: 'Nota do desenho' });
@@ -399,7 +425,7 @@ pres.addSection({ title: 'Resultados' });
     ['Transição de formal para informal', 'De formal para informal'], ['Saída do emprego', 'Saída do emprego'],
   ];
   const xl = L, wl = 6.5;
-  tituloGrafico(s, 'Médias ponderadas antes e depois do marco (%)', xl, 1.5, wl);
+  tituloGrafico(s, 'Quase tudo subiu; só a saída do emprego ficou parada (%)', xl, 1.5, wl);
   s.addChart(pres.charts.BAR, [
     { name: 'Pré (2019T1 a 2022T3)', labels: ordem.map(o => o[1]), values: ordem.map(o => Math.round(d(o[0]).pre * 1000) / 10) },
     { name: 'Pós (2022T4 a 2025T3)', labels: ordem.map(o => o[1]), values: ordem.map(o => Math.round(d(o[0]).pos * 1000) / 10) },
@@ -410,7 +436,7 @@ pres.addSection({ title: 'Resultados' });
   }));
 
   const xr = 7.55, wr = R - xr;
-  tituloGrafico(s, 'Permanência na mesma faixa: pós − pré (p.p.)', xr, 1.5, wr);
+  tituloGrafico(s, 'Ficar na mesma faixa caiu em todas (pós − pré, p.p.)', xr, 1.5, wr);
   const diag = D.matriz.map((m, i) => m.valores[i]);
   s.addChart(pres.charts.BAR, [{ name: 'Pós − pré', labels: ['Q1', 'Q2', 'Q3', 'Q4', 'Q5'], values: diag }], opcoesGrafico({
     x: xr, y: 2.2, w: wr, h: 2.85, barDir: 'col', barGapWidthPct: 40, chartColors: [H.accent1], invertedColors: [H.accent1], catAxisLabelPos: 'low',
@@ -418,11 +444,8 @@ pres.addSection({ title: 'Resultados' });
     showLegend: false, altText: 'Colunas com a variação da permanência na mesma faixa de exposição: negativa nas cinco faixas, de menos 3,6 a menos 8,1 pontos percentuais.',
   }));
   s.addText('Q1 = menor exposição · Q5 = maior exposição', { x: xr, y: 1.9, w: wr, h: 0.3, fontSize: 12, color: C.accent6, margin: 0, isTextBox: true, objectName: 'Legenda das faixas' });
-  cartao(s, xr, 5.2, wr, 1.35, [
-    { text: 'Cai em todas as cinco faixas', options: { bold: true, fontSize: 17, color: C.accent1, breakLine: true } },
-    { text: 'Entre 3,6 e 8,1 p.p. Teste de Wald de igualdade das matrizes: χ² = 3.040,1, com 20 graus de liberdade.', options: { fontSize: 15 } },
-  ], 'Teste de Wald', { margin: [0.12, 0.2, 0.1, 0.2] });
-  fonte(s, 'Fonte: elaboração própria a partir da PNADC/IBGE. Médias ponderadas pelo peso da origem, cada uma no domínio do desfecho.');
+  cartaAto(s, 'Tensão', 'A mobilidade subiu em todas as faixas, e não só nas mais expostas. Então, a IA explica alguma parte desse movimento?', xr, 5.15, wr, 1.42, { fontSize: 16, opcoes: { margin: [0.1, 0.22, 0.1, 0.22] } });
+  fonte(s, 'Fonte: elaboração própria a partir da PNADC/IBGE. Médias ponderadas pelo peso da origem. Teste de Wald de igualdade das matrizes: χ² = 3.040,1 (20 g.l.).');
   notas(s, 'descritivo', 8);
 }
 
@@ -435,7 +458,7 @@ pres.addSection({ title: 'Resultados' });
   const grupo = [0, 1, 1, 2, 3, 2, 0];
   const GR = [
     { nome: 'Deslocamento no gradiente', cor: H.accent1 }, { nome: 'Mobilidade ocupacional', cor: H.accent3 },
-    { nome: 'Vínculo', cor: H.accent5 }, { nome: 'Teste de atrito', cor: H.accent6 },
+    { nome: 'Vínculo', cor: H.dk2 }, { nome: 'Teste de atrito', cor: H.accent6 },
   ];
   // geometria do gráfico de pontos: eixo de -2 a +3 p.p.
   const px0 = 4.25, px1 = 8.55, vmin = -2, vmax = 3, u = (px1 - px0) / (vmax - vmin);
@@ -505,7 +528,7 @@ pres.addSection({ title: 'Resultados' });
     { text: 'Como ler', options: { bold: true, fontSize: 16, color: C.accent1, breakLine: true } },
     { text: 'Compatível com o ramo de Autor e Thompson (2025) em que o vínculo se preserva e o ajuste recai sobre o rendimento, que esta pesquisa não observa. Compatibilidade não é teste.', options: { fontSize: 15 } },
   ], 'Como ler', { margin: [0.14, 0.25, 0.1, 0.25] });
-  s.addText('Maior exposição se associa a menos saída do emprego e a menos informalização: o sinal oposto ao da leitura alarmista.', { shape: pres.ShapeType.roundRect, rectRadius: 0.1, x: L, y: 5.6, w: LARG, h: 0.85, fill: { color: C.accent2 }, line: { type: 'none' }, fontSize: 19, bold: true, color: C.background1, margin: [0.1, 0.3, 0.1, 0.3], valign: 'middle', objectName: 'Síntese' });
+  s.addText('Mais exposição à IA, vínculo preservado: menos saída do emprego e menos informalização.', { shape: pres.ShapeType.roundRect, rectRadius: 0.1, x: L, y: 5.6, w: LARG, h: 0.85, fill: { color: C.accent2 }, line: { type: 'none' }, fontSize: 19, bold: true, color: C.background1, margin: [0.1, 0.3, 0.1, 0.3], valign: 'middle', objectName: 'Síntese' });
   fonte(s, 'Fonte: elaboração própria a partir da PNADC/IBGE. Efeitos em pontos percentuais por unidade do índice.');
   notas(s, 'vinculo', 10);
 }
@@ -548,12 +571,13 @@ pres.addSection({ title: 'Conclusão' });
     ['✓', C.accent3, 'Associação condicional', 'Gradiente detectável, da ordem de 2 p.p. por unidade de AIOE. Vínculo sem deterioração.'],
     ['✕', C.accent5, 'Causal', 'O desenho atual não sustenta a afirmação.'],
   ];
-  rotulo(s, 'TRÊS NÍVEIS DE RESPOSTA', L, 1.5, 5.6, C.accent4);
+  // Carta da resolução: a resposta em três níveis.
+  s.addText('', { shape: pres.ShapeType.roundRect, rectRadius: 0.1, x: L, y: 1.5, w: 5.75, h: 4.5, fill: { color: C.accent1 }, line: { type: 'none' }, objectName: 'Carta: Resolução' });
+  rotulo(s, 'RESOLUÇÃO · A RESPOSTA EM TRÊS NÍVEIS', L + 0.25, 1.68, 5.3, C.accent4);
   niveis.forEach(([ic, cor, t, d], i) => {
-    const y = 1.9 + i * 1.38;
-    s.addText('', { shape: pres.ShapeType.roundRect, rectRadius: 0.1, x: L, y, w: 5.75, h: 1.25, fill: { color: C.accent1, transparency: 35 }, line: { type: 'none' }, objectName: 'Nível: ' + t });
-    disco(s, L + 0.2, y + 0.325, 0.6, ic, cor, C.text2, 'Marca: ' + t, 20);
-    s.addText([{ text: t, options: { bold: true, fontSize: 18, color: C.background1, breakLine: true } }, { text: d, options: { fontSize: 14, color: C.accent4 } }], { x: L + 1.0, y: y + 0.1, w: 4.6, h: 1.05, valign: 'middle', margin: 0, isTextBox: true, objectName: 'Texto: ' + t });
+    const y = 2.1 + i * 1.28;
+    disco(s, L + 0.25, y + 0.25, 0.6, ic, cor, C.text2, 'Marca: ' + t, 20);
+    s.addText([{ text: t, options: { bold: true, fontSize: 18, color: C.background1, breakLine: true } }, { text: d, options: { fontSize: 15, color: C.background1 } }], { x: L + 1.05, y, w: 4.5, h: 1.1, valign: 'middle', margin: 0, isTextBox: true, objectName: 'Texto: ' + t });
   });
   const xr = 6.8, wr = R - xr;
   rotulo(s, 'AGENDA, EM ORDEM DE PRIORIDADE', xr, 1.5, wr, C.accent4);
@@ -571,7 +595,7 @@ pres.addSection({ title: 'Conclusão' });
   });
   s.addText('Extensões, por último: rendimentos, dimensão regional e margem de entrada no mercado de trabalho.', { x: xr, y: 6.12, w: wr, h: 0.5, fontSize: 13, italic: true, color: C.accent4, margin: 0, isTextBox: true, objectName: 'Extensões' });
   s.addText('Obrigado. Perguntas?', { x: L, y: 6.2, w: 5.75, h: 0.6, fontFace: '+mj-lt', fontSize: 28, bold: true, color: C.background1, margin: 0, isTextBox: true, objectName: 'Agradecimento' });
-  notas(s, 'conclusao', 12);
+  notas(s, 'conclusao', 12, true);
 }
 
 // ----------------------------------------------------------------- gravação ----

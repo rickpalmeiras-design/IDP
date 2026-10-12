@@ -1,126 +1,159 @@
-// Conteúdo falado de cada slide: tempo previsto e leitura.
+// Conteúdo falado de cada slide: ato da história, tempo previsto e leitura.
 //
 // É a fonte única do roteiro. O gerador copia daqui as notas do orador de cada
 // slide, e o gerador do roteiro.md também. Todo número vem da dissertação
 // (capítulos 3 a 5 e tabelas em dissertacao/tabelas/).
 //
-// Tempo: 15 minutos exatos, 900 segundos, a 125 palavras por minuto de fala.
-// `node contar.js` mostra quanto cada leitura realmente ocupa.
+// A história tem três atos: contexto (slides 2 e 3), tensão (4 a 8) e
+// resolução (9 a 12).
+//
+// Trechos entre colchetes, como [Aponte para o histograma.], são
+// marcas de gesto: não se leem em voz alta e não entram na contagem de tempo.
+//
+// Tempo: 15 minutos reservados, 900 segundos. As leituras foram escritas para
+// caber em cerca de 13 minutos e meio a 125 palavras por minuto, o que deixa
+// folga para pausas e troca de slides. `node contar.js` mostra o tempo de cada uma.
 
 const RITMO_PALAVRAS_POR_MINUTO = 125;
 
+const ATOS = ['Contexto', 'Tensão', 'Resolução'];
+
 const SLIDES = [
   {
-    id: 'titulo', secao: 'Abertura', segundos: 30,
+    id: 'titulo', secao: 'Abertura', ato: null, segundos: 30,
     titulo: 'Exposição ocupacional à inteligência artificial e transições no mercado de trabalho brasileiro',
     leitura:
-`Agradeço a presença de todos e ao professor Danny, meu orientador. Sou Ricardo Carvalho e apresento, em quinze minutos, a minha dissertação: como a exposição das ocupações à inteligência artificial se relaciona com as transições de trabalho no Brasil depois do ChatGPT, com o painel da PNAD Contínua. São resultados preliminares, e vou dizer com clareza o que sustentam e o que ainda não.`,
+`Obrigado a todos pela presença, e obrigado ao professor Danny, meu orientador. Sou Ricardo Carvalho. Nos próximos quinze minutos, vou contar uma história em três partes: o contexto, a tensão e a resposta. A pergunta é simples. Depois do ChatGPT, o trabalho no Brasil mudou mais para quem está nas ocupações mais expostas à inteligência artificial?`,
   },
   {
-    id: 'pergunta', secao: 'Abertura', segundos: 75, titulo: 'A pergunta de pesquisa',
+    id: 'pergunta', secao: 'Abertura', ato: 'Contexto', segundos: 100, titulo: 'A IA chegou para todos no mesmo dia. O trabalho mudou?',
     leitura:
-`Em 30 de novembro de 2022, o ChatGPT foi aberto ao público. Esse marco tem uma propriedade útil para quem estuda mercado de trabalho: é único, nacional, tem data certa e não depende de decisão de nenhum trabalhador ou empresa da amostra. A pergunta da dissertação é esta: trabalhadores em ocupações mais expostas à inteligência artificial passaram a apresentar transições de trabalho diferentes depois desse marco?
+`Começo pelo contexto. Em 30 de novembro de 2022, o ChatGPT foi aberto ao público. De um dia para o outro, uma ferramenta que escreve, resume e programa ficou ao alcance de qualquer pessoa.
 
-Três definições antes de seguir. Exposição é uma propriedade da ocupação, medida por um índice. Ela indica o quanto as habilidades da ocupação se aproximam do que a tecnologia faz, e não se alguém usa IA, nem se corre risco de demissão. Transição é o que acontece com a mesma pessoa entre duas entrevistas trimestrais consecutivas. O período vai de 2019 a 2025: quinze trimestres de origem antes do marco e doze depois. E o horizonte é curto, de um trimestre: mede-se o que acontece até a entrevista seguinte.`,
+Para quem estuda o mercado de trabalho, esse marco é útil. Ele tem data certa, vale para o país inteiro e não depende da decisão de nenhum trabalhador da pesquisa.
+
+Daí vem a pergunta da dissertação: quem trabalha em ocupações mais expostas à IA passou a mudar de trabalho de um jeito diferente depois desse marco?
+
+Por que isso importa? Porque mudar de trabalho mexe com renda, com informalidade e com o tipo de qualificação que o país precisa oferecer. E quase tudo o que se sabe vem de países ricos.
+
+Duas palavras são importantes. Exposição é uma característica da ocupação, e não da pessoa. Ela mede o quanto as tarefas da ocupação se parecem com o que a IA faz. Não diz se a pessoa usa IA, nem se ela vai perder o emprego. E transição é o que acontece com a mesma pessoa de um trimestre para o seguinte.`,
   },
   {
-    id: 'literatura', secao: 'Abertura', segundos: 75, titulo: 'O que a literatura já mostra',
+    id: 'literatura', secao: 'Abertura', ato: 'Contexto', segundos: 75, titulo: 'A literatura mede a exposição; o Brasil não mede o uso',
     leitura:
-`A literatura tem três frentes. A primeira mede exposição. Felten, Raj e Seamans, em 2021, construíram o AIOE, que liga habilidades das ocupações a aplicações de inteligência artificial. Eloundou e coautores, em 2024, refazem o exercício tarefa a tarefa, para modelos de linguagem.
+`O que já se sabe sobre isso? A literatura anda em três frentes.
 
-A segunda observa adoção e resultados. Brynjolfsson, Li e Raymond acompanham uma central de atendimento e medem ganho de produtividade. Humlum e Vestergaard, na Dinamarca, estimam efeitos nulos e precisos sobre rendimentos e horas dois anos após a adoção, com alguma recomposição de tarefas e troca de ocupação.
+A primeira mede a exposição. Felten, Raj e Seamans criaram o índice que eu uso, chamado AIOE. Ele liga as habilidades de cada ocupação ao que a IA consegue fazer. Eloundou e coautores fizeram algo parecido para os modelos de linguagem.
 
-A terceira dá desenho e contexto. Acemoglu e Restrepo usam exposição diferencial para identificar efeitos. Ulyssea mostra que a informalidade é heterogênea, e Meghir e coautores, que a fronteira com o setor formal é atravessada com frequência.
+A segunda observa quem já adotou a IA. Numa central de atendimento, a produtividade subiu. Na Dinamarca, dois anos depois, salários e horas praticamente não mudaram.
 
-A lacuna: não há, no Brasil, medida direta de adoção de IA em base representativa. Por isso uso exposição ocupacional num painel domiciliar.`,
+A terceira me dá o método e o contexto brasileiro, em que as pessoas entram e saem da informalidade com frequência.
+
+E aqui está a lacuna. No Brasil, não existe uma pesquisa grande que pergunte quem usa IA no trabalho. Então eu uso o que existe: a exposição da ocupação, numa pesquisa feita nos domicílios.`,
   },
   {
-    id: 'dados', secao: 'Dados e método', segundos: 75, titulo: 'Dados: a PNAD Contínua em painel',
+    id: 'dados', secao: 'Dados e método', ato: 'Tensão', segundos: 70, titulo: 'A PNAD Contínua segue a mesma pessoa por cinco trimestres',
     leitura:
-`Os dados vêm da PNAD Contínua trimestral do IBGE, de 2019 a 2025. É um painel rotativo: cada domicílio é visitado cinco vezes, uma por trimestre. Isso permite tentar ligar a mesma pessoa entre dois trimestres seguidos, mas não existe identificador individual validado. Por isso reconstruí o par exigindo, ao mesmo tempo, mesma UPA, domicílio e número de ordem, mesmo sexo, mesmo dia e mês de nascimento e idade coerente.
+`Agora começa a tensão, porque responder a essa pergunta não é simples. O primeiro obstáculo está nos dados.
 
-O gráfico mostra a escala. São quase quatro milhões de pessoas-transições com exposição atribuída à origem. Dessas, 80,2% encontram o par na entrevista seguinte, e cada desfecho usa o seu próprio domínio, como o de destino ocupado, com 2,9 milhões. A taxa de pareamento varia entre 0,747 e 0,847 ao longo dos trimestres, com os valores mais baixos em 2020 e 2021, quando a coleta foi por telefone.
+Uso a PNAD Contínua do IBGE, de 2019 a 2025. Cada domicílio é entrevistado cinco vezes, uma por trimestre. Isso permite acompanhar a mesma pessoa. O problema é que a pesquisa não traz um número de identificação confiável para cada pessoa. Então eu reconstruí os pares: mesmo domicílio, mesmo sexo, mesma data de aniversário e idade coerente.
 
-Um aviso: são pessoas-transições, e não pessoas únicas, e o próprio pareamento entra como desfecho, num teste de atrito.`,
+O gráfico mostra o tamanho da base. São quase quatro milhões de pares possíveis, e cerca de oitenta por cento encontram a entrevista seguinte. Cada desfecho usa a sua própria parte da base, por isso as barras têm tamanhos diferentes.
+
+Um detalhe: eu conto transições, e não pessoas. A mesma pessoa pode aparecer até quatro vezes.`,
   },
   {
-    id: 'exposicao', secao: 'Dados e método', segundos: 75, titulo: 'Como medir a exposição à IA',
+    id: 'exposicao', secao: 'Dados e método', ato: 'Tensão', segundos: 80, titulo: 'A exposição à IA varia muito entre as ocupações',
     leitura:
-`O tratamento é o AIOE, publicado para a classificação ocupacional americana. Como a PNAD usa a classificação brasileira, construí uma ponte em duas etapas: da COD para a ISCO-08, e da ISCO-08 para a SOC. Quando uma ocupação brasileira se liga a várias americanas, o peso é uniforme, uma hipótese de construção que declaro como tal.
+`O segundo obstáculo é a medida. O índice de exposição foi feito para as ocupações dos Estados Unidos, e a PNAD usa a classificação brasileira. Por isso construí uma ponte em duas etapas: da classificação brasileira para a internacional, e da internacional para a americana. Quando uma ocupação brasileira corresponde a várias americanas, cada uma recebe o mesmo peso. É uma escolha minha, e eu a declaro.
 
-A cobertura é alta: 416 códigos recebem exposição, 413 entram na estimação, e só 1,08% do peso amostral fica sem valor. O índice é padronizado entre ocupações, com desvio-padrão de 0,9445. Uma unidade de AIOE equivale, portanto, a cerca de um desvio-padrão, e menor exposição não significa emprego pior. O histograma mostra uma distribuição ampla.
+A cobertura ficou boa: 416 ocupações recebem o índice, e só cerca de um por cento da amostra fica de fora. [Aponte para o histograma.] O gráfico mostra que as ocupações se espalham por toda a escala.
 
-E há um cuidado: a exposição tem correlação de 0,702 com a teletrabalhabilidade. Por isso essa variável entra interagida com o período, para que a exposição não absorva a reorganização do trabalho remoto. Os coeficientes são sempre lidos por unidade de AIOE.`,
+E há um terceiro obstáculo. As ocupações mais expostas à IA também são as que mais podem ser feitas de casa. A correlação é de 0,7. Por isso o teletrabalho entra no modelo, para que a IA não leve o crédito pelo que foi efeito da pandemia.`,
   },
   {
-    id: 'desfechos', secao: 'Dados e método', segundos: 60, titulo: 'Sete desfechos de transição',
+    id: 'desfechos', secao: 'Dados e método', ato: 'Tensão', segundos: 60, titulo: 'Sete desfechos: vínculo, mobilidade e direção',
     leitura:
-`Estimo sete desfechos, em três famílias. A primeira é de continuidade e vínculo: o pareamento, que funciona como teste de atrito, a saída do emprego e a transição de formal para informal. A segunda é de mobilidade ocupacional: se a pessoa mudou de ocupação, em dois e em três dígitos da classificação. A terceira é de deslocamento no gradiente de exposição: a transição para uma ocupação menos exposta e para uma mais exposta.
+`Para saber se o trabalho mudou, olho para sete desfechos, em três grupos.
 
-Cada desfecho é estimado no seu próprio domínio, e ausência nunca vira zero: um destino não observado não quer dizer que a pessoa não mudou de ocupação. As duas margens direcionais só podem ser lidas juntas, porque têm uma assimetria mecânica: quem está numa ocupação muito exposta tem mais destinos possíveis abaixo dela.`,
+O primeiro é o vínculo. A pessoa saiu do emprego? Passou do emprego formal para o informal? E, como controle, ela foi encontrada de novo na entrevista seguinte?
+
+O segundo é a mobilidade: a pessoa mudou de ocupação?
+
+O terceiro é a direção: ela foi para uma ocupação menos exposta à IA, ou para uma mais exposta?
+
+Duas regras. Quando não vejo o destino, não conto como se a pessoa tivesse ficado parada. E as duas direções sempre se leem juntas, porque quem está no topo da exposição tem mais espaço para descer do que para subir.`,
   },
   {
-    id: 'desenho', secao: 'Dados e método', segundos: 90, titulo: 'Desenho: diferenças em diferenças contínuas',
+    id: 'desenho', secao: 'Dados e método', ato: 'Tensão', segundos: 80, titulo: 'Sem grupo de controle, comparo intensidades de exposição',
     leitura:
-`O desenho é de diferenças em diferenças com tratamento contínuo. Não há grupo tratado e grupo de controle: há um marco temporal único e nacional, o lançamento do ChatGPT, e uma intensidade de tratamento que varia entre ocupações, dada pela exposição da ocupação de origem.
+`O último obstáculo é o desenho. Não existe um grupo que recebeu a IA e outro que não recebeu. O ChatGPT chegou para todos no mesmo dia. O que muda é a intensidade: algumas ocupações estão mais expostas do que outras.
 
-O período pré vai de 2019T1 a 2022T3, com quinze trimestres, e o pós, de 2022T4 a 2025T3, com doze. O trimestre do marco conta como pós, por convenção declarada antes da estimação. O parâmetro de interesse, beta, é o coeficiente da interação entre exposição e período pós. Ele compara a mudança entre pré e pós de ocupações com exposições diferentes, em pontos percentuais por unidade de AIOE.
+Por isso uso diferenças em diferenças com tratamento contínuo. Em palavras simples: comparo o antes e o depois do marco, e pergunto se essa mudança foi maior nas ocupações mais expostas. O antes tem quinze trimestres, e o depois tem doze.
 
-A equação traz ainda a teletrabalhabilidade interagida com o pós, a idade, efeitos fixos de ocupação de origem e de UF por trimestre, e efeitos fixos de sexo, cor ou raça, escolaridade, tempo no emprego, tamanho do estabelecimento e setor.
+O número que importa é o beta, em destaque na equação. Ele diz quantos pontos percentuais a mais cada desfecho mudou, para cada unidade a mais de exposição.
 
-A estimação é por modelo de probabilidade linear ponderado pelo peso da origem, com erros-padrão agrupados na UPA, em mais de trinta mil grupos. A mesma especificação vale para os sete desfechos.`,
+O modelo também leva em conta o teletrabalho, a idade, a ocupação de origem, o estado em cada trimestre e características como sexo, escolaridade e setor. E os erros são calculados por área de coleta, em mais de trinta mil grupos.`,
   },
   {
-    id: 'descritivo', secao: 'Resultados', segundos: 75, titulo: 'A mobilidade subiu em todas as faixas',
+    id: 'descritivo', secao: 'Resultados', ato: 'Tensão', segundos: 75, titulo: 'A mobilidade subiu em todas as faixas de exposição',
     leitura:
-`Antes de qualquer coeficiente, a descrição. À esquerda, as médias antes e depois do marco. A mudança de ocupação em três dígitos sobe de 23,6% para 31,8%, e em dois dígitos, de 20,9% para 28%. As duas margens direcionais sobem quase igual, de 12,8 e 12,9% para 17,4%. A transição de formal para informal vai de 5,2% a 8,8%, e a saída do emprego praticamente não se move. O pareamento também sobe, de 78,3% para 81,2%.
+`Antes de qualquer modelo, vamos olhar os dados brutos. E aqui a tensão aumenta.
 
-À direita, a matriz de mobilidade entre cinco faixas de exposição. A permanência na mesma faixa cai em todas elas, entre 3,6 e 8,1 pontos percentuais, e o teste de Wald rejeita a igualdade das matrizes.
+[Aponte para o gráfico de barras deitadas.] Aqui estão as médias antes e depois do marco. Mudar de ocupação ficou bem mais comum: passou de cerca de 24 para 32 por cento. Ir para uma ocupação menos exposta subiu, mas ir para uma mais exposta subiu na mesma medida. A passagem do formal para o informal também subiu. Só a saída do emprego ficou praticamente parada.
 
-A leitura é que houve um aumento generalizado das taxas medidas de rotatividade, e não uma mudança concentrada nas ocupações mais expostas. Um cuidado: a taxa medida de mudança de ocupação tem uma quebra em 2020 e 2021, que retomo adiante.`,
+[Aponte para o gráfico das cinco faixas, Q1 a Q5.] Agora, as cinco faixas de exposição, da menor para a maior. Em todas elas, ficar na mesma faixa ficou menos comum.
+
+Ou seja: a mobilidade subiu para todo mundo, e não só para quem está mais exposto à IA. Essa é a tensão do trabalho. Se tudo se mexeu, a IA explica alguma parte desse movimento? É isso que o modelo vai responder.`,
   },
   {
-    id: 'resultado', secao: 'Resultados', segundos: 105, titulo: 'Resultado principal: o gradiente de exposição',
+    id: 'resultado', secao: 'Resultados', ato: 'Resolução', segundos: 90, titulo: 'Mais exposição, mais mudança para ocupações menos expostas',
     leitura:
-`Este é o resultado principal. O gráfico mostra o coeficiente beta de cada desfecho, com intervalo de confiança de 95%, em pontos percentuais por unidade de AIOE.
+`E esta é a resposta principal. Cada ponto do gráfico é o beta de um desfecho, e a linha em volta é a margem de erro.
 
-O mais forte é o deslocamento no gradiente. Ocupações de origem com uma unidade a mais de exposição tiveram, do pré para o pós, um aumento 2,19 pontos percentuais maior na transição para ocupação menos exposta, e uma variação 1,36 ponto percentual menor na transição para ocupação mais exposta. Em magnitude, 2,19 corresponde a cerca de 12,6% da taxa pós, que é de 17,4%. A leitura é literal: compara mudanças entre pré e pós de ocupações com exposições diferentes, e não acompanha uma mesma ocupação cuja exposição aumente.
+[Aponte para o primeiro ponto do gráfico.] O resultado mais forte é a direção. Quanto mais exposta a ocupação de origem, mais as pessoas passaram a ir para ocupações menos expostas. Para cada unidade a mais de exposição, essa transição subiu cerca de 2,2 pontos percentuais a mais. Não é pouco: equivale a cerca de um oitavo da taxa do período depois do marco. [Aponte para o último ponto do gráfico.] E o movimento contrário, ir para uma ocupação mais exposta, ficou 1,4 ponto menor.
 
-A mudança de ocupação também se associa à exposição: mais 0,86 ponto percentual em três dígitos e 0,28 em dois, o que sugere que parte do movimento adicional ocorre dentro das categorias de dois dígitos. Todos os intervalos excluem zero, exceto o do teste de atrito.
+Mudar de ocupação também ficou um pouco mais comum nas ocupações mais expostas, quase um ponto a mais.
 
-Duas ressalvas são essenciais. Primeira: nas margens direcionais, parte do resultado é mecânica, porque origens mais expostas têm mais destinos abaixo delas, e o desenho atual não separa isso do gradiente. Segunda: são sete desfechos correlacionados, sem correção para multiplicidade. O coeficiente de dois dígitos, com p de 0,030, é o que menos resiste e não deve ser citado isoladamente.`,
+Agora, duas ressalvas, para ser honesto. A primeira: parte do resultado de direção é mecânica, porque quem já está no topo tem mais espaço para descer. A segunda: são sete testes ao mesmo tempo, sem correção para isso. O resultado mais fraco, o de mudança de ocupação em dois dígitos, não deve ser citado sozinho.`,
   },
   {
-    id: 'vinculo', secao: 'Resultados', segundos: 75, titulo: 'Vínculo no emprego e teste de atrito',
+    id: 'vinculo', secao: 'Resultados', ato: 'Resolução', segundos: 80, titulo: 'Mais exposição veio com o vínculo no emprego preservado',
     leitura:
-`Nas margens de vínculo, o sinal é contraintuitivo. Maior exposição se associa a menos saída do emprego, menos 0,25 ponto percentual, e a menos transição de formal para informal, menos 0,67. Ou seja, nesse período, quem está em ocupações mais expostas não mostrou deterioração relativa do vínculo.
+`E o emprego? Aqui está a surpresa. [Aponte para os dois primeiros números.] Era de se esperar que os mais expostos perdessem o emprego ou caíssem na informalidade. Não foi o que apareceu. Mais exposição veio junto com um pouco menos de saída do emprego e menos passagem do formal para o informal.
 
-Na informalização, o coeficiente da teletrabalhabilidade é positivo, mais 1,73 ponto percentual, enquanto o da exposição é negativo. Como os índices têm escalas diferentes, o desenho não identifica qual força explica o aumento agregado.
+O terceiro número mostra que, na informalidade, quem aparece associado a mais informalização é o teletrabalho, e não a IA. Como os dois índices têm escalas diferentes, não dá para dizer qual força pesa mais.
 
-Esse padrão é compatível com a ideia, de Autor e Thompson, de que a automação pode preservar o vínculo e fazer o ajuste recair sobre o rendimento. Mas compatibilidade não é teste, e esta pesquisa só observa quantidades, não preços.
+Uma explicação possível vem de Autor e Thompson: a tecnologia pode manter o emprego e mudar o salário. Mas eu não observo salários. Então isso é uma hipótese, e não um teste.
 
-Por fim, o teste de atrito: o coeficiente do pareamento é menos 0,261, com p de 0,064. Não rejeito a estabilidade, mas está perto do limiar. Não posso dizer que a seleção longitudinal esteja descartada.`,
+Por fim, o controle. A chance de reencontrar a pessoa quase variou com a exposição, perto do limite de significância. Por isso não posso descartar que as perdas de entrevista influenciem o resultado.`,
   },
   {
-    id: 'limites', secao: 'Conclusão', segundos: 75, titulo: 'O que o desenho permite e o que não permite',
+    id: 'limites', secao: 'Conclusão', ato: 'Resolução', segundos: 80, titulo: 'Os dados mostram associação, ainda não causalidade',
     leitura:
-`É por isso que o trabalho dedica tanto espaço aos limites. À esquerda, o que os resultados sustentam: houve aumento generalizado da rotatividade; há um gradiente condicional detectável, da ordem de dois pontos percentuais por unidade de exposição; e, nas margens de vínculo, o sinal é oposto ao da leitura alarmista.
+`Então, o que esses resultados permitem dizer, e o que não permitem?
 
-À direita, o que não sustentam. Não é evidência causal: é um único cenário de estimação, sem estudo de evento, sem teste de tendências anteriores ao marco e sem bateria de sensibilidade. A adoção de IA não é observada, o tratamento é um índice de exposição potencial, e o marco é único e nacional.
+Eles permitem dizer três coisas. A mobilidade subiu para todos. Existe um gradiente: quanto mais exposta a ocupação, mais as pessoas foram para ocupações menos expostas, cerca de dois pontos por unidade de exposição. E o vínculo dos mais expostos não piorou.
 
-E há uma descontinuidade de medida. A taxa de mudança de ocupação em três dígitos cai de 30% para 15% entre 2019T4 e 2020T1, fica entre 13% e 15% durante a coleta telefônica e volta a 34% em 2021T4. A causa não está demonstrada, e é o limite mais sério do trabalho.`,
+Eles não permitem dizer que a IA causou isso. Ainda falta o estudo de evento, que testa se as ocupações já se comportavam de forma diferente antes do marco. Eu não observo quem usa IA, só quem está exposto. E o marco é um só, para o país inteiro.
+
+E há o limite mais sério. No começo de 2020, justamente quando a entrevista passou a ser por telefone, a taxa medida de mudança de ocupação caiu pela metade, de 30 para 15 por cento. Ela só voltou no fim de 2021. A causa dessa quebra ainda não está demonstrada.`,
   },
   {
-    id: 'conclusao', secao: 'Conclusão', segundos: 90, titulo: 'Conclusões e próximos passos',
+    id: 'conclusao', secao: 'Conclusão', ato: 'Resolução', segundos: 80, titulo: 'Mudou a direção, não o vínculo; a causa segue em aberto',
     leitura:
-`Resumindo, em três níveis. No descritivo, a mobilidade subiu para todos, e não só para os mais expostos. Como associação condicional, existe um gradiente detectável, da ordem de dois pontos percentuais por unidade de AIOE, e as margens de vínculo não mostram deterioração. No nível causal, o desenho atual não sustenta a afirmação. O que a pesquisa entrega, hoje, é uma descrição cuidadosa e uma agenda clara para chegar a uma resposta causal, se ela existir.
+`Para fechar, a resposta em três níveis.
 
-Por isso a agenda tem uma ordem. Primeiro, tratar a quebra de medida de 2020 e 2021 e definir a janela homogênea. Segundo, o estudo de evento, com teste conjunto dos coeficientes anteriores ao marco, que diz se existe desenho a defender. Terceiro, uma bateria mínima de sensibilidade: janelas, agrupamento, tendência por exposição e a especificação sem teletrabalhabilidade.
+Primeiro, o que os dados mostram: depois do ChatGPT, a mobilidade subiu para todos, e não só para os mais expostos.
 
-Quarto, trocar a medida pela específica para modelos de linguagem, de Eloundou e coautores, e rodar o placebo com teletrabalhabilidade. Depois, a sensibilidade a tendências não paralelas e os estimadores para tratamento contínuo. As extensões, como rendimentos, vêm por último.
+Segundo, a associação: existe um gradiente de cerca de dois pontos por unidade de exposição, em direção a ocupações menos expostas. E o vínculo não piorou.
 
-Agradeço a atenção e fico à disposição para as perguntas.`,
+Terceiro, a causalidade: o desenho atual ainda não permite afirmá-la.
+
+O que eu entrego hoje é uma descrição cuidadosa e um caminho claro para chegar à resposta causal, se ela existir. Esse caminho tem cinco passos, em ordem. Primeiro, tratar a quebra de 2020 e 2021. Segundo, o estudo de evento. Terceiro, os testes de sensibilidade. Quarto, uma medida feita para modelos de linguagem e um placebo com o teletrabalho. Quinto, métodos próprios para tratamento contínuo. Salários e outras extensões vêm depois.
+
+Muito obrigado. Fico à disposição para as perguntas.`,
   },
 ];
 
-module.exports = { SLIDES, RITMO_PALAVRAS_POR_MINUTO };
+module.exports = { SLIDES, ATOS, RITMO_PALAVRAS_POR_MINUTO };
