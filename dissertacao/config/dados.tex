@@ -36,35 +36,46 @@
 
 %% --- Vínculo institucional -------------------------------------------------
 \curso{}                                 % OBRIGATÓRIO em bacharelado/especialização
-\programa{}                              % OBRIGATÓRIO em mestrado/doutorado
-\area{}                                  % área de concentração (pós-graduação)
+\programa{Administração Pública}         % OBRIGATÓRIO em mestrado/doutorado
+\habilitacao{Mestrado Profissional em Administração Pública}  % linha da capa
+\area{Ciência de Dados e Inteligência Artificial}  % área de concentração (pós-graduação)
 \linhapesquisa{}                         % linha de pesquisa (pós-graduação)
 
 \cidade{Brasília}                        % usada na folha de aprovação
-\local{Brasília}                         % usado na capa e folha de rosto
+\local{Brasília-DF}                      % usado na capa e folha de rosto
 \data{2026}                              % ano de depósito
 
 %% --- Defesa ----------------------------------------------------------------
 %% Informe APENAS a data; a cidade vem de \cidade acima.
-\datadefesa{}                            % OBRIGATÓRIO -> "Cidade, dd de mes de aaaa."
+\datadefesa{17 de novembro de 2026}      % OBRIGATÓRIO -> "Cidade, dd de mes de aaaa."
 
-%% Banca: \membrobanca[Instituição]{Nome}{Função}   (instituição é opcional)
-\membrobanca{Prof. Dr. Danny de Castro Soares}{Orientador}
-\membrobanca{Prof. Dr. Abel Ferreira}{Examinador interno}
-\membrobanca{Dr. Rodrigo Batista de Araújo}{Examinador externo}
+%% Banca (modelo 2026), um comando por membro:
+%%   \membrobanca[Instituição]{Nome}{Função}[ID Lattes ou ORCID]
+%% Na folha de aprovação sai: traço | Nome | ID Lattes ou ORCID |
+%% "Função - Instituição". A instituição vale IDP quando omitida; para o
+%% examinador externo, informe a sigla da IES dele. Dado que ainda falta vai
+%% em \pendente{...}: aparece como [[ PREENCHER: ... ]] e gera aviso.
+%% O modelo pede um ID por membro; os três ORCID foram conferidos em orcid.org.
+%% Lattes, se preferir trocar: Claudiomar 4947956711702057
+%% (http://lattes.cnpq.br/4947956711702057); Rodrigo 1491651107420281
+%% (http://lattes.cnpq.br/1491651107420281).
+\membrobanca{Prof. Dr. Danny de Castro Soares}{Orientador}[ORCID: 0000-0002-6665-9647]
+\membrobanca{Prof. Dr. Claudiomar Matias Rolim Filho}{Examinador interno}[ORCID: 0000-0003-2884-8639]
+\membrobanca[UCB]{Dr. Rodrigo Batista de Araújo}{Examinador externo}[ORCID: 0009-0006-7216-2983]
 
 %% --- Ficha catalográfica ---------------------------------------------------
-%% A ficha OFICIAL é elaborada pela Biblioteca Ministro Moreira Alves.
-%% Solicite por biblioteca@idp.edu.br e transcreva os dados recebidos aqui.
-\cutter{}                                % notação Cutter fornecida pela Biblioteca
-\numeropaginas{00}                       % OBRIGATÓRIO: total de folhas
-\cdd{XXX}                                % OBRIGATÓRIO: Classificação Decimal de Dewey
-\assuntos{}                              % se vazio, usa as palavras-chave
+%% Modelo 2026: a folha fica reservada ("Espaço destinado à ficha
+%% catalográfica.") até a Biblioteca Ministro Moreira Alves enviar a ficha
+%% oficial. Solicite por biblioteca@idp.edu.br ou pelo formulário da
+%% Biblioteca. Quando ela chegar, salve o PDF em figuras/ e descomente:
+% \arquivoficha{figuras/ficha-catalografica.pdf}
 
 %% --- Resumo ----------------------------------------------------------------
-\palavraschave{Inteligência artificial. Exposição ocupacional à inteligência
-               artificial. Mercado de trabalho. Mobilidade ocupacional.
-               Diferenças em diferenças. Políticas públicas.}  % OBRIGATÓRIO
-\keywords{Artificial intelligence. Occupational exposure to artificial
-          intelligence. Labor market. Occupational mobility.
-          Difference-in-differences. Public policy.}           % OBRIGATÓRIO
+%% NBR 6028: palavras-chave separadas por ponto e vírgula, em minúscula
+%% (exceto nomes próprios), terminadas em ponto.
+\palavraschave{inteligência artificial; exposição ocupacional à inteligência
+               artificial; mercado de trabalho; mobilidade ocupacional;
+               diferenças em diferenças; políticas públicas.}  % OBRIGATÓRIO
+\keywords{artificial intelligence; occupational exposure to artificial
+          intelligence; labor market; occupational mobility;
+          difference-in-differences; public policy.}           % OBRIGATÓRIO

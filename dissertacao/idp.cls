@@ -2,8 +2,9 @@
 %% idp.cls -- Classe LaTeX para trabalhos academicos do
 %%            Instituto Brasileiro de Ensino, Desenvolvimento e Pesquisa (IDP)
 %%
-%% Reproduz o arquivo "templateMonografia_ou_TCC.pdf" publicado pela
-%% Biblioteca Ministro Moreira Alves e atende as normas ABNT:
+%% Reproduz o modelo "Template final_Monografia_Dissertacao_Tese_2026 uni IDP"
+%% (Universidade IDP, 2026) publicado pela Biblioteca Ministro Moreira Alves
+%% e atende as normas ABNT:
 %%   NBR 14724 (trabalhos academicos)   NBR 6027 (sumario)
 %%   NBR 6023  (referencias)            NBR 6028 (resumo)
 %%   NBR 10520 (citacoes)               NBR 6024 (numeracao progressiva)
@@ -12,7 +13,7 @@
 %% Licenca: LPPL 1.3c
 %%=============================================================================
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{idp}[2026/08/05 v1.0 Trabalhos academicos do IDP (ABNT)]
+\ProvidesClass{idp}[2026/11/03 v2.0 Trabalhos academicos da Universidade IDP (ABNT)]
 
 %%-----------------------------------------------------------------------------
 %% 1. OPCOES DA CLASSE
@@ -22,7 +23,7 @@
 \newif\ifidp@novapagina   \idp@novapaginatrue   % secao primaria em nova pagina
 \newif\ifidp@links        \idp@linksfalse       % colorir hiperlinks
 \newif\ifidp@rascunho     \idp@rascunhofalse    % marca d'agua de rascunho
-\newif\ifidp@autorrepetido \idp@autorrepetidofalse % NBR 6023:2018 estrita
+\newif\ifidp@autorrepetido \idp@autorrepetidotrue % autor repetido por extenso (modelo 2026)
 \newif\ifidp@entrega      \idp@entregafalse       % aborta se faltar campo
 
 % --- nivel do trabalho (define a natureza padrao e o grau) -------------------
@@ -39,6 +40,7 @@
 \DeclareOption{semlinks}{\idp@linksfalse}
 \DeclareOption{rascunho}{\idp@rascunhotrue}
 \DeclareOption{refautorrepetido}{\idp@autorrepetidotrue}
+\DeclareOption{refautortraco}{\idp@autorrepetidofalse}   % volta ao travessao antigo
 \DeclareOption{entrega}{\idp@entregatrue}
 
 % --- repasse para a classe base ---------------------------------------------
@@ -97,8 +99,8 @@
 % Por isso todo bloco em corpo menor precisa mudar o espacamento ANTES do
 % tamanho. \idpcorpo{tamanho}{entrelinha} faz isso na ordem certa.
 \newcommand{\idpcorpo}[2]{\setstretch{1}\fontsize{#1}{#2}\selectfont}
-\newcommand{\idpcorpodez}{\idpcorpo{10}{11.5}}   % citacoes longas, fontes, notas
-\newcommand{\idpcorpoonze}{\idpcorpo{11}{12.65}} % ficha catalografica
+\newcommand{\idpcorpodez}{\idpcorpo{10}{11.5}}   % legendas, fontes, notas, abstract
+\newcommand{\idpcorpoonze}{\idpcorpo{11}{12.65}} % citacoes longas, numero da pagina
 
 % Altura de uma linha com espacamento 1,5 -- usada nos espacamentos verticais
 \newlength{\idplinha}      \setlength{\idplinha}{20.7pt}
@@ -135,6 +137,10 @@
   \@whiledim\idp@lw<\idp@nw\do{\addtolength{\idp@lw}{\idp@tabstop}}%
   \makebox[\idp@lw][l]{#1}%
 }
+% Modelo 2026: o titulo da secao vem logo depois do numero, a cerca de 4 mm
+% ("1 INTRODUCAO" com o titulo a 7,7 mm da margem; "1.1 Objetivo" a 10,1 mm).
+\newlength{\idp@distnum} \setlength{\idp@distnum}{4mm}
+\newcommand{\idpnumtitulo}[1]{#1\hspace{\idp@distnum}}
 
 %%-----------------------------------------------------------------------------
 %% 6. TITULOS DE SECAO (NBR 6024 / NBR 14724)
@@ -152,19 +158,19 @@
 
 \titleformat{\section}[block]
   {\normalfont\normalsize\bfseries\raggedright}
-  {\idptabbox{\thesection}}{0pt}{\MakeUppercase}
+  {\idpnumtitulo{\thesection}}{0pt}{\MakeUppercase}
 \titleformat{\subsection}[block]
   {\normalfont\normalsize\bfseries\raggedright}
-  {\idptabbox{\thesubsection}}{0pt}{}
+  {\idpnumtitulo{\thesubsection}}{0pt}{}
 \titleformat{\subsubsection}[block]
   {\normalfont\normalsize\raggedright}
-  {\idptabbox{\thesubsubsection}}{0pt}{}
+  {\idpnumtitulo{\thesubsubsection}}{0pt}{}
 \titleformat{\paragraph}[block]
   {\normalfont\normalsize\itshape\raggedright}
-  {\idptabbox{\theparagraph}}{0pt}{}
+  {\idpnumtitulo{\theparagraph}}{0pt}{}
 \titleformat{\subparagraph}[block]
   {\normalfont\normalsize\bfseries\itshape\raggedright}
-  {\idptabbox{\thesubparagraph}}{0pt}{}
+  {\idpnumtitulo{\thesubparagraph}}{0pt}{}
 
 \titlespacing{\section}      {0pt}{\idplinha}{\idplinha}
 \titlespacing{\subsection}   {0pt}{\idplinha}{\idplinha}
@@ -207,7 +213,7 @@
   \fancyhf{}%
   \renewcommand{\headrulewidth}{0pt}%
   \renewcommand{\footrulewidth}{0pt}%
-  \fancyhead[R]{\normalfont\normalsize\thepage}%
+  \fancyhead[R]{\normalfont\fontsize{11}{12.65}\selectfont\thepage}% modelo 2026: 11 pt
 }
 \fancypagestyle{idpsemnumero}{%
   \fancyhf{}%
@@ -229,8 +235,8 @@
 
 %%-----------------------------------------------------------------------------
 %% 9. CITACOES (NBR 10520)
-%%    Citacao direta com mais de 3 linhas: recuo de 4 cm, fonte 10,
-%%    espacamento simples, sem aspas, justificada.
+%%    Citacao direta com mais de 3 linhas: recuo de 4 cm, fonte 11 (regra e
+%%    exemplo do modelo 2026), espacamento simples, sem aspas, justificada.
 %%-----------------------------------------------------------------------------
 \newenvironment{citacao}{%
   \par\vspace{\idplinha}%
@@ -245,7 +251,7 @@
     \setlength{\partopsep}{0pt}%
     \setlength{\parsep}{0pt}%
     \setlength{\itemsep}{0pt}}%
-  \item[]\idpcorpodez\noindent\ignorespaces
+  \item[]\idpcorpoonze\noindent\ignorespaces
 }{%
   \end{list}\par\vspace{\idplinha}%
 }
@@ -254,15 +260,17 @@
 
 %%-----------------------------------------------------------------------------
 %% 10. FIGURAS, QUADROS, GRAFICOS E TABELAS
-%%     Legenda ACIMA ("Figura 1 - Titulo"), fonte ABAIXO ("Fonte: ...").
-%%     Ambas em fonte 10, centralizadas, espacamento simples.
+%%     Legenda ACIMA ("Figura 1 - Titulo", em italico, como no modelo 2026),
+%%     fonte ABAIXO ("Fonte: ...", sem negrito). Ambas em fonte 10, o tamanho
+%%     menor e uniforme da NBR 14724, centralizadas, espacamento simples.
 %%-----------------------------------------------------------------------------
 \RequirePackage{graphicx}
 \RequirePackage{float}
 \RequirePackage{booktabs}
-\RequirePackage[labelsep=endash,justification=centering,
-                skip=4pt,position=top]{caption}
-\DeclareCaptionFont{idpcap}{\idpcorpodez}
+\RequirePackage{caption}
+\DeclareCaptionLabelSeparator{idphifen}{ - }
+\captionsetup{labelsep=idphifen,justification=centering,skip=4pt,position=top}
+\DeclareCaptionFont{idpcap}{\idpcorpodez\itshape}
 \captionsetup{font=idpcap,labelfont=idpcap,textfont=idpcap}
 
 \floatstyle{plaintop}          % legenda SEMPRE acima do elemento
@@ -282,11 +290,11 @@
 % Linha "Fonte: ..." abaixo do elemento ilustrativo
 \newcommand{\fonte}[1]{%
   \par\vspace{2pt}%
-  {\centering\idpcorpodez\textbf{Fonte:}~#1\par}%
+  {\centering\idpcorpodez Fonte:~#1\par}%
 }
 \newcommand{\nota}[1]{%
   \par\vspace{2pt}%
-  {\centering\idpcorpodez\textbf{Nota:}~#1\par}%
+  {\centering\idpcorpodez Nota:~#1\par}%
 }
 
 %%-----------------------------------------------------------------------------
@@ -312,6 +320,22 @@
 \newcommand{\idp@campovazio}[1]{[[ PREENCHER: #1 ]]}
 
 \newcount\idp@pendentes
+% Marcador publico para dados que ainda faltam, usavel em config/dados.tex
+% (ex.: \membrobanca[\pendente{SIGLA da IES}]{...}). Conta no aviso final.
+\newcount\idp@pendentestexto
+\newcommand{\pendente}[1]{%
+  \global\advance\idp@pendentestexto by 1\relax
+  \idp@campovazio{#1}}
+\AtEndDocument{%
+  \ifnum\idp@pendentestexto>0\relax
+    \ifidp@entrega
+      \ClassError{idp}{\the\idp@pendentestexto\space dado(s) marcado(s) com
+        \string\pendente\space ainda sem valor}{Procure por "[[ PREENCHER" no PDF.}%
+    \else
+      \ClassWarningNoLine{idp}{\the\idp@pendentestexto\space dado(s) ainda
+        sem valor aparecem como "[[ PREENCHER: ... ]]" no PDF}%
+    \fi
+  \fi}
 \newcommand{\idp@confere}[2]{%
   \def\idp@tmp{\idp@campovazio{#1}}%
   \ifx#2\idp@tmp
@@ -320,8 +344,11 @@
   \fi
 }
 
-\def\idp@instituicao{Instituto Brasileiro de Ensino, Desenvolvimento e Pesquisa
-                     \textendash\ IDP}
+% Nome oficial atual. O antigo ("Instituto Brasileiro de Ensino, Desenvolvimento
+% e Pesquisa -- IDP") nao e mais usado; \instituicao{...} ainda permite trocar.
+\def\idp@instituicao{Universidade IDP}
+\def\idp@instituicaocurta{Universidade~IDP}   % capa, rosto e aprovacao (2026)
+\babelhyphenation[brazilian]{Universidade}      % o nome nao se quebra no fim da linha
 \def\idp@titulo{\idp@campovazio{titulo}}
 \def\idp@subtitulo{}
 \def\idp@autor{\idp@campovazio{autor}}
@@ -333,7 +360,7 @@
 \def\idp@area{}              % area de concentracao (mestrado/doutorado)
 \def\idp@linhapesquisa{}     % linha de pesquisa
 \def\idp@titulotraduzido{}   % titulo em lingua estrangeira (para o abstract)
-\def\idp@local{Bras\'ilia-DF}
+\def\idp@local{Bras\'ilia-DF}   % capa e folha de rosto: "Brasilia-DF"
 \def\idp@cidade{Bras\'ilia}  % so a cidade, usada na folha de aprovacao
 \def\idp@data{\the\year}
 \def\idp@datadefesa{\idp@campovazio{datadefesa}}
@@ -345,9 +372,17 @@
 \def\idp@paginas{\idp@campovazio{numeropaginas}}
 \def\idp@tipotrabalho{}
 \def\idp@preambulo{}
-\def\idp@logo{figuras/idp-logo.png}   % use \semlogo para omitir
+\def\idp@logo{figuras/idp-universidade-logo.png}   % use \semlogo para omitir
+\def\idp@arquivoficha{}   % PDF da ficha oficial, quando a Biblioteca enviar
+
+% Um campo informado em branco (ex.: \programa{}) continua pendente, em vez
+% de sair vazio no PDF ("pos-graduacao em , como parte...").
+\newcommand{\idp@defcampo}[3]{%  #1 macro | #2 nome do campo | #3 valor
+  \def\idp@tmpa{#3}%
+  \ifx\idp@tmpa\@empty\def#1{\idp@campovazio{#2}}\else\def#1{#3}\fi}
 
 \newcommand{\instituicao}[1]{\def\idp@instituicao{#1}}
+\newcommand{\instituicaocurta}[1]{\def\idp@instituicaocurta{#1}}
 \newcommand{\titulo}[1]{\def\idp@titulo{#1}}
 \newcommand{\subtitulo}[1]{\def\idp@subtitulo{#1}}
 \renewcommand{\author}[1]{\def\idp@autor{#1}}
@@ -355,8 +390,8 @@
 \newcommand{\autorficha}[1]{\def\idp@autorficha{#1}}
 \newcommand{\orientador}[1]{\def\idp@orientador{#1}}
 \newcommand{\coorientador}[1]{\def\idp@coorientador{#1}}
-\newcommand{\curso}[1]{\def\idp@curso{#1}}
-\newcommand{\programa}[1]{\def\idp@programa{#1}}
+\newcommand{\curso}[1]{\idp@defcampo\idp@curso{curso}{#1}}
+\newcommand{\programa}[1]{\idp@defcampo\idp@programa{programa}{#1}}
 \newcommand{\area}[1]{\def\idp@area{#1}}
 \newcommand{\linhapesquisa}[1]{\def\idp@linhapesquisa{#1}}
 \newcommand{\titulotraduzido}[1]{\def\idp@titulotraduzido{#1}}
@@ -368,7 +403,8 @@
 % mesmo dado em dois campos. Use \datadefesacompleta para controlar a linha
 % inteira (ex.: "Aprovada em 15 de dezembro de 2026.").
 \newcommand{\datadefesa}[1]{%
-  \def\idp@datadefesa{\idp@cidade, #1.}}
+  \def\idp@tmpa{#1}%
+  \ifx\idp@tmpa\@empty\else\def\idp@datadefesa{\idp@cidade, #1.}\fi}
 \newcommand{\datadefesacompleta}[1]{\def\idp@datadefesa{#1}}
 \newcommand{\palavraschave}[1]{\def\idp@palavraschave{#1}}
 \newcommand{\keywords}[1]{\def\idp@keywords{#1}}
@@ -379,6 +415,7 @@
 \newcommand{\tipotrabalho}[1]{\def\idp@tipotrabalho{#1}}
 \newcommand{\preambulo}[1]{\def\idp@preambulo{#1}}
 \newcommand{\logo}[1]{\def\idp@logo{#1}}
+\newcommand{\arquivoficha}[1]{\def\idp@arquivoficha{#1}}
 \newcommand{\semlogo}{\let\idp@logo\@empty}
 
 % --- Acessores publicos ------------------------------------------------------
@@ -412,13 +449,18 @@
   \idp@confere{datadefesa}{\idp@datadefesa}%
   \idp@confere{palavraschave}{\idp@palavraschave}%
   \idp@confere{keywords}{\idp@keywords}%
-  \idp@confere{cdd}{\idp@cdd}%
-  \idp@confere{numeropaginas}{\idp@paginas}%
-  % curso e programa sao mutuamente exclusivos: cobra so o que o nivel usa
+  % Modelo 2026: a ficha catalografica vem pronta da Biblioteca, por isso CDD
+  % e numero de paginas deixaram de ser cobrados aqui.
+  % curso e programa sao mutuamente exclusivos: cobra so o que o nivel usa.
+  % Na pos-graduacao a folha de rosto tambem pede a area de concentracao.
   \ifx\idp@nivel\idp@n@mestrado
+    \ifx\idp@area\@empty\def\idp@area{\idp@campovazio{area}}\fi
     \idp@confere{programa}{\idp@programa}%
+    \idp@confere{area}{\idp@area}%
   \else\ifx\idp@nivel\idp@n@doutorado
+    \ifx\idp@area\@empty\def\idp@area{\idp@campovazio{area}}\fi
     \idp@confere{programa}{\idp@programa}%
+    \idp@confere{area}{\idp@area}%
   \else
     \idp@confere{curso}{\idp@curso}%
   \fi\fi
@@ -435,21 +477,26 @@
       \ClassWarningNoLine{idp}{%
         ATENCAO: \the\idp@pendentes\space campo(s) de config/dados.tex ainda
         nao preenchido(s).\MessageBreak
-        Eles aparecem como ">>> PREENCHER: ... <<<" no PDF.\MessageBreak
+        Eles aparecem como "[[ PREENCHER: ... ]]" no PDF.\MessageBreak
         Use a opcao de classe `entrega' para transformar isto em erro}%
     \fi
   \fi
 }
 
-% Banca examinadora: \membrobanca[Instituicao]{Nome}{Funcao}
-% A instituicao e opcional e sai numa terceira linha, sob a funcao -- util
-% quando ha examinador externo ao IDP.
+% Banca examinadora (modelo 2026), um comando por membro:
+%   \membrobanca[Instituicao]{Nome}{Funcao}[ID Lattes ou ORCID]
+% Sai como: traco | Nome | ID Lattes ou ORCID | "Funcao - Instituicao".
+% A instituicao e opcional e vale "IDP" quando omitida; o examinador externo
+% leva a sigla da IES dele. Sem o ID, sai "[[ PREENCHER: ID Lattes ou ORCID ]]".
 \newcommand{\idp@banca}{}
-\newcommand{\membrobanca}[3][]{%
-  \g@addto@macro\idp@banca{\idp@membro{#2}{#3}{#1}}%
+\newcommand{\membrobanca}[3][IDP]{%
+  \@ifnextchar[{\idp@membrobanca{#1}{#2}{#3}}{\idp@membrobanca{#1}{#2}{#3}[]}%
+}
+\def\idp@membrobanca#1#2#3[#4]{%
+  \g@addto@macro\idp@banca{\idp@membro{#2}{#3}{#1}{#4}}%
 }
 
-% Titulo completo (titulo: subtitulo)
+% Titulo completo (Titulo: subtitulo) -- titulo em negrito, subtitulo nao
 \newcommand{\idp@titulocompleto}{%
   \textbf{\idp@titulo}%
   \ifx\idp@subtitulo\@empty\else\textbf{:} \idp@subtitulo\fi
@@ -458,23 +505,59 @@
 %%-----------------------------------------------------------------------------
 %% 13. NATUREZA DO TRABALHO -- texto padrao por nivel
 %%-----------------------------------------------------------------------------
-\newcommand{\idp@preambulopadrao}{%
+% O modelo 2026 usa dois textos: um na folha de rosto (stricto sensu, area de
+% concentracao) e outro, mais curto, na folha de aprovacao. O modelo ainda trazia
+% o nome antigo ("Instituto Brasileiro de Ensino, Desenvolvimento e Pesquisa")
+% na folha de aprovacao; os dois usam "Universidade IDP", o nome atual.
+% \preambulo{...} substitui os dois.
+\newcommand{\idp@preambulorosto}{%
   \ifx\idp@nivel\idp@n@bacharelado
-    Monografia apresentada como requisito para obten\c{c}\~ao do t\'itulo de
-    bacharel em \idp@curso\ do \idp@instituicao.%
+    Trabalho de conclus\~ao de curso apresentado como requisito para
+    obten\c{c}\~ao do t\'itulo de bacharel em \idp@curso\ pela
+    \idp@instituicaocurta.%
   \else\ifx\idp@nivel\idp@n@especializacao
     Monografia apresentada como requisito para obten\c{c}\~ao do t\'itulo de
-    especialista em \idp@curso\ do \idp@instituicao.%
+    especialista em \idp@curso\ pela \idp@instituicaocurta.%
+  \else\ifx\idp@nivel\idp@n@mestrado
+    Disserta\c{c}\~ao apresentada ao programa de p\'os-gradua\c{c}\~ao
+    \textit{stricto sensu} em \idp@programa, \'area de concentra\c{c}\~ao
+    \idp@area, como parte do requisito para a obten\c{c}\~ao do t\'itulo de
+    Mestre em \idp@programa\ pela \idp@instituicaocurta.%
+  \else
+    Tese apresentada ao programa de p\'os-gradua\c{c}\~ao \textit{stricto
+    sensu} em \idp@programa, \'area de concentra\c{c}\~ao \idp@area, como
+    parte do requisito para a obten\c{c}\~ao do t\'itulo de Doutor em
+    \idp@programa\ pela \idp@instituicaocurta.%
+  \fi\fi\fi
+}
+\newcommand{\idp@preambuloaprovacao}{%
+  \ifx\idp@nivel\idp@n@bacharelado
+    Monografia apresentada como requisito para obten\c{c}\~ao do t\'itulo de
+    bacharel em \idp@curso\ pela \idp@instituicaocurta.%
+  \else\ifx\idp@nivel\idp@n@especializacao
+    Monografia apresentada como requisito para obten\c{c}\~ao do t\'itulo de
+    especialista em \idp@curso\ pela \idp@instituicaocurta.%
   \else\ifx\idp@nivel\idp@n@mestrado
     Disserta\c{c}\~ao apresentada ao programa de p\'os-gradua\c{c}\~ao em
     \idp@programa, como parte do requisito para a obten\c{c}\~ao do t\'itulo de
-    Mestre em \idp@programa\ pelo \idp@instituicao.%
+    Mestre em \idp@programa\ pela \idp@instituicaocurta.%
   \else
     Tese apresentada ao programa de p\'os-gradua\c{c}\~ao em \idp@programa,
     como parte do requisito para a obten\c{c}\~ao do t\'itulo de Doutor em
-    \idp@programa\ pelo \idp@instituicao.%
+    \idp@programa\ pela \idp@instituicaocurta.%
   \fi\fi\fi
 }
+% Linha "Mestrado em ..." da capa. \habilitacao{...} substitui a linha inteira
+% (ex.: "Mestrado Profissional em Administracao Publica").
+\def\idp@habilitacao{}
+\newcommand{\habilitacao}[1]{\def\idp@habilitacao{#1}}
+\newcommand{\idp@cursocapa}{%
+  \ifx\idp@habilitacao\@empty\idp@cursocapapadrao\else\idp@habilitacao\fi}
+\newcommand{\idp@cursocapapadrao}{%
+  \ifx\idp@nivel\idp@n@bacharelado Bacharelado em \idp@curso
+  \else\ifx\idp@nivel\idp@n@especializacao Especializa\c{c}\~ao em \idp@curso
+  \else\ifx\idp@nivel\idp@n@mestrado Mestrado em \idp@programa
+  \else Doutorado em \idp@programa\fi\fi\fi}
 \def\idp@n@bacharelado{bacharelado}
 \def\idp@n@especializacao{especializacao}
 \def\idp@n@mestrado{mestrado}
@@ -490,154 +573,154 @@
   \else\idp@tipotrabalho\fi
 }
 
-% Bloco da natureza do trabalho: recuo de 8 cm, justificado, espacamento simples
-\newcommand{\idp@blocopreambulo}{%
-  \hspace*{8cm}%
-  \begin{minipage}{\dimexpr\textwidth-8cm\relax}
-    \espacosimples\setlength{\parindent}{0pt}\normalsize
-    \ifx\idp@preambulo\@empty\idp@preambulopadrao\else\idp@preambulo\fi\par
-    \ifx\idp@area\@empty\else
-      \vspace{\idplinhasimp}\'Area de concentra\c{c}\~ao: \idp@area\par\fi
-    \ifx\idp@linhapesquisa\@empty\else
-      Linha de pesquisa: \idp@linhapesquisa\par\fi
-    \vspace{\idplinhasimp}
-    Orientador(a): \idp@orientador
-    \ifx\idp@coorientador\@empty\else\par Coorientador(a): \idp@coorientador\fi
+% Bloco da natureza do trabalho, justificado.
+%   #1 recuo (7,5 cm na folha de rosto, 8 cm na de aprovacao)
+%   #2 texto da natureza | #3 entrelinha do texto (o modelo usa 1,15 na folha
+%   de rosto e simples na de aprovacao) | #4 mostra o coorientador?
+\newcommand{\idp@blocopreambulo}[4]{%
+  \hspace*{#1}%
+  \begin{minipage}[t]{\dimexpr\textwidth-#1\relax}
+    \setlength{\parindent}{0pt}\normalsize
+    \exhyphenpenalty=10000 % nao quebra "pos-graduacao" no hifen, como no modelo
+    {\setstretch{#3}%
+     \ifx\idp@preambulo\@empty#2\else\idp@preambulo\fi\par}%
+    \espacosimples
+    \vspace{\idplinhasimp}%
+    Orientador: \idp@orientador\par
+    \if s#4\ifx\idp@coorientador\@empty\else Coorientador: \idp@coorientador\par\fi\fi
   \end{minipage}%
 }
 
 %%-----------------------------------------------------------------------------
 %% 14. ELEMENTOS PRE-TEXTUAIS
 %%-----------------------------------------------------------------------------
-\newcommand{\idp@tituloelemento}[1]{%
+% #1 distancia ate o texto (uma linha de 1,5 por padrao) | #2 titulo
+\newcommand{\idp@tituloelemento}[2][\idplinha]{%
   \clearpage
   \phantomsection
-  {\centering\normalfont\normalsize\bfseries\MakeUppercase{#1}\par}%
-  \vspace{\idplinha}%
+  {\centering\normalfont\normalsize\bfseries\MakeUppercase{#2}\par}%
+  \vspace{#1}%
 }
 
+% As distancias abaixo reproduzem as linhas de base medidas no modelo 2026
+% (em mm a partir da borda superior). Cada \vspace vale a distancia entre
+% duas linhas de base menos a entrelinha da linha seguinte.
+\newcommand{\idp@entrelinhadezesseis}{6.77mm}   % 19,2 pt, titulo em corpo 16
+
 % --- CAPA (nao e contada na paginacao) ---------------------------------------
+% logo 57,2 x 11,4 mm com o topo a 35,7 | "Universidade IDP" 54,1 |
+% "Mestrado em ..." 59,7 | titulo (16 pt) 147,4 | autor 174,5 |
+% orientador 179,3 | "Brasilia-DF" 242,6 | ano 248,2
 \newcommand{\capa}{%
   \thispagestyle{empty}%
-  \begin{center}
-    \espacosimples
-    \ifx\idp@logo\@empty
-      \vspace*{35.4mm}%
-    \else
-      \vspace*{0mm}%
-      {\includegraphics[height=36.3mm]{\idp@logo}\par}%
-      \vspace{2.9mm}%
-    \fi
-    {\bfseries \idp@instituicao\par}
-    {\bfseries Curso de \idp@curso\par}
-    \vspace{81.1mm}
-    {\setstretch{1}\fontsize{16}{19.2}\selectfont\idp@titulocompleto\par}
-    \vspace{22.3mm}
-    {\idp@autor\par}
-    {Orientador: \idp@orientador\par}
-    \vfill
-    {\idp@local\par}
-    {\idp@data\par}
-    \vspace{4.6mm}
-  \end{center}
+  \begingroup
+  \centering\espacosimples\setlength{\parskip}{0pt}%
+  \ifx\idp@logo\@empty
+    \vspace*{12.5mm}%
+  \else
+    \vspace*{1.1mm}%  com o \topskip, poe o topo do logo a 35,7 mm
+    \includegraphics[width=57.2mm]{\idp@logo}\par
+  \fi
+  \vspace{2.13mm}%
+  \idp@instituicaocurta\par
+  \vspace{0.73mm}%
+  \idp@cursocapa\par
+  \vspace{\dimexpr 87.7mm-\idp@entrelinhadezesseis\relax}%
+  {\setstretch{1}\fontsize{16}{19.2}\selectfont\idp@titulocompleto\par}%
+  \vspace{22.23mm}%
+  \idp@autor\par
+  Orientador: \idp@orientador\par
+  \vfill
+  \idp@local\par
+  \vspace{0.73mm}%
+  \idp@data\par
+  \vspace{28.8mm}%
+  \endgroup
   \clearpage
 }
 
 % --- FOLHA DE ROSTO (folha 1 da contagem) ------------------------------------
+% autor (caixa alta, negrito) 34,0 | titulo (16 pt) 64,5 | natureza a 7,5 cm
+% da margem, com a primeira linha a 98,9 | "Brasilia-DF" 267,6 | ano 273,2
 \newcommand{\folhaderosto}{%
   \setcounter{page}{1}%
   \thispagestyle{idpsemnumero}%
-  \begin{center}
-    \espacosimples
-    {\bfseries\MakeUppercase{\idp@autor}\par}
-    \vspace{54.6mm}
-    {\setstretch{1}\fontsize{16}{19.2}\selectfont\idp@titulocompleto\par}
-  \end{center}
-  \vspace{7.3mm}
-  \noindent\idp@blocopreambulo
+  \begingroup
+  \centering\espacosimples\setlength{\parskip}{0pt}%
+  {\bfseries\MakeUppercase{\idp@autor}\par}%
+  \vspace{\dimexpr 30.3mm-\idp@entrelinhadezesseis\relax}%
+  {\setstretch{1}\fontsize{16}{19.2}\selectfont\idp@titulocompleto\par}%
+  \vspace{29.0mm}%
+  {\raggedright\noindent\idp@blocopreambulo{7.5cm}{\idp@preambulorosto}{1.097}{s}\par}%
   \vfill
-  \begin{center}
-    \espacosimples
-    {\idp@local\par}
-    {\idp@data\par}
-    \vspace{5.7mm}
-  \end{center}
+  \idp@local\par
+  \vspace{0.73mm}%
+  \idp@data\par
+  \vspace{3.8mm}%
+  \endgroup
   \clearpage
 }
 
 % --- FICHA CATALOGRAFICA -----------------------------------------------------
+% Modelo 2026: a folha fica reservada ("Espaco destinado a ficha
+% catalografica.") ate a Biblioteca enviar a ficha oficial. Quando ela chegar,
+% salve o PDF e informe \arquivoficha{figuras/ficha.pdf} em config/dados.tex:
+% a ficha entra no pe da pagina, no lugar do aviso.
 \newcommand{\fichacatalografica}{%
   \thispagestyle{idpsemnumero}%
-  \null\vfill
-  \begin{center}
-  \idpcorpoonze
-  \begin{minipage}{150mm}
-    \setlength{\parindent}{0pt}
-    \rule{\linewidth}{0.4pt}\par\vspace{2mm}
-    \hspace*{0.6mm}\idp@cutter\hspace{10mm}\idp@autorficha\par\vspace{1.5mm}
-    \hspace*{15mm}\begin{minipage}{\dimexpr\linewidth-18mm\relax}
-      \idp@titulo\ifx\idp@subtitulo\@empty\else: \idp@subtitulo\fi\ /
-      \idp@autor. \textendash\ Bras\'ilia: IDP, \idp@data.\par\vspace{2mm}
-      \idp@paginas\ p.\par
-      Inclui bibliografia.\par\vspace{2mm}
-      Trabalho de Conclus\~ao de Curso (\idp@tipopadrao) \textendash\
-      \idp@instituicao, Curso de \idp@curso, Bras\'ilia, \idp@data.\par
-      Orientador: \idp@orientador.\par\vspace{2mm}
-      \ifx\idp@assuntos\@empty\idp@palavraschave\else\idp@assuntos\fi\
-      I. T\'itulo.\par
-      \hfill CDD: \idp@cdd\par
-    \end{minipage}\par\vspace{1mm}
-    \rule{\linewidth}{0.4pt}
-  \end{minipage}\par\vspace{3mm}
-  {\idpcorpoonze
-   Ficha catalogr\'afica elaborada pela Biblioteca Ministro Moreira Alves\par
-   \idp@instituicao\par}
-  \end{center}
-  \vspace{8mm}
-  {\centering\idpcorpodez\itshape
-   A Biblioteca Ministro Moreira Alves oferece o servi\c{c}o de elabora\c{c}\~ao
-   de fichas catalogr\'aficas; solicite via e-mail para
-   biblioteca@idp.edu.br\par}
+  \ifx\idp@arquivoficha\@empty
+    \null\vspace*{24.1mm}%
+    {\centering\espacosimples Espa\c{c}o destinado \`a ficha catalogr\'afica.\par}%
+  \else
+    \null\vfill
+    {\centering\includegraphics[width=\textwidth]{\idp@arquivoficha}\par}%
+  \fi
   \clearpage
 }
 
 % --- FOLHA DE APROVACAO ------------------------------------------------------
-% #1 nome | #2 funcao | #3 instituicao (opcional)
-\newcommand{\idp@membro}[3]{%
-  \vspace{10.3mm}
-  {\rule{80mm}{0.4pt}\par #1\par #2\par
-   \if\relax\detokenize{#3}\relax\else #3\par\fi}%
+% autor 43,7 | "Titulo: subtitulo" (12 pt) 58,3 | natureza a 8 cm, primeira
+% linha a 72,9 | data 165,4 | "Banca Examinadora" 180,0 | cada membro: traco
+% na largura do texto, nome, ID Lattes ou ORCID e "Funcao - Instituicao",
+% um a cada 25 mm.
+% #1 nome | #2 funcao | #3 instituicao | #4 ID Lattes ou ORCID
+\newcommand{\idp@membro}[4]{%
+  \vspace{6.3mm}%
+  \noindent\rule{\linewidth}{0.4pt}\par
+  \vspace{-0.77mm}%
+  #1\par
+  \if\relax\detokenize{#4}\relax\pendente{ID Lattes ou ORCID}\else #4\fi\par
+  #2 - #3\par
 }
 \newcommand{\folhadeaprovacao}{%
   \thispagestyle{idpsemnumero}%
-  \begin{center}
-    \espacosimples
-    {\bfseries\MakeUppercase{\idp@autor}\par}
-    \vspace{9.7mm}
-    {\bfseries\idp@titulo
-     \ifx\idp@subtitulo\@empty\else: \idp@subtitulo\fi\par}
-  \end{center}
-  \vspace{16.5mm}
-  \noindent\idp@blocopreambulo
-  % espaco flexivel: encolhe se a banca tiver muitos membros
-  \vspace{56.2mm minus 45mm}
-  \begin{center}
-    \espacosimples
-    {\idp@datadefesa\par}
-    \vspace{9.8mm}
-    {\bfseries Banca Examinadora\par}
-    \idp@banca
-  \end{center}
+  \begingroup
+  \centering\espacosimples\setlength{\parskip}{0pt}%
+  \vspace*{4.6mm}%  com o \topskip, poe o nome a 43,7 mm
+  {\bfseries\MakeUppercase{\idp@autor}\par}%
+  \vspace{9.73mm}%
+  \idp@titulocompleto\par
+  \vspace{9.73mm}%
+  {\raggedright\noindent\idp@blocopreambulo{8cm}{\idp@preambuloaprovacao}{\idp@stretchsimples}{n}\par}%
+  % espaco flexivel: encolhe se o titulo ou a banca forem longos
+  \vspace{48mm minus 40mm}%
+  \idp@datadefesa\par
+  \vspace{9.73mm}%
+  {\bfseries Banca Examinadora\par}%
+  \idp@banca
+  \endgroup
   \clearpage
 }
 
 % --- DEDICATORIA / EPIGRAFE --------------------------------------------------
+% Modelo 2026: dedicatoria em Times 12 normal (sem italico), no pe da pagina,
+% alinhada a direita.
 \newenvironment{dedicatoria}{%
   \clearpage\thispagestyle{idpsemnumero}%
   \null\vfill
   \noindent\hspace*{8cm}%
   \begin{minipage}{\dimexpr\textwidth-8cm\relax}
-    \espacosimples\setlength{\parindent}{0pt}\itshape\ignorespaces
+    \espacosimples\setlength{\parindent}{0pt}\ignorespaces
 }{%
   \end{minipage}\par\vspace{20mm}\clearpage
 }
@@ -652,8 +735,9 @@
 }
 
 % --- AGRADECIMENTOS ----------------------------------------------------------
+% Modelo 2026: o texto comeca na linha logo abaixo do titulo.
 \newenvironment{agradecimentos}{%
-  \idp@tituloelemento{Agradecimentos}\espacoumemeio
+  \idp@tituloelemento[0pt]{Agradecimentos}\espacoumemeio
 }{\clearpage}
 
 % --- RESUMO / ABSTRACT (NBR 6028: paragrafo unico, sem recuo, simples) -------
@@ -665,12 +749,13 @@
   \noindent\textbf{Palavras-chave:} \idp@palavraschave
   \clearpage
 }
+% Modelo 2026: abstract em Times 10, espacamento simples, justificado.
 \renewenvironment{abstract}{%
   \idp@tituloelemento{Abstract}%
-  \espacosimples\setlength{\parindent}{0pt}\selectlanguage{english}\noindent\ignorespaces
+  \idpcorpodez\setlength{\parindent}{0pt}\selectlanguage{english}\noindent\ignorespaces
 }{%
-  \par\vspace{2\idplinhasimp}%
-  \noindent\textbf{Keywords:} \idp@keywords
+  \par\vspace{2\baselineskip}%
+  \noindent\textbf{Keywords:} \idp@keywords\par
   \selectlanguage{brazilian}\clearpage
 }
 % Resumo em outro idioma qualquer
@@ -691,7 +776,7 @@
 \newcommand{\idp@entradalista}[2]{%
   \titlecontents{#1}[0pt]
     {\espacoumemeio}
-    {#2~\thecontentslabel\ \textendash\ }
+    {#2~\thecontentslabel\ - }
     {}
     {\titlerule*[1.1mm]{.}\contentspage}%
 }
@@ -744,32 +829,50 @@
 %%-----------------------------------------------------------------------------
 %% 16. SUMARIO (NBR 6027)
 %%-----------------------------------------------------------------------------
-\newcommand{\idp@toclabel}[1]{\idptabbox{#1}}
+% NBR 6027, 5.4.1 e 5.4.2 (citadas no modelo 2026): os indicativos ficam
+% alinhados a esquerda e os titulos alinhados pela margem do titulo do
+% indicativo mais extenso. A largura do maior indicativo e medida a cada
+% compilacao e gravada no .aux, para a compilacao seguinte. Entradas sem
+% indicativo (REFERENCIAS, APENDICE, ANEXO) ficam rentes a margem.
+% O modelo 2026 nao usa pontilhado entre o titulo e a pagina.
+\newlength{\idp@tocatual}
+\newdimen\idp@tocmaxrun   \idp@tocmaxrun=0pt
+\def\idp@tocmax{10mm}
+\newcommand{\idp@toclabel}[1]{%
+  \settowidth{\idp@tocatual}{#1}%
+  \ifdim\idp@tocatual>\idp@tocmaxrun\global\idp@tocmaxrun=\idp@tocatual\fi
+  \ifdim\idp@tocatual>0pt
+    \makebox[\dimexpr\idp@tocmax+\idp@distnum\relax][l]{#1}%
+  \fi}
+\AtEndDocument{%
+  \ifdim\idp@tocmaxrun>0pt
+    \immediate\write\@auxout{\gdef\string\idp@tocmax{\the\idp@tocmaxrun}}%
+  \fi}
 \contentsmargin{0pt}   % numero de pagina rente a margem direita
 
 \titlecontents{section}[0pt]
   {\espacoumemeio\bfseries}
   {\idp@toclabel{\thecontentslabel}}
-  {\idp@toclabel{}}
-  {\titlerule*[1.1mm]{.}\contentspage}
+  {}
+  {\hfill\contentspage}
 \titlecontents{subsection}[0pt]
   {\espacoumemeio\bfseries}
   {\idp@toclabel{\thecontentslabel}}
-  {\idp@toclabel{}}
-  {\titlerule*[1.1mm]{.}\contentspage}
+  {}
+  {\hfill\contentspage}
 \titlecontents{subsubsection}[0pt]
   {\espacoumemeio}
   {\idp@toclabel{\thecontentslabel}}
-  {\idp@toclabel{}}
-  {\titlerule*[1.1mm]{.}\contentspage}
+  {}
+  {\hfill\contentspage}
 \titlecontents{paragraph}[0pt]
   {\espacoumemeio}
   {\idp@toclabel{\thecontentslabel}}
-  {\idp@toclabel{}}
-  {\titlerule*[1.1mm]{.}\contentspage}
+  {}
+  {\hfill\contentspage}
 
 \newcommand{\sumario}{%
-  \idp@tituloelemento{Sum\'ario}%
+  \idp@tituloelemento[2\idplinha]{Sum\'ario}%
   \begingroup
     \espacoumemeio
     \makeatletter\@starttoc{toc}\makeatother
@@ -845,23 +948,25 @@
 \setlength{\bibitemsep}{\idplinhasimp}
 \setlength{\bibhang}{0pt}
 
-% Autor repetido: travessao no formato do template do IDP ("_______.").
-% Com a opcao de classe `refautorrepetido' o nome e repetido por extenso,
-% como determina a NBR 6023:2018.
-\AtBeginDocument{%
-  \ifidp@autorrepetido
-    \ExecuteBibliographyOptions{usedashes=false}%
-  \else
+% Autor repetido: o modelo 2026 repete o nome por extenso em cada referencia
+% (como as cinco entradas da ABNT no proprio modelo). A opcao de classe
+% `refautortraco' volta ao travessao do modelo antigo ("_______.").
+% A opcao precisa valer ja no preambulo: aplicada so no \begin{document} ela
+% chegava tarde e o estilo abnt continuava trocando o autor pelo travessao.
+% No estilo abnt quem decide e o toggle `repeatfields'.
+\ifidp@autorrepetido
+  \ExecuteBibliographyOptions{usedashes=false,repeatfields=true}
+\else
+  \AtBeginDocument{%
     \renewcommand*{\bibnameunderscore}{\underline{\hspace*{3.7em}}}%
-    \renewcommand*{\bibnamedash}{\bibnameunderscore\addperiod\addspace}%
-  \fi
-}
+    \renewcommand*{\bibnamedash}{\bibnameunderscore\addperiod\addspace}}
+\fi
 
 \newcommand{\referencias}{%
   \clearpage
   \idpaddtoc{REFER\^ENCIAS}%
   {\centering\normalfont\normalsize\bfseries REFER\^ENCIAS\par}%
-  \vspace{\idplinha}%
+  \vspace{2\idplinha}%   % modelo 2026: duas linhas entre o titulo e a 1a referencia
   \begingroup
     \espacosimples
     \raggedright
@@ -892,6 +997,8 @@
 % (\idp@campovazio nao precisa entrar aqui: ja produz texto puro.)
 \pdfstringdefDisableCommands{%
   \let\idptabbox\@firstofone
+  \let\idpnumtitulo\@firstofone
+  \let\pendente\@firstofone
   \let\espacosimples\@empty
   \let\espacoumemeio\@empty
   \let\idpcorpodez\@empty

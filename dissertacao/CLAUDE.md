@@ -29,7 +29,8 @@ que terminou. Erros de LaTeX aparecem em `main.log` com o prefixo `!`.
 | `referencias.bib` | bibliografia | ✅ |
 | `figuras/` | imagens | ✅ |
 | `main.tex` | ordem dos arquivos | ⚠️ só para incluir/remover capítulo |
-| `idp.cls` | **toda a formatação ABNT/IDP** | ❌ **não altere** |
+| `idp.cls` | **toda a formatação ABNT/IDP** | ❌ **não altere**, salvo para seguir um modelo oficial novo do IDP a pedido do usuário |
+| `modelo/modelo_idp_2026.pdf` | modelo oficial da Universidade IDP (2026), referência da classe | 🔒 só consulta |
 
 ### Dados do trabalho: nunca redigite, use o acessor
 
@@ -71,10 +72,31 @@ Use sempre `\texorpdfstring{versão TeX}{versão PDF}`:
 
 ### `idp.cls` é intocável
 
-A classe reproduz medidas extraídas do PDF oficial do IDP
-(`templateMonografia_ou_TCC.pdf`, incluído no repositório original) e implementa
-a ABNT. Alterá-la para "consertar" o visual de um trecho tira o trabalho da
-norma.
+A classe reproduz medidas extraídas do modelo oficial da Universidade IDP de
+2026 (`modelo/modelo_idp_2026.pdf`, "Template final_Monografia_Dissertacao_Tese
+2026") e implementa a ABNT. Alterá-la para "consertar" o visual de um trecho
+tira o trabalho da norma. A única exceção é adaptar a classe a um modelo oficial
+novo do IDP, quando o usuário pedir — foi o que aconteceu em 3 de novembro de
+2026, na troca do modelo antigo (`templateMonografia_ou_TCC.pdf`) pelo de 2026.
+
+O que o modelo de 2026 pede, e a classe já faz:
+
+* capa com o logo "idp | Universidade" (`figuras/idp-universidade-logo.png`),
+  "Universidade IDP" e "Mestrado em <programa>";
+* folha de rosto com "pós-graduação *stricto sensu* em <programa>, área de
+  concentração <área> … pela Universidade IDP", recuada 7,5 cm;
+* ficha catalográfica como espaço reservado, até a Biblioteca enviar a oficial
+  (`\arquivoficha{...}` em `config/dados.tex`);
+* folha de aprovação com cada membro em traço de largura total, nome, ID Lattes
+  ou ORCID e "Função - Instituição" (`\membrobanca[Inst.]{Nome}{Função}[ID]`);
+* dedicatória sem itálico; abstract em corpo 10; citação longa em corpo 11;
+  legenda em itálico com hífen ("Figura 1 - Título"); "Fonte:" sem negrito;
+  número da página em corpo 11; sumário sem pontilhado, com os títulos
+  alinhados pela margem do indicativo mais extenso (NBR 6027, 5.4.2);
+  referências com o autor repetido por extenso.
+
+Dado que ainda falta em `config/dados.tex` vai em `\pendente{...}`: sai como
+`[[ PREENCHER: ... ]]` e gera aviso, como os campos obrigatórios.
 
 Se o layout parecer errado, o problema está quase sempre na marcação do texto.
 Se for realmente um defeito da classe, **relate ao usuário** em vez de corrigir

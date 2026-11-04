@@ -63,17 +63,17 @@ por Git.
 ### 1.3 Baixando os arquivos que faltam nesta cópia
 
 Esta pasta foi montada a partir do template
-[TemplateLatexIDP](https://github.com/alexlopespereira/TemplateLatexIDP), mas
-não inclui os dois arquivos binários do repositório original — baixe-os se
-precisar deles:
+[TemplateLatexIDP](https://github.com/alexlopespereira/TemplateLatexIDP) e, em
+novembro de 2026, adaptada ao **modelo oficial da Universidade IDP de 2026**
+("Template final_Monografia_Dissertacao_Tese 2026"). Os dois arquivos de
+referência já estão aqui:
 
-* logo do IDP: <https://github.com/alexlopespereira/TemplateLatexIDP/raw/main/figuras/idp-logo.png>
-  → salve em `figuras/idp-logo.png`
-* PDF oficial de referência (para conferir a formatação visualmente):
-  <https://github.com/alexlopespereira/TemplateLatexIDP/raw/main/templateMonografia_ou_TCC.pdf>
+* logo "idp | Universidade" da capa, extraído do modelo:
+  `figuras/idp-universidade-logo.png`
+* modelo oficial, para conferir a formatação visualmente:
+  `modelo/modelo_idp_2026.pdf`
 
-Sem o logo, a capa ainda compila normalmente (o espaço fica em branco); para
-omiti-lo de propósito, use `\semlogo` em `config/dados.tex`.
+Para omitir o logo de propósito, use `\semlogo` em `config/dados.tex`.
 
 ---
 
@@ -127,7 +127,8 @@ e nos metadados do PDF sai daqui. Você digita cada dado **uma única vez**.
 %% --- Defesa ---
 \datadefesa{15 de dezembro de 2026}        % SÓ a data; a cidade vem de \cidade
 
-\membrobanca[UnB]{Prof. Dr. Pedro Rocha}{Examinador}   % instituição é opcional
+\membrobanca{Prof. Dr. Ana Lima}{Orientador}[0000-0002-1825-0097]
+\membrobanca[UnB]{Prof. Dr. Pedro Rocha}{Examinador externo}[http://lattes.cnpq.br/0000000000000000]
 ```
 
 Repare em dois detalhes que evitam erro:
@@ -136,35 +137,37 @@ Repare em dois detalhes que evitam erro:
   é montada com o `\cidade`. Assim você não corre o risco de mudar a cidade num
   campo e esquecer do outro. Se o seu programa exigir outra redação, use
   `\datadefesacompleta{Aprovada em 15 de dezembro de 2026.}`.
-* **`\membrobanca` aceita a instituição** entre colchetes, antes do nome — útil
-  para examinador externo ao IDP. É opcional.
+* **`\membrobanca[Instituição]{Nome}{Função}[ID Lattes ou ORCID]`** monta cada
+  membro como no modelo de 2026: traço na largura do texto, nome, ID Lattes ou
+  ORCID e "Função - Instituição". A instituição vale **IDP** quando omitida;
+  para o examinador externo, informe a sigla da IES dele. Sem o ID, sai
+  `[[ PREENCHER: ID Lattes ou ORCID ]]`. Se ainda não souber um dado, escreva
+  `\pendente{o que falta}`: ele sai marcado no PDF e gera aviso.
 
 ### A tabela completa dos campos
 
 | Campo | Obrigatório? | Onde aparece |
 |---|---|---|
-| `\titulo` | ✅ | capa, folha de rosto, aprovação, ficha, metadados |
+| `\titulo` | ✅ | capa, folha de rosto, aprovação, metadados |
 | `\subtitulo` | — | junto do título |
 | `\titulotraduzido` | — | disponível para o *abstract* |
 | `\autor` | ✅ | capa, rosto, aprovação, metadados |
-| `\autorficha` | ✅ | ficha catalográfica (formato invertido) |
-| `\orientador` | ✅ | capa, rosto, aprovação, ficha |
-| `\coorientador` | — | rosto e aprovação, se preenchido |
-| `\curso` | ✅ graduação/especialização | capa, rosto, ficha |
-| `\programa` | ✅ mestrado/doutorado | rosto, aprovação |
-| `\area` | — | rosto e aprovação, como "Área de concentração" |
-| `\linhapesquisa` | — | rosto e aprovação |
+| `\autorficha` | ✅ | reservado para a ficha (formato invertido) |
+| `\orientador` | ✅ | capa, rosto, aprovação |
+| `\coorientador` | — | folha de rosto, se preenchido |
+| `\curso` | ✅ graduação/especialização | capa e rosto |
+| `\programa` | ✅ mestrado/doutorado | capa ("Mestrado em …"), rosto e aprovação |
+| `\habilitacao` | — | substitui a linha da capa (ex.: "Mestrado Profissional em Administração Pública") |
+| `\area` | ✅ mestrado/doutorado | folha de rosto ("área de concentração …") |
+| `\linhapesquisa` | — | não aparece no modelo de 2026 |
 | `\cidade` | — | folha de aprovação |
-| `\local` | — | capa e folha de rosto |
-| `\data` | — | capa, rosto, ficha |
+| `\local` | — | capa e folha de rosto ("Brasília-DF") |
+| `\data` | — | capa e rosto |
 | `\datadefesa` | ✅ | folha de aprovação |
 | `\membrobanca` | ✅ | folha de aprovação (repita para cada membro) |
-| `\palavraschave` | ✅ | resumo |
-| `\keywords` | ✅ | *abstract* |
-| `\cutter` | — | ficha catalográfica |
-| `\numeropaginas` | ✅ | ficha catalográfica |
-| `\cdd` | ✅ | ficha catalográfica |
-| `\assuntos` | — | ficha; se vazio, usa as palavras-chave |
+| `\palavraschave` | ✅ | resumo, separadas por ponto e vírgula (NBR 6028) |
+| `\keywords` | ✅ | *abstract*, separadas por ponto e vírgula |
+| `\arquivoficha` | — | PDF da ficha oficial, quando a Biblioteca enviar |
 
 Em `main.tex`, o tipo de trabalho é escolhido pela opção da classe:
 
@@ -200,11 +203,14 @@ Ao meu orientador, \NomeOrientador, agradeço a paciência e o rigor.
 ### Campos que você esqueceu
 
 Campo obrigatório em branco **não passa despercebido**. Ele aparece no PDF como
-`[[ PREENCHER: cdd ]]` e gera aviso na compilação, nomeando o campo:
+`[[ PREENCHER: programa ]]` e gera aviso na compilação, nomeando o campo:
 
 ```
-Class idp Warning: Campo nao preenchido em config/dados.tex: cdd.
+Class idp Warning: Campo nao preenchido em config/dados.tex: programa.
 ```
+
+Um campo escrito em branco, como `\programa{}`, conta como não preenchido: ele
+não some do PDF deixando "pós-graduação em , como parte…".
 
 Ao gerar a **versão final**, acrescente a opção `entrega`:
 
@@ -214,14 +220,22 @@ Ao gerar a **versão final**, acrescente a opção `entrega`:
 
 Com ela o aviso vira erro: a compilação aborta e **nenhum PDF é gerado**
 enquanto houver campo pendente. É a sua rede de segurança contra entregar a
-dissertação com `XXXX` na ficha catalográfica — um erro mais comum do que
-parece.
+dissertação com `XXXX` na folha de rosto — um erro mais comum do que parece.
 
 ### A ficha catalográfica
 
-A ficha oficial é elaborada **pela Biblioteca Ministro Moreira Alves**. Solicite
-pelo e-mail **biblioteca@idp.edu.br** e, quando receber, transcreva os dados em
-`config/dados.tex` (`\cutter`, `\numeropaginas`, `\cdd`, `\assuntos`).
+No modelo de 2026, a folha da ficha sai como **"Espaço destinado à ficha
+catalográfica."** até a ficha oficial chegar. Ela é elaborada **pela Biblioteca
+Ministro Moreira Alves**: solicite pelo e-mail **biblioteca@idp.edu.br** ou
+pelo formulário da Biblioteca. A Biblioteca só aceita fichas de acordo com o
+Código de Catalogação Anglo-Americano vigente. Quando receber o PDF, salve-o
+em `figuras/` e informe em `config/dados.tex`:
+
+```latex
+\arquivoficha{figuras/ficha-catalografica.pdf}
+```
+
+A ficha entra no pé da página, no lugar do aviso.
 
 ---
 
@@ -520,10 +534,10 @@ específicos.
 
 ### 8.5 Um comando que vale ouro
 
-Se você baixou o PDF oficial (ver seção 1.3), peça ao assistente para conferir
-o resultado contra ele:
+O modelo oficial está em `modelo/modelo_idp_2026.pdf` (ver seção 1.3). Peça ao
+assistente para conferir o resultado contra ele:
 
-> Compare visualmente o `main.pdf` gerado com o `templateMonografia_ou_TCC.pdf`
+> Compare visualmente o `main.pdf` gerado com o `modelo/modelo_idp_2026.pdf`
 > (margens, fontes, entrelinhas, posição do número de página) e me diga se
 > encontrou alguma divergência de formatação.
 

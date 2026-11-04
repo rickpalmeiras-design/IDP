@@ -34,18 +34,19 @@ dentro desta pasta.
 ├── postextual/
 │   ├── apendices.tex
 │   └── anexos.tex
-├── figuras/                  ← suas imagens (adicione o logo idp-logo.png aqui)
+├── figuras/                  ← imagens, incluindo o logo idp-universidade-logo.png
+├── modelo/
+│   └── modelo_idp_2026.pdf   ← modelo oficial da Universidade IDP (2026), para conferência
 ├── CLAUDE.md                 ← instruções para o Claude Code
 ├── TUTORIAL.md                ← guia completo passo a passo
 └── README.md                  ← este arquivo
 ```
 
-> **Nota:** o repositório original também inclui `figuras/idp-logo.png` e o PDF
-> oficial de referência `templateMonografia_ou_TCC.pdf` (para conferência
-> visual). Como são arquivos binários, baixe-os diretamente do repositório
-> original se precisar deles:
-> <https://github.com/alexlopespereira/TemplateLatexIDP/tree/main/figuras> e
-> <https://github.com/alexlopespereira/TemplateLatexIDP/raw/main/templateMonografia_ou_TCC.pdf>
+> **Nota:** a formatação segue o modelo oficial da Universidade IDP de 2026
+> (`modelo/modelo_idp_2026.pdf`, "Template final_Monografia_Dissertacao_Tese
+> 2026"). O logo "idp | Universidade" da capa foi extraído desse modelo e está em
+> `figuras/idp-universidade-logo.png`. O logo antigo (`figuras/idp-logo.png`)
+> ficou no repositório, mas a classe não o usa mais.
 
 ## Como compilar
 
